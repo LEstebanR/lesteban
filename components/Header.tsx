@@ -27,7 +27,7 @@ const options: OptionNavbar[] = [
 
 const Header: FC = () => {
   return (
-    <Navbar isBordered variant={"floating"}>
+    <Navbar isBordered variant="floating">
       <Navbar.Brand>
         Logo
       </Navbar.Brand>
