@@ -1,9 +1,6 @@
-import React, {FC} from 'react'
-
+import React, {FC, ReactNode} from 'react'
 import Header from './Header'
 import Footer from './Footer'
-import { ReactNode } from 'react'
-
 interface Props {
   children?: ReactNode
 }
