@@ -1,9 +1,12 @@
-import Layout from "../components/Layout";
+import { NextPage } from 'next'
+import Layout from '../components/Layout'
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <Layout>
       <p>Contenido</p>
     </Layout>
   )
 }
+
+export default Home
