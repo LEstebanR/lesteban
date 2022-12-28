@@ -1,28 +1,4 @@
-import React, {FC, ReactNode} from 'react'
-
-type OptionNavbar = {
-  id: number,
-  label: string,
-  link: string,
-}
-
-const options: OptionNavbar[] = [
-  {
-    id: 1,
-    label: 'About',
-    link: "#"
-  },
-  {
-    id: 2,
-    label: 'Experience',
-    link: "#"
-  },
-  {
-    id: 3,
-    label: 'Contact',
-    link: "#"
-  }
-]
+import React, { FC } from 'react'
 
 const Header: FC = () => {
   return (
@@ -30,4 +6,4 @@ const Header: FC = () => {
   )
 }
 
-export default Header;
+export default Header

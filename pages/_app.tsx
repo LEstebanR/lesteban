@@ -1,7 +1,10 @@
+import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }: AppProps) {
+const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
-        <Component {...pageProps} />  
-    )
+        <Component {...pageProps} />
+  )
 }
+
+export default App

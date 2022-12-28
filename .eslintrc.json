@@ -1,3 +1,30 @@
 {
-  "extends": "next/core-web-vitals"
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "standard-with-typescript",
+        "plugin:react/recommended",
+        "eslint:recommended",
+        "next"
+    ],
+    "overrides": [
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "better-styled-components"
+    ],
+    "rules": {
+        "sort-keys": ["error", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}],
+        "no-console": "error",
+        "better-styled-components/sort-declarations-alphabetically": 2,
+        "no-use-before-define": ["error", { "variables": false }]
+    }
 }
