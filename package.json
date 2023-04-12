@@ -1,25 +1,38 @@
 {
   "name": "lesteban",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint --ext .tsx --fix .",
+    "prettier": "prettier --check '**/*.{ts,tsx,js,jsx,json,md}'",
+    "prettier:fix": "prettier --write '**/*.{ts,tsx,js,jsx,json,md}'"
   },
   "dependencies": {
     "@types/node": "18.15.11",
     "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
     "autoprefixer": "10.4.14",
     "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
+    "eslint-config-next": "^13.3.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "next": "13.3.0",
     "postcss": "8.4.21",
+    "prettier": "^2.8.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
-  }
+  },
+  "main": "index.tsx",
+  "repository": "git@github.com:LEstebanR/lesteban.git",
+  "author": "LEsteban",
+  "license": "MIT"
 }
