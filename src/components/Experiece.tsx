@@ -1,7 +1,11 @@
 import React, { FC } from 'react'
 
 const Experience: FC = () => {
-  return <p>Experience</p>
+  return (
+    <div className="">
+      <p>Experience</p>
+    </div>
+  )
 }
 
 export default Experience

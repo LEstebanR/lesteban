@@ -1,7 +1,11 @@
 import React, { FC } from 'react'
 
 const Projects: FC = () => {
-  return <p>Projects</p>
+  return (
+    <div className="">
+      <p>Projects</p>
+    </div>
+  )
 }
 
 export default Projects
