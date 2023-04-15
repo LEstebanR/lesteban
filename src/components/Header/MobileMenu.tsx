@@ -18,16 +18,16 @@ const MobileMenu: FC<props> = ({
     <div className="sm:hidden">
       <ul className="flex gap-4 text-3xl">
         <li className="cursor-pointer">
-          <SlUser onClick={() => handleAboutClick} />
+          <SlUser onClick={() => handleAboutClick()} />
         </li>
         <li className="cursor-pointer">
-          <SlScreenDesktop onClick={() => handleExperienceClick} />
+          <SlScreenDesktop onClick={() => handleExperienceClick()} />
         </li>
         <li className="cursor-pointer">
-          <SlFire onClick={() => handleProjectsClick} />
+          <SlFire onClick={() => handleProjectsClick()} />
         </li>
         <li className="cursor-pointer">
-          <SlEnvolope onClick={() => handleContactClick} />
+          <SlEnvolope onClick={() => handleContactClick()} />
         </li>
       </ul>
     </div>

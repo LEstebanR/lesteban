@@ -36,9 +36,9 @@ const DesktopMenu: FC<props> = ({
       <ul className="flex gap-3">
         {options.map((option) => (
           <p
-            className="cursor-pointer"
+            className="cursor-pointer text-xl text-sky-400"
             key={option.label}
-            onClick={() => option.action}
+            onClick={() => option.action()}
           >
             {option.label}
           </p>
