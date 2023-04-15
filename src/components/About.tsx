@@ -1,7 +1,11 @@
 import React, { FC } from 'react'
 
 const About: FC = () => {
-  return <p>About</p>
+  return (
+    <div className="">
+      <p>About</p>
+    </div>
+  )
 }
 
 export default About
