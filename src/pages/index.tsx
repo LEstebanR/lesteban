@@ -17,7 +17,7 @@ export default function Home() {
   }
 
   const handleExperienceClick = () => {
-    experienceRef.current?.scrollIntoView({ behavior: 'smooth' })
+    experienceRef?.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleProjectsClick = () => {
@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex w-screen flex-col items-center justify-center font-sans">
+    <main className="flex w-screen flex-col items-center justify-center font-sans gap-8">
       <Header
         handleAboutClick={handleAboutClick}
         handleExperienceClick={handleExperienceClick}
