@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react'
-import TechnologyLogo from './TechnologyLogo'
+import TechnologyLogo from './cards/TechnologyLogo'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -59,7 +59,7 @@ const About: FC = () => {
     },
   ]
   return (
-    <div className="flex flex-col items-center max-w-2xl p-5 gap-4">
+    <div className="flex flex-col items-center max-w-2xl gap-4 p-4">
       <h2 className="text-4xl text-sky-500">Luis Esteban Ramírez</h2>
       <h3 className="text-3xl text-sky-400">Frontend Developer</h3>
       <Image
@@ -84,13 +84,13 @@ const About: FC = () => {
         </button>
       </Link>
       <h3 className="text-2xl">I have experience with:</h3>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-between gap-4">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
       </div>
       <h3 className="text-2xl">I have special interest learning:</h3>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-between gap-4">
         {Interesting.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}

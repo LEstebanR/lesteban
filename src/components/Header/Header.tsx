@@ -19,7 +19,9 @@ const Header: FC<props> = ({
   console.log(handleContactClick)
   return (
     <header className="sticky top-0 z-50 flex w-full justify-between items-center p-4 bg-white">
-      <Logo />
+      <div onClick={() => handleAboutClick()}>
+        <Logo />
+      </div>
       <MobileMenu
         handleAboutClick={handleAboutClick}
         handleExperienceClick={handleExperienceClick}

@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex w-screen flex-col items-center justify-center font-sans gap-8">
+    <main className="flex flex-col items-center justify-center font-sans gap-8">
       <Header
         handleAboutClick={handleAboutClick}
         handleExperienceClick={handleExperienceClick}
