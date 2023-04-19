@@ -14,7 +14,7 @@ interface StackProps {
 
 const StackItem: FC<StackProps> = ({ tech }) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center justify-end">
       <Image src={tech.icon} alt="tech - logo" height={25} width={25} />
       <p>{tech.name}</p>
     </div>
