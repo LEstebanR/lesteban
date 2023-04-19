@@ -7,25 +7,25 @@ import Header from '@/components/Header/Header'
 import Projects from '@/components/Projects'
 
 export default function Home() {
-  const aboutRef = useRef<any>()
-  const experienceRef = useRef<any>()
-  const projectsRef = useRef<any>()
-  const contactRef = useRef<any>()
+  const aboutRef = useRef<HTMLDivElement>(null)
+  const experienceRef = useRef<HTMLDivElement>(null)
+  const projectsRef = useRef<HTMLDivElement>(null)
+  const contactRef = useRef<HTMLDivElement>(null)
 
   const handleAboutClick = () => {
-    aboutRef?.current?.scrollIntoView({ behavior: 'smooth' })
+    aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleExperienceClick = () => {
-    experienceRef?.current?.scrollIntoView({ behavior: 'smooth' })
+    experienceRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleProjectsClick = () => {
-    projectsRef?.current?.scrollIntoView({ behavior: 'smooth' })
+    projectsRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleContactClick = () => {
-    contactRef?.current?.scrollIntoView({ behavior: 'smooth' })
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (

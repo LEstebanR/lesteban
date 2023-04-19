@@ -1,13 +1,14 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Job, StackItem } from '@/utils/types'
 
 interface props {
-  job: any
+  job: Job
 }
 
 interface StackProps {
-  tech: any
+  tech: StackItem
 }
 
 const StackItem: FC<StackProps> = ({ tech }) => {
@@ -35,8 +36,8 @@ const ExperienceCard: FC<props> = ({ job }) => {
         <p className="text-justify">{job.detail}</p>
         <p>Stack:</p>
         <div className="flex justify-around flex-wrap">
-          {job.stack.map((tech: any) => (
-            <StackItem key={tech.layout} tech={tech} />
+          {job.stack.map((tech: StackItem) => (
+            <StackItem key={tech.name} tech={tech} />
           ))}
         </div>
       </div>
