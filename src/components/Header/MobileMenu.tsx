@@ -16,7 +16,7 @@ const MobileMenu: FC<props> = ({
 }) => {
   return (
     <div className="sm:hidden">
-      <ul className="flex gap-4 text-3xl">
+      <ul className="flex gap-4 text-3xl text-sky-400">
         <li className="cursor-pointer">
           <SlUser onClick={() => handleAboutClick()} />
         </li>

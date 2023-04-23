@@ -3,13 +3,14 @@ import React, { FC } from 'react'
 
 const Logo: FC = () => {
   return (
-    <Image
-      src="/assets/images/logo.png"
-      width={120}
-      height={100}
-      alt="logo"
-      className="cursor-pointer"
-    />
+    <p className='cursor-pointer text-xl text-sky-400'>{'<LEsteban/>'}</p>
+    // <Image
+    //   src="/assets/images/logo.png"
+    //   width={120}
+    //   height={100}
+    //   alt="logo"
+    //   className="cursor-pointer"
+    // />
   )
 }
 
