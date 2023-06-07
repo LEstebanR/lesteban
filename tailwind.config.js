@@ -8,12 +8,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#38bdf8',
+        primary: '#0284c7',
+        secondary: '#a7f3d0', // Emerald 200
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        sans: ['applesystem', 'BlinkMacSystemFont', 'sans-serif'],
       },
     },
   },
