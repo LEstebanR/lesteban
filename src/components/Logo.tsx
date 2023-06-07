@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 
 const Logo: FC = () => {
   return (
-    <p className='cursor-pointer text-xl text-sky-400'>{'<LEsteban/>'}</p>
+    <p className="cursor-pointer text-xl text-sky-400">{'<LEsteban/>'}</p>
     // <Image
     //   src="/assets/images/logo.png"
     //   width={120}
