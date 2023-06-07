@@ -13,11 +13,11 @@ export interface Project {
 }
 
 export interface Job {
-  position: string,
-  company: string,
-  url: string,
-  start: string,
-  end: string,
+  position: string
+  company: string
+  url: string
+  start: string
+  end: string
   detail: string
   stack: StackItem[]
 }
