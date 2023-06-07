@@ -5,14 +5,12 @@ interface props {
   handleAboutClick: Function
   handleExperienceClick: Function
   handleProjectsClick: Function
-  handleContactClick: Function
 }
 
 const MobileMenu: FC<props> = ({
   handleAboutClick,
   handleExperienceClick,
   handleProjectsClick,
-  handleContactClick,
 }) => {
   return (
     <div className="sm:hidden">
@@ -25,9 +23,6 @@ const MobileMenu: FC<props> = ({
         </li>
         <li className="cursor-pointer">
           <SlFire onClick={() => handleProjectsClick()} />
-        </li>
-        <li className="cursor-pointer">
-          <SlEnvolope onClick={() => handleContactClick()} />
         </li>
       </ul>
     </div>

@@ -24,31 +24,35 @@ export default function Home() {
     projectsRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const handleContactClick = () => {
-    contactRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
-    <main className="flex flex-col items-center justify-center font-sans gap-8">
-      <Header
-        handleAboutClick={handleAboutClick}
-        handleExperienceClick={handleExperienceClick}
-        handleProjectsClick={handleProjectsClick}
-        handleContactClick={handleContactClick}
-      />
-      <div ref={aboutRef}>
-        <About />
+    <main className="flex flex-col items-center justify-center font-sans h-screen">
+      <div className="h-1/12 w-full">
+        <Header
+          handleAboutClick={handleAboutClick}
+          handleExperienceClick={handleExperienceClick}
+          handleProjectsClick={handleProjectsClick}
+        />
       </div>
-      <div ref={experienceRef}>
-        <Experience />
-      </div>
-      <div ref={projectsRef}>
-        <Projects />
-      </div>
-      <div ref={contactRef}>
+      <div className="flex flex-col md:flex-row w-screen overflow-y-hidden md:h-10/12">
         <Contact />
+        <div className="md:w-6/12 flex flex-col items-center overflow-y-scroll no-scrollbar">
+          <div ref={aboutRef}>
+            <About />
+          </div>
+          <div ref={experienceRef}>
+            <Experience />
+          </div>
+          <div ref={projectsRef}>
+            <Projects />
+          </div>
+        </div>
+        <div className="flex w-3/12 justify-center items-center">
+          <p className="hidden ">Info...</p>
+        </div>
       </div>
-      <Footer />
+      <div className="h-1/12 w-full">
+        <Footer />
+      </div>
     </main>
   )
 }

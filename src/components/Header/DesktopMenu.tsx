@@ -4,14 +4,12 @@ interface props {
   handleAboutClick: Function
   handleExperienceClick: Function
   handleProjectsClick: Function
-  handleContactClick: Function
 }
 
 const DesktopMenu: FC<props> = ({
   handleAboutClick,
   handleExperienceClick,
   handleProjectsClick,
-  handleContactClick,
 }) => {
   const options = [
     {
@@ -25,10 +23,6 @@ const DesktopMenu: FC<props> = ({
     {
       label: 'Projects',
       action: handleProjectsClick,
-    },
-    {
-      label: 'Contact',
-      action: handleContactClick,
     },
   ]
   return (

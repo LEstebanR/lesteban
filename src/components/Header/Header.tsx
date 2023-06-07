@@ -7,17 +7,15 @@ interface props {
   handleAboutClick: Function
   handleExperienceClick: Function
   handleProjectsClick: Function
-  handleContactClick: Function
 }
 
 const Header: FC<props> = ({
   handleAboutClick,
   handleExperienceClick,
   handleProjectsClick,
-  handleContactClick,
 }) => {
   return (
-    <header className="sticky top-0 z-50 flex w-full justify-between items-center p-4 bg-white">
+    <header className="sticky top-0 z-50 flex w-full justify-between items-center p-4 bg-white h-full">
       <div onClick={() => handleAboutClick()}>
         <Logo />
       </div>
@@ -25,13 +23,11 @@ const Header: FC<props> = ({
         handleAboutClick={handleAboutClick}
         handleExperienceClick={handleExperienceClick}
         handleProjectsClick={handleProjectsClick}
-        handleContactClick={handleContactClick}
       />
       <DesktopMenu
         handleAboutClick={handleAboutClick}
         handleExperienceClick={handleExperienceClick}
         handleProjectsClick={handleProjectsClick}
-        handleContactClick={handleContactClick}
       />
     </header>
   )
