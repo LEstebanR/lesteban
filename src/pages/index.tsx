@@ -5,6 +5,7 @@ import Experience from '@/components/Experiece'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header/Header'
 import Projects from '@/components/Projects'
+import Info from '@/components/Info'
 
 export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null)
@@ -47,7 +48,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex w-3/12 justify-center items-center">
-          <p className="hidden ">Info...</p>
+          <Info />
         </div>
       </div>
       <div className="h-1/12 w-full">
