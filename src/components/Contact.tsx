@@ -18,7 +18,7 @@ const ContactMobile = () => {
             </Link>
           </li>
           <li>
-            <Link href="#" target="_blank">
+            <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
               <AiFillGithub className="h-8 w-8 text-primary" />
             </Link>
           </li>
@@ -47,7 +47,7 @@ const ContactDesktop = () => {
             </Link>
           </li>
           <li>
-            <Link href="#" target="_blank">
+            <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
               <AiFillGithub className="h-8 w-8 text-primary" />
             </Link>
           </li>
