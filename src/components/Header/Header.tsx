@@ -2,33 +2,21 @@ import React, { FC } from 'react'
 import MobileMenu from './MobileMenu'
 import DesktopMenu from './DesktopMenu'
 import Logo from '../Logo'
+import Link from 'next/link'
+import Button from '../UI/Button'
 
-interface props {
-  handleAboutClick: Function
-  handleExperienceClick: Function
-  handleProjectsClick: Function
-}
-
-const Header: FC<props> = ({
-  handleAboutClick,
-  handleExperienceClick,
-  handleProjectsClick,
-}) => {
+const Header: FC = () => {
   return (
-    <header className="sticky top-0 z-50 flex w-full justify-between items-center p-4 bg-white h-full">
-      <div onClick={() => handleAboutClick()}>
+    <header className="w-full h-12 sticky top-0 z-50 flex justify-between items-center md:px-20 px-4">
+      <div>
         <Logo />
       </div>
-      <MobileMenu
-        handleAboutClick={handleAboutClick}
-        handleExperienceClick={handleExperienceClick}
-        handleProjectsClick={handleProjectsClick}
-      />
-      <DesktopMenu
-        handleAboutClick={handleAboutClick}
-        handleExperienceClick={handleExperienceClick}
-        handleProjectsClick={handleProjectsClick}
-      />
+      <Link
+        href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"
+        target="blank"
+      >
+        <Button>Download CV</Button>
+      </Link>
     </header>
   )
 }
