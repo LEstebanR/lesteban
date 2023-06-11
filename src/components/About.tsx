@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import TechnologyLogo from './cards/TechnologyLogo'
 import Link from 'next/link'
 import Image from 'next/image'
+import Button from './UI/Button'
 
 const About: FC = () => {
   const TechnologiesExperience = [
@@ -78,10 +79,9 @@ const About: FC = () => {
       <Link
         href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"
         target="blank"
+        className="md:hidden"
       >
-        <button className="rounded-md bg-sky-500 p-3 text-white shadow-2xl">
-          Download CV
-        </button>
+        <Button>Download CV</Button>
       </Link>
       <h3 className="text-2xl">I have experience with:</h3>
       <div className="flex flex-wrap justify-between gap-4">
