@@ -1,6 +1,6 @@
 # Lesteban.dev
 
-This is my personal page. It contains personal information about me an my job
+This is my personal page. It contains personal information about me and my job
 
 ## Stack:
 
