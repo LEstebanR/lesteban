@@ -84,7 +84,7 @@ const About: FC = () => {
         <Button>Download CV</Button>
       </Link>
       <h3 className="text-2xl">I have experience with:</h3>
-      <div className="flex flex-wrap justify-between gap-4">
+      <div className="flex flex-wrap justify-between gap-4 z-0">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
