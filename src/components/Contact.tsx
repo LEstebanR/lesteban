@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 const ContactMobile = () => {
   return (
-    <div className="md:hidden w-full">
-      <div className="h-2/3 flex justify-center items-center">
+    <div className="md:hidden w-screen z-10 sticky bg-white">
+      <div className="h-2/3 flex justify-center items-center z-10 sticky">
         <ul className="flex gap-8">
           <li>
             <Link href="mailto:leramirezca@gmail.com">
@@ -59,7 +59,7 @@ const ContactDesktop = () => {
 
 const Contact: FC = () => {
   return (
-    <div className="flex  md:w-3/12 p-4 text-xl justify-center items-center">
+    <div className="flex z-10 md:w-72 p-4 text-xl justify-center items-center bg-white">
       <ContactMobile />
       <ContactDesktop />
     </div>

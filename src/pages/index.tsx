@@ -1,9 +1,6 @@
 import React, { useRef } from 'react'
 import About from '@/components/About'
-import Contact from '@/components/Contact'
 import Experience from '@/components/Experiece'
-import Footer from '@/components/Footer'
-import Header from '@/components/Header/Header'
 import Projects from '@/components/Projects'
 import Info from '@/components/Info'
 

@@ -7,7 +7,7 @@ import Button from '../UI/Button'
 
 const Header: FC = () => {
   return (
-    <header className="w-full h-12 sticky top-0 z-50 flex justify-between items-center md:px-20 px-4">
+    <header className="w-full h-12 sticky top-0 z-50 flex justify-between items-center md:px-20 px-4 m-0">
       <div>
         <Logo />
       </div>
