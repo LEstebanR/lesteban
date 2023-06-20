@@ -7,8 +7,8 @@ interface Props {
 
 const TechnologyLogo: FC<Props> = ({ tech }) => {
   return (
-    <div className="flex flex-col items-center w-40 h-50  rounded-lg overflow-hidden shadow-md z-o">
-      <div className="w-100 flex items-center justify-center  w-full h-40 p-2 drop-shadow-xl">
+    <div className="flex flex-col items-center w-40 h-50 rounded-lg shadow-md">
+      <div className="w-full flex items-center justify-center h-40 p-2">
         <Image src={tech.logo} width={100} height={100} alt="logo" />
       </div>
       <p>{tech.layer}</p>

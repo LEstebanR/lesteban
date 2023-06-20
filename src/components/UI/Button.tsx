@@ -6,7 +6,7 @@ interface props {
 
 const Button: React.FC<props> = ({ children }) => {
   return (
-    <button className="rounded-md bg-sky-500 p-3 text-white shadow-2xl drop-shadow-xl">
+    <button className="rounded-md bg-sky-500 p-3 text-white shadow-2xl">
       {children}
     </button>
   )

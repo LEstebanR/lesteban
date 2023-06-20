@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react'
 import TechnologyLogo from './cards/TechnologyLogo'
 import Link from 'next/link'
@@ -60,7 +59,7 @@ const About: FC = () => {
     },
   ]
   return (
-    <div className="flex flex-col items-center max-w-2xl gap-4 p-4">
+    <div className="flex flex-col items-center max-w-2xl gap-4 p-4 overflow-auto">
       <h2 className="text-4xl text-sky-500">Luis Esteban Ramírez</h2>
       <h3 className="text-3xl text-sky-400">Frontend Developer</h3>
       <Image
@@ -71,10 +70,10 @@ const About: FC = () => {
         className="rounded-full border-4 border-sky-400 shadow-2xl"
       />
       <p className="text-justify text-xl">
-        I'm a passionate frontend developer with engineering skills who is
+        I&apos;m a passionate frontend developer with engineering skills who is
         always looking to learn and improve in order to create effective and
         beautiful solutions. I love collaborating in teams and taking on new
-        challenges. Let's talk and build something amazing together!
+        challenges. Let&apos;s talk and build something amazing together!
       </p>
       <Link
         href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"
@@ -84,7 +83,7 @@ const About: FC = () => {
         <Button>Download CV</Button>
       </Link>
       <h3 className="text-2xl">I have experience with:</h3>
-      <div className="flex flex-wrap justify-between gap-4 z-0">
+      <div className="flex flex-wrap justify-between gap-4">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
