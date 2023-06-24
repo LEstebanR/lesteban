@@ -22,7 +22,7 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ExperienceCard: FC<props> = ({ job }) => {
   return (
-    <div className="rounded-lg overflow-hidden shadow-md flex p-2 gap-2">
+    <div className="rounded-lg overflow-hidden shadow-md flex p-2 gap-2 bg-white">
       <div className="w-1/3 flex flex-col gap-2">
         <p className="text-lg font-bold">{job.position}</p>
         <Link href={job.url} target="_blank">
