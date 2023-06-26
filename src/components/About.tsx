@@ -70,10 +70,10 @@ const About: FC = () => {
         className="rounded-full border-4 border-sky-400 shadow-2xl"
       />
       <p className="text-justify text-xl bg-white">
-        I&apos;m a passionate frontend developer with engineering skills who is
-        always looking to learn and improve in order to create effective and
-        beautiful solutions. I love collaborating in teams and taking on new
-        challenges. Let&apos;s talk and build something amazing together!
+        Frontend developer with engineering skills who is always looking to
+        learn and improve in order to create effective and beautiful solutions.
+        I love collaborating with teams and taking on new challenges. Let&apos;s
+        talk and build something amazing together!
       </p>
       <Link
         href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"

@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col bg-background">
       <div className="h-16 flex items-center sticky top-0 z-50 ">
         <Header />
       </div>
@@ -20,9 +20,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <main className="md:w-2/4 flex justify-center items-center top-32 scroll-y-hidden ">
           {children}
         </main>
-        <div className="w-1/4 bg-white"></div>
+        <div className="w-1/4"></div>
       </div>
-      <div className="h-16 flex items-center sticky bottom-0 z-50 bg-white">
+      <div className="h-16 flex items-center sticky bottom-0 z-50 bg-background">
         <Footer />
       </div>
     </div>

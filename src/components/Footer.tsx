@@ -4,7 +4,7 @@ import { GoHeart, GoMarkGithub } from 'react-icons/go'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer w-full bg-white">
+    <footer className="footer w-full">
       <div className="z-10 flex flex-wrap  justify-center items-center gap-x-1 gap-y-3 sm:gap-x-2 ">
         <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
           <GoMarkGithub className="h-6 w-6 text-primary" />
