@@ -30,7 +30,7 @@ const ContactMobile = () => {
 
 const ContactDesktop = () => {
   return (
-    <div className="md:block hidden border-2 border-black rounded-lg h-32 w-64 shadow-md shadow-black">
+    <div className="md:block hidden border-2 border-black rounded-lg h-32 w-64 shadow-md shadow-black bg-white">
       <div className="h-1/3 bg-secondary rounded-t-lg">
         <p className="p-1 px-4 font-serif text-bold">Let&apos;s talk</p>
       </div>
@@ -59,7 +59,7 @@ const ContactDesktop = () => {
 
 const Contact: FC = () => {
   return (
-    <div className="flex z-10 md:w-72 p-4 text-xl justify-center items-center bg-white">
+    <div className="flex z-10 md:w-72  text-xl w-screen">
       <ContactMobile />
       <ContactDesktop />
     </div>

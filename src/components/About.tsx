@@ -69,7 +69,7 @@ const About: FC = () => {
         alt="profile picture"
         className="rounded-full border-4 border-sky-400 shadow-2xl"
       />
-      <p className="text-justify text-xl">
+      <p className="text-justify text-xl bg-white">
         I&apos;m a passionate frontend developer with engineering skills who is
         always looking to learn and improve in order to create effective and
         beautiful solutions. I love collaborating in teams and taking on new
