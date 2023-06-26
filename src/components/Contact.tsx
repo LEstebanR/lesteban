@@ -1,10 +1,27 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { AiFillLinkedin, AiOutlineMail, AiFillGithub } from 'react-icons/ai'
 import Link from 'next/link'
 
 const ContactMobile = () => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = (): void => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      setIsScrolled(scrollTop > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   return (
-    <div className="md:hidden w-screen z-10 sticky bg-white">
+    <div
+      className={`md:hidden w-screen z-10 sticky pt-2 ${
+        isScrolled ? 'bg-white border-b border-black' : 'bg-background'
+      }`}
+    >
       <div className="h-2/3 flex justify-center items-center z-10 sticky">
         <ul className="flex gap-8">
           <li>
