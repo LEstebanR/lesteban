@@ -26,10 +26,7 @@ const ContactMobile = () => {
         <ul className="flex gap-8">
           <li>
             <Link href="mailto:leramirezca@gmail.com">
-              <AiOutlineMail
-                className="h-8 w-8 text-primary"
-                style={{ fill: 'url(#blue-gradient)' }}
-              />
+              <AiOutlineMail className="h-8 w-8 text-primary" />
             </Link>
           </li>
           <li>
