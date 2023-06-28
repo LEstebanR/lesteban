@@ -7,7 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        '3xl': '-6px 6px 0 1px rgba(0, 0, 0)',
+      },
       colors: {
+        background: '#d3f2ff',
         primary: '#0284c7',
         secondary: '#a7f3d0', // Emerald 200
       },
