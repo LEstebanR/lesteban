@@ -26,7 +26,10 @@ const ContactMobile = () => {
         <ul className="flex gap-8">
           <li>
             <Link href="mailto:leramirezca@gmail.com">
-              <AiOutlineMail className="h-8 w-8 text-primary" />
+              <AiOutlineMail
+                className="h-8 w-8 text-primary"
+                style={{ fill: 'url(#blue-gradient)' }}
+              />
             </Link>
           </li>
           <li>
@@ -47,25 +50,46 @@ const ContactMobile = () => {
 
 const ContactDesktop = () => {
   return (
-    <div className="md:block hidden border-2 border-black rounded-lg h-32 w-64 shadow-md shadow-black bg-white">
-      <div className="h-1/3 bg-secondary rounded-t-lg">
-        <p className="p-1 px-4 font-serif text-bold">Let&apos;s talk</p>
+    <div className="md:block hidden border-2 border-black rounded h-32 w-64  bg-white shadow hover:shadow-3xl hover:shadow-black">
+      <div className="h-1/3 bg-secondary rounded-t border-b border-dashed border-black flex justify-center">
+        <p className="p-1 px-4 text-bold w-3/6">Let&apos;s talk</p>
       </div>
-      <div className="h-2/3 flex justify-center items-center">
-        <ul className="flex gap-4">
-          <li>
+      <div className="h-2/3 flex justify-center items-center w-full">
+        <ul className="flex gap-4 w-3/6">
+          <svg width="1em" height="1em">
+            <linearGradient
+              id="blue-gradient"
+              x1="100%"
+              y1="100%"
+              x2="0%"
+              y2="0%"
+            >
+              <stop stopColor="#007cf0" offset="0%" />
+              <stop stopColor="#00dfd8" offset="100%" />
+            </linearGradient>
+          </svg>
+          <li className="icon">
             <Link href="mailto:leramirezca@gmail.com">
-              <AiOutlineMail className="h-8 w-8 text-primary" />
+              <AiOutlineMail
+                className="icon h-8 w-8"
+                style={{ fill: 'url(#blue-gradient)' }}
+              />
             </Link>
           </li>
-          <li>
+          <li className="icon">
             <Link href="https://www.linkedin.com/in/lestebanr/" target="_blank">
-              <AiFillLinkedin className="h-8 w-8 text-primary" />
+              <AiFillLinkedin
+                className="h-8 w-8"
+                style={{ fill: 'url(#blue-gradient)' }}
+              />
             </Link>
           </li>
-          <li>
+          <li className="icon">
             <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
-              <AiFillGithub className="h-8 w-8 text-primary" />
+              <AiFillGithub
+                className="h-8 w-8"
+                style={{ fill: 'url(#blue-gradient)' }}
+              />
             </Link>
           </li>
         </ul>

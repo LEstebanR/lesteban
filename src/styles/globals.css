@@ -25,7 +25,14 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
+.icon {
+  background-image: linear-gradient(90deg, blue, green);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1;
+}
 @layer utilities {
   @variants responsive {
     .no-scrollbar::-webkit-scrollbar {
