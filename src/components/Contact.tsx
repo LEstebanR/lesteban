@@ -16,8 +16,8 @@ const ContactDesktop = () => {
           x2="0%"
           y2="0%"
         >
-          <stop stopColor="#007cf0" offset="0%" />
-          <stop stopColor="#00dfd8" offset="100%" />
+          <stop stopColor="#0284c7" offset="0%" />
+          <stop stopColor="#a7f3d0" offset="100%" />
         </linearGradient>
       </svg>
       <div className="h-2/3 flex justify-center items-center w-full">
@@ -81,8 +81,8 @@ const ContactMobile = () => {
             x2="0%"
             y2="0%"
           >
-            <stop stopColor="#007cf0" offset="0%" />
-            <stop stopColor="#00dfd8" offset="100%" />
+            <stop stopColor="#0284c7" offset="0%" />
+            <stop stopColor="#a7f3d0" offset="100%" />
           </linearGradient>
         </svg>
         <ul className="flex gap-8 justify-center">

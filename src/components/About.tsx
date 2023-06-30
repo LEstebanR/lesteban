@@ -3,6 +3,7 @@ import TechnologyLogo from './cards/TechnologyLogo'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from './UI/Button'
+import { Body, H1 } from './UI/Typography'
 
 const About: FC = () => {
   const TechnologiesExperience = [
@@ -60,21 +61,24 @@ const About: FC = () => {
   ]
   return (
     <div className="flex flex-col items-center max-w-2xl gap-4 p-4 overflow-auto">
-      <h2 className="text-4xl text-sky-500">Luis Esteban Ramírez</h2>
-      <h3 className="text-3xl text-sky-400">Frontend Developer</h3>
+      <span>
+        <H1>Luis Esteban Ramírez</H1>
+        <H1 gradient>Frontend Developer</H1>
+      </span>
+
       <Image
         src="/assets/images/photo.jpeg"
         width={200}
         height={200}
         alt="profile picture"
-        className="rounded-full border-4 border-sky-400 shadow-2xl"
+        className="rounded-full border-4 border-sky-400 shadow-2xl "
       />
-      <p className="text-justify text-xl bg-white">
-        Frontend developer with engineering skills who is always looking to
-        learn and improve in order to create effective and beautiful solutions.
-        I love collaborating with teams and taking on new challenges. Let&apos;s
-        talk and build something amazing together!
-      </p>
+      <Body>
+        Frontend developer and Civil Engineer who is always looking to learn and
+        improve in order to create effective and beautiful solutions. I love
+        collaborating with teams and taking on new challenges. Let&apos;s talk
+        and build something amazing together!
+      </Body>
       <Link
         href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"
         target="blank"
