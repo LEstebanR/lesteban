@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Project, StackItem } from '@/utils/types'
 import { FiGithub, FiLink } from 'react-icons/fi'
+import { CardBody, CardDetail, H4 } from '../UI/Typography'
 
 interface Props {
   project: Project
@@ -16,7 +17,7 @@ const StackItem: FC<StackProps> = ({ tech }) => {
   return (
     <div className="flex flex-col items-center justify-end">
       <Image src={tech.icon} alt="tech - logo" height={25} width={25} />
-      <p>{tech.name}</p>
+      <CardDetail>{tech.name}</CardDetail>
     </div>
   )
 }
@@ -25,7 +26,7 @@ const ProjectsCard: FC<Props> = ({ project }) => {
   return (
     <div className="rounded-lg overflow-hidden shadow-md flex p-2 gap-2">
       <div className="w-1/3 flex flex-col gap-4">
-        <p className="text-lg font-bold">{project.name}</p>
+        <H4>{project.name}</H4>
         <Image
           src={project.image}
           height={200}
@@ -42,8 +43,8 @@ const ProjectsCard: FC<Props> = ({ project }) => {
         </div>
       </div>
       <div className="w-2/3 flex flex-col">
-        <p className="text-justify">{project.description}</p>
-        <p>Stack:</p>
+        <CardBody>{project.description}</CardBody>
+        <H4>Stack:</H4>
         <div className="flex justify-around flex-wrap">
           {project.stack.map((tech: StackItem) => (
             <StackItem key={tech.name} tech={tech} />

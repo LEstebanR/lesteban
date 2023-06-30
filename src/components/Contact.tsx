@@ -1,12 +1,13 @@
 import React, { FC, useState, useEffect } from 'react'
 import { AiFillLinkedin, AiOutlineMail, AiFillGithub } from 'react-icons/ai'
 import Link from 'next/link'
+import { H3, H4 } from './UI/Typography'
 
 const ContactDesktop = () => {
   return (
     <div className="md:block hidden border-2 border-black rounded h-32 w-64 bg-white shadow hover:shadow-3xl hover:shadow-black">
-      <div className="h-1/3 bg-secondary rounded-t border-b border-dashed border-black flex justify-center">
-        <p className="p-1 px-4 text-bold w-3/6">Let&apos;s talk</p>
+      <div className="h-1/3 bg-secondary rounded-t border-b border-dashed border-black flex justify-center items-center">
+        <H4>Let&apos;s talk</H4>
       </div>
       <svg width="1em" height="0">
         <linearGradient

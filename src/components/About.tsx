@@ -3,7 +3,7 @@ import TechnologyLogo from './cards/TechnologyLogo'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from './UI/Button'
-import { Body, H1 } from './UI/Typography'
+import { Body, H1, H3 } from './UI/Typography'
 
 const About: FC = () => {
   const TechnologiesExperience = [
@@ -79,25 +79,18 @@ const About: FC = () => {
         collaborating with teams and taking on new challenges. Let&apos;s talk
         and build something amazing together!
       </Body>
-      <Link
-        href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"
-        target="blank"
-        className="md:hidden"
-      >
-        <Button>Download CV</Button>
-      </Link>
-      <h3 className="text-2xl">I have experience with:</h3>
+      <H3>I have experience with:</H3>
       <div className="flex flex-wrap justify-between gap-4">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
       </div>
-      <h3 className="text-2xl">I have special interest learning:</h3>
+      {/* <H3>I have special interest learning:</H3>
       <div className="flex flex-wrap justify-between gap-4">
         {Interesting.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
