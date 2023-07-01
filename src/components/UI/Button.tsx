@@ -6,7 +6,7 @@ interface props {
 
 const Button: React.FC<props> = ({ children }) => {
   return (
-    <button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-700 text-white font-bold p-2 border border-black rounded shadow-lg shadow-blue-500/50 h-12">
+    <button className="bg-gradient-to-r from-primary to-secondary  text-black  p-2 border border-black rounded h-10 ">
       {children}
     </button>
   )

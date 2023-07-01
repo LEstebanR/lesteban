@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import ExperienceCard from './cards/ExperienceCard'
+import { H2 } from './UI/Typography'
 
 const jobs = [
   {
@@ -61,7 +62,7 @@ const jobs = [
 const Experience: FC = () => {
   return (
     <div className="flex flex-col gap-4 w-full max-w-2xl p-4">
-      <h2 className="text-4xl text-sky-500">Experience:</h2>
+      <H2 gradient>Experience:</H2>
       <div className="flex flex-col gap-8">
         {jobs.map((job) => (
           <ExperienceCard key={job.position} job={job} />

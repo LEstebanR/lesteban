@@ -11,12 +11,14 @@ module.exports = {
         '3xl': '-6px 6px 0 1px rgba(0, 0, 0)',
       },
       colors: {
-        background: '#d3f2ff',
+        // background: '#d3f2ff',
+        background: '#ffffff',
         primary: '#0284c7',
         secondary: '#a7f3d0', // Emerald 200
+        typography: '#171717',
       },
       fontFamily: {
-        sans: ['applesystem', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['"Inter"', 'sans-serif'],
       },
       height: {
         '0.5/10': '5%',
