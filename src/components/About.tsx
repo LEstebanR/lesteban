@@ -80,7 +80,7 @@ const About: FC = () => {
         and build something amazing together!
       </Body>
       <H3>I have experience with:</H3>
-      <div className="flex flex-wrap justify-between gap-4">
+      <div className="flex flex-wrap justify-center sm:justify-between gap-4">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}

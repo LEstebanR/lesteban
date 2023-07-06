@@ -5,7 +5,7 @@ import { H3, H4 } from './UI/Typography'
 
 const ContactDesktop = () => {
   return (
-    <div className="md:block hidden border-2 border-black rounded h-32 w-64 bg-white shadow hover:shadow-3xl hover:shadow-black">
+    <div className="md:block hidden border-2 border-black rounded h-32 w-64 bg-white shadow hover:shadow-3xl hover:shadow-black z-10">
       <div className="h-1/3 bg-secondary rounded-t border-b border-dashed border-black flex justify-center items-center">
         <H4>Let&apos;s talk</H4>
       </div>
@@ -69,11 +69,11 @@ const ContactMobile = () => {
   }, [])
   return (
     <div
-      className={`md:hidden w-screen z-10 sticky pt-2 ${
+      className={`md:hidden w-screen z-50  sticky pt-2 ${
         isScrolled ? 'bg-white border-b border-black' : 'bg-background'
       }`}
     >
-      <div className="h-2/3 flex justify-center items-center z-10 sticky">
+      <div className="h-2/3 flex justify-center items-center sticky">
         <svg width="1em" height="1em">
           <linearGradient
             id="blue-gradient"
