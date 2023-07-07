@@ -13,7 +13,7 @@ interface StackProps {
 
 const StackItem: FC<StackProps> = ({ tech }) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-20 h-14">
       <Image src={tech.icon} alt="tech - logo" height={25} width={25} />
       <CardDetail>{tech.name}</CardDetail>
     </div>
@@ -22,18 +22,25 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ExperienceCard: FC<props> = ({ job }) => {
   return (
-    <div className="rounded-lg overflow-hidden shadow-md flex p-2 gap-2 bg-white">
-      <div className="w-1/3 flex flex-col gap-2">
-        <H4>{job.position}</H4>
-        <CustomLink url={job.url}>{job.company}</CustomLink>
-        <CardDetail>
-          {job.start} - {job.end}
-        </CardDetail>
+    <div className="rounded-lg overflow-hidden shadow-md flex flex-col  p-2 gap-4 bg-white border border-s-primary border-l-8 p-4">
+      <div className="md:flex">
+        <div className="md:w-1/3 flex flex-col gap-2">
+          <H4>{job.position}</H4>
+          <CustomLink url={job.url}>{job.company}</CustomLink>
+          <CardDetail>
+            {job.start} - {job.end}
+          </CardDetail>
+        </div>
+        <div className="md:w-2/3 flex flex-col">
+          <CardBody>{job.detail}</CardBody>
+        </div>
       </div>
-      <div className="w-2/3 flex flex-col">
-        <CardBody>{job.detail}</CardBody>
-        <H4>Stack:</H4>
-        <div className="flex justify-around flex-wrap">
+
+      <div className="md:flex md:items-center">
+        <span className="w-1/3">
+          <H4>Stack:</H4>
+        </span>
+        <div className="flex justify-between flex-wrap md:w-2/3">
           {job.stack.map((tech: StackItem) => (
             <StackItem key={tech.name} tech={tech} />
           ))}

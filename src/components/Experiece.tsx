@@ -24,10 +24,10 @@ const jobs = [
         name: 'Supabase',
         icon: '/assets/images/logos/supabase-icon.svg',
       },
-      {
-        name: 'Styled-Components',
-        icon: '/assets/images/logos/styled-components.png',
-      },
+      // {
+      //   name: 'Styled Components',
+      //   icon: '/assets/images/logos/styled-components.png',
+      // },
     ],
   },
   {
