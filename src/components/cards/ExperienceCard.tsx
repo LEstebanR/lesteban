@@ -27,9 +27,11 @@ const ExperienceCard: FC<props> = ({ job }) => {
         <div className="md:w-1/3 flex flex-col gap-2">
           <H4>{job.position}</H4>
           <CustomLink url={job.url}>{job.company}</CustomLink>
-          <CardDetail>
-            {job.start} - {job.end}
-          </CardDetail>
+          <span className="mb-2">
+            <CardDetail>
+              {job.start} - {job.end}
+            </CardDetail>
+          </span>
         </div>
         <div className="md:w-2/3 flex flex-col">
           <CardBody>{job.detail}</CardBody>

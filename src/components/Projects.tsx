@@ -38,7 +38,7 @@ const projects: Project[] = [
         icon: '/assets/images/logos/nextjs-icon.svg',
       },
       {
-        name: 'Styled-Components',
+        name: 'Styled Components',
         icon: '/assets/images/logos/styled-components.png',
       },
     ],
