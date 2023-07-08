@@ -1,10 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
-import MobileMenu from './MobileMenu'
-import DesktopMenu from './DesktopMenu'
 import Logo from '../Logo'
 import Link from 'next/link'
 import Button from '../UI/Button'
-import Contact from '../Contact'
 
 const Header: FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
