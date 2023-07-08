@@ -38,7 +38,7 @@ const ProjectsCard: FC<Props> = ({ project }) => {
             <Link href={project.repo} target="_blank">
               <FiGithub />
             </Link>
-            <Link href={project.repo} target="_blank">
+            <Link href={project.url} target="_blank">
               <FiLink />
             </Link>
           </div>

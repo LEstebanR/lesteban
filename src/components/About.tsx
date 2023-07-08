@@ -80,13 +80,13 @@ const About: FC = () => {
         and build something amazing together!
       </Body>
       <H3>I have experience with:</H3>
-      <div className="flex flex-wrap justify-center sm:justify-between gap-4">
+      <div className="flex flex-wrap justify-center sm:justify-between gap-2">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
       </div>
       {/* <H3>I have special interest learning:</H3>
-      <div className="flex flex-wrap justify-between gap-4">
+      <div className="flex flex-wrap justify-center sm:justify-between gap-2">
         {Interesting.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
