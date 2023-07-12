@@ -74,7 +74,7 @@ const About: FC = () => {
         className="rounded-full border-4 border-sky-400 shadow-2xl "
       />
       <Body>
-        Frontend developer and Civil Engineer I&apos;m always looking to learn
+        Frontend developer and Civil Engineer. I&apos;m always looking to learn
         and improve in order to create effective and beautiful solutions. I love
         collaborating with teams and taking on new challenges. Let&apos;s talk
         and build something amazing together!
