@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             href="https://github.com/LEstebanR"
             target="_blank"
           >
-            LEStebanR
+            LEstebanR
           </Link>
         </div>
       </div>
