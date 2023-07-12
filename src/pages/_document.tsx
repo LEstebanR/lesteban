@@ -5,7 +5,13 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export default function Document() {
   return (
     <Html lang="en">
-      <Head title="LEsteban.dev" />
+      <Head>
+        <meta
+          name="description"
+          content="LEsteban personal website"
+          title="LEsteban"
+        />
+      </Head>
       <body className="bg-background">
         <Main />
         <NextScript />
