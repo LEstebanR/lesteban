@@ -37,7 +37,7 @@ const jobs = [
     start: 'Apr 2022',
     end: 'Nov 2022',
     detail:
-      'As a frontend developer, I developed and maintained a payroll and human resources product, creating new features and fixing bugs. I also worked collaboratively with a multidisciplinary team, including designers and backend developers, to ensure the product met client requirements and expectations',
+      'We developed and maintained a payroll and human resources product, creating new features and fixing bugs. I also worked collaboratively with a multidisciplinary team, including designers and backend developers, to ensure the product met client requirements and expectations',
     stack: [
       {
         name: 'React',
