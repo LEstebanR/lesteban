@@ -27,7 +27,7 @@ const Header: FC = () => {
         <Logo />
       </div>
       <Link
-        href="https://drive.google.com/file/d/1F_cztsmV1wv22EPvgSwgS6_b-ve2j-Pv/view?usp=share_link"
+        href="https://drive.google.com/file/d/1Ipyn640EG571TQQJCgY-OkqW-4fIvFpq/view?usp=drive_link"
         target="blank"
       >
         <Button>Download CV</Button>
