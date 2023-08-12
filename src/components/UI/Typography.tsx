@@ -42,7 +42,7 @@ export const Body: React.FC<Props> = ({ children, gradient }) => (
   <p
     className={` ${
       fontbody.className
-    } md:text-2xl text-xl  text-justify text-typography subpixel-antialiased ${
+    } md:text-2xl text-xl   text-typography subpixel-antialiased ${
       gradient && 'gradient-text'
     }`}
   >
