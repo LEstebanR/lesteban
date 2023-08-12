@@ -1,7 +1,9 @@
 import React, { FC, useState, useEffect } from 'react'
 import Logo from '../Logo'
 import Link from 'next/link'
-import Button from '../UI/Button'
+// import Button from '../UI/Button'
+import { Button } from '@nextui-org/react'
+import { link } from 'fs'
 
 const Header: FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -26,12 +28,15 @@ const Header: FC = () => {
       <div>
         <Logo />
       </div>
-      <Link
+      <Button
+        as={Link}
         href="https://drive.google.com/file/d/1Ipyn640EG571TQQJCgY-OkqW-4fIvFpq/view?usp=drive_link"
-        target="blank"
+        variant="solid"
+        color="primary"
+        target="_blank"
       >
-        <Button>Download CV</Button>
-      </Link>
+        Download CV
+      </Button>
     </header>
   )
 }

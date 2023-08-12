@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
 import TechnologyLogo from './cards/TechnologyLogo'
-import Link from 'next/link'
 import Image from 'next/image'
-import Button from './UI/Button'
 import { Body, H1, H3 } from './UI/Typography'
 
 const About: FC = () => {
@@ -74,10 +72,10 @@ const About: FC = () => {
         className="rounded-full border-4 border-sky-400 shadow-2xl "
       />
       <Body>
-        Frontend developer and Civil Engineer. I&apos;m always looking to learn
-        and improve in order to create effective and beautiful solutions. I love
-        collaborating with teams and taking on new challenges. Let&apos;s talk
-        and build something amazing together!
+        +1 Year of experience as a web developer. Teamwork is my favorite way to
+        learn. Always looking to improve the quality of my code to make it more
+        readable and maintainable. My dream is to work on products with global
+        impact that positively change the lives of millions of people.
       </Body>
       <H3>I have experience with:</H3>
       <div className="flex flex-wrap justify-center sm:justify-between gap-2">
