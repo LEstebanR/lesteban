@@ -4,12 +4,12 @@ import { Project } from '@/utils/types'
 
 const projects: Project[] = [
   {
-    name: 'Calculator',
-    url: 'https://calculator-app-lesteban.vercel.app/',
-    image: '/assets/images/projects/calculator.png',
-    repo: 'https://github.com/LEstebanR/calculator-app',
+    name: 'Space tourism',
+    url: 'https://fm-space-tourism-iota.vercel.app/',
+    image: '/assets/images/projects/space-tourism.png',
+    repo: 'https://github.com/LEstebanR/FM_Space_Tourism',
     description:
-      'Calculator using Tailwind and Next.js. This project demonstrates my ability to build a functional and aesthetically pleasing application, as well as my ability to learn new technologies and apply them in my projects.',
+      'This application was created with NextJs, Typescript and tailwind mainly. The idea was to apply my knowledge in Tailwind which is a technology that I am looking to improve.',
     stack: [
       {
         name: 'NextJs',
