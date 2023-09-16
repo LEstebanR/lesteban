@@ -1,21 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-const { nextui } = require('@nextui-org/react')
 
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/app/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        light: 'rgba(255, 255, 255)',
+        dark: 'rgba(0, 0, 0, 0.9)',
+      },
       boxShadow: {
         '3xl': '-6px 6px 0 1px rgba(0, 0, 0)',
       },
       colors: {
-        // background: '#d3f2ff',
-        background: '#ffffff',
         primary: '#0284c7',
         secondary: '#a7f3d0', // Emerald 200
         typography: '#171717',
@@ -31,5 +31,5 @@ module.exports = {
       },
     },
   },
-  plugins: [nextui()],
+  plugins: [],
 }

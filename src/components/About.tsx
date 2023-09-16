@@ -3,7 +3,7 @@ import TechnologyLogo from './cards/TechnologyLogo'
 import Image from 'next/image'
 import { Body, H1, H3 } from './UI/Typography'
 
-const About: FC = () => {
+const About: FC = ({ aboutRef }) => {
   const TechnologiesExperience = [
     {
       layer: 'React',
@@ -58,7 +58,7 @@ const About: FC = () => {
     },
   ]
   return (
-    <div className="flex flex-col items-center max-w-2xl gap-4 p-4 overflow-auto">
+    <div className="flex flex-col items-center " ref={aboutRef}>
       <span>
         <H1>Luis Esteban Ramírez</H1>
         <H1 gradient>Frontend Developer</H1>
