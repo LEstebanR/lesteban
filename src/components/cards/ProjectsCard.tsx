@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Project, StackItem } from '@/utils/types'
 import { FiGithub, FiLink } from 'react-icons/fi'
-import { CardBody, CardDetail, H4 } from '../UI/Typography'
+import { CardBody, CardDetail, H4 } from '../UI/typography'
 
 interface Props {
   project: Project

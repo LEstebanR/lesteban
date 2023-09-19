@@ -1,13 +1,15 @@
 import React, { useRef } from 'react'
 import About from '@/components/about'
 import Experience from '@/components/experience'
-import Projects from '@/components/Projects'
 import Layout from '@/components/UI/layout'
+import Projects from '@/components/projects'
 
 export default function Home() {
   const projectsRef = useRef<HTMLDivElement>(null)
   const aboutRef = useRef<HTMLDivElement>(null)
   const experienceRef = useRef<HTMLDivElement>(null)
+
+  console.log(projectsRef, aboutRef, experienceRef)
   return (
     <Layout
       projectsRef={projectsRef}

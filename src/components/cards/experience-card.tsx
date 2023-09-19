@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Image from 'next/image'
 import { Job, StackItem } from '@/utils/types'
-import { CardBody, CardDetail, CustomLink, H4 } from '../UI/Typography'
+import { CardBody, CardDetail, CustomLink, H4 } from '../UI/typography'
 
 interface props {
   job: Job

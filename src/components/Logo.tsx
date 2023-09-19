@@ -11,7 +11,7 @@ const font = Londrina_Outline({
 const Logo: FC = () => {
   return (
     <Link href="/">
-      <div className="flex items-center justify-center border border-black dark:border-white h-12 w-12 rounded-lg shadow-blue-500/50 shadow-lg cursor-pointer bg-light dark:bg-dark">
+      <div className="flex items-center justify-center border border-black dark:border-white h-12 w-12 rounded-lg shadow-primary shadow-md cursor-pointer bg-light dark:bg-dark">
         <span className="h-full w-full flex items-center justify-center text-3xl">
           <p className={font.className}>LE</p>
         </span>

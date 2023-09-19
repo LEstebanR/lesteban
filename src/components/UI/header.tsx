@@ -4,6 +4,7 @@ import Button from '../UI/button'
 import Logo from '../logo'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
+import { NavLinks } from './typography'
 
 interface HeaderProps {
   projectsRef: any
@@ -19,15 +20,10 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
   ]
 
   const scrollToSection = (ref: any) => {
-    if (ref.current) {
-      const headerHeight = 1600
-      ref.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      })
-      window.scrollBy(0, -headerHeight)
-    }
+    const test = document.getElementById(ref.current.id)
+    let position = test ? test.getBoundingClientRect() : { top: 0, left: 0 }
+    // scrolls to 20px above element
+    window.scrollTo(position.left, position.top + window.scrollY - 65)
   }
 
   return (
@@ -38,10 +34,12 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
         </div>
         <ul className="hidden md:flex gap-4">
           {LINKS.map((link, index) => (
-            <li key={index}>
-              <Link href={link.href}>
-                <p onClick={() => scrollToSection(link.ref)}>{link.name}</p>
-              </Link>
+            <li
+              key={index}
+              className="cursor-pointer"
+              onClick={() => scrollToSection(link.ref)}
+            >
+              <NavLinks>{link.name}</NavLinks>
             </li>
           ))}
         </ul>
@@ -71,11 +69,12 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
               <div className="px-1 py-1 border border-black rounded-md">
                 {LINKS.map((link, index) => (
                   <Menu.Item key={index}>
-                    <Link href={link.href}>
-                      <p className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                        {link.name}
-                      </p>
-                    </Link>
+                    <span
+                      className="group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                      onClick={() => scrollToSection(link.ref)}
+                    >
+                      <NavLinks>{link.name}</NavLinks>
+                    </span>
                   </Menu.Item>
                 ))}
                 <Menu.Item>

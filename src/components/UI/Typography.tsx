@@ -19,6 +19,7 @@ const fontbody = Inter({
 interface Props {
   children: React.ReactNode
   gradient?: boolean
+  className?: string
 }
 
 interface LinkProps {
@@ -26,13 +27,11 @@ interface LinkProps {
   url: string
 }
 
-export const H1: React.FC<Props> = ({ children, gradient }) => (
+export const H1: React.FC<Props> = ({ children, gradient, className }) => (
   <h1
-    className={` ${
+    className={`${className} ${
       fontheader.className
-    } md:text-6xl text-5xl  text-center font-bold text-typography subpixel-antialiased ${
-      gradient && 'gradient-text'
-    }`}
+    } md:text-6xl text-5xl  text-center  ${gradient && 'gradient-text '}`}
   >
     {children}
   </h1>
@@ -42,7 +41,7 @@ export const Body: React.FC<Props> = ({ children, gradient }) => (
   <p
     className={` ${
       fontbody.className
-    } md:text-2xl text-xl   text-typography subpixel-antialiased ${
+    } md:text-2xl text-xl   dark:text-white text-black  subpixel-antialiased ${
       gradient && 'gradient-text'
     }`}
   >
@@ -50,11 +49,11 @@ export const Body: React.FC<Props> = ({ children, gradient }) => (
   </p>
 )
 
-export const H2: React.FC<Props> = ({ children, gradient }) => (
+export const H2: React.FC<Props> = ({ children, gradient, className }) => (
   <h2
-    className={` ${
+    className={`${className} ${
       fontheader.className
-    } md:text-4xl text-4xl font-bold text-typography subpixel-antialiased ${
+    } md:text-4xl text-4xl font-bold text-typography   ${
       gradient && 'gradient-text'
     }`}
   >
@@ -98,7 +97,7 @@ export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
 
 export const CardDetail: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-base  text-justify text-typography italic`}
+    className={` ${fontbody.className} text-base  text-justify dark:text-white text-black  italic`}
   >
     {children}
   </p>
@@ -106,7 +105,15 @@ export const CardDetail: React.FC<Props> = ({ children }) => (
 
 export const CardBody: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-lg  text-justify text-typography subpixel-antialiased `}
+    className={` ${fontbody.className} text-lg   text-typography subpixel-antialiased `}
+  >
+    {children}
+  </p>
+)
+
+export const NavLinks: React.FC<Props> = ({ children }) => (
+  <p
+    className={` ${fontbody.className} text-lg  text-justify dark:text-white text-black  subpixel-antialiased `}
   >
     {children}
   </p>
