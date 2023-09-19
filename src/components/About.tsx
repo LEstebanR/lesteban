@@ -3,7 +3,7 @@ import TechnologyLogo from './cards/TechnologyLogo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillLinkedin, AiOutlineMail, AiFillGithub } from 'react-icons/ai'
-import { H1, H3, Body } from './UI/typography'
+import { H1, H3, Body } from '@/components/UI/typography'
 
 const About: FC = () => {
   const TechnologiesExperience = [
