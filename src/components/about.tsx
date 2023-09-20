@@ -64,7 +64,7 @@ const About: FC = () => {
       <span>
         <H1>Luis Esteban Ramírez</H1>
         <H1 gradient className="font-extrabold ">
-          Frontend Developer
+          Frontend <strong>Developer</strong>
         </H1>
       </span>
 
@@ -96,8 +96,8 @@ const About: FC = () => {
           x2="0%"
           y2="0%"
         >
-          <stop stopColor="#ff6d60  " offset="0%" />
-          <stop stopColor="#f7d060" offset="100%" />
+          <stop stopColor="#8ecddd  " offset="0%" />
+          <stop stopColor="#d2de32" offset="100%" />
         </linearGradient>
       </svg>
       <div className="h-2/3 flex justify-center items-center w-full">
