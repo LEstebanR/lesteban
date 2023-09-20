@@ -8,10 +8,9 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
+    'plugin:tailwindcss/recommended',
   ],
-  rules: {
-    // Aquí puedes agregar las reglas personalizadas de ESLint
-  },
+  rules: {},
   settings: {
     react: {
       version: 'detect',

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Image from 'next/image'
 import { Job, StackItem } from '@/utils/types'
-import { CardBody, CardDetail, CustomLink, H4 } from '../UI/Typography'
+import { CardBody, CardDetail, CustomLink, H4 } from '../UI/typography'
 
 interface props {
   job: Job
@@ -22,7 +22,7 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ExperienceCard: FC<props> = ({ job }) => {
   return (
-    <div className="rounded-lg overflow-hidden shadow-md flex flex-col  p-4 gap-4 bg-white border border-s-primary border-l-8">
+    <div className="rounded-lg  shadow-md flex flex-col  p-4 gap-4 bg-light-card dark:bg-dark-card border border-s-primary dark:border-s-primary border-l-8 dark:border-gray-200 border-black">
       <div className="md:flex">
         <div className="md:w-1/3 flex flex-col gap-2">
           <H4>{job.position}</H4>

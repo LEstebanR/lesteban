@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
-import TechnologyLogo from './cards/TechnologyLogo'
+import TechnologyLogo from './cards/technology-logo'
 import Image from 'next/image'
-import { Body, H1, H3 } from './UI/Typography'
+import Link from 'next/link'
+import { AiFillLinkedin, AiOutlineMail, AiFillGithub } from 'react-icons/ai'
+import { H1, H3, Body } from '@/components/UI/typography'
 
 const About: FC = () => {
   const TechnologiesExperience = [
@@ -58,10 +60,12 @@ const About: FC = () => {
     },
   ]
   return (
-    <div className="flex flex-col items-center max-w-2xl gap-4 p-4 overflow-auto">
+    <div className="flex flex-col items-center gap-4 my-4 ">
       <span>
         <H1>Luis Esteban Ramírez</H1>
-        <H1 gradient>Frontend Developer</H1>
+        <H1 gradient className="font-extrabold ">
+          Frontend Developer
+        </H1>
       </span>
 
       <Image
@@ -69,7 +73,7 @@ const About: FC = () => {
         width={200}
         height={200}
         alt="profile picture"
-        className="rounded-full border-4 border-sky-400 shadow-2xl "
+        className="rounded-full border-4 border-primary shadow-2xl "
       />
       <Body>
         +1 Year of experience as a web developer. Teamwork is my favorite way to
@@ -78,11 +82,56 @@ const About: FC = () => {
         impact that positively change the lives of millions of people.
       </Body>
       <H3>I have experience with:</H3>
-      <div className="flex flex-wrap justify-center sm:justify-between gap-2">
+      <div className="grid grid-cols-2 xl:grid-cols-6 w-full gap-2">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
       </div>
+      <div className="h-1/3 bg-secondary rounded-t border-b border-dashed border-black flex justify-center items-center"></div>
+      <svg width="1em" height="0">
+        <linearGradient
+          id="blue-gradient-desktop"
+          x1="100%"
+          y1="100%"
+          x2="0%"
+          y2="0%"
+        >
+          <stop stopColor="#ff6d60  " offset="0%" />
+          <stop stopColor="#f7d060" offset="100%" />
+        </linearGradient>
+      </svg>
+      <div className="h-2/3 flex justify-center items-center w-full">
+        <ul className="flex gap-4 w-full justify-center">
+          <H3>Let's talk:</H3>
+
+          <li>
+            <Link href="mailto:leramirezca@gmail.com">
+              <AiOutlineMail
+                className="h-8 w-8"
+                style={{ fill: 'url(#blue-gradient-desktop)' }}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link href="https://www.linkedin.com/in/lestebanr/" target="_blank">
+              <AiFillLinkedin
+                className="h-8 w-8"
+                style={{ fill: 'url(#blue-gradient-desktop)' }}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
+              <AiFillGithub
+                className="h-8 w-8"
+                style={{ fill: 'url(#blue-gradient-desktop)' }}
+              />
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div></div>
+
       {/* <H3>I have special interest learning:</H3>
       <div className="flex flex-wrap justify-center sm:justify-between gap-2">
         {Interesting.map((tech) => (
