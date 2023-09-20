@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import TechnologyLogo from './cards/TechnologyLogo'
+import TechnologyLogo from './cards/technology-logo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillLinkedin, AiOutlineMail, AiFillGithub } from 'react-icons/ai'

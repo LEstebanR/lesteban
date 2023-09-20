@@ -8,7 +8,7 @@ interface Props {
 
 const TechnologyLogo: FC<Props> = ({ tech }) => {
   return (
-    <div className="shadow-lg flex flex-col items-center  h-50 rounded-lg border border-gray-200">
+    <div className="shadow-lg flex flex-col items-center  h-50 rounded-lg border dark:border-gray-200 border-black bg-light-card dark:bg-dark-card">
       <div className="w-full flex items-center justify-center h-40 p-2">
         <Image src={tech.logo} width={100} height={100} alt="logo-tech" />
       </div>

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import Header from './header'
-import Footer from '../Footer'
+import Footer from './footer'
 
 interface LayoutProps {
   children: React.ReactNode

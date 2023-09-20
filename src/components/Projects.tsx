@@ -1,8 +1,31 @@
 import React, { FC } from 'react'
-import ProjectsCard from './cards/ProjectsCard'
+import ProjectsCard from './cards/projects-card'
 import { Project } from '@/utils/types'
+import { H2 } from './UI/typography'
 
 const projects: Project[] = [
+  {
+    name: 'Devpeoplz',
+    url: 'https://devpeoplz.com/',
+    image: '/assets/images/projects/devpeoplz.png',
+    repo: 'https://gitlab.com/devpeoplz2/devpeoplz',
+    description:
+      'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the companys clients. Led the project independently under the direct supervision of the CEO to deliver a high-quality product.',
+    stack: [
+      {
+        name: 'NextJs',
+        icon: '/assets/images/logos/nextjs-icon.svg',
+      },
+      {
+        name: 'Typescript',
+        icon: '/assets/images/logos/typescript-icon-round.svg',
+      },
+      {
+        name: 'Supabase',
+        icon: '/assets/images/logos/supabase-icon.svg',
+      },
+    ],
+  },
   {
     name: 'Space tourism',
     url: 'https://fm-space-tourism-iota.vercel.app/',
@@ -69,9 +92,11 @@ const projects: Project[] = [
 
 const Projects: FC = () => {
   return (
-    <div className="flex flex-col gap-4 w-full max-w-2xl p-4">
-      <h2 className="text-4xl text-sky-500">Projects:</h2>
-      <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4 w-full my-4">
+      <H2 gradient className="w-[200px]">
+        Projects:
+      </H2>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {projects.map((project) => (
           <ProjectsCard key={project.name} project={project} />
         ))}

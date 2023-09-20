@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Londrina_Outline } from '@next/font/google'
+import { Londrina_Outline } from "next/font/google"
 import Link from 'next/link'
 
 const font = Londrina_Outline({

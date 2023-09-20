@@ -1,5 +1,5 @@
 import React from 'react'
-import { Inter } from '@next/font/google'
+import { Inter } from 'next/font/google'
 import Link from 'next/link'
 
 const fontheader = Inter({
@@ -31,7 +31,9 @@ export const H1: React.FC<Props> = ({ children, gradient, className }) => (
   <h1
     className={`${className} ${
       fontheader.className
-    } md:text-6xl text-5xl  text-center  ${gradient && 'gradient-text '}`}
+    } md:text-6xl text-5xl  text-center  ${
+      gradient && 'gradient-text  dark:text-dark-text text-light-text '
+    }`}
   >
     {children}
   </h1>
@@ -41,7 +43,7 @@ export const Body: React.FC<Props> = ({ children, gradient }) => (
   <p
     className={` ${
       fontbody.className
-    } md:text-2xl text-xl   dark:text-white text-black  subpixel-antialiased ${
+    } md:text-2xl text-xl   dark:text-dark-text text-light-text  subpixel-antialiased ${
       gradient && 'gradient-text'
     }`}
   >
@@ -53,7 +55,7 @@ export const H2: React.FC<Props> = ({ children, gradient, className }) => (
   <h2
     className={`${className} ${
       fontheader.className
-    } md:text-4xl text-4xl font-bold text-typography   ${
+    } md:text-4xl text-4xl font-bold  dark:text-dark-text text-light-text  ${
       gradient && 'gradient-text'
     }`}
   >
@@ -65,7 +67,7 @@ export const H3: React.FC<Props> = ({ children, gradient }) => (
   <h3
     className={` ${
       fontheader.className
-    } text-3xl  text-center font-bold text-typography subpixel-antialiased ${
+    } text-3xl  text-center font-bold  dark:text-dark-text text-light-text  text-blacksubpixel-antialiased ${
       gradient && 'gradient-text'
     }`}
   >
@@ -77,7 +79,7 @@ export const H4: React.FC<Props> = ({ children, gradient }) => (
   <h4
     className={` ${
       fontheader.className
-    } text-xl  font-bold text-typography subpixel-antialiased ${
+    } text-xl  font-bold  dark:text-dark-text text-light-text  subpixel-antialiased ${
       gradient && 'gradient-text'
     }`}
   >
@@ -97,7 +99,7 @@ export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
 
 export const CardDetail: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-base  text-justify dark:text-white text-black  italic`}
+    className={` ${fontbody.className} text-base  text-justify  dark:text-dark-text text-light-text   italic`}
   >
     {children}
   </p>
@@ -105,7 +107,7 @@ export const CardDetail: React.FC<Props> = ({ children }) => (
 
 export const CardBody: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-lg   text-typography subpixel-antialiased `}
+    className={` ${fontbody.className} text-lg    dark:text-dark-text text-light-text text-blacksubpixel-antialiased `}
   >
     {children}
   </p>
@@ -113,7 +115,7 @@ export const CardBody: React.FC<Props> = ({ children }) => (
 
 export const NavLinks: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-lg  text-justify dark:text-white text-black  subpixel-antialiased `}
+    className={` ${fontbody.className} text-lg  text-justify  dark:text-dark-text text-light-text   subpixel-antialiased `}
   >
     {children}
   </p>
