@@ -73,7 +73,7 @@ const About: FC = () => {
         width={200}
         height={200}
         alt="profile picture"
-        className="rounded-full border-8 border-primary shadow-md shadow-secondary border-double"
+        className="rounded-full border-8 border-primary  border-double"
       />
       <Body>
         +1 Year of experience as a web developer. Teamwork is my favorite way to
