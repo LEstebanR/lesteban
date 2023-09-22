@@ -76,7 +76,7 @@ const About: FC = () => {
       </svg>
       <div className="flex h-2/3 w-full items-center justify-center">
         <ul className="flex w-full justify-center gap-4">
-          <H3>Let`&apos;`s talk:</H3>
+          <H3>Let&apos;s talk:</H3>
 
           <li>
             <Link href="mailto:leramirezca@gmail.com">
