@@ -1,15 +1,21 @@
-import React, { FC } from 'react'
+import React from 'react'
 import Image from 'next/image'
+
 import { CardDetail } from '../UI/typography'
 
-interface Props {
-  tech: any
+interface Tech {
+  logo: string
+  layer: string
 }
 
-const TechnologyLogo: FC<Props> = ({ tech }) => {
+interface Props {
+  tech: Tech
+}
+
+const TechnologyLogo: React.FC<Props> = ({ tech }) => {
   return (
-    <div className="shadow-lg flex flex-col items-center  h-50 rounded-lg border dark:border-gray-200 border-black bg-light-card dark:bg-dark-card ">
-      <div className="w-full flex items-center justify-center h-40 p-2">
+    <div className="flex h-48 flex-col items-center  rounded-lg border border-black bg-light-card shadow-lg dark:border-gray-200 dark:bg-dark-card ">
+      <div className="flex h-40 w-full items-center justify-center p-2">
         <Image src={tech.logo} width={100} height={100} alt="logo-tech" />
       </div>
       <CardDetail>{tech.layer}</CardDetail>

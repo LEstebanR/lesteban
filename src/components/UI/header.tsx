@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, Fragment } from 'react'
+import React, { FC, Fragment } from 'react'
 import Link from 'next/link'
 import Button from '../UI/button'
 import Logo from '../logo'
@@ -7,9 +7,9 @@ import { Bars3Icon } from '@heroicons/react/24/solid'
 import { NavLinks } from './typography'
 
 interface HeaderProps {
-  projectsRef: any
-  aboutRef: any
-  experienceRef: any
+  projectsRef: React.RefObject<HTMLElement>
+  aboutRef: React.RefObject<HTMLElement>
+  experienceRef: React.RefObject<HTMLElement>
 }
 
 const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
@@ -19,20 +19,20 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
     { name: 'Projects', href: '#projects', ref: projectsRef },
   ]
 
-  const scrollToSection = (ref: any) => {
-    const test = document.getElementById(ref.current.id)
-    let position = test ? test.getBoundingClientRect() : { top: 0, left: 0 }
+  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+    const test = document.getElementById(ref.current?.id || '')
+    const position = test ? test.getBoundingClientRect() : { top: 0, left: 0 }
     // scrolls to 20px above element
     window.scrollTo(position.left, position.top + window.scrollY - 65)
   }
 
   return (
-    <header className="w-full h-16 flex justify-center items-center sticky top-0 z-50  bg-white dark:bg-dark bg-opacity-80 filter saturate-180 blur-5 border-b border-gray-500 mb-4">
-      <div className="w-11/12 md:w-6/12  flex justify-between items-center">
+    <header className="sticky top-0 z-50 mb-4 flex h-16 w-full  items-center justify-center border-b border-gray-500 bg-white opacity-80 saturate-150 dark:bg-dark">
+      <div className="flex w-11/12  items-center justify-between md:w-6/12">
         <div>
           <Logo />
         </div>
-        <ul className="hidden md:flex gap-4">
+        <ul className="hidden gap-4 md:flex">
           {LINKS.map((link, index) => (
             <li
               key={index}
@@ -52,7 +52,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
         </Link>
         <Menu as="div" className="relative inline-block text-left md:hidden">
           <div>
-            <Menu.Button className="flex w-full justify-center items-center rounded-md p-2  border-primary border-2 ">
+            <Menu.Button className="flex w-full items-center justify-center rounded-md border-2  border-primary p-2 ">
               <Bars3Icon className="h-6 w-6 text-primary" aria-hidden="true" />
             </Menu.Button>
           </div>
@@ -65,12 +65,12 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 mt-3 w-36 origin-top-right rounded-md bg-light dark:bg-dark shadow-sm  shadow-primary">
-              <div className="px-1 py-1 border border-black rounded-md">
+            <Menu.Items className="absolute right-0 mt-3 w-36 origin-top-right rounded-md bg-light shadow-sm shadow-primary  dark:bg-dark">
+              <div className="rounded-md border border-black p-1">
                 {LINKS.map((link, index) => (
                   <Menu.Item key={index}>
                     <span
-                      className="group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                      className="group flex w-full items-center rounded-md p-2 text-sm"
                       onClick={() => scrollToSection(link.ref)}
                     >
                       <NavLinks>{link.name}</NavLinks>

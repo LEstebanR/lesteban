@@ -24,9 +24,9 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ProjectsCard: FC<Props> = ({ project }) => {
   return (
-    <div className="rounded-lg  shadow-md flex flex-col  p-2 gap-4 bg-light-card dark:bg-dark-card  border border-s-secondary  dark:border-s-secondary border-l-8 dark:border-gray-200 border-black">
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="md:w-1/3 flex flex-col gap-4 items-center">
+    <div className="flex  flex-col gap-4 rounded-lg  border border-l-8 border-black border-s-secondary  bg-light-card p-2  shadow-md dark:border-gray-200 dark:border-s-secondary dark:bg-dark-card">
+      <div className="flex flex-col gap-4 md:flex-row">
+        <div className="flex flex-col items-center gap-4 md:w-1/3">
           <H4>{project.name}</H4>
           <Image
             src={project.image}
@@ -34,7 +34,7 @@ const ProjectsCard: FC<Props> = ({ project }) => {
             width={200}
             alt="project-logo"
           />
-          <div className="flex text-3xl text-primary gap-4 w-full justify-center">
+          <div className="flex w-full justify-center gap-4 text-3xl text-primary">
             <Link href={project.repo} target="_blank">
               <FiGithub />
             </Link>
@@ -43,7 +43,7 @@ const ProjectsCard: FC<Props> = ({ project }) => {
             </Link>
           </div>
         </div>
-        <div className="md:w-2/3 flex flex-col">
+        <div className="flex flex-col md:w-2/3">
           <CardBody>{project.description}</CardBody>
         </div>
       </div>
@@ -51,7 +51,7 @@ const ProjectsCard: FC<Props> = ({ project }) => {
         <span className="w-1/3">
           <H4>Stack:</H4>
         </span>
-        <div className="flex justify-between flex-wrap md:w-2/3">
+        <div className="flex flex-wrap justify-between md:w-2/3">
           {project.stack.map((tech: StackItem) => (
             <StackItem key={tech.name} tech={tech} />
           ))}

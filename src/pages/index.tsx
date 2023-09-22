@@ -18,7 +18,7 @@ export default function Home() {
     >
       <div className="flex">
         <div className="overflow-y-hidden">
-          <div className="flex flex-col items-center justify-center max-h-full  no-scrollbar">
+          <div className="flex max-h-full flex-col items-center justify-center">
             <div ref={aboutRef} id="about">
               <About />
             </div>

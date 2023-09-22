@@ -33,34 +33,8 @@ const About: FC = () => {
     },
   ]
 
-  const Interesting = [
-    {
-      layer: 'Node',
-      logo: '/assets/images/logos/nodejs-icon.svg',
-    },
-    {
-      layer: 'Vue',
-      logo: '/assets/images/logos/vue.svg',
-    },
-    {
-      layer: 'Astro',
-      logo: '/assets/images/logos/astro-icon.svg',
-    },
-    {
-      layer: 'Remix',
-      logo: '/assets/images/logos/remix-icon.svg',
-    },
-    {
-      layer: 'Python',
-      logo: '/assets/images/logos/python.svg',
-    },
-    {
-      layer: 'Go',
-      logo: '/assets/images/logos/go.svg',
-    },
-  ]
   return (
-    <div className="flex flex-col items-center gap-4 my-4 ">
+    <div className="my-4 flex flex-col items-center gap-4 ">
       <span>
         <H1>Luis Esteban Ramírez</H1>
         <H1 gradient className="font-extrabold ">
@@ -73,7 +47,7 @@ const About: FC = () => {
         width={200}
         height={200}
         alt="profile picture"
-        className="rounded-full border-8 border-primary  border-double"
+        className="rounded-full border-8 border-double  border-primary"
       />
       <Body>
         +1 Year of experience as a web developer. Teamwork is my favorite way to
@@ -82,12 +56,12 @@ const About: FC = () => {
         impact that positively change the lives of millions of people.
       </Body>
       <H3>I have experience with:</H3>
-      <div className="grid grid-cols-2 xl:grid-cols-6 w-full gap-2">
+      <div className="grid w-full grid-cols-2 gap-2 xl:grid-cols-6">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
       </div>
-      <div className="h-1/3 bg-secondary rounded-t border-b border-dashed border-black flex justify-center items-center"></div>
+      <div className="flex h-1/3 items-center justify-center rounded-t border-b border-dashed border-black bg-secondary"></div>
       <svg width="1em" height="0">
         <linearGradient
           id="blue-gradient-desktop"
@@ -100,9 +74,9 @@ const About: FC = () => {
           <stop stopColor="#d2de32" offset="100%" />
         </linearGradient>
       </svg>
-      <div className="h-2/3 flex justify-center items-center w-full">
-        <ul className="flex gap-4 w-full justify-center">
-          <H3>Let's talk:</H3>
+      <div className="flex h-2/3 w-full items-center justify-center">
+        <ul className="flex w-full justify-center gap-4">
+          <H3>Let`&apos;`s talk:</H3>
 
           <li>
             <Link href="mailto:leramirezca@gmail.com">

@@ -31,8 +31,8 @@ export const H1: React.FC<Props> = ({ children, gradient, className }) => (
   <h1
     className={`${className} ${
       fontheader.className
-    } md:text-6xl text-5xl  text-center  ${
-      gradient && 'gradient-text  dark:text-dark-text text-light-text '
+    } text-center text-5xl  md:text-6xl  ${
+      gradient && 'gradient-text  text-light-text dark:text-dark-text '
     }`}
   >
     {children}
@@ -43,7 +43,7 @@ export const Body: React.FC<Props> = ({ children, gradient }) => (
   <p
     className={` ${
       fontbody.className
-    } md:text-2xl text-xl   dark:text-dark-text text-light-text  subpixel-antialiased ${
+    } text-xl text-light-text   subpixel-antialiased dark:text-dark-text  md:text-2xl ${
       gradient && 'gradient-text'
     }`}
   >
@@ -55,7 +55,7 @@ export const H2: React.FC<Props> = ({ children, gradient, className }) => (
   <h2
     className={`${className} ${
       fontheader.className
-    } md:text-4xl text-4xl font-bold  dark:text-dark-text text-light-text  ${
+    } text-4xl font-bold text-light-text  dark:text-dark-text md:text-4xl  ${
       gradient && 'gradient-text'
     }`}
   >
@@ -67,7 +67,7 @@ export const H3: React.FC<Props> = ({ children, gradient }) => (
   <h3
     className={` ${
       fontheader.className
-    } text-3xl  text-center font-bold  dark:text-dark-text text-light-text  text-blacksubpixel-antialiased ${
+    } text-center text-3xl  font-bold text-light-text  dark:text-dark-text ${
       gradient && 'gradient-text'
     }`}
   >
@@ -79,7 +79,7 @@ export const H4: React.FC<Props> = ({ children, gradient }) => (
   <h4
     className={` ${
       fontheader.className
-    } text-xl  font-bold  dark:text-dark-text text-light-text  subpixel-antialiased ${
+    } text-xl  font-bold  text-light-text subpixel-antialiased  dark:text-dark-text ${
       gradient && 'gradient-text'
     }`}
   >
@@ -99,7 +99,7 @@ export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
 
 export const CardDetail: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-base  text-justify  dark:text-dark-text text-light-text   italic`}
+    className={` ${fontbody.className} text-justify  text-base  italic text-light-text   dark:text-dark-text`}
   >
     {children}
   </p>
@@ -107,7 +107,7 @@ export const CardDetail: React.FC<Props> = ({ children }) => (
 
 export const CardBody: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-lg    dark:text-dark-text text-light-text text-blacksubpixel-antialiased `}
+    className={` ${fontbody.className} text-lg text-light-text dark:text-dark-text `}
   >
     {children}
   </p>
@@ -115,7 +115,7 @@ export const CardBody: React.FC<Props> = ({ children }) => (
 
 export const NavLinks: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-lg  text-justify  dark:text-dark-text text-light-text   subpixel-antialiased `}
+    className={` ${fontbody.className} text-justify  text-lg  text-light-text subpixel-antialiased   dark:text-dark-text `}
   >
     {children}
   </p>

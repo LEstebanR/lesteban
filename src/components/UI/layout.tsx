@@ -1,12 +1,12 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Header from './header'
 import Footer from './footer'
 
 interface LayoutProps {
   children: React.ReactNode
-  projectsRef: any
-  aboutRef: any
-  experienceRef: any
+  projectsRef: React.RefObject<HTMLElement>
+  aboutRef: React.RefObject<HTMLElement>
+  experienceRef: React.RefObject<HTMLElement>
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -16,13 +16,13 @@ const Layout: React.FC<LayoutProps> = ({
   experienceRef,
 }) => {
   return (
-    <div className="flex flex-col items-center bg-light text-black dark:bg-dark dark:text-white gap-4">
+    <div className="flex flex-col items-center gap-4 bg-light text-black dark:bg-dark dark:text-white">
       <Header
         projectsRef={projectsRef}
         aboutRef={aboutRef}
         experienceRef={experienceRef}
       />
-      <div className="w-11/12 md:w-6/12 flex flex-col items-center">
+      <div className="flex w-11/12 flex-col items-center md:w-6/12">
         {children}
       </div>
       <Footer />
