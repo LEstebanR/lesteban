@@ -4,12 +4,12 @@ import { GoHeart, GoMarkGithub } from 'react-icons/go'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer w-full my-8">
-      <div className="z-10 flex flex-wrap  justify-center items-center gap-x-1 gap-y-3 sm:gap-x-2 ">
+    <footer className="my-8 w-full">
+      <div className="z-10 flex flex-wrap  items-center justify-center gap-x-1 gap-y-3 sm:gap-x-2 ">
         <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
           <GoMarkGithub className="h-6 w-6 text-primary" />
         </Link>
-        <div className="mx-2 h-[30px] w-[0.5px] rotate-[20deg] transform bg-primary"></div>
+        <div className="mx-2 h-[30px] w-[0.5px] rotate-[20deg] bg-primary"></div>
         <div className="flex items-center gap-x-1 text-xs sm:text-base">
           <span className="text-slate-400">Made with</span>
           <GoHeart className="h-4 w-4 text-red-500" />

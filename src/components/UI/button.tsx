@@ -10,7 +10,7 @@ const Button: React.FC<props> = ({ children, className }) => {
   return (
     <button
       className={clsx(
-        'bg-primary text-white  p-2 border-2  border-black rounded h-10 dark:border-white',
+        'h-10 rounded  border-2 border-black  bg-primary p-2 text-white dark:border-white',
         className
       )}
     >

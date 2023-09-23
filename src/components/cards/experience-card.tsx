@@ -13,7 +13,7 @@ interface StackProps {
 
 const StackItem: FC<StackProps> = ({ tech }) => {
   return (
-    <div className="flex flex-col items-center w-20 h-14">
+    <div className="flex h-14 w-20 flex-col items-center">
       <Image src={tech.icon} alt="tech - logo" height={25} width={25} />
       <CardDetail>{tech.name}</CardDetail>
     </div>
@@ -22,9 +22,9 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ExperienceCard: FC<props> = ({ job }) => {
   return (
-    <div className="rounded-lg  shadow-md flex flex-col  p-4 gap-4 bg-light-card dark:bg-dark-card border border-s-primary dark:border-s-primary border-l-8 dark:border-gray-200 border-black">
+    <div className="flex  flex-col gap-4 rounded-lg  border border-l-8 border-black border-s-primary bg-light-card p-4 shadow-md dark:border-gray-200 dark:border-s-primary dark:bg-dark-card">
       <div className="md:flex">
-        <div className="md:w-1/3 flex flex-col gap-2">
+        <div className="flex flex-col gap-2 md:w-1/3">
           <H4>{job.position}</H4>
           <CustomLink url={job.url}>{job.company}</CustomLink>
           <span className="mb-2">
@@ -33,7 +33,7 @@ const ExperienceCard: FC<props> = ({ job }) => {
             </CardDetail>
           </span>
         </div>
-        <div className="md:w-2/3 flex flex-col">
+        <div className="flex flex-col md:w-2/3">
           <CardBody>{job.detail}</CardBody>
         </div>
       </div>
@@ -42,7 +42,7 @@ const ExperienceCard: FC<props> = ({ job }) => {
         <span className="w-1/3">
           <H4>Stack:</H4>
         </span>
-        <div className="flex justify-between flex-wrap md:w-2/3">
+        <div className="flex flex-wrap justify-between md:w-2/3">
           {job.stack.map((tech: StackItem) => (
             <StackItem key={tech.name} tech={tech} />
           ))}

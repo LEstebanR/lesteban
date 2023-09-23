@@ -10,7 +10,7 @@ const projects: Project[] = [
     image: '/assets/images/projects/devpeoplz.png',
     repo: 'https://gitlab.com/devpeoplz2/devpeoplz',
     description:
-      'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the companys clients. Led the project independently under the direct supervision of the CEO to deliver a high-quality product.',
+      'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the company clients. Led the project independently under the direct supervision of the CEO to deliver a high-quality product.',
     stack: [
       {
         name: 'NextJs',
@@ -92,11 +92,11 @@ const projects: Project[] = [
 
 const Projects: FC = () => {
   return (
-    <div className="flex flex-col gap-4 w-full my-4">
+    <div className="my-4 flex w-full flex-col gap-4">
       <H2 gradient className="w-[200px]">
         Projects:
       </H2>
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         {projects.map((project) => (
           <ProjectsCard key={project.name} project={project} />
         ))}
