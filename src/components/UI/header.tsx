@@ -29,10 +29,10 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
   return (
     <header className="sticky top-0 z-50 mb-4 flex h-16 w-full  items-center justify-center border-b border-gray-500 bg-white opacity-80 saturate-150 dark:bg-dark">
       <div className="flex w-11/12  items-center justify-between md:w-6/12">
-        <div>
+        <div className="w-1/6">
           <Logo />
         </div>
-        <ul className="hidden gap-4 md:flex">
+        <ul className="hidden gap-4 md:flex grow justify-center">
           {LINKS.map((link, index) => (
             <li
               key={index}
@@ -46,7 +46,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
         <Link
           href="https://drive.google.com/file/d/1Ipyn640EG571TQQJCgY-OkqW-4fIvFpq/view?usp=drive_link"
           target="_blank"
-          className="hidden md:block"
+          className="hidden md:block w:1/6"
         >
           <Button>Download CV</Button>
         </Link>
