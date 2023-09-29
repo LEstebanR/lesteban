@@ -12,3 +12,19 @@ html {
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(90deg, #8ecddd, #d2de32);
 }
+
+.entrance-animation {
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: scale(0.1); 
+   }
+  100% {
+    transform: scale(1); 
+   }
+
+}

@@ -22,7 +22,7 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ExperienceCard: FC<props> = ({ job }) => {
   return (
-    <div className="flex  flex-col gap-4 rounded-lg  border border-l-8 border-black border-s-primary bg-light-card p-4 shadow-md dark:border-gray-200 dark:border-s-primary dark:bg-dark-card">
+    <div className="flex  flex-col gap-4 rounded-lg  border border-l-8 border-black border-s-primary bg-light-card p-4 shadow-md dark:border-gray-200 dark:border-s-primary dark:bg-dark-card entrance-animation">
       <div className="md:flex">
         <div className="flex flex-col gap-2 md:w-1/3">
           <H4>{job.position}</H4>

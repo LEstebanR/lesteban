@@ -24,7 +24,7 @@ const StackItem: FC<StackProps> = ({ tech }) => {
 
 const ProjectsCard: FC<Props> = ({ project }) => {
   return (
-    <div className="flex  flex-col gap-4 rounded-lg  border border-l-8 border-black border-s-secondary  bg-light-card p-2  shadow-md dark:border-gray-200 dark:border-s-secondary dark:bg-dark-card">
+    <div className="flex  flex-col gap-4 rounded-lg  border border-l-8 border-black border-s-secondary  bg-light-card p-2  shadow-md dark:border-gray-200 dark:border-s-secondary dark:bg-dark-card entrance-animation">
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="flex flex-col items-center gap-4 md:w-1/3">
           <H4>{project.name}</H4>

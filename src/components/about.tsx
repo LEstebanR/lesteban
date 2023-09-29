@@ -34,7 +34,7 @@ const About: FC = () => {
   ]
 
   return (
-    <div className="my-4 flex flex-col items-center gap-4 ">
+    <div className="my-4 flex flex-col items-center gap-4 entrance-animation ">
       <span>
         <H1>Luis Esteban Ramírez</H1>
         <H1 gradient className="font-extrabold ">
