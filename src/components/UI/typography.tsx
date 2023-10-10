@@ -79,7 +79,7 @@ export const H4: React.FC<Props> = ({ children, gradient }) => (
   <h4
     className={` ${
       fontheader.className
-    } text-xl  font-bold  text-light-text subpixel-antialiased  dark:text-dark-text ${
+    } text-xl  font-extrabold  text-primary subpixel-antialiased  ${
       gradient && 'gradient-text'
     }`}
   >
@@ -90,7 +90,7 @@ export const H4: React.FC<Props> = ({ children, gradient }) => (
 export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
   <Link href={url} target="_blank">
     <p
-      className={` ${fontbody.className} text-xl  font-bold text-primary underline decoration-2 `}
+      className={` ${fontbody.className} text-xl  font-bold text-blue-300 underline decoration-2 `}
     >
       {children}
     </p>
@@ -99,7 +99,7 @@ export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
 
 export const CardDetail: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-justify  text-base  italic text-light-text   dark:text-dark-text`}
+    className={` ${fontbody.className}  text-base  italic text-light-text   dark:text-dark-text`}
   >
     {children}
   </p>
@@ -117,6 +117,12 @@ export const NavLinks: React.FC<Props> = ({ children }) => (
   <p
     className={` ${fontbody.className} text-justify  text-lg  text-light-text subpixel-antialiased   dark:text-dark-text `}
   >
+    {children}
+  </p>
+)
+
+export const ExperienceTime: React.FC<Props> = ({ children }) => (
+  <p className={` text-lg italic text-light-text   dark:text-dark-text`}>
     {children}
   </p>
 )
