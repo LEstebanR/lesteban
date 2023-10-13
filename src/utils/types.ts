@@ -22,3 +22,7 @@ export interface Job {
   detail: string
   stack: StackItem[]
 }
+
+export type StackProps = {
+  tech: StackItem
+}

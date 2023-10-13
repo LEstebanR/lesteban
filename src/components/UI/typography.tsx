@@ -98,9 +98,7 @@ export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
 )
 
 export const CardDetail: React.FC<Props> = ({ children }) => (
-  <p
-    className={` ${fontbody.className}  text-base  italic text-light-text   dark:text-dark-text`}
-  >
+  <p className={` text-sm italic text-light-text   dark:text-dark-text`}>
     {children}
   </p>
 )

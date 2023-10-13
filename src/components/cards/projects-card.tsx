@@ -3,23 +3,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Project, StackItem } from '@/utils/types'
 import { FiGithub, FiLink } from 'react-icons/fi'
-import { CardBody, CardDetail, H4 } from '../UI/typography'
+import { CardBody, H4 } from '../UI/typography'
+import StackItemLogo from './stack-item'
 
 interface Props {
   project: Project
-}
-
-interface StackProps {
-  tech: StackItem
-}
-
-const StackItem: FC<StackProps> = ({ tech }) => {
-  return (
-    <div className="flex flex-col items-center justify-end">
-      <Image src={tech.icon} alt="tech - logo" height={25} width={25} />
-      <CardDetail>{tech.name}</CardDetail>
-    </div>
-  )
 }
 
 const ProjectsCard: FC<Props> = ({ project }) => {
@@ -53,7 +41,7 @@ const ProjectsCard: FC<Props> = ({ project }) => {
         </span>
         <div className="flex flex-wrap justify-between md:w-2/3">
           {project.stack.map((tech: StackItem) => (
-            <StackItem key={tech.name} tech={tech} />
+            <StackItemLogo key={tech.name} tech={tech} />
           ))}
         </div>
       </div>
