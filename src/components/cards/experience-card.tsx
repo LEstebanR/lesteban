@@ -41,7 +41,7 @@ const ExperienceCard: FC<props> = ({ job }) => {
           <span className="w-1/3">
             <H4>Stack:</H4>
           </span>
-          <div className="flex flex-wrap justify-between md:w-2/3">
+          <div className="flex flex-wrap justify-center gap-2 md:w-2/3">
             {job.stack.map((tech: StackItem) => (
               <StackItemLogo key={tech.name} tech={tech} />
             ))}
