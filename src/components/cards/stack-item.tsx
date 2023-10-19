@@ -11,7 +11,7 @@ const StackItemLogo: FC<StackProps> = ({ tech }) => {
         alt="tech - logo"
         height={100}
         width={100}
-        className="h-12 w-12"
+        className="h-12 w-12 rounded-full object-contain p-2"
       />
       <CardDetail>{tech.name}</CardDetail>
     </div>

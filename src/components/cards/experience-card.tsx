@@ -47,6 +47,7 @@ const ExperienceCard: FC<props> = ({ job }) => {
             ))}
           </div>
         </div>
+        <p className="hidden md:block">experience desktop</p>
       </div>
     </>
   )

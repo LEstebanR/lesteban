@@ -1,6 +1,7 @@
 import React from 'react'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import clsx from 'clsx'
 
 const fontheader = Inter({
   subsets: ['latin'],
@@ -25,6 +26,7 @@ interface Props {
 interface LinkProps {
   children: React.ReactNode
   url: string
+  className?: string
 }
 
 export const H1: React.FC<Props> = ({ children, gradient, className }) => (
@@ -87,10 +89,18 @@ export const H4: React.FC<Props> = ({ children, gradient }) => (
   </h4>
 )
 
-export const CustomLink: React.FC<LinkProps> = ({ children, url }) => (
+export const CustomLink: React.FC<LinkProps> = ({
+  children,
+  url,
+  className,
+}) => (
   <Link href={url} target="_blank">
     <p
-      className={` ${fontbody.className} text-xl  font-bold text-blue-300 underline decoration-2 `}
+      className={clsx(
+        fontbody.className,
+        'text-xl  font-bold text-blue-300 underline decoration-2',
+        className
+      )}
     >
       {children}
     </p>
@@ -103,9 +113,13 @@ export const CardDetail: React.FC<Props> = ({ children }) => (
   </p>
 )
 
-export const CardBody: React.FC<Props> = ({ children }) => (
+export const CardBody: React.FC<Props> = ({ children, className }) => (
   <p
-    className={` ${fontbody.className} text-lg text-light-text dark:text-dark-text `}
+    className={clsx(
+      fontbody.className,
+      'text-lg text-light-text dark:text-dark-text',
+      className
+    )}
   >
     {children}
   </p>
@@ -119,8 +133,10 @@ export const NavLinks: React.FC<Props> = ({ children }) => (
   </p>
 )
 
-export const ExperienceTime: React.FC<Props> = ({ children }) => (
-  <p className={` text-lg italic text-light-text   dark:text-dark-text`}>
+export const ExperienceTime: React.FC<Props> = ({ children, className }) => (
+  <p
+    className={` text-lg italic text-light-text   dark:text-dark-text ${className}`}
+  >
     {children}
   </p>
 )
