@@ -14,10 +14,15 @@ export interface Project {
 
 export interface Job {
   position: string
+  logo: string
   company: string
   url: string
   start: string
   end: string
   detail: string
   stack: StackItem[]
+}
+
+export type StackProps = {
+  tech: StackItem
 }

@@ -18,11 +18,11 @@ export default function Home() {
     >
       <div className="flex">
         <div className="overflow-y-hidden">
-          <div className="flex max-h-full flex-col items-center justify-center">
+          <div className="flex max-h-full w-full flex-col items-center justify-center">
             <div ref={aboutRef} id="about">
               <About />
             </div>
-            <div ref={experienceRef} id="experience">
+            <div ref={experienceRef} id="experience" className="w-full">
               <Experience />
             </div>
             <div ref={projectsRef} id="projects">

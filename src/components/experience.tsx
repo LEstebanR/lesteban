@@ -1,16 +1,18 @@
 import React, { FC } from 'react'
 import ExperienceCard from './cards/experience-card'
 import { H2 } from './UI/typography'
+import ExperienceTimeline from './experiece-timeline'
 
 const jobs = [
   {
     position: 'Fullstack Developer',
     company: 'Devpeoplz',
+    logo: '/assets/images/logos/devpeoplz-logo.png',
     url: 'https://devpeoplz.com/',
     start: 'Nov 2022',
     end: 'Current job',
     detail:
-      'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the companys clients. Led the project independently under the direct supervision of the CEO to deliver a high-quality product.',
+      'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the company clients. Led the project under the direct supervision of the CEO to deliver a high-quality product.',
     stack: [
       {
         name: 'NextJs',
@@ -33,11 +35,12 @@ const jobs = [
   {
     position: 'Frontend Developer',
     company: 'Aleluya',
+    logo: '/assets/images/logos/aleluya-logo.jpeg',
     url: 'https://aleluya.com/',
     start: 'Apr 2022',
     end: 'Nov 2022',
     detail:
-      'We developed and maintained a payroll and human resources product, creating new features and fixing bugs. I also worked collaboratively with a multidisciplinary team, including designers and backend developers, to ensure the product met client requirements and expectations',
+      'Developed and maintained a payroll and human resources product, creating new features and fixing bugs. Worked with a multidisciplinary team, including designers and developers, to ensure the product met client requirements and expectations',
     stack: [
       {
         name: 'React',
@@ -70,6 +73,7 @@ const Experience: FC = () => {
           <ExperienceCard key={job.position} job={job} />
         ))}
       </div>
+      <ExperienceTimeline jobs={jobs} />
     </div>
   )
 }
