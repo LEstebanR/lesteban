@@ -9,7 +9,6 @@ export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const experienceRef = useRef<HTMLDivElement>(null)
 
-  console.log(projectsRef, aboutRef, experienceRef)
   return (
     <Layout
       projectsRef={projectsRef}
