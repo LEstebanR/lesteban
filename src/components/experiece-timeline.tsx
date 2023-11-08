@@ -22,7 +22,7 @@ type Job = {
 const ExperienceTimeline: FC<Props> = ({ jobs }) => {
   const [active, setActive] = useState(0)
   return (
-    <div className="hidden min-h-[300px] w-full  grid-cols-3  md:grid">
+    <div className="hidden min-h-[350px] w-full  grid-cols-3  lg:grid">
       <div className="col-span-1 ">
         <ul role="list" className="flex h-full flex-col justify-between">
           {jobs.map((job, index) => (
@@ -30,7 +30,7 @@ const ExperienceTimeline: FC<Props> = ({ jobs }) => {
               <div className="relative pb-8">
                 {index !== jobs.length - 1 ? (
                   <span
-                    className="absolute left-7 top-14 -ml-px h-full w-0.5 bg-primary"
+                    className="absolute left-7 top-14 -ml-px flex h-44 w-0.5 bg-primary"
                     aria-hidden="true"
                   />
                 ) : null}
@@ -38,7 +38,7 @@ const ExperienceTimeline: FC<Props> = ({ jobs }) => {
                   <div>
                     <span
                       className={clsx(
-                        'flex  items-center justify-center rounded-full ring-8 ring-white'
+                        'flex  items-center justify-center rounded-full '
                       )}
                     >
                       <Image
@@ -50,7 +50,7 @@ const ExperienceTimeline: FC<Props> = ({ jobs }) => {
                       />
                     </span>
                   </div>
-                  <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                  <div className="flex min-w-0 flex-1 justify-between">
                     <div>
                       <p
                         className={clsx(

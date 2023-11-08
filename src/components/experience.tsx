@@ -68,7 +68,7 @@ const Experience: FC = () => {
       <H2 gradient className="w-[200px]">
         Experience:
       </H2>
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {jobs.map((job) => (
           <ExperienceCard key={job.position} job={job} />
         ))}
