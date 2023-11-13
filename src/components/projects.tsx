@@ -29,7 +29,7 @@ const projects: Project[] = [
   {
     name: 'Space tourism',
     url: 'https://fm-space-tourism-iota.vercel.app/',
-    image: '/assets/images/projects/space-tourism.jpg ',
+    image: '/assets/images/projects/space-tourism.jpg',
     repo: 'https://github.com/LEstebanR/FM_Space_Tourism',
     description:
       'This application was created with NextJs, Typescript and tailwind mainly. The idea was to apply my knowledge in Tailwind which is a technology that I am looking to improve.',
