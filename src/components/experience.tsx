@@ -10,7 +10,7 @@ const jobs = [
     logo: '/assets/images/logos/devpeoplz-logo.png',
     url: 'https://devpeoplz.com/',
     start: 'Nov 2022',
-    end: 'Current job',
+    end: 'Jan 2024',
     detail:
       'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the company clients. Led the project under the direct supervision of the CEO to deliver a high-quality product.',
     stack: [
