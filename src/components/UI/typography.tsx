@@ -1,16 +1,16 @@
 import React from 'react'
-import { Inter } from 'next/font/google'
+import { Raleway, Open_Sans } from 'next/font/google'
 import Link from 'next/link'
 import clsx from 'clsx'
 
-const fontheader = Inter({
+const fontheader = Raleway({
   subsets: ['latin'],
   weight: ['400'],
   display: 'swap',
   variable: '--font-inter',
 })
 
-const fontbody = Inter({
+const fontbody = Open_Sans({
   subsets: ['latin'],
   weight: ['300'],
   display: 'swap',
