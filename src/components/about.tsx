@@ -50,7 +50,7 @@ const About: FC = () => {
         className="rounded-full border-8 border-double  border-primary"
       />
       <Body>
-        +1 Year of experience as a web developer. Teamwork is my favorite way to
+        2 Years of experience as a web developer. Teamwork is my favorite way to
         learn. Always looking to improve the quality of my code to make it more
         readable and maintainable. My dream is to work on products with global
         impact that positively change the lives of millions of people.
