@@ -54,7 +54,7 @@ const ExperienceTimeline: FC<Props> = ({ jobs }) => {
                     <div>
                       <p
                         className={clsx(
-                          'px-2 text-xl',
+                          'px-2 text-xl transition-all duration-300 ease-in-out',
                           active === index
                             ? 'bg-secondary italic  text-gray-800'
                             : 'text-gray-500'
@@ -82,7 +82,7 @@ const ExperienceTimeline: FC<Props> = ({ jobs }) => {
           ))}
         </ul>
       </div>
-      <div className="col-span-2 flex items-center justify-end ">
+      <div className="col-span-2 flex items-center justify-end transition-all duration-300 ease-in-out ">
         <div className="flex h-full w-9/12 flex-col gap-2 border-4 border-dotted border-secondary p-4">
           <CardBody>{jobs[active].detail}</CardBody>
           <p>Stack:</p>
