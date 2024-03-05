@@ -79,7 +79,11 @@ const About: FC = () => {
           <H3>Let&apos;s talk:</H3>
 
           <li>
-            <Link href="mailto:leramirezca@gmail.com">
+            <Link
+              href="mailto:leramirezca@gmail.com"
+              aria-label="Send an email to Esteban"
+              target="_blank"
+            >
               <AiOutlineMail
                 className="h-8 w-8"
                 style={{ fill: 'url(#blue-gradient-desktop)' }}
@@ -87,7 +91,11 @@ const About: FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="https://www.linkedin.com/in/lestebanr/" target="_blank">
+            <Link
+              href="https://www.linkedin.com/in/lestebanr/"
+              target="_blank"
+              aria-label="Visit Esteban's LinkedIn profile"
+            >
               <AiFillLinkedin
                 className="h-8 w-8"
                 style={{ fill: 'url(#blue-gradient-desktop)' }}
@@ -95,7 +103,11 @@ const About: FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="https://github.com/LEstebanR/lesteban" target="_blank">
+            <Link
+              href="https://github.com/LEstebanR/lesteban"
+              target="_blank"
+              aria-label="Visit Esteban's GitHub profile"
+            >
               <AiFillGithub
                 className="h-8 w-8"
                 style={{ fill: 'url(#blue-gradient-desktop)' }}

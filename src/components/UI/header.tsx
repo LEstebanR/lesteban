@@ -57,6 +57,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
           <div>
             <Menu.Button className="flex w-full items-center justify-center rounded-md border-2  border-primary p-2 ">
               <Bars3Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+              <p className="hidden">Menu</p>
             </Menu.Button>
           </div>
           <Transition
