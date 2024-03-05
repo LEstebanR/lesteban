@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { FC, useState } from 'react'
 import Image from 'next/image'
-import { Body, CardBody, CustomLink, ExperienceTime } from './UI/typography'
+import { CardBody, CustomLink, ExperienceTime } from './UI/typography'
 import StackItemLogo from './cards/stack-item'
 
 type Props = {

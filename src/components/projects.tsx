@@ -5,6 +5,28 @@ import { H2 } from './UI/typography'
 
 const projects: Project[] = [
   {
+    name: 'Frontend Mentor Challenges',
+    url: 'https://frontend-mentor-challenges-lestebanr.vercel.app/',
+    image: '/assets/images/projects/frontend-mentor.png',
+    repo: 'https://github.com/LEstebanR/Frontend-mentor-challenges',
+    description:
+      'In this project I compile all my solutions to the challenges of "Frontend Mentor" which is a website with designs in different levels to train your skills as a Frontend Developer.',
+    stack: [
+      {
+        name: 'NextJs',
+        icon: '/assets/images/logos/nextjs-icon.svg',
+      },
+      {
+        name: 'Typescript',
+        icon: '/assets/images/logos/typescript-icon-round.svg',
+      },
+      {
+        name: 'Tailwind',
+        icon: '/assets/images/logos/tailwindcss-icon.svg',
+      },
+    ],
+  },
+  {
     name: 'Devpeoplz',
     url: 'https://devpeoplz.com/',
     image: '/assets/images/projects/devpeoplz.png',
@@ -48,24 +70,24 @@ const projects: Project[] = [
       },
     ],
   },
-  {
-    name: 'Bookmark landing',
-    url: 'https://test-terapia-mia.vercel.app/',
-    image: '/assets/images/projects/bookmark.png',
-    repo: 'https://github.com/LEstebanR/testTerapiaMia',
-    description:
-      'Landing page using Next.js and Styled Components. This was a great opportunity to showcase my ability to use these technologies and create a functional and visually appealing landing page.',
-    stack: [
-      {
-        name: 'NextJs',
-        icon: '/assets/images/logos/nextjs-icon.svg',
-      },
-      {
-        name: 'Styled Components',
-        icon: '/assets/images/logos/styled-components.png',
-      },
-    ],
-  },
+  // {
+  //   name: 'Bookmark landing',
+  //   url: 'https://test-terapia-mia.vercel.app/',
+  //   image: '/assets/images/projects/bookmark.png',
+  //   repo: 'https://github.com/LEstebanR/testTerapiaMia',
+  //   description:
+  //     'Landing page using Next.js and Styled Components. This was a great opportunity to showcase my ability to use these technologies and create a functional and visually appealing landing page.',
+  //   stack: [
+  //     {
+  //       name: 'NextJs',
+  //       icon: '/assets/images/logos/nextjs-icon.svg',
+  //     },
+  //     {
+  //       name: 'Styled Components',
+  //       icon: '/assets/images/logos/styled-components.png',
+  //     },
+  //   ],
+  // },
   {
     name: 'Poketrivia',
     url: 'https://poketrivia.vercel.app/',

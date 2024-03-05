@@ -34,10 +34,10 @@ const ProjectsCard: FC<Props> = ({ project }) => {
       </div>
       <CardBody>{project.description}</CardBody>
       <div className="flex w-full justify-end gap-4 text-3xl text-primary">
-        <Link href={project.repo} target="_blank">
+        <Link href={project.repo} target="_blank" aria-label="GitHub link">
           <FiGithub />
         </Link>
-        <Link href={project.url} target="_blank">
+        <Link href={project.url} target="_blank" aria-label="Project link">
           <FiLink />
         </Link>
       </div>

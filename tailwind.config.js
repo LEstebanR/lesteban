@@ -18,7 +18,7 @@ module.exports = {
         '3xl': '-6px 6px 0 1px rgba(0, 0, 0)',
       },
       colors: {
-        primary: '#8ecddd',
+        primary: '#277589',
         secondary: '#D2DE32', // Emerald 200
         typography: '#171717',
         'light-text': '#171717',

@@ -98,7 +98,7 @@ export const CustomLink: React.FC<LinkProps> = ({
     <p
       className={clsx(
         fontbody.className,
-        'text-xl  font-bold text-blue-300 underline decoration-2',
+        'text-xl  font-bold text-blue-600 underline decoration-2',
         className
       )}
     >
