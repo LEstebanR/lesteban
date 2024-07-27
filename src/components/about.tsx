@@ -43,11 +43,11 @@ const About: FC = () => {
       </span>
 
       <Image
-        src="/assets/images/avatar.jpg"
+        src="/assets/images/avatar.jpeg"
         width={200}
         height={200}
         alt="profile picture"
-        className="rounded-full border-8 border-double  border-primary"
+        className="h-48 w-48 rounded-full  border-8 border-double border-primary object-cover"
       />
       <Body>
         2 Years of experience as a web developer. Teamwork is my favorite way to
