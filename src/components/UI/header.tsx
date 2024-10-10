@@ -5,6 +5,7 @@ import Logo from '../logo'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { NavLinks } from './typography'
+import { LINKS } from '@/utils/links'
 
 interface HeaderProps {
   projectsRef: React.RefObject<HTMLElement>
@@ -13,7 +14,7 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
-  const LINKS = [
+  const REFS = [
     { name: 'About', href: '#about', ref: aboutRef },
     { name: 'Experience', href: '#experience', ref: experienceRef },
     { name: 'Projects', href: '#projects', ref: projectsRef },
@@ -33,7 +34,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
           <Logo />
         </div>
         <ul className="hidden grow justify-center gap-4 md:flex">
-          {LINKS.map((link, index) => (
+          {REFS.map((link, index) => (
             <li
               key={index}
               className="cursor-pointer"
@@ -43,11 +44,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
             </li>
           ))}
         </ul>
-        <Link
-          href="https://drive.google.com/file/d/1Ipyn640EG571TQQJCgY-OkqW-4fIvFpq/view?usp=drive_link"
-          target="_blank"
-          className=" hidden md:block"
-        >
+        <Link href={LINKS.cv} target="_blank" className=" hidden md:block">
           <Button>Download CV</Button>
         </Link>
         <Menu
@@ -71,7 +68,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
           >
             <Menu.Items className="absolute right-0 mt-3 w-36 origin-top-right rounded-md bg-white font-bold opacity-100  shadow-sm shadow-primary dark:bg-black">
               <div className="rounded-md border border-black p-1">
-                {LINKS.map((link, index) => (
+                {REFS.map((link, index) => (
                   <Menu.Item key={index}>
                     <span
                       className="group flex w-full items-center rounded-md p-2 text-sm font-bold"
