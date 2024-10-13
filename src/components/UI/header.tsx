@@ -6,6 +6,8 @@ import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { NavLinks } from './typography'
 import { LINKS } from '@/utils/links'
+import { CiDark, CiLight } from 'react-icons/ci'
+import { useTheme } from 'next-themes'
 
 interface HeaderProps {
   projectsRef: React.RefObject<HTMLElement>
@@ -14,6 +16,8 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
+  const { theme, setTheme } = useTheme()
+
   const REFS = [
     { name: 'About', href: '#about', ref: aboutRef },
     { name: 'Experience', href: '#experience', ref: experienceRef },
@@ -25,6 +29,10 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
     const position = test ? test.getBoundingClientRect() : { top: 0, left: 0 }
     // scrolls to 20px above element
     window.scrollTo(position.left, position.top + window.scrollY - 65)
+  }
+
+  const changeTheme = (theme: string) => {
+    setTheme(theme)
   }
 
   return (
@@ -44,6 +52,17 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
             </li>
           ))}
         </ul>
+        {theme === 'dark' ? (
+          <CiLight
+            onClick={() => changeTheme('light')}
+            className="mr-6 cursor-pointer text-2xl"
+          />
+        ) : (
+          <CiDark
+            onClick={() => changeTheme('dark')}
+            className="mr-6 cursor-pointer text-2xl"
+          />
+        )}
         <Link href={LINKS.cv} target="_blank" className=" hidden md:block">
           <Button>Download CV</Button>
         </Link>
