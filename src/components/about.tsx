@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillLinkedin, AiOutlineMail, AiFillGithub } from 'react-icons/ai'
 import { H1, H3, Body } from '@/components/UI/typography'
+import { InfiniteSlider } from './UI/infinite-slider'
 
 const About: FC = () => {
   const TechnologiesExperience = [
@@ -34,7 +35,7 @@ const About: FC = () => {
   ]
 
   return (
-    <div className="my-4 flex flex-col items-center gap-4 ">
+    <div className="mx-auto my-4 flex w-full flex-col items-center gap-4 ">
       <span>
         <H1>Luis Esteban Ramírez</H1>
         <H1 gradient className="font-extrabold ">
@@ -56,7 +57,12 @@ const About: FC = () => {
         impact that positively change the lives of millions of people.
       </Body>
       <H3>I have experience with:</H3>
-      <div className="grid w-full grid-cols-2 gap-2 xl:grid-cols-6">
+      <InfiniteSlider className="hidden  md:block" gap={10}>
+        {TechnologiesExperience.map((tech) => (
+          <TechnologyLogo key={tech.layer} tech={tech} />
+        ))}
+      </InfiniteSlider>
+      <div className="grid w-full grid-cols-2 gap-2 xl:hidden xl:grid-cols-6">
         {TechnologiesExperience.map((tech) => (
           <TechnologyLogo key={tech.layer} tech={tech} />
         ))}
@@ -75,7 +81,7 @@ const About: FC = () => {
         </linearGradient>
       </svg>
       <div className="flex h-2/3 w-full items-center justify-center">
-        <ul className="flex w-full justify-center gap-4">
+        <ul className="flex justify-center gap-4">
           <H3>Let&apos;s talk:</H3>
 
           <li>
