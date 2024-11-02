@@ -87,20 +87,16 @@ export function InfiniteSlider({
     : {}
 
   return (
-    <div className={cn('overflow-hidden ', className)}>
+    <div className={cn('overflow-hidden flex gap-2 max-w-4xl', className)}>
       <motion.div
-        className="flex"
-        style={{
-          ...(direction === 'horizontal'
-            ? { x: translation }
-            : { y: translation }),
-          gap: `${gap}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-        }}
+        className="flex gap-2"
         ref={ref}
+        style={{
+          x: direction === 'horizontal' ? translation : 0,
+          y: direction === 'vertical' ? translation : 0,
+        }}
         {...hoverProps}
       >
-        {children}
         {children}
       </motion.div>
     </div>

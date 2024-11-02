@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({
         aboutRef={aboutRef}
         experienceRef={experienceRef}
       />
-      <div className="flex flex-col items-center  p-4 md:w-6/12">
+      <div className="flex flex-col items-center  overflow-hidden p-4 md:w-6/12">
         {children}
       </div>
       <Footer />
