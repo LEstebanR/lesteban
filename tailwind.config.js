@@ -36,4 +36,5 @@ module.exports = {
     },
   },
   plugins: ['plugin:tailwindcss/recommended'],
+  darkMode: 'class',
 }
