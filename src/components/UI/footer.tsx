@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { GoHeart, GoMarkGithub } from 'react-icons/go'
+import { Heart, Github } from 'lucide-react'
 
 const Footer: React.FC = () => {
   return (
@@ -11,15 +11,15 @@ const Footer: React.FC = () => {
           target="_blank"
           aria-label="Github project"
         >
-          <GoMarkGithub className="h-6 w-6 text-primary" />
+          <Github className="h-6 w-6 text-primary" />
         </Link>
         <div className="mx-2 h-[30px] w-[0.5px] rotate-[20deg] bg-primary"></div>
         <div className="flex items-center gap-x-1 text-xs sm:text-base">
           <span className="text-slate-500">Made with</span>
-          <GoHeart className="h-4 w-4 text-red-500" />
+          <Heart className="h-4 w-4 text-red-500" />
           <span className="text-slate-500">by</span>
           <Link
-            className="font-medium text-primary underline decoration-dashed decoration-0 underline-offset-4"
+            className="font-medium text-primary underline decoration-dashed decoration-0 underline-offset-4 "
             href="https://github.com/LEstebanR"
             target="_blank"
           >
