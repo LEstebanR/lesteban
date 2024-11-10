@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Project, StackItem } from '@/utils/types'
-import { FiGithub, FiLink } from 'react-icons/fi'
 import { CardBody, H4 } from '../UI/typography'
 import StackItemLogo from './stack-item'
+import { Github, Link as LinkIcon } from 'lucide-react'
 
 interface Props {
   project: Project
@@ -35,10 +35,10 @@ const ProjectsCard: FC<Props> = ({ project }) => {
       <CardBody>{project.description}</CardBody>
       <div className="flex w-full justify-end gap-4 text-3xl text-primary">
         <Link href={project.repo} target="_blank" aria-label="GitHub link">
-          <FiGithub />
+          <Github />
         </Link>
         <Link href={project.url} target="_blank" aria-label="Project link">
-          <FiLink />
+          <LinkIcon />
         </Link>
       </div>
     </div>

@@ -3,11 +3,10 @@ import Link from 'next/link'
 import Button from '../UI/button'
 import Logo from '../logo'
 import { Menu, Transition } from '@headlessui/react'
-import { Bars3Icon } from '@heroicons/react/24/solid'
 import { NavLinks } from './typography'
 import { LINKS } from '@/utils/links'
-import { CiDark, CiLight } from 'react-icons/ci'
 import { useTheme } from 'next-themes'
+import { Menu as MenuIcon, Moon, Sun } from 'lucide-react'
 
 interface HeaderProps {
   projectsRef: React.RefObject<HTMLElement>
@@ -56,12 +55,12 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
         </ul>
         <div className="flex items-center gap-2">
           {theme === 'dark' ? (
-            <CiLight
+            <Sun
               onClick={() => changeTheme('light')}
-              className="mx-2 cursor-pointer text-2xl"
+              className="mx-2 cursor-pointer text-2xl text-yellow-500"
             />
           ) : (
-            <CiDark
+            <Moon
               onClick={() => changeTheme('dark')}
               className="mx-2 cursor-pointer text-2xl"
             />
@@ -72,10 +71,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
           >
             <div>
               <Menu.Button className="flex w-full items-center justify-center rounded-md border-2  border-primary p-2 ">
-                <Bars3Icon
-                  className="h-6 w-6 text-primary"
-                  aria-hidden="true"
-                />
+                <MenuIcon className="h-6 w-6 text-primary" aria-hidden="true" />
                 <p className="hidden">Menu</p>
               </Menu.Button>
             </div>

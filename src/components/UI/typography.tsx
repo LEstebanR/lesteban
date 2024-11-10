@@ -65,9 +65,9 @@ export const H2: React.FC<Props> = ({ children, gradient, className }) => (
   </h2>
 )
 
-export const H3: React.FC<Props> = ({ children, gradient }) => (
+export const H3: React.FC<Props> = ({ children, gradient, className }) => (
   <h3
-    className={` ${
+    className={` ${className} ${
       fontheader.className
     } text-center text-3xl  font-bold text-light-text  dark:text-dark-text ${
       gradient && 'gradient-text'
@@ -127,7 +127,7 @@ export const CardBody: React.FC<Props> = ({ children, className }) => (
 
 export const NavLinks: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-justify  text-lg  text-light-text subpixel-antialiased   dark:text-dark-text `}
+    className={` ${fontbody.className} text-justify  text-lg  font-extrabold text-light-text   subpixel-antialiased dark:text-dark-text `}
   >
     {children}
   </p>
