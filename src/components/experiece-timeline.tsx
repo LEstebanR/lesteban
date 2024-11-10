@@ -30,7 +30,7 @@ const ExperienceTimeline: FC<Props> = ({ jobs }) => {
               <div className="relative pb-8">
                 {index !== jobs.length - 1 ? (
                   <span
-                    className="absolute left-7 top-14 -ml-px flex h-44 w-0.5 bg-primary"
+                    className="absolute left-7  -ml-px flex h-full w-0.5 bg-primary"
                     aria-hidden="true"
                   />
                 ) : null}
