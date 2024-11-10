@@ -54,10 +54,6 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
             </li>
           ))}
         </ul>
-
-        <Link href={LINKS.cv} target="_blank" className=" hidden md:block">
-          <Button>Download CV</Button>
-        </Link>
         <div className="flex items-center gap-2">
           {theme === 'dark' ? (
             <CiLight
@@ -117,6 +113,10 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
             </Transition>
           </Menu>
         </div>
+
+        <Link href={LINKS.cv} target="_blank" className=" hidden md:block">
+          <Button>Download CV</Button>
+        </Link>
       </div>
     </header>
   )
