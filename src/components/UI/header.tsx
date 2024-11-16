@@ -97,10 +97,7 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
                     </Menu.Item>
                   ))}
                   <Menu.Item>
-                    <Link
-                      href="https://drive.google.com/file/d/1Ipyn640EG571TQQJCgY-OkqW-4fIvFpq/view?usp=drive_link"
-                      target="_blank"
-                    >
+                    <Link href={LINKS.cv} target="_blank">
                       <Button className="w-full font-bold">Download CV</Button>
                     </Link>
                   </Menu.Item>
