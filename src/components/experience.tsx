@@ -62,8 +62,8 @@ const jobs = [
   },
   {
     position: 'Frontend Developer',
-    company: 'Aleluya',
-    logo: '/assets/images/logos/aleluya-logo.jpeg',
+    company: 'Nominapp',
+    logo: '/assets/images/logos/nominapp-logo.jpg',
     url: 'https://aleluya.com/',
     start: 'Apr 2022',
     end: 'Nov 2022',
