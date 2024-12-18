@@ -7,7 +7,7 @@ const projects: Project[] = [
   {
     name: 'Frontend Mentor Challenges',
     url: 'https://frontend-mentor-challenges-lestebanr.vercel.app/',
-    image: '/assets/images/projects/frontend-mentor.png',
+    image: '/assets/images/projects/frontend-mentor.jpg',
     repo: 'https://github.com/LEstebanR/Frontend-mentor-challenges',
     description:
       'In this project I compile all my solutions to the challenges of "Frontend Mentor" which is a website with designs in different levels to train your skills as a Frontend Developer.',
@@ -29,7 +29,7 @@ const projects: Project[] = [
   {
     name: 'Devpeoplz',
     url: 'https://devpeoplz.com/',
-    image: '/assets/images/projects/devpeoplz.png',
+    image: '/assets/images/projects/devpeoplz.jpg',
     repo: 'https://gitlab.com/devpeoplz2/devpeoplz',
     description:
       'Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the company clients. Led the project independently under the direct supervision of the CEO to deliver a high-quality product.',
@@ -91,7 +91,7 @@ const projects: Project[] = [
   {
     name: 'Poketrivia',
     url: 'https://poketrivia.vercel.app/',
-    image: '/assets/images/projects/poketrivia.png',
+    image: '/assets/images/projects/poketrivia.jpg',
     repo: 'https://github.com/LEstebanR/poketrivia',
     description:
       'Pokemon guessing game using React-Query to consume data from the Pokemon API. This was a great opportunity to improve my skills in React and learn a new library, such as React-Query, to enhance the application performance.',
