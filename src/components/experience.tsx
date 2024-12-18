@@ -7,7 +7,7 @@ const jobs = [
   {
     position: 'Frontend Developer (freelance)',
     company: 'Aleluya',
-    logo: '/assets/images/logos/aleluya-logo.jpeg',
+    logo: '/assets/images/logos/aleluya-logo.jpg',
     url: 'https://aleluya.com/',
     start: 'Aug 2024',
     end: 'Currently',

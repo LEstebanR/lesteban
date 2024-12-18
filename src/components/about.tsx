@@ -43,7 +43,7 @@ const About: FC = () => {
       </span>
 
       <Image
-        src="/assets/images/avatar.jpeg"
+        src="/assets/images/avatar.jpg"
         width={200}
         height={200}
         alt="profile picture"
