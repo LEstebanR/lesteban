@@ -5,12 +5,40 @@ import ExperienceTimeline from './experiece-timeline'
 
 const jobs = [
   {
+    position: 'Frontend Developer',
+    company: 'Aleluya',
+    logo: '/assets/images/logos/aleluya-logo.jpg',
+    url: 'https://aleluya.com/',
+    start: 'Jan 2025',
+    end: 'Currently',
+    detail:
+      'Developed and maintained a payroll and human resources product, creating new features and fixing bugs. Worked with a multidisciplinary team, including designers and developers, to ensure the product met client requirements and expectations',
+    stack: [
+      {
+        name: 'React',
+        icon: '/assets/images/logos/react.svg',
+      },
+      {
+        name: 'MUI',
+        icon: '/assets/images/logos/material-ui.svg',
+      },
+      {
+        name: 'ReactQuery',
+        icon: '/assets/images/logos/react-query-icon.svg',
+      },
+      {
+        name: 'Cypress',
+        icon: '/assets/images/logos/cypress-icon.svg',
+      },
+    ],
+  },
+  {
     position: 'Frontend Developer (freelance)',
     company: 'Aleluya',
     logo: '/assets/images/logos/aleluya-logo.jpg',
     url: 'https://aleluya.com/',
     start: 'Aug 2024',
-    end: 'Currently',
+    end: 'Dec 2024',
     detail:
       'Fix bugs and develop new features for a payroll and human resources product. Work with a multidisciplinary team, including designers and developers, to ensure the product meets client requirements and expectations.',
     stack: [
