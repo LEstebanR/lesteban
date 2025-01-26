@@ -7,6 +7,8 @@ import { NavLinks } from './typography'
 import { LINKS } from '@/utils/links'
 import { useTheme } from 'next-themes'
 import { Menu as MenuIcon, Moon, Sun } from 'lucide-react'
+import { useRouter } from 'next/router'
+import { is } from 'cypress/types/bluebird'
 
 interface HeaderProps {
   projectsRef: React.RefObject<HTMLElement>
@@ -16,6 +18,11 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
   const { theme, setTheme } = useTheme()
+  const router = useRouter()
+
+  const isMotoRoute = router.pathname.includes('moto')
+
+  console.log(isMotoRoute)
 
   const REFS = [
     { name: 'About', href: '#about', ref: aboutRef },
@@ -34,25 +41,25 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
     setTheme(theme)
   }
 
-  console.log('theme', theme)
-
   return (
     <header className="sticky top-0 z-50 mb-4 flex h-16 w-full  items-center justify-center border-b border-gray-500 bg-white opacity-100 saturate-100 dark:bg-dark md:opacity-80">
       <div className="flex w-11/12 items-center justify-between md:w-6/12">
         <div className="w-1/6">
           <Logo />
         </div>
-        <ul className="hidden grow justify-center gap-4 md:flex">
-          {REFS.map((link, index) => (
-            <li
-              key={index}
-              className="cursor-pointer"
-              onClick={() => scrollToSection(link.ref)}
-            >
-              <NavLinks>{link.name}</NavLinks>
-            </li>
-          ))}
-        </ul>
+        {isMotoRoute ? null : (
+          <ul className="hidden grow justify-center gap-4 md:flex">
+            {REFS.map((link, index) => (
+              <li
+                key={index}
+                className="cursor-pointer"
+                onClick={() => scrollToSection(link.ref)}
+              >
+                <NavLinks>{link.name}</NavLinks>
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="flex items-center gap-2">
           {theme === 'dark' ? (
             <Sun
@@ -69,12 +76,18 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
             as="div"
             className="relative inline-block  text-left opacity-100 md:hidden"
           >
-            <div>
-              <Menu.Button className="flex w-full items-center justify-center rounded-md border-2  border-primary p-2 ">
-                <MenuIcon className="h-6 w-6 text-primary" aria-hidden="true" />
-                <p className="hidden">Menu</p>
-              </Menu.Button>
-            </div>
+            {isMotoRoute ? null : (
+              <div>
+                <Menu.Button className="flex w-full items-center justify-center rounded-md border-2  border-primary p-2 ">
+                  <MenuIcon
+                    className="h-6 w-6 text-primary"
+                    aria-hidden="true"
+                  />
+                  <p className="hidden">Menu</p>
+                </Menu.Button>
+              </div>
+            )}
+
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
@@ -96,20 +109,25 @@ const Header: FC<HeaderProps> = ({ projectsRef, aboutRef, experienceRef }) => {
                       </span>
                     </Menu.Item>
                   ))}
-                  <Menu.Item>
-                    <Link href={LINKS.cv} target="_blank">
-                      <Button className="w-full font-bold">Download CV</Button>
-                    </Link>
-                  </Menu.Item>
+                  {isMotoRoute ? null : (
+                    <Menu.Item>
+                      <Link href={LINKS.cv} target="_blank">
+                        <Button className="w-full font-bold">
+                          Download CV
+                        </Button>
+                      </Link>
+                    </Menu.Item>
+                  )}
                 </div>
               </Menu.Items>
             </Transition>
           </Menu>
         </div>
-
-        <Link href={LINKS.cv} target="_blank" className=" hidden md:block">
-          <Button>Download CV</Button>
-        </Link>
+        {isMotoRoute ? null : (
+          <Link href={LINKS.cv} target="_blank" className=" hidden md:block">
+            <Button>Download CV</Button>
+          </Link>
+        )}
       </div>
     </header>
   )
