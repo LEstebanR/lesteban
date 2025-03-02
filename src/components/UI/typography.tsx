@@ -127,7 +127,7 @@ export const CardBody: React.FC<Props> = ({ children, className }) => (
 
 export const NavLinks: React.FC<Props> = ({ children }) => (
   <p
-    className={` ${fontbody.className} text-justify  text-lg  font-extrabold text-light-text   subpixel-antialiased dark:text-dark-text `}
+    className={` ${fontbody.className} text-justify  text-lg  font-extrabold text-light-text   subpixel-antialiased hover:underline hover:decoration-primary hover:decoration-2 hover:underline-offset-2 dark:text-dark-text `}
   >
     {children}
   </p>

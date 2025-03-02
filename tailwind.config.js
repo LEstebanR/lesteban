@@ -9,20 +9,16 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        light: 'rgba(255, 255, 255)',
-        dark: 'rgba(0, 0, 0, 0.9)',
+        light: 'rgba(255, 255, 255, 0.9)',
         'light-card': 'rgba(255, 255, 255)',
-        'dark-card': '#2C3639',
       },
       boxShadow: {
         '3xl': '-6px 6px 0 1px rgba(0, 0, 0)',
       },
       colors: {
-        primary: '#277589',
-        secondary: '#D2DE32', // Emerald 200
+        primary: '#4f46e5',
+        secondary: '#34d399',
         typography: '#171717',
-        'light-text': '#171717',
-        'dark-text': '#FDF4F5',
       },
       fontFamily: {
         sans: ['"Inter"', 'sans-serif'],
@@ -32,6 +28,12 @@ module.exports = {
         '1/10': '10%',
         '8/10': '80%',
         '9/10': '90%',
+      },
+      backgroundImage: {
+        'grid-slate-200':
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M1 1h98v98H1V1z' fill='none' stroke='%23E2E8F0' stroke-width='0.5'/%3E%3C/svg%3E\")",
+        'grid-slate-700':
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M1 1h98v98H1V1z' fill='none' stroke='%23334155' stroke-width='0.5'/%3E%3C/svg%3E\")",
       },
     },
   },
