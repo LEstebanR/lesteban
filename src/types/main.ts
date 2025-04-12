@@ -11,3 +11,11 @@ export type Experience = {
   endDate: string;
   stack: string[];
 };
+
+export type Project = {
+  name: string;
+  description: string;
+  stack: string[];
+  link?: string;
+  repo?: string;
+};

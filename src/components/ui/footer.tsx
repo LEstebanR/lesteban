@@ -1,27 +1,31 @@
-import { CONTACT_LINKS } from "@data/data";
 import { Link } from "./link";
-import { Subtitle } from "@components/ui/typography";
-import { ContactLink } from "@types/main";
-import { Copyright } from "lucide-react";
+import { Github, Heart } from "lucide-react";
 
 export const Footer = () => {
-  return (
-    <footer className="flex justify-center items-center bg-white backdrop-blur-sm border-t-2 border-gray-100 h-12 w-full">
-      <div className="flex justify-between items-center md:w-3/6 w-full px-4 md:px-0">
-        <div className="flex items-center gap-2">
-          <Copyright className="w-4 h-4 text-muted" />
-          <Subtitle>{new Date().getFullYear()} Luis Esteban Ramìrez</Subtitle>
-        </div>
-        <div className="flex gap-4">
-          {CONTACT_LINKS.map((link: ContactLink) => (
-            <Link href={link.href} key={link.label}>
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </footer>
-  );
+    return (
+        <footer className="my-8 w-full">
+            <div className="z-10 flex flex-wrap  items-center justify-center gap-x-1 gap-y-3 sm:gap-x-2 ">
+                <Link
+                    href="https://github.com/LEstebanR/lesteban"
+                    aria-label="Github project"
+                >
+                    <Github className="h-6 w-6" />
+                </Link>
+                <div className="mx-2 h-[30px] w-[0.5px] rotate-[20deg] bg-primary"></div>
+                <div className="flex items-center gap-x-1 text-xs sm:text-base">
+                    <span className="text-slate-500">Made with</span>
+                    <Heart className="h-4 w-4 text-red-500" />
+                    <span className="text-slate-500">by</span>
+                    <Link
+                        className="font-medium text-primary underline decoration-dashed decoration-0 underline-offset-4 "
+                        target="_blank"
+                    >
+                        LEstebanR
+                    </Link>
+                </div>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;

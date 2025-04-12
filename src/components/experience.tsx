@@ -1,7 +1,7 @@
 import { H1 } from "@components/ui/typography";
 import { Experience as ExperienceType } from "@types/main";
 import { EXPERIENCE } from "@data/data";
-import { ExperienceCard } from "@components/experience-card";
+import { ExperienceCard } from "@components/cards/experience-card";
 
 export function Experience() {
   return <div className="flex flex-col gap-5 items-between ">

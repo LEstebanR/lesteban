@@ -47,3 +47,33 @@ export const EXPERIENCE = [
     stack: ["React", "MUI", "React-Query", "Cypress"]
   }
 ]
+
+export const PROJECTS = [
+  {
+    name: "Humedad Arena",
+    description: "It calculates the percentage of moisture in the sand used for the production of concrete.",
+    stack: ["React", "Typescript", "Tailwind"],
+    link: "https://humedad-arena.vercel.app/",
+    repo: "https://github.com/LEstebanR/humedad_arena"
+  },
+  {
+    name: "Frontend Mentor Challenges",
+    description: "Solutions to the challenges of Frontend Mentor, a website with designs to train your skills as a Frontend Developer.",
+    stack: ["React", "Typescript", "Tailwind" ],
+    link: "https://frontend-mentor-challenges-lestebanr.vercel.app/",
+    repo: "https://github.com/LEstebanR/Frontend-mentor-challenges"
+  },
+  {
+    name: "DevPeoplz",
+    description:  "Page with the company's information to publish job offers and for developers to apply for them.",
+    stack: ["Next.js", "Typescript", "Tailwind", "Supabase"],
+    link: "https://devpeoplz.com/",
+    },
+    {
+      name: "Poketrivia",
+      description: "Pokemon guessing game using React-Query to consume data from the Pokemon API.",
+      stack: ["React", "React-Query", "Vite"],
+      link: "https://poketrivia.vercel.app/",
+      repo: "https://github.com/LEstebanR/poketrivia"
+    }
+]
