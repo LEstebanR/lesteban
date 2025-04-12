@@ -1,4 +1,4 @@
-import { H3, Body } from "@components/ui/typography";
+import { Body } from "@components/ui/typography";
 import { ContactLink } from "@types/main";
 
 export function ContactCard({ link }: { link: ContactLink } ) {

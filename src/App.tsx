@@ -12,7 +12,7 @@ function App() {
     return (
         <div className="min-h-screen flex flex-col items-center">
             <Header />
-            <main className="mt-24 lg:w-3/6 xl:w-2/6 flex flex-col gap-10 items-between px-4 lg:px-0 mb-12 ">
+            <main className="mt-24 xl:w-3/6 2xl:w-2/6 flex flex-col gap-10 items-between px-4 xl:px-0 mb-12 ">
                 <AboutMe />
                 <Experience />
                 <Projects />
