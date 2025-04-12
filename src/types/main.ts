@@ -19,3 +19,11 @@ export type Project = {
   link?: string;
   repo?: string;
 };
+
+export type ContactLink = {
+  label: string;
+  href?: string;
+  user: string;
+  icon?: React.ReactNode;
+  iconColor?: string;
+};

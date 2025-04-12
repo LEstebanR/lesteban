@@ -1,4 +1,6 @@
-export const CONTACT_LINKS = [
+import { Github, Linkedin, Mail, Map } from "lucide-react";
+
+export const HEADER_LINKS = [
   {
     label: "Github",
     href: "https://github.com/LEstebanR",
@@ -51,7 +53,7 @@ export const EXPERIENCE = [
 export const PROJECTS = [
   {
     name: "Humedad Arena",
-    description: "It calculates the percentage of moisture in the sand used for the production of concrete.",
+    description: "It calculates the percentage of humidity in the sand used for the production of concrete.",
     stack: ["React", "Typescript", "Tailwind"],
     link: "https://humedad-arena.vercel.app/",
     repo: "https://github.com/LEstebanR/humedad_arena"
@@ -77,3 +79,40 @@ export const PROJECTS = [
       repo: "https://github.com/LEstebanR/poketrivia"
     }
 ]
+
+export const CONTACT_LINKS = [
+  {
+    label: "Github",
+    href: "https://github.com/LEstebanR",
+    user: "LEstebanR",
+    icon: Github,
+    iconColor: "text-gray-900"
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lestebanr/",
+    user: "Luis Esteban",
+    icon: Linkedin,
+    iconColor: "text-blue-600"
+  },
+  {
+    label: "Email",
+    href: "mailto:leramirezca@gmail.com",
+    user: "leramirezca@gmail.com",
+    icon: Mail,
+    iconColor: "text-red-500"
+  },
+  {
+    label: "location",
+    user: "Colombia",
+    icon: Map,
+    iconColor: "text-green-500"
+  }
+]
+
+export const SKILLS = {
+  frontend: ["React", "Next", "Tailwind"],
+  backend: ["Node.js", "Supabase"],
+  database: ["MongoDB", "PostgresSQL"],
+  programing_languages: ["Javascript", "Typescript"]
+}

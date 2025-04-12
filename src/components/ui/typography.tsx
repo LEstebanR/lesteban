@@ -14,8 +14,8 @@ export const Subtitle = ({ children }: { children: React.ReactNode }) => {
   return <p className="text-sm text-muted ">{children}</p>;
 };
 
-export const Body = ({ children }: { children: React.ReactNode }) => {
-  return <p className="text-base text-black  ">{children}</p>;
+export const Body = ({ children, color = "black" }: { children: React.ReactNode, color?: string }) => {
+  return <p className={`text-base ${color === "black" ? "text-black" : color}`}>{children}</p>;
 };
 
 export const Emphasized = ({ children }: { children: React.ReactNode }) => {

@@ -5,6 +5,8 @@ import Footer from "@components/ui/footer";
 import { AboutMe } from "@components/about-me";
 import { Experience } from "@components/experience";
 import { Projects } from "@components/projects"
+import { Contact } from "@components/contact";
+import { Skills } from "@components/skills"
 
 function App() {
     return (
@@ -14,6 +16,8 @@ function App() {
                 <AboutMe />
                 <Experience />
                 <Projects />
+                <Skills/>
+                <Contact />
             </main>
             <Footer />
         </div>
