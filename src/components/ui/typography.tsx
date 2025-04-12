@@ -1,5 +1,5 @@
 export const H1 = ({ children, color = "black" }: { children: React.ReactNode, color?: string }) => {
-  return <h1 className={`text-xl font-bold  text-${color}`}>{children}</h1>;
+  return <h1 className={`text-2xl font-bold  text-${color}`}>{children}</h1>;
 };
 
 export const H2 = ({ children }: { children: React.ReactNode }) => {
