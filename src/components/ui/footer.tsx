@@ -17,8 +17,7 @@ export const Footer = () => {
                     <Heart className="h-4 w-4 text-red-500" />
                     <span className="text-slate-500">by</span>
                     <Link
-                        className="font-medium text-primary underline decoration-dashed decoration-0 underline-offset-4 "
-                        target="_blank"
+                        href="https://github.com/LEstebanR/lesteban"
                     >
                         LEstebanR
                     </Link>
