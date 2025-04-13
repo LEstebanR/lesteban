@@ -27,8 +27,8 @@ export function Skills(){
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Skill skill="Frontend Development" icon={<Layout className="h-5 w-5 text-blue-500 animate-bounce [animation-duration:2s]" />} skills={SKILLS.frontend}/>
       <Skill skill="Backend Development" icon={<Server className="h-5 w-5 text-green-500 animate-bounce [animation-duration:2s]" />} skills={SKILLS.backend}/>
-      <Skill skill="Database" icon={<Database className="h-5 w-5 text-orange-500 animate-bounce [animation-duration:2s]" />} skills={SKILLS.frontend}/>
-      <Skill skill="Programing language" icon={<Code className="h-5 w-5 text-red-500 animate-bounce [animation-duration:2s]" />} skills={SKILLS.frontend}/>
+      <Skill skill="Database" icon={<Database className="h-5 w-5 text-orange-500 animate-bounce [animation-duration:2s]" />} skills={SKILLS.database}/>
+      <Skill skill="Programing language" icon={<Code className="h-5 w-5 text-red-500 animate-bounce [animation-duration:2s]" />} skills={SKILLS.programing_languages}/>
 
     </div>
   </div>
