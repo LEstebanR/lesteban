@@ -8,7 +8,7 @@ const Header = () => {
       <div className="flex justify-between items-center xl:w-3/6 2xl:w-2/6 w-full px-4 xl:px-0">
         <div>
           <H1>Luis Esteban</H1>
-          <Subtitle>Software Engineer</Subtitle>
+          <Subtitle>Software Developer</Subtitle>
         </div>
         <div className="flex gap-4">
           {HEADER_LINKS.map((link: HeaderLink) => (
