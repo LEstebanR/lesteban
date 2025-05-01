@@ -9,7 +9,7 @@ const Header = () => {
   const { t } = useTranslation()
   return (
     <header className="fixed top-0 right-0 left-0 z-10 flex h-18 items-center justify-center border-b-2 border-gray-100 bg-white backdrop-blur-sm">
-      <div className="flex w-full items-center justify-between px-4 xl:w-3/6 xl:px-0 2xl:w-2/6">
+      <div className="flex w-full items-center justify-between px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
         <div className="w-1/2">
           <H1>Luis Esteban</H1>
           <Subtitle>{t('software-developer')}</Subtitle>
