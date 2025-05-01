@@ -18,6 +18,16 @@ i18n
       },
     },
     fallbackLng: 'en',
+    load: 'languageOnly',
+    detection: {
+      order: ['navigator', 'htmlTag', 'path', 'subdomain'],
+      caches: ['cookie'],
+      lookupQuerystring: 'lng',
+      lookupCookie: 'i18next',
+      lookupLocalStorage: 'i18nextLng',
+      lookupFromPathIndex: 0,
+      lookupFromSubdomainIndex: 0,
+    },
     interpolation: {
       escapeValue: false,
     },
