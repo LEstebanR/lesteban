@@ -1,27 +1,27 @@
-import "./styles/app.css";
-import "./styles/animations.css";
-import Header from "@components/ui/header";
-import Footer from "@components/ui/footer";
-import { AboutMe } from "@components/about-me";
-import { Experience } from "@components/experience";
-import { Projects } from "@components/projects"
-import { Contact } from "@components/contact";
-import { Skills } from "@components/skills"
+import './styles/app.css'
+import './styles/animations.css'
+import Header from '@components/ui/header'
+import Footer from '@components/ui/footer'
+import { AboutMe } from '@components/about-me'
+import { Experience } from '@components/experience'
+import { Projects } from '@components/projects'
+import { Contact } from '@components/contact'
+import { Skills } from '@components/skills'
 
 function App() {
-    return (
-        <div className="min-h-screen flex flex-col items-center">
-            <Header />
-            <main className="mt-24 xl:w-3/6 2xl:w-2/6 flex flex-col gap-10 items-between px-4 xl:px-0 mb-12 ">
-                <AboutMe />
-                <Experience />
-                <Projects />
-                <Skills/>
-                <Contact />
-            </main>
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="flex min-h-screen flex-col items-center bg-gray-100">
+      <Header />
+      <main className="items-between mt-18 mb-12 flex flex-col gap-10 px-4 xl:w-3/6 xl:px-0 2xl:w-2/6">
+        <AboutMe />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  )
 }
 
-export default App;
+export default App
