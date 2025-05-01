@@ -1,13 +1,17 @@
-name: Lint
+name: Type Check
 
 on:
   pull_request:
     branches:
       - main
       - develop
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
-  lint:
+  typecheck:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,5 +32,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
+      - name: Type Check
+        run: pnpm typecheck
