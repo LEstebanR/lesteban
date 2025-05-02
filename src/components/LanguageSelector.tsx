@@ -10,7 +10,7 @@ const LanguageSelector = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="cursor-pointer rounded border border-gray-200 px-2 py-1 text-xs transition-colors hover:bg-gray-100"
+      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-gray-400 px-2 text-xs transition-colors hover:bg-gray-100"
     >
       {i18n.language.startsWith('en') ? t('ES') : t('EN')}
     </button>

@@ -14,7 +14,7 @@ const Header = () => {
           <H1>Luis Esteban</H1>
           <Subtitle>{t('software-developer')}</Subtitle>
         </div>
-        <div className="flex w-1/2 flex-wrap justify-end gap-2">
+        <div className="flex w-1/2 flex-wrap items-center justify-end gap-2">
           {HEADER_LINKS.map((link: HeaderLink) => (
             <Link href={link.href} key={link.label}>
               {link.label}
