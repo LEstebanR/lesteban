@@ -10,7 +10,7 @@ import { Skills } from '@components/skills'
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100">
+    <div className="flex min-h-screen flex-col items-center">
       <Header />
       <main className="items-between mt-18 mb-12 flex flex-col gap-10 px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
         <AboutMe />
