@@ -1,5 +1,6 @@
 import { Link } from "@/components/ui/link";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export const HEADER_LINKS = [
   {
@@ -35,6 +36,7 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <ThemeToggle />
         </div>
       </div>
     </header>
