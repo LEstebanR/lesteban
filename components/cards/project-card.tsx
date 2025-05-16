@@ -29,7 +29,11 @@ export function ProjectCard({ project }: { project: Project }) {
       <CardFooter className="flex flex-col gap-2 items-center">
         <div className="flex flex-wrap gap-2 mt-2 ">
           {project.stack.map((stack) => (
-            <Badge key={stack} variant="outline" className="bg-primary/10">
+            <Badge
+              key={stack}
+              variant="outline"
+              className="bg-primary/10 dark:bg-primary/40"
+            >
               {stack}
             </Badge>
           ))}

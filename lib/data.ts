@@ -4,7 +4,7 @@ export const EXPERIENCE = [
     position: "Frontend Developer",
     company: "Aleluya",
     description:
-      "Developed and maintained a payroll and human resources product, creating new features and fixing bugs. Worked with a multidisciplinary team, including designers and developers, to ensure the product met users requirements and expectations",
+      "Developed and maintained a payroll and human resources product, creating new features and fixing bugs. Working with a multidisciplinary team, including designers and developers.",
     startDate: "January 2025",
     endDate: "Current",
     stack: ["React", "MUI", "React-Query", "Cypress"],
@@ -13,7 +13,7 @@ export const EXPERIENCE = [
     position: "Frontend Developer Freelance",
     company: "Aleluya",
     description:
-      "Fix bugs and develop new features for a payroll and human resources product. Work with a multidisciplinary team, including designers and developers, to ensure the product meets users requirements and expectations",
+      "Fix bugs and develop new features for a payroll and human resources product.",
     startDate: "August 2024",
     endDate: "December 2024",
     stack: ["React", "MUI", "React-Query", "Cypress"],
@@ -22,7 +22,7 @@ export const EXPERIENCE = [
     position: "Full Stack Developer",
     company: "DevPeoplz",
     description:
-      "Developed a recruitment portal as a fullstack developer at Devpeoplz to connect talented developers with the company clients. Led the project under the direct supervision of the CEO to deliver a high-quality product.",
+      "Developed a recruitment portal as a fullstack developer to connect talented developers with the company clients. Led the project under the direct supervision of the CEO to deliver a high-quality product.",
     startDate: "November 2022",
     endDate: "January 2024",
     stack: ["Next.js", "Typescript", "Tailwind", "Supabase"],
@@ -78,7 +78,7 @@ export const CONTACT_LINKS = [
     href: "https://github.com/LEstebanR",
     user: "LEstebanR",
     icon: Github,
-    iconColor: "text-gray-900",
+    iconColor: "text-gray-900 dark:text-white",
   },
   {
     label: "LinkedIn",

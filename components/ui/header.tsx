@@ -1,4 +1,4 @@
-import { Subtitle, H1 } from "@/components/ui/typography";
+import { Subtitle } from "@/components/ui/typography";
 import { Link } from "@/components/ui/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 
@@ -24,10 +24,10 @@ type HeaderLink = {
 
 export function Header() {
   return (
-    <header className="fixed top-0 right-0 left-0 z-10 flex h-16 items-center justify-center border-b-2 border-gray-100 bg-white ">
+    <header className="fixed top-0 right-0 left-0 z-10 flex h-16 items-center justify-center border-b-2 border-gray-100 dark:border-gray-600   bg-background">
       <div className="flex w-full items-center justify-between px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
         <div className="w-1/2">
-          <H1 color="primary">Luis Esteban</H1>
+          <h1 className="text-2xl font-bold">Luis Esteban</h1>
           <Subtitle>Software Developer</Subtitle>
         </div>
         <div className="flex w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:px-0">

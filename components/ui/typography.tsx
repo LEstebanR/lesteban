@@ -38,7 +38,11 @@ export const Body = ({
   color?: string;
 }) => {
   return (
-    <p className={`text-base ${color === "black" ? "text-black" : color}`}>
+    <p
+      className={`text-base dark:text-white ${
+        color === "black" ? "text-black" : color
+      }`}
+    >
       {children}
     </p>
   );
