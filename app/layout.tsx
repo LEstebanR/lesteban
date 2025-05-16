@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LEsteba",
+  title: "LEsteban",
   description: "Luis Esteban Ramirez portfolio",
 };
 
