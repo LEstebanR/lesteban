@@ -1,17 +1,17 @@
 import { EXPERIENCE } from "@/lib/data";
-import { H1 } from "@/components/ui/typography";
-import {
-  ExperienceCard,
-  ExperienceType,
-} from "@/components/cards/experience-card";
+import { ExperienceCard } from "@/components/cards/experience-card";
+import { SeeMoreButton } from "@/components/ui/see-more-button";
 
 export function Experience() {
   return (
-    <div className="flex flex-col gap-5 items-between ">
-      <H1 color="primary">Experience</H1>
-      {EXPERIENCE.map((job: ExperienceType, index: number) => (
-        <ExperienceCard key={index} job={job} />
-      ))}
+    <div className="flex flex-col gap-5 items-betwee">
+      <h1 className="text-primary text-2xl font-bold">Experience</h1>
+      <ExperienceCard job={EXPERIENCE.aleluya} />
+      <ExperienceCard job={EXPERIENCE.aleluya_freelance} />
+      <SeeMoreButton>
+        <ExperienceCard job={EXPERIENCE.devpeoplz} />
+        <ExperienceCard job={EXPERIENCE.nominapp} />
+      </SeeMoreButton>
     </div>
   );
 }

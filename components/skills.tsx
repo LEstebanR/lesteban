@@ -1,4 +1,3 @@
-import { H1, H3 } from "@/components/ui/typography";
 import { SKILLS } from "@/lib/data";
 import { Layout, Server, Database, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +15,7 @@ function Skill({
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
         {icon}
-        <H3>{skill}</H3>
+        <h3 className="text-lg font-bold">{skill}</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => {
@@ -34,7 +33,7 @@ function Skill({
 export function Skills() {
   return (
     <div className="flex flex-col gap-4">
-      <H1 color="primary">Skills</H1>
+      <h1 className="text-primary text-2xl font-bold">Skills</h1>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <Skill
           skill="Frontend Development"

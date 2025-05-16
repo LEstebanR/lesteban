@@ -1,4 +1,3 @@
-import { Subtitle } from "@/components/ui/typography";
 import { Link } from "@/components/ui/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 
@@ -28,7 +27,7 @@ export function Header() {
       <div className="flex w-full items-center justify-between px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
         <div className="w-1/2">
           <h1 className="text-2xl font-bold">Luis Esteban</h1>
-          <Subtitle>Software Developer</Subtitle>
+          <h2 className="text-muted">Software Developer</h2>
         </div>
         <div className="flex w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:px-0">
           {HEADER_LINKS.map((link: HeaderLink, index: number) => (

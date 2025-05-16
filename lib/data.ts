@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, Map } from "lucide-react";
-export const EXPERIENCE = [
-  {
+export const EXPERIENCE = {
+  aleluya: {
     position: "Frontend Developer",
     company: "Aleluya",
     description:
@@ -9,7 +9,7 @@ export const EXPERIENCE = [
     endDate: "Current",
     stack: ["React", "MUI", "React-Query", "Cypress"],
   },
-  {
+  aleluya_freelance: {
     position: "Frontend Developer Freelance",
     company: "Aleluya",
     description:
@@ -18,7 +18,7 @@ export const EXPERIENCE = [
     endDate: "December 2024",
     stack: ["React", "MUI", "React-Query", "Cypress"],
   },
-  {
+  devpeoplz: {
     position: "Full Stack Developer",
     company: "DevPeoplz",
     description:
@@ -27,7 +27,7 @@ export const EXPERIENCE = [
     endDate: "January 2024",
     stack: ["Next.js", "Typescript", "Tailwind", "Supabase"],
   },
-  {
+  nominapp: {
     position: "Frontend Developer",
     company: "Nominapp",
     description:
@@ -36,7 +36,7 @@ export const EXPERIENCE = [
     endDate: "November 2022",
     stack: ["React", "MUI", "React-Query", "Cypress"],
   },
-];
+};
 
 export const PROJECTS = [
   {

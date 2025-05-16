@@ -1,4 +1,3 @@
-import { H3, Subtitle, Body } from "@/components/ui/typography";
 import { Calendar, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -14,15 +13,15 @@ export type ExperienceType = {
 export function ExperienceCard({ job }: { job: ExperienceType }) {
   return (
     <div className="mb-4 flex flex-col gap-2">
-      <H3>{job.position}</H3>
+      <h3 className="text-lg font-bold">{job.position}</h3>
       <div className="flex items-center gap-2">
-        <Subtitle>{job.company}</Subtitle>
+        <h2 className="text-muted">{job.company}</h2>
         <Calendar className="text-muted ml-1 h-4 w-4" />
-        <Subtitle>
+        <h2 className="text-muted">
           {job.startDate} - {job.endDate}
-        </Subtitle>
+        </h2>
       </div>
-      <Body>{job.description}</Body>
+      <p className="text-gray-900 dark:text-white">{job.description}</p>
 
       <div className="wrap flex items-center gap-2">
         <Code className="text-primary h-4 w-4" />

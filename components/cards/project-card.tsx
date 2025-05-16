@@ -1,4 +1,3 @@
-import { Body } from "@/components/ui/typography";
 import { Link } from "@/components/ui/link";
 import { ExternalLink, GithubIcon } from "lucide-react";
 import {
@@ -24,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <CardTitle>{project.name}</CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <Body>{project.description}</Body>
+        <p className="text-gray-900 dark:text-white">{project.description}</p>
       </CardContent>
       <CardFooter className="flex flex-col gap-2 items-center">
         <div className="flex flex-wrap gap-2 mt-2 ">
