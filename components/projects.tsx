@@ -1,6 +1,6 @@
-import { H1 } from "@/app/components/typography";
-import { PROJECTS } from "@/app/utils/data";
-import { ProjectCard } from "@/app/components/project-card";
+import { H1 } from "@/components/ui/typography";
+import { PROJECTS } from "@/lib/data";
+import { ProjectCard } from "@/components/cards/project-card";
 
 export function Projects() {
   return (

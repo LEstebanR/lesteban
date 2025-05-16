@@ -1,6 +1,6 @@
-import { H3, Subtitle, Body } from "@/app/components/typography";
+import { H3, Subtitle, Body } from "@/components/ui/typography";
 import { Calendar, Code } from "lucide-react";
-import { Chip } from "@/app/components/chip";
+import { Badge } from "@/components/ui/badge";
 
 export type ExperienceType = {
   position: string;
@@ -27,7 +27,9 @@ export function ExperienceCard({ job }: { job: ExperienceType }) {
       <div className="wrap flex items-center gap-2">
         <Code className="text-primary h-4 w-4" />
         {job.stack.map((stack) => (
-          <Chip key={stack} label={stack} />
+          <Badge key={stack} variant="outline" className="bg-primary/10">
+            {stack}
+          </Badge>
         ))}
       </div>
     </div>

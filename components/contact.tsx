@@ -1,6 +1,6 @@
-import { ContactCard, ContactLink } from "@/app/components/contact-card";
-import { CONTACT_LINKS } from "@/app/utils/data";
-import { H1 } from "@/app/components/typography";
+import { ContactCard, ContactLink } from "@/components/cards/contact-card";
+import { CONTACT_LINKS } from "@/lib/data";
+import { H1 } from "@/components/ui/typography";
 
 export function Contact() {
   return (

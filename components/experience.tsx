@@ -1,9 +1,9 @@
-import { EXPERIENCE } from "@/app/utils/data";
-import { H1 } from "@/app/components/typography";
+import { EXPERIENCE } from "@/lib/data";
+import { H1 } from "@/components/ui/typography";
 import {
   ExperienceCard,
   ExperienceType,
-} from "@/app/components/experience-card";
+} from "@/components/cards/experience-card";
 
 export function Experience() {
   return (

@@ -1,20 +1,4 @@
 import { Github, Linkedin, Mail, Map } from "lucide-react";
-
-export const HEADER_LINKS = [
-  {
-    label: "Github",
-    href: "https://github.com/LEstebanR",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/lestebanr/",
-  },
-  {
-    label: "Email",
-    href: "mailto:leramirezca@gmail.com",
-  },
-];
-
 export const EXPERIENCE = [
   {
     position: "Frontend Developer",
@@ -115,6 +99,7 @@ export const CONTACT_LINKS = [
     user: "Medellín, Colombia",
     icon: Map,
     iconColor: "text-green-500",
+    href: "#",
   },
 ];
 
