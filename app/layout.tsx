@@ -79,7 +79,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <meta
+          name="description"
+          content="Portafolio de Luis Esteban Ramirez, desarrollador web especializado en Next.js y React."
+        />
+        <meta
+          name="keywords"
+          content="Desarrollador web, Next.js, React, Portafolio, Esteban, Luis Esteban Ramirez, lesteban, developer, frontend, backend, fullstack, software, developer, developer web, developer frontend, developer backend, developer fullstack, developer software, developer web, developer frontend, developer backend, developer fullstack, developer software"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex flex-col items-center justify-center`}
       >
