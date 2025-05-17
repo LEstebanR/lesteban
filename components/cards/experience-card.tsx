@@ -21,7 +21,7 @@ export function ExperienceCard({ job }: { job: ExperienceType }) {
           {job.startDate} - {job.endDate}
         </h2>
       </div>
-      <p className="text-gray-900 dark:text-white">{job.description}</p>
+      <p>{job.description}</p>
 
       <div className="wrap flex items-center gap-2">
         <Code className="text-primary h-4 w-4" />

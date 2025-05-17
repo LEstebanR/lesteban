@@ -23,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <CardTitle>{project.name}</CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <p className="text-gray-900 dark:text-white">{project.description}</p>
+        <p>{project.description}</p>
       </CardContent>
       <CardFooter className="flex flex-col gap-2 items-center">
         <div className="flex flex-wrap gap-2 mt-2 ">
