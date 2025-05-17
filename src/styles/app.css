@@ -1,8 +1,0 @@
-@import "tailwindcss";
-@import "./animations.css";
-
-@theme {
-  --color-primary: oklch(0.694 0.233 27.11);
-  --color-secondary: oklch(76.5% 0.177 163.223);
-  --color-muted: oklch(70.7% 0.022 261.325);
-}
