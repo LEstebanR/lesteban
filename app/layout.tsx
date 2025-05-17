@@ -17,8 +17,52 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LEsteban",
-  description: "Luis Esteban Ramirez portfolio",
+  title: "Luis Esteban Ramirez | Software Developer",
+  description:
+    "Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones. Experiencia en React, TypeScript, y desarrollo full-stack.",
+  keywords: [
+    "desarrollador de software",
+    "desarrollador web",
+    "React",
+    "TypeScript",
+    "full-stack",
+    "frontend",
+    "portfolio",
+    "Luis Esteban Ramirez",
+  ],
+  authors: [{ name: "Luis Esteban Ramirez" }],
+  creator: "Luis Esteban Ramirez",
+  publisher: "Luis Esteban Ramirez",
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "https://lesteban.dev",
+    title: "Luis Esteban Ramirez | Software Developer",
+    description:
+      "Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.",
+    siteName: "LEsteban Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luis Esteban Ramirez | Software Developer",
+    description:
+      "Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.",
+    creator: "@lestebanr",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "gv-xgsjg4sm7rtc4i.dv.googlehosted.com",
+  },
 };
 
 export default function RootLayout({
