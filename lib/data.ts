@@ -40,6 +40,14 @@ export const EXPERIENCE = {
 
 export const PROJECTS = [
   {
+    name: "Dream interpreter",
+    description:
+      "Use IA to interpret your dreams and get insights about your subconscious.",
+    stack: ["Next.js", "Tailwind", "Llama"],
+    link: "https://dream-interpreter-six.vercel.app/",
+    repo: "https://github.com/LEstebanR/dream_Interpreter",
+  },
+  {
     name: "Humedad Arena",
     description:
       "Calculates the percentage of humidity in the sand used for the production of concrete.",
@@ -47,6 +55,7 @@ export const PROJECTS = [
     link: "https://humedad-arena.vercel.app/",
     repo: "https://github.com/LEstebanR/humedad_arena",
   },
+
   {
     name: "Frontend Mentor Challenges",
     description:
@@ -61,14 +70,6 @@ export const PROJECTS = [
       "Page with the company's information to publish job offers and for developers to apply for them.",
     stack: ["Next.js", "Tailwind", "Supabase"],
     link: "https://devpeoplz.com/",
-  },
-  {
-    name: "Poketrivia",
-    description:
-      "Pokemon guessing game using React-Query to consume data from the Pokemon API.",
-    stack: ["React", "React-Query", "Vite"],
-    link: "https://poketrivia.vercel.app/",
-    repo: "https://github.com/LEstebanR/poketrivia",
   },
 ];
 
