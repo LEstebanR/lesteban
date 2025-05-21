@@ -96,7 +96,7 @@ export const CONTACT_LINKS = [
     iconColor: "text-red-500",
   },
   {
-    label: "location",
+    label: "Location",
     user: "Medellín, Colombia",
     icon: Map,
     iconColor: "text-green-500",
