@@ -82,7 +82,7 @@ export default function RootLayout({
       <head>
         <meta
           name="description"
-          content="Portafolio de Luis Esteban Ramirez, desarrollador web especializado en Next.js y React."
+          content="Luis Esteban Ramirez is a software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development."
         />
         <meta
           name="keywords"
