@@ -74,14 +74,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  params: { lang: "en" | "es" };
-}>) {
-  const { lang } = params;
+}) {
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta
           name="description"
@@ -106,7 +103,7 @@ export default async function RootLayout({
             {children}
             <Analytics />
           </main>
-          <Footer lang={lang} />
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

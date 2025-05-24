@@ -1,9 +1,14 @@
+"use client";
+
 import { Github, Heart } from "lucide-react";
 import { Link } from "@/components/ui/link";
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { usePathname } from "next/navigation";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
 
-export async function Footer({ lang }: { lang: "en" | "es" }) {
-  const dictionary = await getDictionary(lang);
+export function Footer() {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <footer className="my-8 w-full">
       <div className="z-10 flex flex-wrap items-center justify-center gap-x-1 gap-y-3 sm:gap-x-2">
