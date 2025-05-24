@@ -47,7 +47,7 @@ export function Contact() {
       </h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {CONTACT_LINKS.map((link, index) => (
-          <ContactCard key={index} link={link as ContactLink} lang={lang} />
+          <ContactCard key={index} link={link as ContactLink} />
         ))}
       </div>
     </div>

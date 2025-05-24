@@ -20,7 +20,6 @@ export function SeeMoreButton({
   const [seeMore, setSeeMore] = useState(false);
   const pathname = usePathname();
   const lang = pathname.split("/")[1] as "en" | "es";
-  const dictionary = getClientDictionary(lang);
 
   return (
     <>

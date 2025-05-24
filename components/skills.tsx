@@ -23,7 +23,6 @@ function Skill({
 }) {
   const pathname = usePathname();
   const lang = pathname.split("/")[1] as "en" | "es";
-  const dictionary = getClientDictionary(lang);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
