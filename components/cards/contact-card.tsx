@@ -1,3 +1,5 @@
+"use client";
+
 import { LucideIcon } from "lucide-react";
 import {
   Card,
@@ -6,7 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 export type ContactLink = {
   label: string;
@@ -16,14 +19,10 @@ export type ContactLink = {
   iconColor: string;
 };
 
-export async function ContactCard({
-  link,
-  lang,
-}: {
-  link: ContactLink;
-  lang: "en" | "es";
-}) {
-  const dictionary = await getDictionary(lang);
+export function ContactCard({ link }: { link: ContactLink }) {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <Link href={link.href} target={link.href === "#" ? "_self" : "_blank"}>
       <Card className="cursor-pointer border-primary">

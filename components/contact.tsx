@@ -1,6 +1,9 @@
+"use client";
+
 import { ContactCard, ContactLink } from "@/components/cards/contact-card";
-import { getDictionary } from "@/app/[lang]/dictionaries";
 import { Github, Linkedin, Mail, Map } from "lucide-react";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 const CONTACT_LINKS = [
   {
@@ -33,8 +36,10 @@ const CONTACT_LINKS = [
   },
 ];
 
-export async function Contact({ lang }: { lang: "en" | "es" }) {
-  const dictionary = await getDictionary(lang);
+export function Contact() {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-primary text-2xl font-bold">

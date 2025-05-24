@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "@/components/ui/link";
 import { ExternalLink, GithubIcon } from "lucide-react";
 import {
@@ -8,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 type Project = {
   name: string;
@@ -16,13 +20,10 @@ type Project = {
   link?: string;
   repo?: string;
 };
-export function ProjectCard({
-  project,
-  dictionary,
-}: {
-  project: Project;
-  dictionary: Record<string, string>;
-}) {
+export function ProjectCard({ project }: { project: Project }) {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <Card className="border-primary flex h-full flex-col">
       <CardHeader>

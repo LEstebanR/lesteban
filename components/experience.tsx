@@ -1,6 +1,9 @@
+"use client";
+
 import { ExperienceCard } from "@/components/cards/experience-card";
 import { SeeMoreButton } from "@/components/ui/see-more-button";
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 const EXPERIENCE = {
   aleluya: {
@@ -37,23 +40,24 @@ const EXPERIENCE = {
   },
 };
 
-export async function Experience({ lang }: { lang: "en" | "es" }) {
-  const dictionary = await getDictionary(lang);
+export function Experience() {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
 
   return (
     <div className="flex flex-col gap-5 items-betwee">
       <h1 className="text-primary text-2xl font-bold">
         {dictionary["experience"]}
       </h1>
-      <ExperienceCard job={EXPERIENCE.aleluya} lang={lang} />
-      <ExperienceCard job={EXPERIENCE.aleluya_freelance} lang={lang} />
+      <ExperienceCard job={EXPERIENCE.aleluya} />
+      <ExperienceCard job={EXPERIENCE.aleluya_freelance} />
       <SeeMoreButton
-        lang={lang}
         seeMoreCopy={dictionary["see-more"]}
         seeLessCopy={dictionary["see-less"]}
       >
-        <ExperienceCard job={EXPERIENCE.devpeoplz} lang={lang} />
-        <ExperienceCard job={EXPERIENCE.nominapp} lang={lang} />
+        <ExperienceCard job={EXPERIENCE.devpeoplz} />
+        <ExperienceCard job={EXPERIENCE.nominapp} />
       </SeeMoreButton>
     </div>
   );

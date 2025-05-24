@@ -1,6 +1,9 @@
+"use client";
+
 import { Layout, Server, Database, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { usePathname } from "next/navigation";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
 
 const SKILLS = {
   frontend: ["React", "Next", "Tailwind"],
@@ -18,6 +21,9 @@ function Skill({
   icon: React.ReactNode;
   skills: string[];
 }) {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
@@ -37,8 +43,10 @@ function Skill({
   );
 }
 
-export async function Skills({ lang }: { lang: "en" | "es" }) {
-  const dictionary = await getDictionary(lang);
+export function Skills() {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-primary text-2xl font-bold">{dictionary.skills}</h1>

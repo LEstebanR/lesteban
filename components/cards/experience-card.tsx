@@ -1,6 +1,9 @@
+"use client";
+
 import { Calendar, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 export type ExperienceType = {
   position: string;
@@ -11,14 +14,10 @@ export type ExperienceType = {
   stack: string[];
 };
 
-export async function ExperienceCard({
-  job,
-  lang,
-}: {
-  job: ExperienceType;
-  lang: "en" | "es";
-}) {
-  const dictionary = await getDictionary(lang);
+export function ExperienceCard({ job }: { job: ExperienceType }) {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <div className="mb-4 flex flex-col gap-2">
       <h3 className="text-lg font-bold">

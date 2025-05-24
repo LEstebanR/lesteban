@@ -1,5 +1,8 @@
+"use client";
+
 import { ProjectCard } from "@/components/cards/project-card";
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 const PROJECTS = [
   {
@@ -32,8 +35,10 @@ const PROJECTS = [
   },
 ];
 
-export async function Projects({ lang }: { lang: "en" | "es" }) {
-  const dictionary = await getDictionary(lang);
+export function Projects() {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-primary text-2xl font-bold">
@@ -41,12 +46,7 @@ export async function Projects({ lang }: { lang: "en" | "es" }) {
       </h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {PROJECTS.map((project) => (
-          <ProjectCard
-            key={project.name}
-            project={project}
-            lang={lang}
-            dictionary={dictionary}
-          />
+          <ProjectCard key={project.name} project={project} />
         ))}
       </div>
     </div>
