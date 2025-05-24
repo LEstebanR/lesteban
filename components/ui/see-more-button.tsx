@@ -6,9 +6,15 @@ import { useState } from "react";
 
 interface SeeMoreButtonProps {
   children: React.ReactNode;
+  seeMoreCopy: React.ReactNode;
+  seeLessCopy: React.ReactNode;
 }
 
-export function SeeMoreButton({ children }: SeeMoreButtonProps) {
+export function SeeMoreButton({
+  children,
+  seeMoreCopy,
+  seeLessCopy,
+}: SeeMoreButtonProps) {
   const [seeMore, setSeeMore] = useState(false);
 
   return (
@@ -29,12 +35,12 @@ export function SeeMoreButton({ children }: SeeMoreButtonProps) {
       >
         {seeMore ? (
           <>
-            See less
+            {seeLessCopy}
             <ChevronUp className="w-4 h-4" />
           </>
         ) : (
           <>
-            See more
+            {seeMoreCopy}
             <ChevronDown className="w-4 h-4" />
           </>
         )}

@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "@/components/ui/link";
 import { ExternalLink, GithubIcon } from "lucide-react";
 import {
@@ -8,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
+import { usePathname } from "next/navigation";
 
 type Project = {
   name: string;
@@ -17,13 +21,18 @@ type Project = {
   repo?: string;
 };
 export function ProjectCard({ project }: { project: Project }) {
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as "en" | "es";
+  const dictionary = getClientDictionary(lang);
   return (
     <Card className="border-primary flex h-full flex-col">
       <CardHeader>
-        <CardTitle>{project.name}</CardTitle>
+        <CardTitle>
+          {dictionary[project.name as keyof typeof dictionary]}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <p>{project.description}</p>
+        <p>{dictionary[project.description as keyof typeof dictionary]}</p>
       </CardContent>
       <CardFooter className="flex flex-col gap-2 items-center">
         <div className="flex flex-wrap gap-2 mt-2 ">
@@ -45,7 +54,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 withIcon={true}
                 icon={<GithubIcon className="h-4 w-4" />}
               >
-                Code
+                {dictionary["code"]}
               </Link>
             )}
           </div>
@@ -56,7 +65,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 withIcon={true}
                 icon={<ExternalLink className="h-4 w-4" />}
               >
-                Live Demo
+                {dictionary["live-demo"]}
               </Link>
             )}
           </div>
