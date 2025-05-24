@@ -6,14 +6,12 @@ import { useState } from "react";
 
 interface SeeMoreButtonProps {
   children: React.ReactNode;
-  lang: "en" | "es";
-  seeMoreCopy: string;
-  seeLessCopy: string;
+  seeMoreCopy: React.ReactNode;
+  seeLessCopy: React.ReactNode;
 }
 
 export function SeeMoreButton({
   children,
-  lang,
   seeMoreCopy,
   seeLessCopy,
 }: SeeMoreButtonProps) {

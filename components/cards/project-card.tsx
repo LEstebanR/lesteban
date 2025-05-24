@@ -18,11 +18,9 @@ type Project = {
 };
 export function ProjectCard({
   project,
-  lang,
   dictionary,
 }: {
   project: Project;
-  lang: "en" | "es";
   dictionary: Record<string, string>;
 }) {
   return (

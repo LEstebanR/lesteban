@@ -1,7 +1,13 @@
-import { SKILLS } from "@/lib/data";
 import { Layout, Server, Database, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getDictionary } from "@/app/[lang]/dictionaries";
+
+const SKILLS = {
+  frontend: ["React", "Next", "Tailwind"],
+  backend: ["Node.js", "Supabase"],
+  database: ["MongoDB", "PostgresSQL"],
+  programing_languages: ["Javascript", "Typescript"],
+};
 
 function Skill({
   skill,
