@@ -4,10 +4,15 @@ import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: { lang: "en" | "es" };
+}) {
+  const { lang } = await params;
   return (
     <div className="flex flex-col gap-12">
-      <AboutMe />
+      <AboutMe lang={lang} />
       <Experience />
       <Projects />
       <Skills />
