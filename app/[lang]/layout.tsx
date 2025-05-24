@@ -79,7 +79,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: "en" | "es" };
 }>) {
-  const { lang } = await params;
+  const { lang } = params;
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
