@@ -1,7 +1,15 @@
 "use client";
 
 import { Link } from "@/components/ui/link";
-import { Github, Linkedin, Mail, Menu, Moon, Sun } from "lucide-react";
+import {
+  Github,
+  Languages,
+  Linkedin,
+  Mail,
+  Menu,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   DropdownMenu,
@@ -14,8 +22,8 @@ import {
 import { Button } from "./button";
 import { useTheme } from "next-themes";
 import { LanguageToggle } from "./language-toggle";
-import { usePathname } from "next/navigation";
-import { getClientDictionary } from "@/app/dictionaries/client";
+import { usePathname, useRouter } from "next/navigation";
+import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
 
 export const HEADER_LINKS = [
   {
@@ -42,12 +50,15 @@ type HeaderLink = {
 };
 export function Header() {
   const { setTheme } = useTheme();
+  const router = useRouter();
   const pathname = usePathname();
   const isHome = pathname === "/";
   const lang = pathname.split("/")[1] as "en" | "es";
   const dictionary = getClientDictionary(lang);
-  const softwareDeveloper = dictionary["software-developer"];
-
+  const setLang = (lang: "en" | "es") => {
+    const newPathname = pathname.split("/")[1] === lang ? "/" : `/${lang}`;
+    router.push(newPathname);
+  };
   if (isHome) return null;
 
   return (
@@ -57,7 +68,7 @@ export function Header() {
         <div className="flex items-center justify-between md:px-4 px-2 lg:w-3/6 lg:px-0 2xl:w-2/6 w-full">
           <div className="md:w-1/2">
             <h1 className="text-2xl font-bold">Luis Esteban</h1>
-            <h2 className="text-muted">{softwareDeveloper}</h2>
+            <h2 className="text-muted">{dictionary["software-developer"]}</h2>
           </div>
           <div className="w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:px-0 hidden md:flex">
             {HEADER_LINKS.map((link: HeaderLink, index: number) => (
@@ -92,6 +103,15 @@ export function Header() {
                 <DropdownMenuItem onClick={() => setTheme("light")}>
                   <Sun />
                   Light
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => setLang("en")}>
+                  <Languages />
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLang("es")}>
+                  <Languages />
+                  Español
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

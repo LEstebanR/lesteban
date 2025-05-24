@@ -16,14 +16,24 @@ type Project = {
   link?: string;
   repo?: string;
 };
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  lang,
+  dictionary,
+}: {
+  project: Project;
+  lang: "en" | "es";
+  dictionary: Record<string, string>;
+}) {
   return (
     <Card className="border-primary flex h-full flex-col">
       <CardHeader>
-        <CardTitle>{project.name}</CardTitle>
+        <CardTitle>
+          {dictionary[project.name as keyof typeof dictionary]}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <p>{project.description}</p>
+        <p>{dictionary[project.description as keyof typeof dictionary]}</p>
       </CardContent>
       <CardFooter className="flex flex-col gap-2 items-center">
         <div className="flex flex-wrap gap-2 mt-2 ">
@@ -45,7 +55,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 withIcon={true}
                 icon={<GithubIcon className="h-4 w-4" />}
               >
-                Code
+                {dictionary["code"]}
               </Link>
             )}
           </div>
@@ -56,7 +66,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 withIcon={true}
                 icon={<ExternalLink className="h-4 w-4" />}
               >
-                Live Demo
+                {dictionary["live-demo"]}
               </Link>
             )}
           </div>

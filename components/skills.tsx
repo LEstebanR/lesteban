@@ -1,6 +1,7 @@
 import { SKILLS } from "@/lib/data";
 import { Layout, Server, Database, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
 function Skill({
   skill,
@@ -30,34 +31,35 @@ function Skill({
   );
 }
 
-export function Skills() {
+export async function Skills({ lang }: { lang: "en" | "es" }) {
+  const dictionary = await getDictionary(lang);
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-primary text-2xl font-bold">Skills</h1>
+      <h1 className="text-primary text-2xl font-bold">{dictionary.skills}</h1>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <Skill
-          skill="Frontend Development"
+          skill={dictionary["frontend-development" as keyof typeof dictionary]}
           icon={
             <Layout className="h-5 w-5 animate-bounce text-blue-500 [animation-duration:1s]" />
           }
           skills={SKILLS.frontend}
         />
         <Skill
-          skill="Backend Development"
+          skill={dictionary["backend-development" as keyof typeof dictionary]}
           icon={
             <Server className="h-5 w-5 animate-bounce text-green-500 [animation-duration:1s]" />
           }
           skills={SKILLS.backend}
         />
         <Skill
-          skill="Database"
+          skill={dictionary["database" as keyof typeof dictionary]}
           icon={
             <Database className="h-5 w-5 animate-bounce text-orange-500 [animation-duration:1s]" />
           }
           skills={SKILLS.database}
         />
         <Skill
-          skill="Programing Languages"
+          skill={dictionary["programing-languages" as keyof typeof dictionary]}
           icon={
             <Code className="h-5 w-5 animate-bounce text-red-500 [animation-duration:1s]" />
           }

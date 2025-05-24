@@ -13,10 +13,10 @@ export default async function Home({
   return (
     <div className="flex flex-col gap-12">
       <AboutMe lang={lang} />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Contact />
+      <Experience lang={lang} />
+      <Projects lang={lang} />
+      <Skills lang={lang} />
+      <Contact lang={lang} />
     </div>
   );
 }

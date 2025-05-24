@@ -106,7 +106,7 @@ export default async function RootLayout({
             {children}
             <Analytics />
           </main>
-          <Footer />
+          <Footer lang={lang} />
         </ThemeProvider>
       </body>
     </html>
