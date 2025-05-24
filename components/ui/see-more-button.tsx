@@ -1,9 +1,7 @@
 "use client";
 
-import { getClientDictionary } from "@/app/[lang]/dictionaries/client";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 interface SeeMoreButtonProps {
@@ -18,8 +16,6 @@ export function SeeMoreButton({
   seeLessCopy,
 }: SeeMoreButtonProps) {
   const [seeMore, setSeeMore] = useState(false);
-  const pathname = usePathname();
-  const lang = pathname.split("/")[1] as "en" | "es";
 
   return (
     <>
