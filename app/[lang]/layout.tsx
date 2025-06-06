@@ -1,57 +1,57 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/app/globals.css";
-import { Header } from "@/components/ui/header";
-import { Footer } from "@/components/ui/footer";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Analytics } from "@vercel/analytics/next";
+import '@/app/globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
+import { Footer } from '@/components/ui/footer'
+import { Header } from '@/components/ui/header'
+import { Analytics } from '@vercel/analytics/next'
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "Luis Esteban Ramirez | Software Developer",
+  title: 'Luis Esteban Ramirez | Software Developer',
   description:
-    "Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones. Experiencia en React, TypeScript y desarrollo full-stack.",
+    'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones. Experiencia en React, TypeScript y desarrollo full-stack.',
   keywords: [
-    "software developer",
-    "web developer",
-    "React",
-    "TypeScript",
-    "full-stack",
-    "frontend",
-    "portfolio",
-    "Luis Esteban Ramirez",
-    "desarrollador de software",
-    "desarrollador web",
-    "desarrollo full-stack",
+    'software developer',
+    'web developer',
+    'React',
+    'TypeScript',
+    'full-stack',
+    'frontend',
+    'portfolio',
+    'Luis Esteban Ramirez',
+    'desarrollador de software',
+    'desarrollador web',
+    'desarrollo full-stack',
   ],
-  authors: [{ name: "Luis Esteban Ramirez" }],
-  creator: "Luis Esteban Ramirez",
-  publisher: "Luis Esteban Ramirez",
+  authors: [{ name: 'Luis Esteban Ramirez' }],
+  creator: 'Luis Esteban Ramirez',
+  publisher: 'Luis Esteban Ramirez',
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: "es_ES",
-    url: "https://lesteban.dev",
-    title: "Luis Esteban Ramirez | Software Developer",
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: 'es_ES',
+    url: 'https://lesteban.dev',
+    title: 'Luis Esteban Ramirez | Software Developer',
     description:
-      "Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.",
-    siteName: "LEsteban Portfolio",
+      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.',
+    siteName: 'LEsteban Portfolio',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Luis Esteban Ramirez | Software Developer",
+    card: 'summary_large_image',
+    title: 'Luis Esteban Ramirez | Software Developer',
     description:
-      "Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.",
-    creator: "@lestebanr",
+      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.',
+    creator: '@lestebanr',
   },
   robots: {
     index: true,
@@ -59,23 +59,23 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   verification: {
-    google: "gv-xgsjg4sm7rtc4i.dv.googlehosted.com",
+    google: 'gv-xgsjg4sm7rtc4i.dv.googlehosted.com',
   },
   alternates: {
-    canonical: "https://lesteban.dev",
+    canonical: 'https://lesteban.dev',
   },
-};
+}
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -107,5 +107,5 @@ export default async function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

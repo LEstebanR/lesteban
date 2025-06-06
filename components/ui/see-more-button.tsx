@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { Button } from '@/components/ui/button'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from 'react'
 
 interface SeeMoreButtonProps {
-  children: React.ReactNode;
-  seeMoreCopy: React.ReactNode;
-  seeLessCopy: React.ReactNode;
+  children: React.ReactNode
+  seeMoreCopy: React.ReactNode
+  seeLessCopy: React.ReactNode
 }
 
 export function SeeMoreButton({
@@ -15,13 +15,13 @@ export function SeeMoreButton({
   seeMoreCopy,
   seeLessCopy,
 }: SeeMoreButtonProps) {
-  const [seeMore, setSeeMore] = useState(false);
+  const [seeMore, setSeeMore] = useState(false)
 
   return (
     <>
       <div
         className={`grid transition-all duration-500 ease-in-out ${
-          seeMore ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          seeMore ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -31,20 +31,20 @@ export function SeeMoreButton({
       <Button
         variant="outline"
         onClick={() => setSeeMore(!seeMore)}
-        className="w-fit mx-auto rounded-full border-primary text-primary hover:bg-primary hover:text-white cursor-pointer"
+        className="border-primary text-primary hover:bg-primary mx-auto w-fit cursor-pointer rounded-full hover:text-white"
       >
         {seeMore ? (
           <>
             {seeLessCopy}
-            <ChevronUp className="w-4 h-4" />
+            <ChevronUp className="h-4 w-4" />
           </>
         ) : (
           <>
             {seeMoreCopy}
-            <ChevronDown className="w-4 h-4" />
+            <ChevronDown className="h-4 w-4" />
           </>
         )}
       </Button>
     </>
-  );
+  )
 }

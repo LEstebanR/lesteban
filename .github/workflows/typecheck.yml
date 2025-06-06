@@ -2,13 +2,7 @@ name: Type Check
 
 on:
   pull_request:
-    branches:
-      - main
-      - develop
-  push:
-    branches:
-      - main
-      - develop
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   typecheck:
