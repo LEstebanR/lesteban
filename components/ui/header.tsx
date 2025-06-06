@@ -85,7 +85,7 @@ export function Header() {
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background mt-2 w-screen rounded-t-none">
+              <DropdownMenuContent className="bg-background m-1 w-36">
                 <DropdownMenuGroup>
                   {HEADER_LINKS.map((link: HeaderLink, index: number) => (
                     <Link href={link.href} key={index}>

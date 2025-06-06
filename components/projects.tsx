@@ -9,7 +9,7 @@ const PROJECTS = [
     name: 'oniricapp',
     description: 'oniricapp-description',
     stack: ['Next.js', 'Tailwind', 'Llama'],
-    link: 'https://www.oniricapp.com/',
+    link: 'https://dream-interpreter-six.vercel.app/',
     repo: 'https://github.com/LEstebanR/dream_Interpreter',
   },
   {
