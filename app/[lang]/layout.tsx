@@ -14,7 +14,6 @@ import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
-
 import { getCanonicalUrl } from '@/lib/utils'
 
 const inter = Inter({
