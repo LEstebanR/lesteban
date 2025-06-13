@@ -5,7 +5,6 @@ import { Experience } from '@/components/experience'
 import { Hero } from '@/components/hero'
 import { Projects } from '@/components/projects'
 import { Skills } from '@/components/skills'
-
 import { useLang } from '@/hooks/use-lang'
 
 export default function Home() {
