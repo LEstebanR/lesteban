@@ -81,19 +81,19 @@ export function Header() {
           <div className="md:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger className="cursor-pointer" asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" aria-label="Menu">
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background m-1 w-36">
+              <DropdownMenuContent className="bg-background mt-2 w-screen rounded-t-none">
                 <DropdownMenuGroup>
                   {HEADER_LINKS.map((link: HeaderLink, index: number) => (
-                    <DropdownMenuItem key={index}>
-                      <Link href={link.href}>
+                    <Link href={link.href} key={index}>
+                      <DropdownMenuItem>
                         {link.icon}
                         {link.label}
-                      </Link>
-                    </DropdownMenuItem>
+                      </DropdownMenuItem>
+                    </Link>
                   ))}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

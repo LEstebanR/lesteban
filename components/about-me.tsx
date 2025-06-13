@@ -1,11 +1,10 @@
-'use client'
-
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { usePathname } from 'next/navigation'
 
-export function AboutMe() {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+interface AboutMeProps {
+  lang: 'en' | 'es'
+}
+
+export function AboutMe({ lang }: AboutMeProps) {
   const dictionary = getClientDictionary(lang)
 
   return (
