@@ -81,7 +81,7 @@ export function Header() {
           <div className="md:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger className="cursor-pointer" asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" aria-label="Menu">
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>
