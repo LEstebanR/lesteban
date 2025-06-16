@@ -16,7 +16,7 @@ export function Footer() {
           href="https://github.com/LEstebanR/lesteban"
           aria-label="Github project"
         >
-          <Github className="h-6 w-6" />
+          <Github className="h-6 w-6" aria-label="Github project" />
         </Link>
         <div className="bg-primary mx-2 h-[30px] w-[0.5px] rotate-[20deg]"></div>
         <div className="flex items-center gap-x-1 text-xs sm:text-base">
