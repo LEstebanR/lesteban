@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Luis Esteban Ramirez | Software Developer',
   description:
-    'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones. Experiencia en React, TypeScript y desarrollo full-stack.',
+    'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
   keywords: [
     'software developer',
     'web developer',
@@ -47,15 +47,24 @@ export const metadata: Metadata = {
     url: 'https://lesteban.dev',
     title: 'Luis Esteban Ramirez | Software Developer',
     description:
-      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.',
+      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
     siteName: 'LEsteban Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Luis Esteban Ramirez - Software Developer Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Luis Esteban Ramirez | Software Developer',
     description:
-      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. // Portfolio personal de Luis Esteban Ramirez, desarrollador de software especializado en desarrollo web y aplicaciones.',
+      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
     creator: '@lestebanr',
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
