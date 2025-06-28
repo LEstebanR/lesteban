@@ -1,10 +1,19 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { ProjectCard } from '@/components/cards/project-card'
+
 import { usePathname } from 'next/navigation'
 
+import { ProjectCard } from '@/components/cards/project-card'
+
 const PROJECTS = [
+  {
+    name: 'roadmapcol',
+    description: 'roadmapcol-description',
+    stack: ['Next.js', 'Tailwind', 'Shadcn'],
+    link: 'https://roadmapcol.com/',
+    repo: 'https://github.com/LEstebanR/roadmapcol',
+  },
   {
     name: 'oniricapp',
     description: 'oniricapp-description',
@@ -26,12 +35,6 @@ const PROJECTS = [
     stack: ['React', 'Typescript', 'Tailwind'],
     link: 'https://frontend-mentor-challenges-lestebanr.vercel.app/',
     repo: 'https://github.com/LEstebanR/Frontend-mentor-challenges',
-  },
-  {
-    name: 'devpeoplz',
-    description: 'devpeoplz-project-description',
-    stack: ['Next.js', 'Tailwind', 'Supabase'],
-    link: 'https://devpeoplz.com/',
   },
 ]
 
