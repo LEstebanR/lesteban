@@ -22,19 +22,18 @@ const PROJECTS = [
     repo: 'https://github.com/LEstebanR/dream_Interpreter',
   },
   {
+    name: 'kodempro',
+    description: 'kodempro-description',
+    stack: ['Next.js', 'Tailwind', 'Shadcn'],
+    link: 'https://kodempro.com/',
+    repo: 'https://github.com/LEstebanR/kodempro',
+  },
+  {
     name: 'humedad-arena',
     description: 'humedad-arena-description',
     stack: ['React', 'Typescript', 'Tailwind'],
     link: 'https://humedad-arena.vercel.app/',
     repo: 'https://github.com/LEstebanR/humedad_arena',
-  },
-
-  {
-    name: 'frontend-mentor-challenges',
-    description: 'frontend-mentor-challenges-description',
-    stack: ['React', 'Typescript', 'Tailwind'],
-    link: 'https://frontend-mentor-challenges-lestebanr.vercel.app/',
-    repo: 'https://github.com/LEstebanR/Frontend-mentor-challenges',
   },
 ]
 
