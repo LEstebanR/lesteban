@@ -1,15 +1,18 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+import { LucideIcon } from 'lucide-react'
+
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { LucideIcon } from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 export type ContactLink = {
   label: string

@@ -1,9 +1,12 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { Badge } from '@/components/ui/badge'
-import { Calendar, Code } from 'lucide-react'
+
 import { usePathname } from 'next/navigation'
+
+import { Calendar, Code } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
 
 export type ExperienceType = {
   position: string

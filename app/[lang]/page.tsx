@@ -1,11 +1,12 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+
 import { AboutMe } from '@/components/about-me'
 import { Contact } from '@/components/contact'
 import { Experience } from '@/components/experience'
 import { Projects } from '@/components/projects'
 import { Skills } from '@/components/skills'
-import { usePathname } from 'next/navigation'
 
 export default function Home() {
   const pathname = usePathname()

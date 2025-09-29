@@ -1,9 +1,12 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { ContactCard, ContactLink } from '@/components/cards/contact-card'
-import { Github, Linkedin, Mail, Map } from 'lucide-react'
+
 import { usePathname } from 'next/navigation'
+
+import { Github, Linkedin, Mail, Map } from 'lucide-react'
+
+import { ContactCard, ContactLink } from '@/components/cards/contact-card'
 
 const CONTACT_LINKS = [
   {
