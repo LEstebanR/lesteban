@@ -15,16 +15,16 @@ export function AboutMe() {
           <div className="grid items-center justify-between gap-12 md:grid-cols-2">
             <div className="space-y-6">
               <p className="text-foreground/80 text-lg leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of
+                I&apos;m a passionate full-stack developer with over 5 years of
                 experience building web applications that make a difference. I
                 love working with modern technologies and creating solutions
                 that are both functional and beautiful.
               </p>
 
               <p className="text-foreground/80 text-lg leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community.
+                When I&apos;m not coding, you can find me exploring new
+                technologies, contributing to open-source projects, or sharing
+                knowledge with the developer community.
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-6">
