@@ -1,9 +1,12 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { Badge } from '@/components/ui/badge'
-import { Code, Database, Layout, Server } from 'lucide-react'
+
 import { usePathname } from 'next/navigation'
+
+import { Code, Database, Layout, Server } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
 
 const SKILLS = {
   frontend: ['React', 'Next', 'Tailwind'],

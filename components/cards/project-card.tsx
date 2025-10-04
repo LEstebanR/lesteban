@@ -1,6 +1,11 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+
+import { usePathname } from 'next/navigation'
+
+import { ExternalLink, GithubIcon } from 'lucide-react'
+
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -10,8 +15,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Link } from '@/components/ui/link'
-import { ExternalLink, GithubIcon } from 'lucide-react'
-import { usePathname } from 'next/navigation'
 
 type Project = {
   name: string

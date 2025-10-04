@@ -1,9 +1,12 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { Link } from '@/components/ui/link'
-import { Github, Heart } from 'lucide-react'
+
 import { usePathname } from 'next/navigation'
+
+import { Github, Heart } from 'lucide-react'
+
+import { Link } from '@/components/ui/link'
 
 export function Footer() {
   const pathname = usePathname()

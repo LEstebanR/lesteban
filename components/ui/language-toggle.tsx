@@ -1,8 +1,8 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-
 import { Button } from './button'
+
+import { usePathname, useRouter } from 'next/navigation'
 
 export function LanguageToggle() {
   const router = useRouter()

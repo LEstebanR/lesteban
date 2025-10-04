@@ -1,9 +1,11 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+
+import { usePathname } from 'next/navigation'
+
 import { ExperienceCard } from '@/components/cards/experience-card'
 import { SeeMoreButton } from '@/components/ui/see-more-button'
-import { usePathname } from 'next/navigation'
 
 const EXPERIENCE = {
   aleluya: {

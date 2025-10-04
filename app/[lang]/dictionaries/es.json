@@ -3,8 +3,9 @@
   "about-me": "Sobre mí",
   "projects": "Proyectos",
   "contact": "Contacto",
-  "about-me-description-1": "El trabajo en equipo mi forma favorita de crecer, me enfoco en escribir código limpio y mantenible. Mi objetivo es construir productos con impacto global que mejoren la vida de las personas. Experiencia con",
-  "about-me-description-2": "actualmente en el camino a convertirme en",
+  "about-me-description-1": "El trabajo en equipo es mi forma favorita de crecer, me enfoco en escribir código limpio y mantenible. Mi objetivo es construir productos con",
+  "global-impact": "impacto global",
+  "about-me-description-2": "que mejoren la vida de las personas.",
   "experience": "Experiencia",
   "frontend-developer": "Desarrollador Frontend",
   "fullstack-developer": "Desarrollador Fullstack",
@@ -46,5 +47,7 @@
   "roadmapcol-description": "Aplicación web que conecta turistas con servicios de turismo para conocer los maravillosos lugares naturales de Colombia.",
   "roadmapcol": "RoadmapCol",
   "kodempro-description": "Aplicación web informativa sobre empresa de consultoría de proyectos.",
-  "kodempro": "Kodempro"
+  "kodempro": "Kodempro",
+  "hello": "Hola, soy",
+  "indie-hacker-in-progress": "Indie Hacker en proceso"
 }

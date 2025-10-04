@@ -1,6 +1,22 @@
 'use client'
 
-import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { Button } from './button'
+import { LanguageToggle } from './language-toggle'
+
+import { usePathname, useRouter } from 'next/navigation'
+
+import { useTheme } from 'next-themes'
+
+import {
+  Github,
+  Languages,
+  Linkedin,
+  Mail,
+  Menu,
+  Moon,
+  Sun,
+} from 'lucide-react'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,20 +27,6 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Link } from '@/components/ui/link'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import {
-  Github,
-  Languages,
-  Linkedin,
-  Mail,
-  Menu,
-  Moon,
-  Sun,
-} from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { usePathname, useRouter } from 'next/navigation'
-
-import { Button } from './button'
-import { LanguageToggle } from './language-toggle'
 
 export const HEADER_LINKS = [
   {
@@ -54,8 +56,6 @@ export function Header() {
   const router = useRouter()
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const lang = pathname.split('/')[1] as 'en' | 'es'
-  const dictionary = getClientDictionary(lang)
   const setLang = (lang: 'en' | 'es') => {
     const newPathname = pathname.split('/')[1] === lang ? '/' : `/${lang}`
     router.push(newPathname)
@@ -68,8 +68,9 @@ export function Header() {
         <div className="md:flex-1" />
         <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
           <div className="md:w-1/2">
-            <h1 className="text-2xl font-bold">Luis Esteban</h1>
-            <h2 className="text-muted">{dictionary['software-developer']}</h2>
+            <h1 className="font-heading text-primary text-xl font-bold">
+              Luis Esteban
+            </h1>
           </div>
           <div className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0">
             {HEADER_LINKS.map((link: HeaderLink, index: number) => (
