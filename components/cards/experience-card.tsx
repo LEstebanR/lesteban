@@ -23,13 +23,13 @@ export function ExperienceCard({ job }: { job: ExperienceType }) {
   const dictionary = getClientDictionary(lang)
   return (
     <div className="mb-4 flex flex-col gap-2">
-      <h3 className="text-lg font-bold">
+      <h3 className="text-primary text-lg font-bold">
         {dictionary[job.position as keyof typeof dictionary]}
       </h3>
       <div className="flex items-center gap-2">
-        <h2 className="text-muted">{job.company}</h2>
-        <Calendar className="text-muted ml-1 h-4 w-4" />
-        <h2 className="text-muted">
+        <h2 className="font-bold">{job.company}</h2>
+        <Calendar className="ml-1 h-4 w-4 font-bold" />
+        <h2 className="font-bold">
           {dictionary[job.startDate as keyof typeof dictionary]} -{' '}
           {dictionary[job.endDate as keyof typeof dictionary]}
         </h2>
