@@ -33,7 +33,7 @@ export function Hero({ lang }: HeroProps) {
           Luis Esteban
         </span>
       </h1>
-      <p className="text-muted-foreground mb-6 text-xl text-balance sm:text-2xl md:mb-0">
+      <p className="text-muted-foreground mb-6 text-xl text-pretty sm:text-2xl md:mb-0">
         {dictionary['software-developer']}
       </p>
       <p className="text-foreground/80 mx-auto mb-6 max-w-2xl text-lg leading-relaxed text-pretty md:mb-0">
