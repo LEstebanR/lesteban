@@ -33,7 +33,11 @@ function Skill({
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => {
           return (
-            <Badge key={skill} variant="outline" className="bg-primary/10">
+            <Badge
+              key={skill}
+              variant="outline"
+              className="bg-primary/10 dark:bg-primary/20 text-primary/70 dark:text-primary/90 border-primary rounded-full text-sm"
+            >
               {skill}
             </Badge>
           )

@@ -15,8 +15,8 @@ export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
 
   return (
-    <div className="flex flex-col items-center justify-between py-8 md:min-h-[calc(100vh-4rem)]">
-      <div className="from-primary to-secondary animate-float mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1">
+    <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between py-8">
+      <div className="from-primary to-primary/60 animate-float mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1">
         <div className="bg-background flex h-full w-full items-center justify-center rounded-full">
           <Image
             src="/profile_pic.jpeg"
@@ -29,7 +29,7 @@ export function Hero({ lang }: HeroProps) {
       </div>
       <h1 className="font-heading mb-6 text-center text-4xl font-bold text-balance sm:text-5xl md:mb-0 lg:text-6xl">
         {dictionary['hello']}{' '}
-        <span className="from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent">
+        <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
           Luis Esteban
         </span>
       </h1>
@@ -41,33 +41,37 @@ export function Hero({ lang }: HeroProps) {
         <span className="font-bold">{dictionary['global-impact']}</span>{' '}
         {dictionary['about-me-description-2']}
       </p>
-      <div className="mb-6 md:mb-0">
-        <div className="bg-muted border-border inline-flex items-center gap-3 rounded-full border px-4 py-2">
-          <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-          <span className="text-muted-foreground text-sm font-medium">
-            {dictionary['indie-hacker-in-progress']}
-          </span>
-        </div>
-      </div>
+      <Badge
+        variant="outline"
+        className="border-primary bg-primary/10 dark:bg-primary/20 rounded-full p-2 px-4 text-sm"
+      >
+        <span className="text-primary dark:text-primary/90 text-sm font-bold">
+          {dictionary['indie-hacker-in-progress']}
+        </span>
+      </Badge>
 
       <div className="mb-6 flex flex-wrap justify-center gap-3 md:mb-0">
         {['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase'].map((tech) => (
-          <Badge key={tech} variant="outline" className="rounded-full text-sm">
+          <Badge
+            key={tech}
+            variant="outline"
+            className="bg-secondary/10 dark:bg-secondary/30 text-secondary dark:text-secondary-foreground border-secondary rounded-full text-sm"
+          >
             {tech}
           </Badge>
         ))}
       </div>
       <div className="mb-6 flex gap-2 md:mb-0">
         <Link href="https://github.com/LEstebanR" withIcon>
-          <Github />
+          <Github className="transition-transform duration-300 hover:scale-125" />
         </Link>
         <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
-          <Linkedin />
+          <Linkedin className="transition-transform duration-300 hover:scale-125" />
         </Link>
         <Link href="mailto:leramirezca@gmail.com">
-          <Mail />
+          <Mail className="transition-transform duration-300 hover:scale-125" />
         </Link>
       </div>
-    </div>
+    </section>
   )
 }

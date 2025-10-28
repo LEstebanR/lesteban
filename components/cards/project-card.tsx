@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
   return (
-    <Card className="border-primary flex h-full flex-col">
+    <Card className="border-secondary flex h-full flex-col">
       <CardHeader>
         <CardTitle>
           {dictionary[project.name as keyof typeof dictionary]}
@@ -43,7 +43,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <Badge
               key={stack}
               variant="outline"
-              className="bg-primary/10 dark:bg-primary/40"
+              className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
             >
               {stack}
             </Badge>

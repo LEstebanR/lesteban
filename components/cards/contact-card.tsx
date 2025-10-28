@@ -28,7 +28,7 @@ export function ContactCard({ link }: { link: ContactLink }) {
   const dictionary = getClientDictionary(lang)
   return (
     <Link href={link.href} target={link.href === '#' ? '_self' : '_blank'}>
-      <Card className="border-primary cursor-pointer">
+      <Card className="border-secondary cursor-pointer">
         <CardHeader className="flex items-center gap-2">
           <link.icon className={`${link.iconColor} h-6 w-6`} />
           <div className="flex flex-col gap-1">

@@ -39,7 +39,11 @@ export function ExperienceCard({ job }: { job: ExperienceType }) {
       <div className="wrap flex items-center gap-2">
         <Code className="text-primary h-4 w-4" />
         {job.stack.map((stack) => (
-          <Badge key={stack} variant="outline" className="bg-primary/10">
+          <Badge
+            key={stack}
+            variant="outline"
+            className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
+          >
             {stack}
           </Badge>
         ))}

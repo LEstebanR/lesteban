@@ -4,31 +4,30 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette for modern portfolio design */
-  --background: oklch(1 0 0); /* Pure white background */
-  --foreground: oklch(0.35 0 0); /* Dark gray text */
-  --card: oklch(0.98 0 0); /* Light gray card background */
-  --card-foreground: oklch(0.35 0 0); /* Dark gray card text */
-  --popover: oklch(1 0 0); /* White popover background */
-  --popover-foreground: oklch(0.35 0 0); /* Dark gray popover text */
-  --primary: oklch(0.55 0.15 200); /* Cyan primary color */
-  --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.6 0.15 240); /* Blue accent color */
-  --secondary-foreground: oklch(1 0 0); /* White text on secondary */
-  --muted: oklch(0.98 0 0); /* Light muted background */
-  --muted-foreground: oklch(0.5 0 0); /* Medium gray muted text */
-  --accent: oklch(0.6 0.15 240); /* Blue accent */
-  --accent-foreground: oklch(1 0 0); /* White text on accent */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.35 0 0);
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.35 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.35 0 0);
+  --primary: oklch(0.3991 0.1196 256.44);
+  --primary-foreground: oklch(0.7 0.1196 256.44);
+  --secondary: oklch(0.6259 0.2138 31.18);
+  --secondary-foreground: oklch(0.7559 0.0715 31.18);
+  --muted: oklch(0.98 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.6 0.15 240);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0); /* Light border */
-  --input: oklch(0.98 0 0); /* Light input background */
-  --ring: oklch(0.55 0.15 200 / 0.5); /* Cyan ring with transparency */
-  --chart-1: oklch(0.55 0.15 200); /* Cyan chart color */
-  --chart-2: oklch(0.6 0.15 240); /* Blue chart color */
-  --chart-3: oklch(0.35 0 0); /* Dark gray chart color */
-  --chart-4: oklch(0.577 0.245 27.325); /* Red chart color */
-  --chart-5: oklch(0.7 0.15 60); /* Yellow chart color */
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.98 0 0);
+  --ring: oklch(0.55 0.15 200 / 0.5);
+  --chart-1: oklch(0.55 0.15 200);
+  --chart-2: oklch(0.6 0.15 240);
+  --chart-3: oklch(0.35 0 0);
+  --chart-4: oklch(0.577 0.245 27.325);
+  --chart-5: oklch(0.7 0.15 60);
   --radius: 0.5rem;
   --sidebar: oklch(0.98 0 0);
   --sidebar-foreground: oklch(0.35 0 0);
@@ -42,24 +41,24 @@
 
 .dark {
   --background: oklch(26.03% 0 0);
-  --foreground: oklch(0.95 0 0); /* Light text */
-  --card: oklch(0.15 0 0); /* Dark card background */
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.15 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.1 0 0); /* Dark popover background */
-  --popover-foreground: oklch(0.95 0 0); /* Light popover text */
-  --primary: oklch(0.6 0.15 200); /* Brighter cyan for dark mode */
-  --primary-foreground: oklch(0.1 0 0); /* Dark text on primary */
-  --secondary: oklch(0.65 0.15 240); /* Brighter blue for dark mode */
-  --secondary-foreground: oklch(0.1 0 0); /* Dark text on secondary */
-  --muted: oklch(0.2 0 0); /* Dark muted background */
-  --muted-foreground: oklch(0.6 0 0); /* Light muted text */
-  --accent: oklch(0.65 0.15 240); /* Brighter blue accent */
-  --accent-foreground: oklch(0.1 0 0); /* Dark text on accent */
+  --popover: oklch(0.1 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.65 0.15 260);
+  --primary-foreground: oklch(0.95 0 0);
+  --secondary: oklch(0.45 0.12 35);
+  --secondary-foreground: oklch(0.9 0.05 35);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.65 0.15 240);
+  --accent-foreground: oklch(0.1 0 0);
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.2 0 0); /* Dark border */
-  --input: oklch(0.15 0 0); /* Dark input background */
-  --ring: oklch(0.6 0.15 200 / 0.5); /* Brighter cyan ring */
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.15 0 0);
+  --ring: oklch(0.6 0.15 200 / 0.5);
   --chart-1: oklch(0.6 0.15 200);
   --chart-2: oklch(0.65 0.15 240);
   --chart-3: oklch(0.7 0 0);
@@ -74,8 +73,6 @@
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.6 0.15 200 / 0.5);
 }
-
-/* Added Space Grotesk and DM Sans fonts for modern typography */
 
 @theme inline {
   --font-sans: 'DM Sans', var(--font-geist-sans);
@@ -126,13 +123,11 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
-  /* Added heading font class */
   .font-heading {
     font-family: var(--font-heading);
   }
 }
 
-/* Added smooth scrolling and custom animations */
 html {
   scroll-behavior: smooth;
 }
