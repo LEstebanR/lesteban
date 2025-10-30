@@ -1,4 +1,4 @@
-'use-client'
+'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
@@ -18,7 +18,7 @@ export function Hero({ lang }: HeroProps) {
   const { theme } = useTheme()
 
   return (
-    <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between py-8">
+    <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between py-4 md:py-8">
       <div className="from-primary to-primary/60 animate-float mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1">
         <div className="bg-background flex h-full w-full items-center justify-center rounded-full">
           <Image
@@ -30,7 +30,7 @@ export function Hero({ lang }: HeroProps) {
           />
         </div>
       </div>
-      <h1 className="font-heading mb-6 text-center text-4xl font-bold text-balance sm:text-5xl md:mb-0 lg:text-6xl">
+      <h1 className="font-heading mb-6 text-center text-3xl font-bold text-balance md:mb-0 md:text-6xl">
         {dictionary['hello']}{' '}
         <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
           Luis Esteban
@@ -46,7 +46,7 @@ export function Hero({ lang }: HeroProps) {
       </p>
       <Badge
         variant="outline"
-        className="border-primary bg-primary/10 dark:bg-primary/20 rounded-full p-2 px-4 text-sm"
+        className="border-primary bg-primary/10 dark:bg-primary/20 mb-2 rounded-full p-2 px-4 text-sm"
       >
         <span className="text-primary dark:text-primary/90 text-sm font-bold">
           {dictionary['indie-hacker-in-progress']}

@@ -27,14 +27,12 @@ export function Contact() {
       href: 'https://www.linkedin.com/in/lestebanr/',
       user: 'Luis Esteban',
       icon: '/logos/linkedin.svg',
-      iconColor: 'text-blue-600',
     },
     {
       label: 'email',
       href: 'mailto:leramirezca@gmail.com',
       user: 'leramirezca@gmail.com',
       icon: theme !== 'dark' ? '/logos/mail_light.svg' : '/logos/mail_dark.svg',
-      iconColor: 'text-red-500',
     },
     {
       label: 'location',
@@ -43,7 +41,6 @@ export function Contact() {
         theme !== 'dark'
           ? '/logos/location_light.svg'
           : '/logos/location_dark.svg',
-      iconColor: 'text-green-500',
       href: '#',
     },
   ]
