@@ -1,8 +1,10 @@
+'use-client'
+
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import Image from 'next/image'
 
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/components/ui/link'
@@ -13,6 +15,7 @@ interface HeroProps {
 
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
+  const { theme } = useTheme()
 
   return (
     <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between py-8">
@@ -61,15 +64,41 @@ export function Hero({ lang }: HeroProps) {
           </Badge>
         ))}
       </div>
-      <div className="mb-6 flex gap-2 md:mb-0">
+      <div className="mb-6 flex gap-4 md:mb-0">
         <Link href="https://github.com/LEstebanR" withIcon>
-          <Github className="transition-transform duration-300 hover:scale-125" />
+          <Image
+            src={
+              theme === 'light'
+                ? '/logos/github_light.svg'
+                : '/logos/github_dark.svg'
+            }
+            className="transition-transform duration-300 hover:scale-150"
+            alt="Github"
+            width={30}
+            height={30}
+          />
         </Link>
         <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
-          <Linkedin className="transition-transform duration-300 hover:scale-125" />
+          <Image
+            src={'/logos/linkedin.svg'}
+            className="transition-transform duration-300 hover:scale-150"
+            alt="LinkedIn"
+            width={30}
+            height={30}
+          />
         </Link>
         <Link href="mailto:leramirezca@gmail.com">
-          <Mail className="transition-transform duration-300 hover:scale-125" />
+          <Image
+            src={
+              theme === 'light'
+                ? '/logos/mail_light.svg'
+                : '/logos/mail_dark.svg'
+            }
+            className="transition-transform duration-300 hover:scale-150"
+            alt="Mail"
+            width={33}
+            height={33}
+          />
         </Link>
       </div>
     </section>

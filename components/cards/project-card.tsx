@@ -2,9 +2,12 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
-import { ExternalLink, GithubIcon } from 'lucide-react'
+import { useTheme } from 'next-themes'
+
+import { ExternalLink } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import {
@@ -27,6 +30,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const pathname = usePathname()
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
+  const { theme } = useTheme()
   return (
     <Card className="border-secondary flex h-full flex-col">
       <CardHeader>
@@ -52,12 +56,20 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex w-full justify-between">
           <div>
             {project.repo && (
-              <Link
-                href={project.repo}
-                withIcon={true}
-                icon={<GithubIcon className="h-4 w-4" />}
-              >
-                {dictionary['code']}
+              <Link href={project.repo}>
+                <div className="flex items-start gap-2">
+                  <Image
+                    src={
+                      theme === 'light'
+                        ? '/logos/github_light.svg'
+                        : '/logos/github_dark.svg'
+                    }
+                    alt="GitHub"
+                    height={20}
+                    width={20}
+                  />
+                  {dictionary['code']}
+                </div>
               </Link>
             )}
           </div>

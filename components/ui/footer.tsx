@@ -27,7 +27,7 @@ export function Footer() {
           </motion.span>
           <motion.div
             animate={{
-              scale: [1, 1.2, 1],
+              scale: [1, 1.5, 1],
             }}
             transition={{
               duration: 1.5,

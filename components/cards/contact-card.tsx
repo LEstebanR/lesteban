@@ -2,10 +2,9 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { LucideIcon } from 'lucide-react'
 
 import {
   Card,
@@ -18,7 +17,7 @@ export type ContactLink = {
   label: string
   href: string | '#'
   user: string
-  icon: LucideIcon
+  icon: string
   iconColor: string
 }
 
@@ -29,8 +28,8 @@ export function ContactCard({ link }: { link: ContactLink }) {
   return (
     <Link href={link.href} target={link.href === '#' ? '_self' : '_blank'}>
       <Card className="border-secondary cursor-pointer">
-        <CardHeader className="flex items-center gap-2">
-          <link.icon className={`${link.iconColor} h-6 w-6`} />
+        <CardHeader className="flex items-center gap-4">
+          <Image src={link.icon} alt={link.label} width={35} height={35} />
           <div className="flex flex-col gap-1">
             <CardTitle>
               {dictionary[link.label as keyof typeof dictionary]}
