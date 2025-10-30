@@ -60,7 +60,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 <div className="flex items-start gap-2">
                   <Image
                     src={
-                      theme === 'light'
+                      theme !== 'dark'
                         ? '/logos/github_light.svg'
                         : '/logos/github_dark.svg'
                     }

@@ -20,9 +20,7 @@ export function Contact() {
       href: 'https://github.com/LEstebanR',
       user: 'LEstebanR',
       icon:
-        theme === 'light'
-          ? '/logos/github_light.svg'
-          : '/logos/github_dark.svg',
+        theme !== 'dark' ? '/logos/github_light.svg' : '/logos/github_dark.svg',
     },
     {
       label: 'linkedin',
@@ -35,15 +33,14 @@ export function Contact() {
       label: 'email',
       href: 'mailto:leramirezca@gmail.com',
       user: 'leramirezca@gmail.com',
-      icon:
-        theme === 'light' ? '/logos/mail_light.svg' : '/logos/mail_dark.svg',
+      icon: theme !== 'dark' ? '/logos/mail_light.svg' : '/logos/mail_dark.svg',
       iconColor: 'text-red-500',
     },
     {
       label: 'location',
       user: 'Colombia',
       icon:
-        theme === 'light'
+        theme !== 'dark'
           ? '/logos/location_light.svg'
           : '/logos/location_dark.svg',
       iconColor: 'text-green-500',

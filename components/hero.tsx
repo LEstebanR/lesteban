@@ -68,7 +68,7 @@ export function Hero({ lang }: HeroProps) {
         <Link href="https://github.com/LEstebanR" withIcon>
           <Image
             src={
-              theme === 'light'
+              theme !== 'dark'
                 ? '/logos/github_light.svg'
                 : '/logos/github_dark.svg'
             }
@@ -90,7 +90,7 @@ export function Hero({ lang }: HeroProps) {
         <Link href="mailto:leramirezca@gmail.com">
           <Image
             src={
-              theme === 'light'
+              theme !== 'dark'
                 ? '/logos/mail_light.svg'
                 : '/logos/mail_dark.svg'
             }
