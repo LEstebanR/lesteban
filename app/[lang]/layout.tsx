@@ -4,8 +4,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import type { Metadata } from 'next'
 
-import { Geist, Geist_Mono } from 'next/font/google'
+import { DM_Sans, Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
 
+import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
@@ -18,6 +19,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+})
+
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
+  subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -100,19 +113,23 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex flex-col items-center justify-center`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${spaceGrotesk.variable} flex min-h-screen flex-col`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           disableTransitionOnChange
         >
-          <Header />
-          <main className="mt-16 px-2 lg:w-3/6 lg:px-0 2xl:w-2/6">
-            {children}
-            <Analytics />
-          </main>
-          <Footer />
+          <BreadcrumbProvider>
+            <div className="flex w-full flex-1 flex-col items-center justify-center">
+              <Header />
+              <main className="mt-16 flex w-full flex-1 flex-col px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
+                {children}
+                <Analytics />
+              </main>
+            </div>
+            <Footer />
+          </BreadcrumbProvider>
         </ThemeProvider>
         <SpeedInsights />
       </body>

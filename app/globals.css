@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -75,9 +76,9 @@
 }
 
 @theme inline {
-  --font-sans: 'DM Sans', var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: 'Space Grotesk', var(--font-geist-sans);
+  --font-sans: var(--font-dm-sans), var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --font-heading: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -125,6 +126,39 @@
   }
   .font-heading {
     font-family: var(--font-heading);
+  }
+  
+  /* Blog content typography improvements */
+  .blog-content {
+    @apply font-sans;
+  }
+  
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content h4 {
+    font-family: var(--font-heading);
+  }
+  
+  .blog-content img {
+    @apply rounded-lg border border-border;
+  }
+  
+  .blog-content hr {
+    @apply border-border my-8;
+  }
+  
+  .blog-content table {
+    @apply w-full border-collapse border border-border;
+  }
+  
+  .blog-content th,
+  .blog-content td {
+    @apply border border-border px-4 py-2;
+  }
+  
+  .blog-content th {
+    @apply bg-muted font-semibold;
   }
 }
 

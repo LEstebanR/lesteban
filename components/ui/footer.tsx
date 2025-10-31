@@ -54,7 +54,7 @@ export function Footer() {
           >
             <Link
               href="https://lesteban.dev"
-              target="_blank"
+              target="_self"
               className="hover:text-primary hover:underline hover:underline-offset-4 hover:transition-all hover:duration-300"
             >
               LEstebanR
