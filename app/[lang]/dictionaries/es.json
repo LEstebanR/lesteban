@@ -45,5 +45,7 @@
   "hello": "Hola, soy",
   "indie-hacker-in-progress": "Indie Hacker en proceso",
   "blog": "Blog",
-  "no-posts": "Aún no hay entradas"
+  "no-posts": "Aún no hay entradas",
+  "made-with": "Hecho con",
+  "by": "por"
 }
