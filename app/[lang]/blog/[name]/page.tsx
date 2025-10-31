@@ -52,8 +52,34 @@ export default async function BlogPostPage({ params }: PageParams) {
     notFound()
   }
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    image: post.image,
+    datePublished: post.date,
+    dateModified: post.updatedDate || post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author || 'Luis Esteban Ramirez',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Luis Esteban Ramirez',
+    },
+    keywords: post.tags?.join(', '),
+    inLanguage: lang,
+    url: `https://lestebanr.com/${lang}/blog/${post.url}`,
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SetBreadcrumb path={name} title={post.short_title} />
       <div className="mt-8 flex flex-col gap-8">
         {/* Header */}

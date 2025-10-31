@@ -3,9 +3,10 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
 import { useTheme } from 'next-themes'
+
+import { useHasMounted } from '@/hooks/use-has-mounted'
 
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/components/ui/link'
@@ -17,11 +18,7 @@ interface HeroProps {
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
   const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useHasMounted()
 
   return (
     <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between px-2 py-4 md:px-0 md:py-8">

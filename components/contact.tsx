@@ -2,11 +2,11 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
-import { useEffect, useState } from 'react'
-
 import { usePathname } from 'next/navigation'
 
 import { useTheme } from 'next-themes'
+
+import { useHasMounted } from '@/hooks/use-has-mounted'
 
 import { ContactCard, ContactLink } from '@/components/cards/contact-card'
 
@@ -15,11 +15,7 @@ export function Contact() {
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
   const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useHasMounted()
 
   const CONTACT_LINKS = mounted
     ? [

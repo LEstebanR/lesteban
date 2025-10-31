@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
+@import 'highlight.js/styles/github.css' (prefers-color-scheme: light);
+@import 'highlight.js/styles/github-dark.css' (prefers-color-scheme: dark);
 
 @custom-variant dark (&:is(.dark *));
 
@@ -159,6 +161,19 @@
   
   .blog-content th {
     @apply bg-muted font-semibold;
+  }
+
+  /* Code block styles */
+  .blog-content pre {
+    @apply rounded-lg border border-border my-4 overflow-x-auto;
+  }
+
+  .blog-content pre code {
+    @apply font-mono text-sm;
+  }
+
+  .blog-content :not(pre) > code {
+    @apply bg-muted text-foreground px-1.5 py-0.5 rounded font-mono text-sm;
   }
 }
 
