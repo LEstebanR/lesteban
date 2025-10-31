@@ -3,6 +3,7 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import { useTheme } from 'next-themes'
@@ -31,6 +32,11 @@ export function ProjectCard({ project }: { project: Project }) {
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
   const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   return (
     <Card className="border-secondary flex h-full flex-col">
       <CardHeader>
@@ -55,14 +61,14 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         <div className="flex w-full justify-between">
           <div>
-            {project.repo && (
+            {project.repo && mounted && (
               <Link href={project.repo}>
                 <div className="flex items-start gap-2">
                   <Image
                     src={
-                      theme !== 'dark'
-                        ? '/logos/github_light.svg'
-                        : '/logos/github_dark.svg'
+                      theme === 'dark'
+                        ? '/logos/github_dark.svg'
+                        : '/logos/github_light.svg'
                     }
                     alt="GitHub"
                     height={20}

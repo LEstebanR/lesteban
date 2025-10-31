@@ -3,6 +3,7 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 import { useTheme } from 'next-themes'
 
@@ -16,6 +17,11 @@ interface HeroProps {
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
   const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between px-2 py-4 md:px-0 md:py-8">
@@ -68,17 +74,19 @@ export function Hero({ lang }: HeroProps) {
       </div>
       <div className="mb-6 flex gap-4 md:mb-0">
         <Link href="https://github.com/LEstebanR" withIcon>
-          <Image
-            src={
-              theme !== 'dark'
-                ? '/logos/github_light.svg'
-                : '/logos/github_dark.svg'
-            }
-            className="transition-transform duration-300 hover:scale-150"
-            alt="Github"
-            width={30}
-            height={30}
-          />
+          {mounted && (
+            <Image
+              src={
+                theme === 'dark'
+                  ? '/logos/github_dark.svg'
+                  : '/logos/github_light.svg'
+              }
+              className="transition-transform duration-300 hover:scale-150"
+              alt="Github"
+              width={30}
+              height={30}
+            />
+          )}
         </Link>
         <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
           <Image
@@ -90,17 +98,19 @@ export function Hero({ lang }: HeroProps) {
           />
         </Link>
         <Link href="mailto:leramirezca@gmail.com">
-          <Image
-            src={
-              theme !== 'dark'
-                ? '/logos/mail_light.svg'
-                : '/logos/mail_dark.svg'
-            }
-            className="transition-transform duration-300 hover:scale-150"
-            alt="Mail"
-            width={33}
-            height={33}
-          />
+          {mounted && (
+            <Image
+              src={
+                theme === 'dark'
+                  ? '/logos/mail_dark.svg'
+                  : '/logos/mail_light.svg'
+              }
+              className="transition-transform duration-300 hover:scale-150"
+              alt="Mail"
+              width={33}
+              height={33}
+            />
+          )}
         </Link>
       </div>
     </section>
