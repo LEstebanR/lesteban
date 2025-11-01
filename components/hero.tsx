@@ -1,12 +1,11 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { useHasMounted } from '@/hooks/use-has-mounted'
 
 import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
-
-import { useHasMounted } from '@/hooks/use-has-mounted'
 
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/components/ui/link'
@@ -33,16 +32,16 @@ export function Hero({ lang }: HeroProps) {
           />
         </div>
       </div>
-      <h1 className="font-heading animate-fade-in-up mb-6 text-center text-3xl font-bold text-balance md:mb-0 md:text-6xl [animation-delay:100ms] [animation-fill-mode:both]">
+      <h1 className="font-heading animate-fade-in-up mb-6 text-center text-3xl font-bold text-balance [animation-delay:100ms] [animation-fill-mode:both] md:mb-0 md:text-6xl">
         {dictionary['hello']}{' '}
         <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
           Luis Esteban
         </span>
       </h1>
-      <p className="text-muted-foreground animate-fade-in-up mb-6 text-xl text-pretty sm:text-2xl md:mb-0 [animation-delay:200ms] [animation-fill-mode:both]">
+      <p className="text-muted-foreground animate-fade-in-up mb-6 text-xl text-pretty [animation-delay:200ms] [animation-fill-mode:both] sm:text-2xl md:mb-0">
         {dictionary['software-developer']}
       </p>
-      <p className="text-foreground/80 animate-fade-in-up mx-auto mb-6 text-lg text-pretty md:mb-0 md:text-xl [animation-delay:300ms] [animation-fill-mode:both]">
+      <p className="text-foreground/80 animate-fade-in-up mx-auto mb-6 max-w-prose text-lg text-pretty [animation-delay:300ms] [animation-fill-mode:both] md:mb-0 md:text-xl">
         {dictionary['about-me-description-1']}{' '}
         <span className="text-primary font-bold">
           {dictionary['global-impact']}
@@ -58,7 +57,7 @@ export function Hero({ lang }: HeroProps) {
         </span>
       </Badge>
 
-      <div className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 md:mb-0 [animation-delay:500ms] [animation-fill-mode:both]">
+      <div className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 [animation-delay:500ms] [animation-fill-mode:both] md:mb-0">
         {['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase'].map((tech) => (
           <Badge
             key={tech}
@@ -69,7 +68,7 @@ export function Hero({ lang }: HeroProps) {
           </Badge>
         ))}
       </div>
-      <div className="animate-fade-in-up mb-6 flex gap-4 md:mb-0 [animation-delay:600ms] [animation-fill-mode:both]">
+      <div className="animate-fade-in-up mb-6 flex gap-4 [animation-delay:600ms] [animation-fill-mode:both] md:mb-0">
         <Link href="https://github.com/LEstebanR" withIcon>
           {mounted && (
             <Image
