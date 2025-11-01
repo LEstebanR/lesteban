@@ -8,7 +8,8 @@ image: '/blog/marathon_image.jpg'
 ---
 
 I recently ran my first marathon, and while I obviously learned a lot about running and about my body, the most important lessons were mental ones, and I want to write about them here.
-First, some context: I've been running for a long time, but life led me to become sedentary for a couple of years. Then I pushed myself to run again, and that's how in November 2024 I decided that in September 2025 I would run the Medellín marathon. I've run many races, but never a challenge this big. I started preparing in January, and these are just 5 things of the many I learned.
+
+First, some context: I've been running for a long time, but life led me to become sedentary for a couple of years. Then I pushed myself to run again, and that's how in November 2024 I decided that in September 2025 I would run the Medellín marathon. I've run many races, but never a challenge this big. I started preparing in January, and these are just 5 of the many things I learned.
 
 ## 1. Hard Work Is Everything
 
@@ -17,7 +18,7 @@ And sometimes I feel that's how everything in life is. Everything I've experienc
 
 ## 2. It Doesn't Matter Who Believes as Long as You Believe
 
-Although I don't talk much about myself, when the topic of the race came up, a conversation would start with practically everyone. Everyone gave me lots of encouragement, but I know that deep down many didn't believe it. I even heard some say it, though they didn't know I heard. But it doesn't matter. I don't blame them.
+Although I don't talk much about myself, when the topic of the race came up, a conversation would start with practically everyone. Everyone gave me lots of encouragement, but I know that deep down many didn't believe it. I even heard some say it, though they didn't realize I heard. But it doesn't matter. I don't blame them.
 I look at the route map myself and sometimes I don't believe it, even though I already ran it. The point is that it doesn't matter if people believe in you. You have to believe in yourself and, beyond believing, do what you think is right to achieve what you want. If you do that, you'll achieve great things. And if you don't achieve them, you'll still improve along the way, which is already a win.
 
 ## 3. Great Achievements Involve Solitude
@@ -29,7 +30,7 @@ And I feel that's how life is. As you get closer to achieving great things, you 
 ## 4. There Are So Many Good People in the World
 
 I'm deeply moved by the people who come out to cheer on the runners. They give snacks to help recharge energy, offer water, encourage them. There are children with hands extended for high-fives, entire families with signs, people playing music on the corners.
-You don't know them. They don't know you. But they're there, sometimes from 5 in the morning, to support you. To yell "Come on, you can do it!" when you need it most, especially in those final kilometers when your body screams to stop but your mind has to push it forward.
+You don't know them. They don't know you. But they're there to support you. To yell "Come on, you can do it!" when you need it most, especially in those final kilometers when your body screams to stop but your mind has to push it forward.
 That collective energy, that selfless support, reminded me of something important: amid so much negative noise, there are so many good people in the world. People who celebrate your achievements without knowing you, who give you a smile or a shout of encouragement just when you're thinking about giving up. That restores faith in humanity.
 
 ## 5. If I Could Do This, I Can Do Anything

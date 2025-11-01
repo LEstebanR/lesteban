@@ -18,13 +18,13 @@ Y a veces siento que así es todo en la vida. Todo lo que he vivido me ha llevad
 
 ## 2. No importa quién crea mientras tú creas
 
-Aunque no hablo mucho de mí, cuando surgía el tema de la carrera nacía una conversación prácticamente con todo el mundo. Todas las personas me daban mucho ánimo, pero yo sé que en el fondo muchas no lo creían. A algunas hasta las escuché decirlo, aunque no se enteraron. Pero no importa. No las culpo.
+Aunque no hablo mucho de mí, cuando surgía el tema de la carrera nacía una conversación prácticamente con todo el mundo. Todas las personas me daban mucho ánimopero yo sé que en el fondo muchas no lo creían. A algunas hasta las escuché decirlo, aunque no se enteraron. Pero no importa. No las culpo.
 Yo mismo miro el mapa del recorrido y aveces no lo creo y eso que ya la corrí. El caso es que no importa si la gente cree en uno. Uno tiene que creer en uno mismo y más allá de creer, hacer lo que considera correcto para lograr lo que quiere. Si haces eso, lograrás grandes cosas. Y si no las logras, igual mejorarás en el camino, lo cual ya es ganancia.
 
 ## 3. Los grandes logros implican soledad
 
-El mismo día se corrió la carrera de 21K y de 10K y hubo un momento en especial que me pareció muy profundo y reflexivo: cuando los recorridos de 21 y 42 kilómetros se separan.
-En ese momento se siente una soledad especial. Mucha gente de la que apoya a lado y lado de la calle queda atrás. Se siente un silencio que por momentos asusta. Empiezas a ver menos corredores a tu lado y es por una razón: estás siguiendo una meta muy grande. No digo que 21, 10 o 5 kilómetros no lo sean—yo he estado ahí y para mí lo fueron—pero esta distancia se siente especial.
+El mismo día también se corrieron las carreras de 21K y de 10K y hubo un momento en especial que me pareció muy profundo y reflexivo: cuando los recorridos de 21 y 42 kilómetros se separan.
+En ese momento se siente una soledad especial. Mucha gente de la que apoya a lado y lado de la calle queda atrás. Se siente un silencio que por momentos asusta. Empiezas a ver menos corredores a tu lado y es por una razón: estás siguiendo una meta muy grande. No digo que 21, 10 ó 5 kilómetros no lo sean—yo he estado ahí y para mí lo fueron—pero esta distancia se siente especial.
 Y siento que así es la vida. A medida que te acercas a lograr grandes cosas, te vas quedando más solo porque no todos están en el momento de alcanzarlas. Y eso está bien, no es algo triste, es simplemente parte del proceso. Cada persona tiene su propio ritmo y sus propias metas.
 
 ## 4. En el mundo hay mucha gente buena
@@ -40,5 +40,5 @@ Y en ese momento tienes que decidir: o te rindes, o sigues. Yo seguí. Y cuando 
 No fue solo la euforia del momento. Fue la certeza profunda de que si pude con eso—con meses de entrenamiento, con las dudas, con el dolor, con la soledad de esos últimos kilómetros—puedo con cualquier cosa que me proponga. Es una confianza que no se compra ni se hereda. Se gana, kilómetro a kilómetro, paso a paso.
 Ahora cuando enfrento cualquier reto, personal o profesional, me acuerdo de ese kilómetro 32. Me acuerdo que seguí cuando todo me pedía parar. Y eso me da fuerza para seguir en lo que sea que venga.
 
-Correr un maratón fue físicamente demandante, pero mentalmente transformador. No sé si volveré a correr 42 kilómetros pero sé que lo que aprendí en esas horas de carrera me acompañará el resto de mi vida.
+Correr un maratón fue físicamente demandante pero mentalmente transformador. No sé si volveré a correr 42 kilómetros pero sé que lo que aprendí en esas horas de carrera me acompañará el resto de mi vida.
 Si estás pensando en un reto grande, sea cual sea, mi consejo es simple: créetelo, prepárate bien y arriésgate. Es la única forma de lograr las cosas y si por alguna razón no logras exactamente lo que buscas, seguro que te convertirás en alguien mejor en el intento.
