@@ -14,7 +14,7 @@ export function Contact() {
   const pathname = usePathname()
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
 
   const CONTACT_LINKS = mounted
@@ -24,7 +24,7 @@ export function Contact() {
           href: 'https://github.com/LEstebanR',
           user: 'LEstebanR',
           icon:
-            theme === 'dark'
+            resolvedTheme === 'dark'
               ? '/logos/github_dark.svg'
               : '/logos/github_light.svg',
         },
@@ -39,13 +39,13 @@ export function Contact() {
           href: 'mailto:leramirezca@gmail.com',
           user: 'leramirezca@gmail.com',
           icon:
-            theme === 'dark' ? '/logos/mail_dark.svg' : '/logos/mail_light.svg',
+            resolvedTheme === 'dark' ? '/logos/mail_dark.svg' : '/logos/mail_light.svg',
         },
         {
           label: 'location',
           user: 'Colombia',
           icon:
-            theme === 'dark'
+            resolvedTheme === 'dark'
               ? '/logos/location_dark.svg'
               : '/logos/location_light.svg',
           href: '#',

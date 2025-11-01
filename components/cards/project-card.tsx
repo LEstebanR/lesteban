@@ -32,7 +32,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const pathname = usePathname()
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
   return (
     <Card className="border-secondary flex h-full flex-col">
@@ -63,7 +63,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 <div className="flex items-start gap-2">
                   <Image
                     src={
-                      theme === 'dark'
+                      resolvedTheme === 'dark'
                         ? '/logos/github_dark.svg'
                         : '/logos/github_light.svg'
                     }
