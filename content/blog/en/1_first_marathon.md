@@ -40,4 +40,4 @@ It wasn't just the euphoria of the moment. It was the deep certainty that if I c
 Now when I face any challenge, personal or professional, I remember that kilometer 32. I remember that I kept going when everything was asking me to stop. And that gives me strength to keep going in whatever comes.
 
 Running a marathon was physically demanding, but mentally transformative. I don't know if I'll run 42 kilometers again, but I know that what I learned in those hours of racing will stay with me for the rest of my life.
-If you're thinking about a big challenge, whatever it may be, my advice is simple: believe in it, prepare well, and take the risk. You might not achieve exactly what you're looking for, but you'll surely become someone better in the attempt.
+If you're thinking about a big challenge, whatever it may be, my advice is simple: believe in it, prepare well, and take the risk. It's the only way to achieve things and if for some reason you don't achieve exactly what you're looking for, you'll surely become someone better in the attempt.

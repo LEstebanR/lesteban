@@ -11,10 +11,11 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import { useTheme } from 'next-themes'
 
-import { useBreadcrumb } from '@/components/breadcrumb-provider'
-
 import {
+  BookOpen,
+  ChevronRight,
   Github,
+  Home,
   Languages,
   Linkedin,
   Mail,
@@ -23,6 +24,7 @@ import {
   Sun,
 } from 'lucide-react'
 
+import { useBreadcrumb } from '@/components/breadcrumb-provider'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -68,7 +70,8 @@ export function Header() {
     segments[0] === 'en' || segments[0] === 'es' ? segments.slice(1) : segments
   const isHome = pathWithoutLang.length === 0
   const setLang = (lang: 'en' | 'es') => {
-    const pathAfterLang = pathWithoutLang.length > 0 ? `/${pathWithoutLang.join('/')}` : ''
+    const pathAfterLang =
+      pathWithoutLang.length > 0 ? `/${pathWithoutLang.join('/')}` : ''
     const newPathname = `/${lang}${pathAfterLang}`
     router.push(newPathname)
   }
@@ -78,7 +81,7 @@ export function Header() {
       <div className="flex w-full items-center justify-between">
         <div className="md:flex-1" />
         <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
-          <Link href="/" target="_self">
+          <Link href={`/${currentLang}`} target="_self">
             <h1 className="font-heading text-primary text-xl font-bold">
               Luis Esteban
             </h1>
@@ -87,8 +90,9 @@ export function Header() {
             <div className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0">
               <NextLink
                 href={`/${currentLang}/blog`}
-                className="hover:text-primary hover:animate-underline-link decoration-2 underline-offset-4 transition-all duration-300 hover:underline"
+                className="hover:text-primary hover:animate-underline-link flex items-center gap-1.5 decoration-2 underline-offset-4 transition-all duration-300 hover:underline"
               >
+                <BookOpen className="h-4 w-4" />
                 Blog
               </NextLink>
             </div>
@@ -98,7 +102,9 @@ export function Header() {
                 <BreadcrumbList>
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
-                      <NextLink href={`/${currentLang}`}>Home</NextLink>
+                      <NextLink href={`/${currentLang}`}>
+                        {currentLang === 'es' ? 'Inicio' : 'Home'}
+                      </NextLink>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
                   {pathWithoutLang.length > 0 && <BreadcrumbSeparator />}
@@ -108,9 +114,11 @@ export function Header() {
                       pathWithoutLang.slice(0, idx + 1).join('/')
                     // Check if there's a custom breadcrumb title for this segment
                     const customTitle = customBreadcrumbs[seg]
-                    const label = customTitle || seg
-                      .replace(/[-_]/g, ' ')
-                      .replace(/\b\w/g, (m) => m.toUpperCase())
+                    const label =
+                      customTitle ||
+                      seg
+                        .replace(/[-_]/g, ' ')
+                        .replace(/\b\w/g, (m) => m.toUpperCase())
                     const isLast = idx === pathWithoutLang.length - 1
                     return (
                       <React.Fragment key={href}>
@@ -145,7 +153,13 @@ export function Header() {
                     {!isHome && (
                       <>
                         <DropdownMenuItem asChild>
-                          <NextLink href={`/${currentLang}`}>Home</NextLink>
+                          <NextLink
+                            href={`/${currentLang}`}
+                            className="flex items-center gap-2"
+                          >
+                            <Home className="h-4 w-4" />
+                            {currentLang === 'es' ? 'Inicio' : 'Home'}
+                          </NextLink>
                         </DropdownMenuItem>
                         {pathWithoutLang.map((seg, idx) => {
                           const href =
@@ -153,9 +167,11 @@ export function Header() {
                             pathWithoutLang.slice(0, idx + 1).join('/')
                           // Check if there's a custom breadcrumb title for this segment
                           const customTitle = customBreadcrumbs[seg]
-                          const label = customTitle || seg
-                            .replace(/[-_]/g, ' ')
-                            .replace(/\b\w/g, (m) => m.toUpperCase())
+                          const label =
+                            customTitle ||
+                            seg
+                              .replace(/[-_]/g, ' ')
+                              .replace(/\b\w/g, (m) => m.toUpperCase())
                           const isLast = idx === pathWithoutLang.length - 1
                           return (
                             <DropdownMenuItem
@@ -164,9 +180,18 @@ export function Header() {
                               disabled={isLast}
                             >
                               {isLast ? (
-                                <span>{label}</span>
+                                <span className="flex items-center gap-2">
+                                  <ChevronRight className="h-4 w-4" />
+                                  {label}
+                                </span>
                               ) : (
-                                <NextLink href={href}>{label}</NextLink>
+                                <NextLink
+                                  href={href}
+                                  className="flex items-center gap-2"
+                                >
+                                  <ChevronRight className="h-4 w-4" />
+                                  {label}
+                                </NextLink>
                               )}
                             </DropdownMenuItem>
                           )
@@ -177,7 +202,13 @@ export function Header() {
                     {/* Blog only on home */}
                     {isHome && (
                       <DropdownMenuItem asChild>
-                        <NextLink href={`/${currentLang}/blog`}>Blog</NextLink>
+                        <NextLink
+                          href={`/${currentLang}/blog`}
+                          className="flex items-center gap-2"
+                        >
+                          <BookOpen className="h-4 w-4" />
+                          Blog
+                        </NextLink>
                       </DropdownMenuItem>
                     )}
                     {/* External links always */}

@@ -129,51 +129,143 @@
   .font-heading {
     font-family: var(--font-heading);
   }
-  
+
   /* Blog content typography improvements */
   .blog-content {
-    @apply font-sans;
+    @apply prose prose-lg dark:prose-invert max-w-none font-sans;
+
+    /* Headings general - with scroll margin for anchor links */
+    @apply prose-headings:font-heading prose-headings:text-foreground;
+    @apply prose-headings:scroll-mt-24;
+    @apply prose-headings:leading-tight;
+
+    /* H1 styles */
+    @apply prose-h1:text-4xl prose-h1:font-bold prose-h1:text-primary;
+    @apply prose-h1:leading-tight prose-h1:mb-6;
+
+    /* H2 styles - with decorative underline and transition */
+    @apply prose-h2:text-3xl prose-h2:font-bold prose-h2:text-primary;
+    @apply prose-h2:underline prose-h2:decoration-secondary/60;
+    @apply prose-h2:underline-offset-6 prose-h2:decoration-2;
+    @apply prose-h2:mt-12 prose-h2:mb-6;
+    @apply prose-h2:transition-all prose-h2:duration-300;
+    @apply prose-h2:leading-snug;
+
+    /* H3 styles */
+    @apply prose-h3:text-2xl prose-h3:font-bold prose-h3:text-primary;
+    @apply prose-h3:mt-8 prose-h3:mb-4;
+    @apply prose-h3:leading-snug;
+
+    /* Paragraph styles - better line height and spacing */
+    @apply prose-p:text-foreground/90 prose-p:leading-relaxed prose-p:text-lg;
+    @apply prose-p:mb-6;
+
+    /* Link styles - smooth transitions */
+    @apply prose-a:text-primary prose-a:no-underline prose-a:underline-offset-4;
+    @apply prose-a:transition-all prose-a:duration-200;
+    @apply hover:prose-a:underline hover:prose-a:text-primary/80;
+    @apply focus:prose-a:outline-2 focus:prose-a:outline-offset-4 focus:prose-a:outline-primary;
+
+    /* Strong/Bold text */
+    @apply prose-strong:text-foreground prose-strong:font-bold;
+
+    /* Inline code - better contrast */
+    @apply prose-code:text-primary prose-code:bg-muted;
+    @apply prose-code:px-2 prose-code:py-0.5 prose-code:rounded prose-code:text-sm;
+    @apply prose-code:border prose-code:border-border/50;
+    @apply prose-code:font-mono prose-code:font-medium;
+
+    /* Code blocks */
+    @apply prose-pre:bg-muted prose-pre:border prose-pre:border-border;
+    @apply prose-pre:shadow-inner;
+
+    /* Blockquotes - more distinctive with background */
+    @apply prose-blockquote:border-l-primary prose-blockquote:border-l-4;
+    @apply prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-3;
+    @apply prose-blockquote:italic prose-blockquote:text-muted-foreground;
+    @apply prose-blockquote:bg-muted/30 prose-blockquote:rounded-r-lg;
+    @apply prose-blockquote:my-6;
+
+    /* Lists - better spacing */
+    @apply prose-ul:list-disc prose-ol:list-decimal;
+    @apply prose-li:marker:text-primary prose-li:marker:font-bold;
+    @apply prose-li:mb-2;
+    @apply prose-ul:my-6 prose-ol:my-6;
   }
-  
+
   .blog-content h1,
   .blog-content h2,
   .blog-content h3,
   .blog-content h4 {
     font-family: var(--font-heading);
   }
-  
+
+  /* Images - hover effects */
   .blog-content img {
-    @apply rounded-lg border border-border;
+    @apply border-border rounded-lg border;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:scale-[1.02] hover:shadow-lg;
+    @apply my-8;
   }
-  
+
+  /* Horizontal rules - gradient */
   .blog-content hr {
-    @apply border-border my-8;
+    @apply my-12 h-px border-0;
+    background: linear-gradient(
+      to right,
+      transparent,
+      theme('colors.border'),
+      transparent
+    );
   }
-  
+
+  /* Tables */
   .blog-content table {
-    @apply w-full border-collapse border border-border;
+    @apply border-border w-full border-collapse border;
+    @apply my-8 overflow-hidden rounded-lg;
   }
-  
+
   .blog-content th,
   .blog-content td {
-    @apply border border-border px-4 py-2;
+    @apply border-border border px-4 py-3;
+    @apply transition-colors duration-200;
   }
-  
+
   .blog-content th {
-    @apply bg-muted font-semibold;
+    @apply bg-muted text-left font-semibold;
+  }
+
+  .blog-content tbody tr:hover {
+    @apply bg-muted/50;
   }
 
   /* Code block styles */
   .blog-content pre {
-    @apply rounded-lg border border-border my-4 overflow-x-auto;
+    @apply border-border my-6 overflow-x-auto rounded-lg border;
+    @apply p-4 shadow-inner;
   }
 
   .blog-content pre code {
-    @apply font-mono text-sm;
+    @apply font-mono text-sm leading-relaxed;
   }
 
   .blog-content :not(pre) > code {
-    @apply bg-muted text-foreground px-1.5 py-0.5 rounded font-mono text-sm;
+    @apply bg-muted text-foreground rounded px-2 py-0.5 font-mono text-sm;
+    @apply border-border/50 border font-medium;
+  }
+
+  /* Better focus states for accessibility */
+  .blog-content a:focus-visible {
+    @apply outline-primary rounded outline-2 outline-offset-4;
+  }
+
+  /* List item hover effect */
+  .blog-content li {
+    @apply transition-colors duration-200;
+  }
+
+  .blog-content li:hover {
+    @apply text-foreground;
   }
 }
 
@@ -194,6 +286,21 @@ html {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.5s ease-out;
 }
 
 @keyframes float {
