@@ -1,20 +1,24 @@
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
-import html from 'remark-html'
+import remarkRehype from 'remark-rehype'
+
+import type { BlogPost } from '@/types/blog'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 
-export interface BlogPost {
-  slug: string
-  url: string
-  title: string
-  short_title: string
-  date: string
-  description: string
-  image: string
-  content?: string
+/**
+ * Calculate estimated reading time based on content
+ * @param content - Markdown content
+ * @returns Reading time in minutes
+ */
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200
+  const words = content.trim().split(/\s+/).length
+  return Math.ceil(words / wordsPerMinute)
 }
 
 export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
@@ -38,9 +42,13 @@ export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
         slug,
         url: data.url || slug,
         title: data.title,
+        short_title: data.short_title,
         date: data.date,
         description: data.description,
         image: data.image,
+        author: data.author,
+        tags: data.tags,
+        updatedDate: data.updated_date,
       } as BlogPost
     })
 
@@ -78,9 +86,16 @@ export async function getPostByUrl(
     const postUrl = data.url || fileName.replace(/\.md$/, '')
 
     if (postUrl === url) {
-      // Convert markdown to HTML
-      const processedContent = await remark().use(html).process(content)
+      // Convert markdown to HTML with syntax highlighting
+      const processedContent = await remark()
+        .use(remarkRehype)
+        .use(rehypeHighlight)
+        .use(rehypeStringify)
+        .process(content)
       const contentHtml = processedContent.toString()
+
+      // Calculate reading time
+      const readingTime = calculateReadingTime(content)
 
       return {
         slug: fileName.replace(/\.md$/, ''),
@@ -91,6 +106,10 @@ export async function getPostByUrl(
         description: data.description,
         image: data.image,
         content: contentHtml,
+        author: data.author || 'Luis Esteban Ramirez',
+        tags: data.tags || [],
+        readingTime,
+        updatedDate: data.updated_date,
       }
     }
   }

@@ -6,6 +6,7 @@ import { Calendar } from 'lucide-react'
 
 import { SetBreadcrumb } from '@/components/set-breadcrumb'
 import { Badge } from '@/components/ui/badge'
+import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 import { getAllPostUrls, getPostByUrl } from '@/lib/blog'
 
@@ -52,14 +53,41 @@ export default async function BlogPostPage({ params }: PageParams) {
     notFound()
   }
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    image: post.image,
+    datePublished: post.date,
+    dateModified: post.updatedDate || post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author || 'Luis Esteban Ramirez',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Luis Esteban Ramirez',
+    },
+    keywords: post.tags?.join(', '),
+    inLanguage: lang,
+    url: `https://lestebanr.com/${lang}/blog/${post.url}`,
+  }
+
   return (
     <>
+      <ScrollProgress className="bg-primary fixed left-0 right-0 top-16 z-50" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SetBreadcrumb path={name} title={post.short_title} />
       <div className="mt-8 flex flex-col gap-8">
         {/* Header */}
-        <header className="flex flex-col gap-6">
+        <header className="animate-fade-in-up flex flex-col gap-6">
           <div className="flex flex-col gap-4">
-            <h1 className="font-heading from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-4xl font-bold text-transparent md:text-5xl lg:text-6xl">
+            <h1 className="font-heading from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-4xl font-bold leading-tight text-transparent md:text-5xl md:leading-tight lg:text-6xl lg:leading-tight">
               {post.title}
             </h1>
           </div>
@@ -80,7 +108,7 @@ export default async function BlogPostPage({ params }: PageParams) {
         </header>
         {/* Content */}
         <article
-          className="blog-content prose prose-lg dark:prose-invert prose-headings:font-heading prose-headings:text-foreground prose-h1:text-4xl prose-h1:font-bold prose-h1:text-primary prose-h2:text-3xl prose-h2:font-bold prose-h2:text-primary prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-2xl prose-h3:font-bold prose-h3:text-primary prose-h3:mt-8 prose-h3:mb-3 prose-p:text-foreground/90 prose-p:leading-relaxed prose-p:text-base prose-a:text-primary prose-a:no-underline prose-a:underline-offset-4 hover:prose-a:underline prose-strong:text-foreground prose-strong:font-bold prose-code:text-primary prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-blockquote:border-l-primary prose-blockquote:border-l-4 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-muted-foreground prose-ul:list-disc prose-ol:list-decimal prose-li:marker:text-primary max-w-none"
+          className="blog-content animate-fade-in-up [animation-delay:200ms] [animation-fill-mode:both]"
           dangerouslySetInnerHTML={{ __html: post.content || '' }}
         />
       </div>
