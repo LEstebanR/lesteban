@@ -2,7 +2,7 @@
 title: '5 things I learned from my first marathon'
 short_title: 'First marathon'
 url: 'first-marathon'
-date: '2025-10-30'
+date: '2025-11-01'
 description: '5 things I learned from my first personal challenge'
 image: '/blog/marathon_image.jpg'
 ---
