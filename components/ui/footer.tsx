@@ -59,7 +59,7 @@ export function Footer() {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              href="https://lesteban.dev"
+              href={`/${lang}`}
               target="_self"
               className="hover:text-primary hover:underline hover:underline-offset-4 hover:transition-all hover:duration-300"
             >
