@@ -1,6 +1,7 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { useHasMounted } from '@/hooks/use-has-mounted'
 
 import Image from 'next/image'
 
@@ -15,11 +16,12 @@ interface HeroProps {
 
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const mounted = useHasMounted()
 
   return (
     <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between px-2 py-4 md:px-0 md:py-8">
-      <div className="from-primary to-primary/60 animate-float mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1">
+      <div className="from-primary to-primary/60 animate-float animate-fade-in-scale mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1 [animation-fill-mode:both]">
         <div className="bg-background flex h-full w-full items-center justify-center rounded-full">
           <Image
             src="/profile_pic.jpeg"
@@ -30,16 +32,16 @@ export function Hero({ lang }: HeroProps) {
           />
         </div>
       </div>
-      <h1 className="font-heading mb-6 text-center text-3xl font-bold text-balance md:mb-0 md:text-6xl">
+      <h1 className="font-heading animate-fade-in-up mb-6 text-center text-3xl font-bold text-balance [animation-delay:100ms] [animation-fill-mode:both] md:mb-0 md:text-6xl">
         {dictionary['hello']}{' '}
         <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
           Luis Esteban
         </span>
       </h1>
-      <p className="text-muted-foreground mb-6 text-xl text-pretty sm:text-2xl md:mb-0">
+      <p className="text-muted-foreground animate-fade-in-up mb-6 text-xl text-pretty [animation-delay:200ms] [animation-fill-mode:both] sm:text-2xl md:mb-0">
         {dictionary['software-developer']}
       </p>
-      <p className="text-foreground/80 mx-auto mb-6 text-lg text-pretty md:mb-0 md:text-xl">
+      <p className="text-foreground/80 animate-fade-in-up mx-auto mb-6 max-w-prose text-lg text-pretty [animation-delay:300ms] [animation-fill-mode:both] md:mb-0 md:text-xl">
         {dictionary['about-me-description-1']}{' '}
         <span className="text-primary font-bold">
           {dictionary['global-impact']}
@@ -48,14 +50,14 @@ export function Hero({ lang }: HeroProps) {
       </p>
       <Badge
         variant="outline"
-        className="border-primary bg-primary/10 dark:bg-primary/20 mb-2 rounded-full p-2 px-3 text-sm"
+        className="border-primary bg-primary/10 dark:bg-primary/20 animate-fade-in-scale mb-2 rounded-full p-2 px-3 text-sm [animation-delay:400ms] [animation-fill-mode:both]"
       >
         <span className="text-primary dark:text-primary/90 text-sm font-bold">
           {dictionary['indie-hacker-in-progress']}
         </span>
       </Badge>
 
-      <div className="mb-6 flex flex-wrap justify-center gap-3 md:mb-0">
+      <div className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 [animation-delay:500ms] [animation-fill-mode:both] md:mb-0">
         {['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase'].map((tech) => (
           <Badge
             key={tech}
@@ -66,19 +68,21 @@ export function Hero({ lang }: HeroProps) {
           </Badge>
         ))}
       </div>
-      <div className="mb-6 flex gap-4 md:mb-0">
+      <div className="animate-fade-in-up mb-6 flex gap-4 [animation-delay:600ms] [animation-fill-mode:both] md:mb-0">
         <Link href="https://github.com/LEstebanR" withIcon>
-          <Image
-            src={
-              theme !== 'dark'
-                ? '/logos/github_light.svg'
-                : '/logos/github_dark.svg'
-            }
-            className="transition-transform duration-300 hover:scale-150"
-            alt="Github"
-            width={30}
-            height={30}
-          />
+          {mounted && (
+            <Image
+              src={
+                resolvedTheme === 'dark'
+                  ? '/logos/github_dark.svg'
+                  : '/logos/github_light.svg'
+              }
+              className="transition-transform duration-300 hover:scale-150"
+              alt="Github"
+              width={30}
+              height={30}
+            />
+          )}
         </Link>
         <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
           <Image
@@ -90,17 +94,19 @@ export function Hero({ lang }: HeroProps) {
           />
         </Link>
         <Link href="mailto:leramirezca@gmail.com">
-          <Image
-            src={
-              theme !== 'dark'
-                ? '/logos/mail_light.svg'
-                : '/logos/mail_dark.svg'
-            }
-            className="transition-transform duration-300 hover:scale-150"
-            alt="Mail"
-            width={33}
-            height={33}
-          />
+          {mounted && (
+            <Image
+              src={
+                resolvedTheme === 'dark'
+                  ? '/logos/mail_dark.svg'
+                  : '/logos/mail_light.svg'
+              }
+              className="transition-transform duration-300 hover:scale-150"
+              alt="Mail"
+              width={33}
+              height={33}
+            />
+          )}
         </Link>
       </div>
     </section>

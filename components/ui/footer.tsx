@@ -1,12 +1,18 @@
 'use client'
 
+import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { motion } from 'framer-motion'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { Heart } from 'lucide-react'
 
 export function Footer() {
+  const pathname = usePathname()
+  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const dictionary = getClientDictionary(lang)
+
   return (
     <footer className="my-4 w-full">
       <motion.div
@@ -23,7 +29,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-slate-500"
           >
-            Made with
+            {dictionary['made-with' as keyof typeof dictionary]}
           </motion.span>
           <motion.div
             animate={{
@@ -43,7 +49,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-slate-500"
           >
-            by
+            {dictionary['by' as keyof typeof dictionary]}
           </motion.span>
           <motion.div
             initial={{ opacity: 0 }}
@@ -53,8 +59,8 @@ export function Footer() {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              href="https://lesteban.dev"
-              target="_blank"
+              href={`/${lang}`}
+              target="_self"
               className="hover:text-primary hover:underline hover:underline-offset-4 hover:transition-all hover:duration-300"
             >
               LEstebanR

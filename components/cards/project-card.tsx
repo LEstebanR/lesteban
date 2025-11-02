@@ -9,6 +9,8 @@ import { useTheme } from 'next-themes'
 
 import { ExternalLink } from 'lucide-react'
 
+import { useHasMounted } from '@/hooks/use-has-mounted'
+
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -30,7 +32,8 @@ export function ProjectCard({ project }: { project: Project }) {
   const pathname = usePathname()
   const lang = pathname.split('/')[1] as 'en' | 'es'
   const dictionary = getClientDictionary(lang)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const mounted = useHasMounted()
   return (
     <Card className="border-secondary flex h-full flex-col">
       <CardHeader>
@@ -55,14 +58,14 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         <div className="flex w-full justify-between">
           <div>
-            {project.repo && (
+            {project.repo && mounted && (
               <Link href={project.repo}>
                 <div className="flex items-start gap-2">
                   <Image
                     src={
-                      theme !== 'dark'
-                        ? '/logos/github_light.svg'
-                        : '/logos/github_dark.svg'
+                      resolvedTheme === 'dark'
+                        ? '/logos/github_dark.svg'
+                        : '/logos/github_light.svg'
                     }
                     alt="GitHub"
                     height={20}

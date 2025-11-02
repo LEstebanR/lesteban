@@ -1,6 +1,5 @@
 {
   "software-developer": "Desarrollador de Software",
-  "about-me": "Sobre mí",
   "projects": "Proyectos",
   "contact": "Contacto",
   "about-me-description-1": "El trabajo en equipo es mi forma favorita de crecer, me enfoco en escribir código limpio y mantenible. Mi objetivo es construir productos con",
@@ -25,11 +24,8 @@
   "see-less": "Ver menos",
   "oniricapp-description": "Usa IA para interpretar tus sueños y obtener insights sobre tu subconsciente.",
   "humedad-arena-description": "Calcula el porcentaje de humedad en la arena utilizada para la producción de concreto.",
-  "frontend-mentor-challenges-description": "Soluciones a los desafíos de Frontend Mentor, un sitio web con diseños para entrenar tus habilidades como desarrollador Frontend.",
-  "devpeoplz-project-description": "Página con la información de la empresa para publicar ofertas de trabajo y para que los desarrolladores se presenten.",
   "oniricapp": "OniricApp",
   "humedad-arena": "Humedad Arena",
-  "frontend-mentor-challenges": "Frontend Mentor Retos",
   "devpeoplz": "DevPeoplz",
   "code": "Código",
   "live-demo": "Demo",
@@ -42,12 +38,14 @@
   "github": "Github",
   "linkedin": "LinkedIn",
   "email": "Email",
-  "made-with": "Hecho con",
-  "by": "por",
   "roadmapcol-description": "Aplicación web que conecta turistas con servicios de turismo para conocer los maravillosos lugares naturales de Colombia.",
   "roadmapcol": "RoadmapCol",
   "kodempro-description": "Aplicación web informativa sobre empresa de consultoría de proyectos.",
   "kodempro": "Kodempro",
   "hello": "Hola, soy",
-  "indie-hacker-in-progress": "Indie Hacker en proceso"
+  "indie-hacker-in-progress": "Indie Hacker en proceso",
+  "blog": "Blog",
+  "no-posts": "Aún no hay entradas",
+  "made-with": "Hecho con",
+  "by": "por"
 }

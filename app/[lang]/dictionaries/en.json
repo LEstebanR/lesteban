@@ -1,6 +1,5 @@
 {
   "software-developer": "Software Developer",
-  "about-me": "About me",
   "projects": "Projects",
   "contact": "Contact",
   "about-me-description-1": "Collaborative environments are my favorite way to grow, and I focus on writing clean, maintainable code. My goal is to build products with",
@@ -25,11 +24,8 @@
   "see-less": "See less",
   "oniricapp-description": "Use IA to interpret your dreams and get insights about your subconscious.",
   "humedad-arena-description": "Calculates the percentage of humidity in the sand used for the production of concrete.",
-  "frontend-mentor-challenges-description": "Solutions to the challenges of Frontend Mentor, a website with designs to train your skills as a Frontend Developer.",
-  "devpeoplz-project-description": "Page with the company's information to publish job offers and for developers to apply for them.",
   "oniricapp": "OniricApp",
   "humedad-arena": "Humedad Arena",
-  "frontend-mentor-challenges": "Frontend Mentor Challenges",
   "devpeoplz": "DevPeoplz",
   "code": "Code",
   "live-demo": "Live Demo",
@@ -42,12 +38,14 @@
   "github": "Github",
   "linkedin": "LinkedIn",
   "email": "Email",
-  "made-with": "Made with",
-  "by": "by",
   "roadmapcol-description": "Web application that connects tourists with tour services to get to know the natural wonders of Colombia.",
   "roadmapcol": "RoadmapCol",
   "kodempro-description": "Informational website about a project consulting company.",
   "kodempro": "Kodempro",
   "hello": "Hi, I'm",
-  "indie-hacker-in-progress": "Indie Hacker in progress"
+  "indie-hacker-in-progress": "Indie Hacker in progress",
+  "blog": "Blog",
+  "no-posts": "No posts yet",
+  "made-with": "Made with",
+  "by": "by"
 }
