@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { BlogCard } from '@/components/cards/blog-card'
 
 import { getAllPosts } from '@/lib/blog'
+import { getCanonicalUrl } from '@/lib/utils'
 
 type PageParams = {
   params: Promise<{
@@ -17,8 +18,21 @@ export async function generateMetadata({
 }: PageParams): Promise<Metadata> {
   const { lang } = await params
   const dictionary = await getDictionary(lang)
+  const canonicalPath = `/${lang}/blog`
+  const canonicalUrl = getCanonicalUrl(canonicalPath)
+  const alternateLang = lang === 'en' ? 'es' : 'en'
+  const alternateUrl = getCanonicalUrl(`/${alternateLang}/blog`)
+
   return {
     title: dictionary['blog'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        [lang]: canonicalUrl,
+        [alternateLang]: alternateUrl,
+        'x-default': canonicalUrl,
+      },
+    },
   }
 }
 

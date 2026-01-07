@@ -11,6 +11,8 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
 
+import { getCanonicalUrl } from '@/lib/utils'
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -33,75 +35,102 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: 'Luis Esteban Ramirez | Software Developer',
-  description:
-    'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
-  keywords: [
-    'software developer',
-    'web developer',
-    'React',
-    'TypeScript',
-    'full-stack',
-    'frontend',
-    'portfolio',
-    'Luis Esteban Ramirez',
-    'desarrollador de software',
-    'desarrollador web',
-    'desarrollo full-stack',
-  ],
-  authors: [{ name: 'Luis Esteban Ramirez' }],
-  creator: 'Luis Esteban Ramirez',
-  publisher: 'Luis Esteban Ramirez',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    alternateLocale: 'es_ES',
-    url: 'https://lesteban.dev',
+type LayoutParams = {
+  params: Promise<{
+    lang: 'en' | 'es'
+  }>
+}
+
+export async function generateMetadata({
+  params,
+}: LayoutParams): Promise<Metadata> {
+  const { lang } = await params
+  const path = `/${lang}`
+  const canonicalUrl = getCanonicalUrl(path)
+  const alternateEn = getCanonicalUrl('/en')
+  const alternateEs = getCanonicalUrl('/es')
+
+  return {
     title: 'Luis Esteban Ramirez | Software Developer',
     description:
       'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
-    siteName: 'LEsteban Portfolio',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Luis Esteban Ramirez - Software Developer Portfolio',
-      },
+    keywords: [
+      'software developer',
+      'web developer',
+      'React',
+      'TypeScript',
+      'full-stack',
+      'frontend',
+      'portfolio',
+      'Luis Esteban Ramirez',
+      'desarrollador de software',
+      'desarrollador web',
+      'desarrollo full-stack',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Luis Esteban Ramirez | Software Developer',
-    description:
-      'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
-    creator: '@lestebanr',
-    images: ['/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: 'Luis Esteban Ramirez' }],
+    creator: 'Luis Esteban Ramirez',
+    publisher: 'Luis Esteban Ramirez',
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: alternateEn,
+        es: alternateEs,
+        'x-default': alternateEn,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: lang === 'en' ? 'en_US' : 'es_ES',
+      alternateLocale: lang === 'en' ? 'es_ES' : 'en_US',
+      url: canonicalUrl,
+      title: 'Luis Esteban Ramirez | Software Developer',
+      description:
+        'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
+      siteName: 'LEsteban Portfolio',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Luis Esteban Ramirez - Software Developer Portfolio',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Luis Esteban Ramirez | Software Developer',
+      description:
+        'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
+      creator: '@lestebanr',
+      images: ['/og-image.jpg'],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  verification: {
-    google: 'gv-xgsjg4sm7rtc4i.dv.googlehosted.com',
-  },
+    verification: {
+      google: 'gv-xgsjg4sm7rtc4i.dv.googlehosted.com',
+    },
+  }
 }
 
 export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ lang: 'en' | 'es' }>
 }) {
+  const { lang } = await params
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <meta
           name="description"
