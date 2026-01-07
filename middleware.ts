@@ -24,8 +24,9 @@ export function middleware(request: NextRequest) {
   const locale = getLocale(request)
   request.nextUrl.pathname = `/${locale}${pathname}`
   // e.g. incoming request is /products
-  // The new URL is now /en-US/products
-  return NextResponse.redirect(request.nextUrl)
+  // The new URL is now /en/products
+  // Use 301 (permanent redirect) for SEO - tells Google to index the destination URL
+  return NextResponse.redirect(request.nextUrl, { status: 301 })
 }
 
 export const config = {

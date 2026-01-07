@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 import { getAllPostUrls, getPostByUrl } from '@/lib/blog'
+import { getCanonicalUrl } from '@/lib/utils'
 
 type PageParams = {
   params: Promise<{
@@ -39,9 +40,51 @@ export async function generateMetadata({
     }
   }
 
+  const canonicalPath = `/${lang}/blog/${name}`
+  const canonicalUrl = getCanonicalUrl(canonicalPath)
+  
+  // Check if alternate language version exists
+  const alternateLang = lang === 'en' ? 'es' : 'en'
+  const alternatePost = await getPostByUrl(name, alternateLang)
+  const alternateUrl = alternatePost
+    ? getCanonicalUrl(`/${alternateLang}/blog/${name}`)
+    : undefined
+
   return {
     title: `${post.title} | Blog`,
     description: post.description,
+    alternates: {
+      canonical: canonicalUrl,
+      ...(alternateUrl && {
+        languages: {
+          [lang]: canonicalUrl,
+          [alternateLang]: alternateUrl,
+          'x-default': canonicalUrl,
+        },
+      }),
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: canonicalUrl,
+      type: 'article',
+      locale: lang === 'en' ? 'en_US' : 'es_ES',
+      ...(alternateUrl && {
+        alternateLocale: lang === 'en' ? 'es_ES' : 'en_US',
+      }),
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : undefined,
+      publishedTime: post.date,
+      modifiedTime: post.updatedDate || post.date,
+    },
   }
 }
 
@@ -72,7 +115,7 @@ export default async function BlogPostPage({ params }: PageParams) {
     },
     keywords: post.tags?.join(', '),
     inLanguage: lang,
-    url: `https://lestebanr.com/${lang}/blog/${post.url}`,
+    url: `https://lesteban.dev/${lang}/blog/${post.url}`,
   }
 
   return (
