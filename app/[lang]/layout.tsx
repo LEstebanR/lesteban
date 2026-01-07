@@ -37,7 +37,7 @@ const spaceGrotesk = Space_Grotesk({
 
 type LayoutParams = {
   params: Promise<{
-    lang: 'en' | 'es'
+    lang: string
   }>
 }
 
@@ -45,7 +45,8 @@ export async function generateMetadata({
   params,
 }: LayoutParams): Promise<Metadata> {
   const { lang } = await params
-  const path = `/${lang}`
+  const validLang = lang === 'es' ? 'es' : 'en'
+  const path = `/${validLang}`
   const canonicalUrl = getCanonicalUrl(path)
   const alternateEn = getCanonicalUrl('/en')
   const alternateEs = getCanonicalUrl('/es')
@@ -80,8 +81,8 @@ export async function generateMetadata({
     },
     openGraph: {
       type: 'website',
-      locale: lang === 'en' ? 'en_US' : 'es_ES',
-      alternateLocale: lang === 'en' ? 'es_ES' : 'en_US',
+      locale: validLang === 'en' ? 'en_US' : 'es_ES',
+      alternateLocale: validLang === 'en' ? 'es_ES' : 'en_US',
       url: canonicalUrl,
       title: 'Luis Esteban Ramirez | Software Developer',
       description:
@@ -126,11 +127,12 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode
-  params: Promise<{ lang: 'en' | 'es' }>
+  params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
+  const validLang = lang === 'es' ? 'es' : 'en'
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={validLang} suppressHydrationWarning>
       <head>
         <meta
           name="description"
