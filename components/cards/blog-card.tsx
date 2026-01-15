@@ -22,7 +22,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <NextLink href={`/${lang}/blog/${post.url}`}>
       <Card className="border-secondary group flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden border-2 p-0 transition-all duration-300 hover:shadow-lg">
-        <div className="lg :h-64 relative block h-80 w-full overflow-hidden">
+        <div className="relative block h-64 w-full overflow-hidden lg:h-56">
           <Image
             src={post.image}
             alt={post.title}

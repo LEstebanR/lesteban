@@ -54,7 +54,7 @@ export default async function BlogPage({ params }: PageParams) {
           <p>{dictionary['no-posts']}</p>
         </div>
       ) : (
-        <div className="mx-auto grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
           {posts.map((post, index) => (
             <div
               key={post.url}
