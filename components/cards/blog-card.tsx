@@ -21,7 +21,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
 
   return (
     <NextLink href={`/${lang}/blog/${post.url}`}>
-      <Card className="border-secondary group flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden border-2 p-0 transition-all duration-300 hover:shadow-lg">
+      <Card className="border-secondary group flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden border-2 p-0 transition-all duration-300 hover:border-primary/50">
         <div className="relative block h-64 w-full overflow-hidden lg:h-56">
           <Image
             src={post.image}
@@ -33,7 +33,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
         </div>
         <CardHeader className="w-full flex-1 px-0">
           <CardTitle className="group-hover:text-primary flex w-full items-start justify-between gap-2 px-6 py-4 transition-colors">
-            <span className="text-lg font-bold">{post.title}</span>
+            <span className="font-heading text-lg font-bold">{post.title}</span>
           </CardTitle>
         </CardHeader>
       </Card>

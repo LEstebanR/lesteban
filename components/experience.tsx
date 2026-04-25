@@ -49,7 +49,7 @@ export function Experience() {
 
   return (
     <div className="items-betwee flex flex-col gap-5">
-      <h1 className="text-primary text-2xl font-bold">
+      <h1 className="font-heading text-primary text-2xl font-bold">
         {dictionary['experience']}
       </h1>
       <ExperienceCard job={EXPERIENCE.aleluya} />

@@ -27,7 +27,7 @@ export function Footer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-slate-500"
+            className="text-muted-foreground"
           >
             {dictionary['made-with' as keyof typeof dictionary]}
           </motion.span>
@@ -41,13 +41,13 @@ export function Footer() {
               repeatType: 'reverse',
             }}
           >
-            <Heart className="h-4 w-4 fill-red-500 text-red-500" />
+            <Heart className="h-4 w-4 fill-secondary text-secondary" />
           </motion.div>
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-slate-500"
+            className="text-muted-foreground"
           >
             {dictionary['by' as keyof typeof dictionary]}
           </motion.span>
