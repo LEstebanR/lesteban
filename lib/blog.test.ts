@@ -1,4 +1,7 @@
-import { describe, expect, test } from 'bun:test'
+import fs from 'fs'
+import path from 'path'
+
+import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
 
 import { getAllPosts, getAllPostUrls, getPostByUrl } from './blog'
 
@@ -125,6 +128,48 @@ describe('Blog Utilities', () => {
       const enUrls = (await getAllPostUrls('en')).sort()
       const esUrls = (await getAllPostUrls('es')).sort()
       expect(enUrls).toEqual(esUrls)
+    })
+  })
+
+  describe('XSS sanitization', () => {
+    const fixtureUrl = '_test-xss-fixture'
+    const fixturePath = path.join(process.cwd(), 'content/blog/en', `${fixtureUrl}.md`)
+
+    beforeEach(() => {
+      fs.writeFileSync(
+        fixturePath,
+        `---
+title: XSS Fixture
+short_title: XSS Fixture
+date: 2024-01-01
+description: Sanitization test fixture
+image: /test.jpg
+url: ${fixtureUrl}
+author: Test
+tags: []
+---
+
+Hello <script>alert('xss')</script> world
+
+<img src="x" onerror="alert(1)" />
+`
+      )
+    })
+
+    afterEach(() => {
+      if (fs.existsSync(fixturePath)) fs.unlinkSync(fixturePath)
+    })
+
+    test('strips <script> tags from rendered HTML', async () => {
+      const post = await getPostByUrl(fixtureUrl, 'en')
+      expect(post).not.toBeNull()
+      expect(post?.content).not.toContain('<script>')
+      expect(post?.content).not.toContain('</script>')
+    })
+
+    test('strips onerror event handlers from rendered HTML', async () => {
+      const post = await getPostByUrl(fixtureUrl, 'en')
+      expect(post?.content).not.toContain('onerror')
     })
   })
 

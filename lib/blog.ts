@@ -1,8 +1,8 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import DOMPurify from 'isomorphic-dompurify'
 import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
 import remarkRehype from 'remark-rehype'
@@ -89,11 +89,12 @@ export async function getPostByUrl(
     if (postUrl === url) {
       // Convert markdown to HTML with syntax highlighting
       const processedContent = await remark()
-        .use(remarkRehype)
+        .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeHighlight)
+        .use(rehypeSanitize)
         .use(rehypeStringify)
         .process(content)
-      const contentHtml = DOMPurify.sanitize(processedContent.toString())
+      const contentHtml = processedContent.toString()
 
       // Calculate reading time
       const readingTime = calculateReadingTime(content)
