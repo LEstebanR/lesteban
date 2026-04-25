@@ -98,5 +98,58 @@ describe('Blog Utilities', () => {
       const urls = await getAllPostUrls('en')
       expect(urls.length).toBe(posts.length)
     })
+
+    test('should not contain URLs with leading or trailing slashes', async () => {
+      const urls = await getAllPostUrls('en')
+      for (const url of urls) {
+        expect(url.startsWith('/')).toBe(false)
+        expect(url.endsWith('/')).toBe(false)
+      }
+    })
+
+    test('should not contain duplicate URLs', async () => {
+      const urls = await getAllPostUrls('en')
+      const unique = new Set(urls)
+      expect(unique.size).toBe(urls.length)
+    })
+  })
+
+  describe('language parity', () => {
+    test('en and es have the same number of posts', async () => {
+      const enPosts = await getAllPosts('en')
+      const esPosts = await getAllPosts('es')
+      expect(enPosts.length).toBe(esPosts.length)
+    })
+
+    test('all post URLs match across en and es', async () => {
+      const enUrls = (await getAllPostUrls('en')).sort()
+      const esUrls = (await getAllPostUrls('es')).sort()
+      expect(enUrls).toEqual(esUrls)
+    })
+  })
+
+  describe('data integrity', () => {
+    test('all posts have a valid date string', async () => {
+      const posts = await getAllPosts('en')
+      for (const post of posts) {
+        expect(isNaN(Date.parse(post.date))).toBe(false)
+      }
+    })
+
+    test('getPostByUrl returns non-empty content', async () => {
+      const posts = await getAllPosts('en')
+      if (posts.length > 0) {
+        const post = await getPostByUrl(posts[0].url, 'en')
+        expect((post?.content ?? '').length).toBeGreaterThan(0)
+      }
+    })
+
+    test('getPostByUrl returns readingTime greater than 0', async () => {
+      const posts = await getAllPosts('en')
+      if (posts.length > 0) {
+        const post = await getPostByUrl(posts[0].url, 'en')
+        expect(post?.readingTime).toBeGreaterThan(0)
+      }
+    })
   })
 })
