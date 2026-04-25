@@ -55,7 +55,7 @@ export function Contact() {
   if (!mounted) {
     return (
       <div className="flex flex-col gap-4">
-        <h1 className="text-primary text-2xl font-bold">
+        <h1 className="font-heading text-primary text-2xl font-bold">
           {dictionary['contact']}
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -71,7 +71,7 @@ export function Contact() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-primary text-2xl font-bold">
+      <h1 className="font-heading text-primary text-2xl font-bold">
         {dictionary['contact']}
       </h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

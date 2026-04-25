@@ -77,7 +77,7 @@ export function Header() {
   }
 
   return (
-    <header className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b-1 border-gray-100 py-1 dark:border-gray-700">
+    <header className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b border-border py-1">
       <div className="flex w-full items-center justify-between">
         <div className="md:flex-1" />
         <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
