@@ -58,28 +58,28 @@ export function Skills() {
         <Skill
           skill={dictionary['frontend-development' as keyof typeof dictionary]}
           icon={
-            <Layout className="h-5 w-5 transition-transform duration-300 hover:scale-110text-primary" />
+            <Layout className="h-5 w-5 text-primary transition-transform duration-300 hover:scale-110" />
           }
           skills={SKILLS.frontend}
         />
         <Skill
           skill={dictionary['backend-development' as keyof typeof dictionary]}
           icon={
-            <Server className="h-5 w-5 transition-transform duration-300 hover:scale-110text-accent" />
+            <Server className="h-5 w-5 text-accent transition-transform duration-300 hover:scale-110" />
           }
           skills={SKILLS.backend}
         />
         <Skill
           skill={dictionary['database' as keyof typeof dictionary]}
           icon={
-            <Database className="h-5 w-5 transition-transform duration-300 hover:scale-110text-chart-5" />
+            <Database className="h-5 w-5 text-chart-5 transition-transform duration-300 hover:scale-110" />
           }
           skills={SKILLS.database}
         />
         <Skill
           skill={dictionary['programing-languages' as keyof typeof dictionary]}
           icon={
-            <Code className="h-5 w-5 transition-transform duration-300 hover:scale-110text-secondary" />
+            <Code className="h-5 w-5 text-secondary transition-transform duration-300 hover:scale-110" />
           }
           skills={SKILLS.programing_languages}
         />

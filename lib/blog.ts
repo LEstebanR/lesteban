@@ -1,5 +1,6 @@
 import fs from 'fs'
 import matter from 'gray-matter'
+import DOMPurify from 'isomorphic-dompurify'
 import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeStringify from 'rehype-stringify'
@@ -92,7 +93,7 @@ export async function getPostByUrl(
         .use(rehypeHighlight)
         .use(rehypeStringify)
         .process(content)
-      const contentHtml = processedContent.toString()
+      const contentHtml = DOMPurify.sanitize(processedContent.toString())
 
       // Calculate reading time
       const readingTime = calculateReadingTime(content)
