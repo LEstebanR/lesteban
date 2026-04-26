@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "create:post": "bun scripts/create-post.ts",
     "test": "bun test",
+    "test:coverage": "bun test --coverage",
     "test:watch": "bun test --watch"
   },
   "dependencies": {

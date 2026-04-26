@@ -131,6 +131,59 @@ describe('Blog Utilities', () => {
     })
   })
 
+  describe('missing directory fallback', () => {
+    test('getAllPosts returns [] when lang directory does not exist', async () => {
+      const posts = await getAllPosts('fr' as 'en')
+      expect(posts).toEqual([])
+    })
+
+    test('getPostByUrl returns null when lang directory does not exist', async () => {
+      const post = await getPostByUrl('any-post', 'fr' as 'en')
+      expect(post).toBeNull()
+    })
+
+    test('getAllPostUrls returns [] when lang directory does not exist', async () => {
+      const urls = await getAllPostUrls('fr' as 'en')
+      expect(urls).toEqual([])
+    })
+  })
+
+  describe('sort order', () => {
+    const enDir = path.join(process.cwd(), 'content/blog/en')
+    const oldFixture = path.join(enDir, '_aaa-sort-old.md')
+    const newFixture = path.join(enDir, '_bbb-sort-new.md')
+
+    const makeFixture = (url: string, date: string) => `---
+title: Sort Fixture ${url}
+short_title: Sort Fixture
+date: ${date}
+description: Sort fixture
+image: /test.jpg
+url: ${url}
+author: Test
+tags: []
+---
+Content
+`
+
+    beforeEach(() => {
+      fs.writeFileSync(oldFixture, makeFixture('_aaa-sort-old', '2000-01-01'))
+      fs.writeFileSync(newFixture, makeFixture('_bbb-sort-new', '2099-01-01'))
+    })
+
+    afterEach(() => {
+      if (fs.existsSync(oldFixture)) fs.unlinkSync(oldFixture)
+      if (fs.existsSync(newFixture)) fs.unlinkSync(newFixture)
+    })
+
+    test('getAllPosts returns posts sorted newest-first, covering both sort comparator branches', async () => {
+      const posts = await getAllPosts('en')
+      const idxOld = posts.findIndex((p) => p.url === '_aaa-sort-old')
+      const idxNew = posts.findIndex((p) => p.url === '_bbb-sort-new')
+      expect(idxNew).toBeLessThan(idxOld)
+    })
+  })
+
   describe('XSS sanitization', () => {
     const fixtureUrl = '_test-xss-fixture'
     const fixturePath = path.join(process.cwd(), 'content/blog/en', `${fixtureUrl}.md`)

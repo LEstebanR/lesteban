@@ -53,14 +53,7 @@ export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
       } as BlogPost
     })
 
-  // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1
-    } else {
-      return -1
-    }
-  })
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
 export async function getPostByUrl(
