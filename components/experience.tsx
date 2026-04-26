@@ -48,7 +48,7 @@ export function Experience() {
   const dictionary = getClientDictionary(lang)
 
   return (
-    <div className="items-betwee flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <h1 className="font-heading text-primary text-2xl font-bold">
         {dictionary['experience']}
       </h1>

@@ -71,6 +71,7 @@ const { BlogCard } = await import('@/components/cards/blog-card')
 const { ProjectCard } = await import('@/components/cards/project-card')
 const { ContactCard } = await import('@/components/cards/contact-card')
 const { ExperienceCard } = await import('@/components/cards/experience-card')
+const { CardAction } = await import('@/components/ui/card')
 
 // ─── BlogCard ────────────────────────────────────────────────────────────────
 
@@ -220,5 +221,19 @@ describe('ExperienceCard', () => {
     expect(screen.getByText('React')).toBeDefined()
     expect(screen.getByText('MUI')).toBeDefined()
     expect(screen.getByText('Cypress')).toBeDefined()
+  })
+})
+
+// ─── CardAction ───────────────────────────────────────────────────────────────
+
+describe('CardAction', () => {
+  test('renders children', () => {
+    render(<CardAction>Edit</CardAction>)
+    expect(screen.getByText('Edit')).toBeDefined()
+  })
+
+  test('merges extra className', () => {
+    render(<CardAction className="extra" data-testid="ca" />)
+    expect(screen.getByTestId('ca').className).toContain('extra')
   })
 })

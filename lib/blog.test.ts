@@ -1,4 +1,7 @@
-import { describe, expect, test } from 'bun:test'
+import fs from 'fs'
+import path from 'path'
+
+import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
 
 import { getAllPosts, getAllPostUrls, getPostByUrl } from './blog'
 
@@ -125,6 +128,101 @@ describe('Blog Utilities', () => {
       const enUrls = (await getAllPostUrls('en')).sort()
       const esUrls = (await getAllPostUrls('es')).sort()
       expect(enUrls).toEqual(esUrls)
+    })
+  })
+
+  describe('missing directory fallback', () => {
+    test('getAllPosts returns [] when lang directory does not exist', async () => {
+      const posts = await getAllPosts('fr' as 'en')
+      expect(posts).toEqual([])
+    })
+
+    test('getPostByUrl returns null when lang directory does not exist', async () => {
+      const post = await getPostByUrl('any-post', 'fr' as 'en')
+      expect(post).toBeNull()
+    })
+
+    test('getAllPostUrls returns [] when lang directory does not exist', async () => {
+      const urls = await getAllPostUrls('fr' as 'en')
+      expect(urls).toEqual([])
+    })
+  })
+
+  describe('sort order', () => {
+    const enDir = path.join(process.cwd(), 'content/blog/en')
+    const oldFixture = path.join(enDir, '_aaa-sort-old.md')
+    const newFixture = path.join(enDir, '_bbb-sort-new.md')
+
+    const makeFixture = (url: string, date: string) => `---
+title: Sort Fixture ${url}
+short_title: Sort Fixture
+date: ${date}
+description: Sort fixture
+image: /test.jpg
+url: ${url}
+author: Test
+tags: []
+---
+Content
+`
+
+    beforeEach(() => {
+      fs.writeFileSync(oldFixture, makeFixture('_aaa-sort-old', '2000-01-01'))
+      fs.writeFileSync(newFixture, makeFixture('_bbb-sort-new', '2099-01-01'))
+    })
+
+    afterEach(() => {
+      if (fs.existsSync(oldFixture)) fs.unlinkSync(oldFixture)
+      if (fs.existsSync(newFixture)) fs.unlinkSync(newFixture)
+    })
+
+    test('getAllPosts returns posts sorted newest-first, covering both sort comparator branches', async () => {
+      const posts = await getAllPosts('en')
+      const idxOld = posts.findIndex((p) => p.url === '_aaa-sort-old')
+      const idxNew = posts.findIndex((p) => p.url === '_bbb-sort-new')
+      expect(idxNew).toBeLessThan(idxOld)
+    })
+  })
+
+  describe('XSS sanitization', () => {
+    const fixtureUrl = '_test-xss-fixture'
+    const fixturePath = path.join(process.cwd(), 'content/blog/en', `${fixtureUrl}.md`)
+
+    beforeEach(() => {
+      fs.writeFileSync(
+        fixturePath,
+        `---
+title: XSS Fixture
+short_title: XSS Fixture
+date: 2024-01-01
+description: Sanitization test fixture
+image: /test.jpg
+url: ${fixtureUrl}
+author: Test
+tags: []
+---
+
+Hello <script>alert('xss')</script> world
+
+<img src="x" onerror="alert(1)" />
+`
+      )
+    })
+
+    afterEach(() => {
+      if (fs.existsSync(fixturePath)) fs.unlinkSync(fixturePath)
+    })
+
+    test('strips <script> tags from rendered HTML', async () => {
+      const post = await getPostByUrl(fixtureUrl, 'en')
+      expect(post).not.toBeNull()
+      expect(post?.content).not.toContain('<script>')
+      expect(post?.content).not.toContain('</script>')
+    })
+
+    test('strips onerror event handlers from rendered HTML', async () => {
+      const post = await getPostByUrl(fixtureUrl, 'en')
+      expect(post?.content).not.toContain('onerror')
     })
   })
 

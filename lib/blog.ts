@@ -2,6 +2,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
 import remarkRehype from 'remark-rehype'
@@ -52,14 +53,7 @@ export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
       } as BlogPost
     })
 
-  // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1
-    } else {
-      return -1
-    }
-  })
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
 export async function getPostByUrl(
@@ -88,8 +82,9 @@ export async function getPostByUrl(
     if (postUrl === url) {
       // Convert markdown to HTML with syntax highlighting
       const processedContent = await remark()
-        .use(remarkRehype)
+        .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeHighlight)
+        .use(rehypeSanitize)
         .use(rehypeStringify)
         .process(content)
       const contentHtml = processedContent.toString()

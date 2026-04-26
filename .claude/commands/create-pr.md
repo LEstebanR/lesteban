@@ -9,39 +9,82 @@ Create a pull request for the current branch with all its changes relative to ma
    - `git diff main...HEAD --stat` — summarize changed files
    - `git diff main...HEAD` — full diff for understanding scope
 
-3. Analyze all commits and changes to draft:
-   - **Title** — short (≤70 chars), sentence-case, no period. Use the same type/scope vocabulary as `/commit` (`feat`, `fix`, `style`, `refac`, `test`, `docs`, `chore`).
-   - **Summary** — 2–4 bullets covering what changed and why. Be specific about files and behavior.
-   - **Test plan** — bulleted checklist of what to verify manually or automatically.
+3. Analyze all commits and changes to draft the PR body (see **PR structure** below).
 
-4. Check if there are Linear issue IDs referenced in commit messages or branch names (e.g. `LES-37`). If found, mention them in the PR body.
-
-5. Push the branch if it has no upstream yet:
+4. Push the branch if it has no upstream yet:
    ```bash
    git push -u origin HEAD
    ```
 
-6. Create the PR with `gh pr create`:
+5. Create the PR with `gh pr create`:
    ```bash
    gh pr create --title "<title>" --body "$(cat <<'EOF'
-   ## Summary
-   - ...
-
-   ## Linear issues
-   - Closes LES-XX (if applicable)
-
-   ## Test plan
-   - [ ] ...
-
-   🤖 Generated with [Claude Code](https://claude.com/claude-code)
+   <body>
    EOF
    )"
    ```
 
-7. Return the PR URL.
+6. Return the PR URL.
+
+---
+
+## PR structure
+
+### Title
+- ≤70 characters, sentence-case, no trailing period
+- Format: `type(scope): short description`
+- Types: `feat`, `fix`, `style`, `refactor`, `test`, `docs`, `chore`
+- Scope: the affected area (e.g. `blog`, `skills`, `experience`, `i18n`, `auth`)
+- Example: `fix(skills): correct malformed Tailwind hover classes on icons`
+
+### Body template
+
+```
+## Context
+
+<1–3 sentences explaining WHY this change is needed. What problem does it solve?
+Reference the user story, bug report, or product requirement that motivated it.>
+
+## Changes
+
+- **`path/to/file.tsx`** — what changed and the concrete effect on behavior/UI
+- **`path/to/file.ts`** — …
+- (one bullet per meaningfully changed file or logical group)
+
+## Linear issues
+
+- Closes LES-XX
+(omit section if no Linear issues are referenced in commits or branch name)
+
+## Test plan
+
+- [ ] <specific UI state or user flow to verify manually>
+- [ ] <edge case or regression to check>
+- [ ] `bun typecheck` passes
+- [ ] `bun lint` passes
+- [ ] (add `bun test` if tests were added or modified)
+
+## Notes
+
+<Optional: breaking changes, follow-up work, known limitations, deploy considerations.
+Omit this section if there is nothing worth flagging.>
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+```
+
+### Description quality rules
+
+- **Context** must answer *why*, not restate *what* — the diff already shows what changed.
+- **Changes** bullets must name the file and describe the behavioral or visual effect, not just "updated X".
+- **Test plan** items must be specific enough that a reviewer can follow them step by step.
+- Omit any section that adds no value (e.g. no Notes if there's nothing notable).
+- Never use filler phrases like "various improvements" or "minor fixes".
+
+---
 
 ## Rules
 
 - Base branch is always `main`.
 - Never force-push or amend commits as part of this flow.
 - If the diff is empty (branch is identical to main), stop and tell the user there is nothing to open a PR for.
+- Scan commit messages and the branch name for Linear issue IDs (pattern `[A-Z]+-\d+`). Include all found IDs in the **Linear issues** section.
