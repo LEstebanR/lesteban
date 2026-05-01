@@ -2,17 +2,15 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
-import { usePathname } from 'next/navigation'
-
 import { useTheme } from 'next-themes'
 
 import { useHasMounted } from '@/hooks/use-has-mounted'
+import { useLang } from '@/hooks/use-lang'
 
 import { ContactCard, ContactLink } from '@/components/cards/contact-card'
 
 export function Contact() {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()

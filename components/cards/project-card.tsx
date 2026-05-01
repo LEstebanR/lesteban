@@ -3,13 +3,13 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 
 import { useTheme } from 'next-themes'
 
 import { ExternalLink } from 'lucide-react'
 
 import { useHasMounted } from '@/hooks/use-has-mounted'
+import { useLang } from '@/hooks/use-lang'
 
 import { Badge } from '@/components/ui/badge'
 import {
@@ -29,8 +29,7 @@ type Project = {
   repo?: string
 }
 export function ProjectCard({ project }: { project: Project }) {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()

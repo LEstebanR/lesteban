@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react'
 
-import { usePathname } from 'next/navigation'
-
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
+
+import { useLang } from '@/hooks/use-lang'
 
 export default function BlogError({
   error,
@@ -14,8 +14,7 @@ export default function BlogError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
 
   useEffect(() => {
     // Log the error to an error reporting service

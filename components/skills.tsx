@@ -2,9 +2,9 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
-import { usePathname } from 'next/navigation'
-
 import { Code, Database, Layout, Server } from 'lucide-react'
+
+import { useLang } from '@/hooks/use-lang'
 
 import { Badge } from '@/components/ui/badge'
 
@@ -48,8 +48,7 @@ function Skill({
 }
 
 export function Skills() {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
     <div className="flex flex-col gap-4">

@@ -4,13 +4,13 @@ import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { motion } from 'framer-motion'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 import { Heart } from 'lucide-react'
 
+import { useLang } from '@/hooks/use-lang'
+
 export function Footer() {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
 
   return (
