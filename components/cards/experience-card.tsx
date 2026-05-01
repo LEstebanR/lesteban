@@ -2,9 +2,9 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
-import { usePathname } from 'next/navigation'
-
 import { Calendar, Code } from 'lucide-react'
+
+import { useLang } from '@/hooks/use-lang'
 
 import { Badge } from '@/components/ui/badge'
 
@@ -18,8 +18,7 @@ export type ExperienceType = {
 }
 
 export function ExperienceCard({ job }: { job: ExperienceType }) {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
     <div className="bg-card border-border flex flex-col gap-2 rounded-lg border p-4">

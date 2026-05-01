@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { usePathname } from 'next/navigation'
+
+import { useLang } from '@/hooks/use-lang'
 
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -16,8 +17,7 @@ type BlogPost = {
 }
 
 export function BlogCard({ post }: { post: BlogPost }) {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
 
   return (
     <NextLink href={`/${lang}/blog/${post.url}`}>

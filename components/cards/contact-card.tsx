@@ -4,7 +4,8 @@ import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+
+import { useLang } from '@/hooks/use-lang'
 
 import {
   Card,
@@ -22,8 +23,7 @@ export type ContactLink = {
 }
 
 export function ContactCard({ link }: { link: ContactLink }) {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
     <Link href={link.href} target={link.href === '#' ? '_self' : '_blank'}>

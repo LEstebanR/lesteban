@@ -2,7 +2,7 @@
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
-import { usePathname } from 'next/navigation'
+import { useLang } from '@/hooks/use-lang'
 
 import { ExperienceCard } from '@/components/cards/experience-card'
 import { SeeMoreButton } from '@/components/ui/see-more-button'
@@ -43,8 +43,7 @@ const EXPERIENCE = {
 }
 
 export function Experience() {
-  const pathname = usePathname()
-  const lang = pathname.split('/')[1] as 'en' | 'es'
+  const lang = useLang()
   const dictionary = getClientDictionary(lang)
 
   return (
