@@ -77,7 +77,10 @@ export function Header() {
   }
 
   return (
-    <header className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b border-border py-1">
+    <header
+      aria-label={currentLang === 'es' ? 'Encabezado del sitio' : 'Site header'}
+      className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b border-border py-1"
+    >
       <div className="flex w-full items-center justify-between">
         <div className="md:flex-1" />
         <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
@@ -87,7 +90,10 @@ export function Header() {
             </h1>
           </Link>
           {isHome ? (
-            <div className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0">
+            <nav
+              aria-label={currentLang === 'es' ? 'Navegación principal' : 'Main navigation'}
+              className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0"
+            >
               <NextLink
                 href={`/${currentLang}/blog`}
                 className="hover:text-primary hover:animate-underline-link flex items-center gap-1.5 decoration-2 underline-offset-4 transition-all duration-300 hover:underline"
@@ -95,7 +101,7 @@ export function Header() {
                 <BookOpen className="h-4 w-4" />
                 Blog
               </NextLink>
-            </div>
+            </nav>
           ) : (
             <div className="hidden w-1/2 items-center justify-end px-1 md:flex md:px-0">
               <Breadcrumb>
