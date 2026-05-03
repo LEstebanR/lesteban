@@ -6,41 +6,7 @@ import { useLang } from '@/hooks/use-lang'
 
 import { ExperienceCard } from '@/components/cards/experience-card'
 import { SeeMoreButton } from '@/components/ui/see-more-button'
-
-const EXPERIENCE = {
-  aleluya: {
-    position: 'frontend-developer',
-    company: 'Aleluya',
-    description: 'aleluya-description',
-    startDate: 'january-2025',
-    endDate: 'current',
-    stack: ['React', 'MUI', 'React-Query', 'Cypress'],
-  },
-  aleluya_freelance: {
-    position: 'frontend-developer-freelance',
-    company: 'Aleluya',
-    description: 'aleluya-freelance-description',
-    startDate: 'august-2024',
-    endDate: 'december-2024',
-    stack: ['React', 'MUI', 'React-Query', 'Cypress'],
-  },
-  devpeoplz: {
-    position: 'fullstack-developer',
-    company: 'DevPeoplz',
-    description: 'devpeoplz-description',
-    startDate: 'november-2022',
-    endDate: 'january-2024',
-    stack: ['Next.js', 'Typescript', 'Tailwind', 'Supabase'],
-  },
-  nominapp: {
-    position: 'frontend-developer',
-    company: 'Nominapp',
-    description: 'nominapp-description',
-    startDate: 'april-2022',
-    endDate: 'november-2022',
-    stack: ['React', 'MUI', 'React-Query', 'Cypress'],
-  },
-}
+import { EXPERIENCE } from '@/lib/data'
 
 export function Experience() {
   const lang = useLang()

@@ -5,37 +5,7 @@ import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { useLang } from '@/hooks/use-lang'
 
 import { ProjectCard } from '@/components/cards/project-card'
-
-const PROJECTS = [
-  {
-    name: 'roadmapcol',
-    description: 'roadmapcol-description',
-    stack: ['Next.js', 'Tailwind', 'Shadcn'],
-    link: 'https://roadmapcol.com/',
-    repo: 'https://github.com/LEstebanR/roadmapcol',
-  },
-  {
-    name: 'oniricapp',
-    description: 'oniricapp-description',
-    stack: ['Next.js', 'Tailwind', 'Llama'],
-    link: 'https://www.oniricapp.com/',
-    repo: 'https://github.com/LEstebanR/dream_Interpreter',
-  },
-  {
-    name: 'kodempro',
-    description: 'kodempro-description',
-    stack: ['Next.js', 'Tailwind', 'Shadcn'],
-    link: 'https://kodempro.com/',
-    repo: 'https://github.com/LEstebanR/kodempro',
-  },
-  {
-    name: 'humedad-arena',
-    description: 'humedad-arena-description',
-    stack: ['React', 'Typescript', 'Tailwind'],
-    link: 'https://humedad-arena.vercel.app/',
-    repo: 'https://github.com/LEstebanR/humedad_arena',
-  },
-]
+import { PROJECTS } from '@/lib/data'
 
 export function Projects() {
   const lang = useLang()

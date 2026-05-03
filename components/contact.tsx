@@ -8,6 +8,7 @@ import { useHasMounted } from '@/hooks/use-has-mounted'
 import { useLang } from '@/hooks/use-lang'
 
 import { ContactCard, ContactLink } from '@/components/cards/contact-card'
+import { resolveContactLinks } from '@/lib/data'
 
 export function Contact() {
   const lang = useLang()
@@ -15,41 +16,7 @@ export function Contact() {
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
 
-  const CONTACT_LINKS = mounted
-    ? [
-        {
-          label: 'github',
-          href: 'https://github.com/LEstebanR',
-          user: 'LEstebanR',
-          icon:
-            resolvedTheme === 'dark'
-              ? '/logos/github_dark.svg'
-              : '/logos/github_light.svg',
-        },
-        {
-          label: 'linkedin',
-          href: 'https://www.linkedin.com/in/lestebanr/',
-          user: 'Luis Esteban',
-          icon: '/logos/linkedin.svg',
-        },
-        {
-          label: 'email',
-          href: 'mailto:leramirezca@gmail.com',
-          user: 'leramirezca@gmail.com',
-          icon:
-            resolvedTheme === 'dark' ? '/logos/mail_dark.svg' : '/logos/mail_light.svg',
-        },
-        {
-          label: 'location',
-          user: 'Colombia',
-          icon:
-            resolvedTheme === 'dark'
-              ? '/logos/location_dark.svg'
-              : '/logos/location_light.svg',
-          href: '#',
-        },
-      ]
-    : []
+  const CONTACT_LINKS = mounted ? resolveContactLinks(resolvedTheme === 'dark') : []
   if (!mounted) {
     return (
       <div className="flex flex-col gap-4">
