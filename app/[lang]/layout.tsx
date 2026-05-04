@@ -4,7 +4,11 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import type { Metadata } from 'next'
 
-import { DM_Sans, Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
+import {
+  Bricolage_Grotesque,
+  Inter,
+  JetBrains_Mono,
+} from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -13,24 +17,20 @@ import { Header } from '@/components/ui/header'
 
 import { getCanonicalUrl } from '@/lib/utils'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
-
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
   display: 'swap',
 })
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: '--font-bricolage',
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -144,7 +144,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${spaceGrotesk.variable} flex min-h-screen flex-col`}
+        className={`${inter.variable} ${bricolageGrotesque.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col`}
       >
         <ThemeProvider
           attribute="class"
