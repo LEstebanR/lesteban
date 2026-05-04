@@ -7,13 +7,7 @@ import { Code, Database, Layout, Server } from 'lucide-react'
 import { useLang } from '@/hooks/use-lang'
 
 import { Badge } from '@/components/ui/badge'
-
-const SKILLS = {
-  frontend: ['React', 'Next', 'Tailwind'],
-  backend: ['Node.js', 'Supabase'],
-  database: ['MongoDB', 'PostgresSQL'],
-  programing_languages: ['Javascript', 'Typescript'],
-}
+import { SKILLS } from '@/lib/data'
 
 function Skill({
   skill,
