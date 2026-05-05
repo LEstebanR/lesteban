@@ -142,6 +142,12 @@ export default async function RootLayout({
           name="keywords"
           content="Desarrollador web, Next.js, React, Portafolio, Esteban, Luis Esteban Ramirez, lesteban, developer, frontend, backend, fullstack, software, developer, developer web, developer frontend, developer backend, developer fullstack, developer software, developer web, developer frontend, developer backend, developer fullstack, developer software"
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Luis Esteban — Blog"
+          href="/feed.xml"
+        />
       </head>
       <body
         className={`${inter.variable} ${bricolageGrotesque.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col`}
