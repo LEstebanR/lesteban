@@ -29,6 +29,7 @@ export function Hero({ lang }: HeroProps) {
             width={700}
             height={700}
             className="h-full w-full rounded-full object-cover"
+            priority
           />
         </div>
       </div>
