@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { Calendar } from 'lucide-react'
 
+import { AuthorCard } from '@/components/cards/author-card'
 import { SetBreadcrumb } from '@/components/set-breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
@@ -154,6 +155,7 @@ export default async function BlogPostPage({ params }: PageParams) {
           className="blog-content animate-fade-in-up [animation-delay:200ms] [animation-fill-mode:both]"
           dangerouslySetInnerHTML={{ __html: post.content || '' }}
         />
+        <AuthorCard lang={lang} />
       </div>
     </>
   )
