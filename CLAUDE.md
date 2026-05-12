@@ -12,12 +12,38 @@ bun lint:fix      # ESLint with auto-fix
 bun format        # Prettier (write)
 bun typecheck     # tsc --noEmit
 
-bun test                    # Run all tests
+bun test                    # Run unit tests (scoped to lib/ middleware.test.ts tests/)
 bun test lib/blog.test.ts   # Run a single test file
 bun test --watch            # Watch mode
+bun test:e2e                # Run Playwright E2E tests (separate from unit tests)
 
 bun create:post             # Interactive CLI to create a new blog post
 ```
+
+## Branch Naming
+
+Always name branches using the format: `les/<type>-<short-description>`
+
+Examples:
+- `les/fix-e2e-ci-tests`
+- `les/feat-blog-rss-feed`
+- `les/refac-header-language-toggle`
+
+Never use `claude/` prefixes or generic names like `develop-les-64`.
+
+## Test Infrastructure
+
+Unit tests (`bun test`) run **only** `lib/`, `middleware.test.ts`, and `tests/`. Never run `bun test` without path arguments — it will pick up Playwright `.spec.ts` files from `e2e/` and fail.
+
+E2E tests (`bun test:e2e` / `bunx playwright test`) run separately. The `e2e/` directory is excluded from `tsconfig.json` to avoid type errors.
+
+### E2E conventions
+
+- The header renders `<h1>Luis Esteban</h1>` as the site logo. Use `page.locator('main h1')` to target content headings, never bare `locator('h1')`.
+- `LanguageToggle` is a `<Button>`, not a link. Use `page.getByRole('button', { name: 'ES' })` or `{ name: 'EN' }` depending on the current locale.
+- shadcn `Badge` does not emit a literal `badge` CSS class. Add `data-testid="date-badge"` (or equivalent) to Badge elements you need to target in tests.
+- Never use `waitUntil: 'commit'` when testing redirected URLs — Playwright resolves before the redirect completes. Omit it to get the final URL.
+- Test i18n redirects against paths that actually exist in the app (e.g. `/blog` → `/en/blog`), not against non-existent paths like `/about`.
 
 ## Available Skills
 

@@ -21,4 +21,4 @@ jobs:
         run: bun install
 
       - name: Run tests with coverage
-        run: bun test --coverage
+        run: bun test --coverage lib/ middleware.test.ts tests/

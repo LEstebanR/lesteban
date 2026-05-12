@@ -140,6 +140,7 @@ export default async function BlogPostPage({ params }: PageParams) {
             <Badge
               variant="outline"
               className="border-primary bg-primary/10 dark:bg-primary/20 flex items-center gap-2 rounded-full px-3 py-1"
+              data-testid="date-badge"
             >
               <Calendar className="text-primary h-3.5 w-3.5" />
               <span className="text-primary text-sm font-medium">
