@@ -18,8 +18,6 @@ type PageParams = {
   }>
 }
 
-export const dynamicParams = false
-
 export async function generateStaticParams() {
   const enUrls = await getAllPostUrls('en')
   const esUrls = await getAllPostUrls('es')
