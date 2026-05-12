@@ -12,9 +12,9 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "create:post": "bun scripts/create-post.ts",
-    "test": "bun test",
-    "test:coverage": "bun test --coverage",
-    "test:watch": "bun test --watch",
+    "test": "bun test lib/ middleware.test.ts tests/",
+    "test:coverage": "bun test --coverage lib/ middleware.test.ts tests/",
+    "test:watch": "bun test --watch lib/ middleware.test.ts tests/",
     "test:e2e": "bunx playwright test"
   },
   "dependencies": {

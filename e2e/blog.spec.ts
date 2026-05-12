@@ -31,7 +31,7 @@ test.describe('Blog', () => {
   test('blog post page renders the title', async ({ page }) => {
     await page.goto('/en/blog/first-marathon')
 
-    await expect(page.locator('h1')).toBeVisible()
+    await expect(page.locator('main h1')).toBeVisible()
     await expect(page.locator('article')).toBeVisible()
   })
 
@@ -48,6 +48,6 @@ test.describe('Blog', () => {
     await page.goto('/en/blog/first-marathon')
 
     // Date badge rendered in the header
-    await expect(page.locator('time, [class*="badge"]').first()).toBeVisible()
+    await expect(page.locator('[data-testid="date-badge"]')).toBeVisible()
   })
 })

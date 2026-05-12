@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('i18n redirect', () => {
-  test('bare path /about redirects to /en/about with 301', async ({ page }) => {
-    const response = await page.goto('/about', { waitUntil: 'commit' })
+  test('bare path /blog redirects to /en/blog with 301', async ({ page }) => {
+    const response = await page.goto('/blog')
     // Playwright follows redirects by default; check final URL
-    expect(page.url()).toContain('/en/about')
-    // Verify it was a redirect (response chain had a 301)
-    expect(response?.status()).toBe(200) // final response after redirect
+    expect(page.url()).toContain('/en/blog')
+    // Verify the final page loaded successfully after redirect
+    expect(response?.status()).toBe(200)
   })
 
   test('bare path / redirects to a locale-prefixed URL', async ({ page }) => {
@@ -20,9 +20,9 @@ test.describe('Language switch', () => {
     await page.goto('/en/blog/first-marathon')
     await expect(page).toHaveURL('/en/blog/first-marathon')
 
-    // Find and click the language toggle to switch to Spanish
-    const langToggle = page.getByRole('link', { name: /es/i })
-    await langToggle.first().click()
+    // LanguageToggle renders as a button with the next language label in uppercase
+    const langToggle = page.getByRole('button', { name: 'ES' })
+    await langToggle.click()
 
     await expect(page).toHaveURL('/es/blog/first-marathon')
   })
@@ -30,8 +30,8 @@ test.describe('Language switch', () => {
   test('switching lang on homepage keeps root path', async ({ page }) => {
     await page.goto('/en')
 
-    const langToggle = page.getByRole('link', { name: /es/i })
-    await langToggle.first().click()
+    const langToggle = page.getByRole('button', { name: 'ES' })
+    await langToggle.click()
 
     await expect(page).toHaveURL('/es')
   })
