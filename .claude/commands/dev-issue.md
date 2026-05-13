@@ -55,7 +55,7 @@ Stage only the files changed for this issue and create a conventional commit:
 Closes LES-XX
 ```
 
-Types: `feat`, `fix`, `refac`, `style`, `chore`, `docs`, `test`
+Types: `feat`, `fix`, `refac`, `style`, `chore`, `docs`, `test`, `perf`
 Scopes: `portfolio`, `blog`, `i18n`, `ui`, `seo`, `config`, `ci`, `deps`
 
 ```bash
@@ -121,6 +121,7 @@ Summarize: what was implemented, the branch name, and the PR URL.
 
 ## Rules
 
+- If the issue status is already `Done`, report that and stop — do not re-implement.
 - Always start from an up-to-date `develop` — never branch from a stale local state.
 - Never commit directly to `develop` or `main`.
 - Do not mark the issue as Done if `bun typecheck` or `bun lint` fail.
