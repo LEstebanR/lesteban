@@ -22,6 +22,7 @@ export function Experience() {
       <SeeMoreButton
         seeMoreCopy={dictionary['see-more']}
         seeLessCopy={dictionary['see-less']}
+        count={2}
       >
         <ExperienceCard job={EXPERIENCE.devpeoplz} />
         <ExperienceCard job={EXPERIENCE.nominapp} />

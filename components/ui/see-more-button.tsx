@@ -2,22 +2,36 @@
 
 import { useState } from 'react'
 
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
 interface SeeMoreButtonProps {
   children: React.ReactNode
-  seeMoreCopy: React.ReactNode
-  seeLessCopy: React.ReactNode
+  seeMoreCopy: string
+  seeLessCopy: string
+  count?: number
+}
+
+function withCount(copy: string, count: number): string {
+  const idx = copy.lastIndexOf(' ')
+  if (idx === -1) return `${copy} ${count}`
+  return `${copy.slice(0, idx)} ${count}${copy.slice(idx)}`
 }
 
 export function SeeMoreButton({
   children,
   seeMoreCopy,
   seeLessCopy,
+  count,
 }: SeeMoreButtonProps) {
   const [seeMore, setSeeMore] = useState(false)
+
+  const label = seeMore
+    ? seeLessCopy
+    : count !== undefined
+      ? withCount(seeMoreCopy, count)
+      : seeMoreCopy
 
   return (
     <>
@@ -35,17 +49,10 @@ export function SeeMoreButton({
         onClick={() => setSeeMore(!seeMore)}
         className="border-primary text-primary hover:bg-primary mx-auto w-fit cursor-pointer rounded-full hover:text-white"
       >
-        {seeMore ? (
-          <>
-            {seeLessCopy}
-            <ChevronUp className="h-4 w-4" />
-          </>
-        ) : (
-          <>
-            {seeMoreCopy}
-            <ChevronDown className="h-4 w-4" />
-          </>
-        )}
+        {label}
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-300 ${seeMore ? 'rotate-180' : ''}`}
+        />
       </Button>
     </>
   )
