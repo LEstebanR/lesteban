@@ -9,6 +9,7 @@ import { useTheme } from 'next-themes'
 
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/components/ui/link'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface HeroProps {
   lang: 'en' | 'es'
@@ -71,7 +72,7 @@ export function Hero({ lang }: HeroProps) {
       </div>
       <div className="animate-fade-in-up mb-6 flex gap-4 [animation-delay:600ms] [animation-fill-mode:both] md:mb-0">
         <Link href="https://github.com/LEstebanR" withIcon>
-          {mounted && (
+          {mounted ? (
             <Image
               src={
                 resolvedTheme === 'dark'
@@ -83,6 +84,8 @@ export function Hero({ lang }: HeroProps) {
               width={30}
               height={30}
             />
+          ) : (
+            <Skeleton className="h-[30px] w-[30px] rounded-full" />
           )}
         </Link>
         <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
@@ -95,7 +98,7 @@ export function Hero({ lang }: HeroProps) {
           />
         </Link>
         <Link href="mailto:leramirezca@gmail.com">
-          {mounted && (
+          {mounted ? (
             <Image
               src={
                 resolvedTheme === 'dark'
@@ -107,6 +110,8 @@ export function Hero({ lang }: HeroProps) {
               width={33}
               height={33}
             />
+          ) : (
+            <Skeleton className="h-[33px] w-[33px] rounded-full" />
           )}
         </Link>
       </div>
