@@ -14,6 +14,7 @@ import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
+import { ScrollToTop } from '@/components/ui/scroll-to-top'
 import { getCanonicalUrl } from '@/lib/utils'
 
 const inter = Inter({
@@ -165,6 +166,7 @@ export default async function RootLayout({
               </main>
             </div>
             <Footer />
+            <ScrollToTop />
           </BreadcrumbProvider>
         </ThemeProvider>
         <SpeedInsights />
