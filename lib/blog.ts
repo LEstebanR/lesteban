@@ -2,7 +2,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
-import rehypeSanitize from 'rehype-sanitize'
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
 import remarkRehype from 'remark-rehype'
@@ -10,6 +10,18 @@ import remarkRehype from 'remark-rehype'
 import type { BlogPost } from '@/types/blog'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog')
+
+// Extend the default schema to allow className on elements used by rehype-highlight,
+// so hljs-* classes survive sanitization while XSS protection remains intact.
+const sanitizeSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    code: [...(defaultSchema.attributes?.code ?? []), 'className'],
+    span: [...(defaultSchema.attributes?.span ?? []), 'className'],
+    pre: [...(defaultSchema.attributes?.pre ?? []), 'className'],
+  },
+}
 
 /**
  * Calculate estimated reading time based on content
@@ -84,7 +96,7 @@ export async function getPostByUrl(
       const processedContent = await remark()
         .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeHighlight)
-        .use(rehypeSanitize)
+        .use(rehypeSanitize, sanitizeSchema)
         .use(rehypeStringify)
         .process(content)
       const contentHtml = processedContent.toString()
