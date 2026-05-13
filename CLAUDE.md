@@ -20,6 +20,10 @@ bun test:e2e                # Run Playwright E2E tests (separate from unit tests
 bun create:post             # Interactive CLI to create a new blog post
 ```
 
+## Dependencies
+
+Pin all dependency versions exactly in `package.json` — never use `^` or `~` prefixes. When adding or bumping a package, write the exact version number.
+
 ## Branch Naming
 
 Always name branches using the format: `les/<type>-<short-description>`
