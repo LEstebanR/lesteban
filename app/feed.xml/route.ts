@@ -1,6 +1,5 @@
 import { getAllPosts } from '@/lib/blog'
-
-const BASE_URL = 'https://lesteban.dev'
+import { BASE_URL } from '@/lib/constants'
 
 function escapeXml(text: string): string {
   return text

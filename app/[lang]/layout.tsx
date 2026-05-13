@@ -15,6 +15,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
 import { ScrollToTop } from '@/components/ui/scroll-to-top'
+import { BASE_URL, SITE_NAME, TWITTER_HANDLE } from '@/lib/constants'
 import { getCanonicalUrl } from '@/lib/utils'
 
 const inter = Inter({
@@ -84,7 +85,7 @@ export async function generateMetadata({
       title: 'Luis Esteban Ramirez | Software Developer',
       description:
         'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
-      siteName: 'LEsteban Portfolio',
+      siteName: `${SITE_NAME} Portfolio`,
       images: [
         {
           url: '/og-image.jpg',
@@ -99,7 +100,7 @@ export async function generateMetadata({
       title: 'Luis Esteban Ramirez | Software Developer',
       description:
         'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
-      creator: '@lestebanr',
+      creator: TWITTER_HANDLE,
       images: ['/og-image.jpg'],
     },
     robots: {
@@ -123,7 +124,7 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Luis Esteban Ramírez',
-  url: 'https://lesteban.dev',
+  url: BASE_URL,
   sameAs: [
     'https://github.com/LEstebanR',
     'https://www.linkedin.com/in/lestebanr/',
