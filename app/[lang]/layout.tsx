@@ -56,17 +56,14 @@ export async function generateMetadata({
     description:
       'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
     keywords: [
-      'software developer',
-      'web developer',
+      'Luis Esteban',
+      'Software Developer',
       'React',
+      'Next.js',
       'TypeScript',
-      'full-stack',
-      'frontend',
-      'portfolio',
-      'Luis Esteban Ramirez',
-      'desarrollador de software',
-      'desarrollador web',
-      'desarrollo full-stack',
+      'Tailwind CSS',
+      'Colombia',
+      'Portfolio',
     ],
     authors: [{ name: 'Luis Esteban Ramirez' }],
     creator: 'Luis Esteban Ramirez',
@@ -140,7 +137,7 @@ export default async function RootLayout({
         />
         <meta
           name="keywords"
-          content="Desarrollador web, Next.js, React, Portafolio, Esteban, Luis Esteban Ramirez, lesteban, developer, frontend, backend, fullstack, software, developer, developer web, developer frontend, developer backend, developer fullstack, developer software, developer web, developer frontend, developer backend, developer fullstack, developer software"
+          content="Luis Esteban, Software Developer, React, Next.js, TypeScript, Tailwind CSS, Colombia, Portfolio"
         />
         <link
           rel="alternate"
