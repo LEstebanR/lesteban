@@ -57,7 +57,7 @@ export async function generateMetadata({
       'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
     keywords: [
       'Luis Esteban',
-      'Frontend Developer',
+      'Software Developer',
       'React',
       'Next.js',
       'TypeScript',
@@ -137,7 +137,7 @@ export default async function RootLayout({
         />
         <meta
           name="keywords"
-          content="Luis Esteban, Frontend Developer, React, Next.js, TypeScript, Tailwind CSS, Colombia, Portfolio"
+          content="Luis Esteban, Software Developer, React, Next.js, TypeScript, Tailwind CSS, Colombia, Portfolio"
         />
         <link
           rel="alternate"
