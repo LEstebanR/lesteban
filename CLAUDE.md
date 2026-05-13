@@ -53,6 +53,7 @@ E2E tests (`bun test:e2e` / `bunx playwright test`) run separately. The `e2e/` d
 
 | Skill | Trigger | Purpose |
 |-------|---------|---------|
+| `/dev-issue` | When developing a Linear issue end-to-end | Updates develop, creates branch, implements, commits, pushes, opens PR |
 | `/commit` | When committing changes | Conventional commit with project-specific scopes |
 | `/blog-post` | When creating a new post | Scaffolds bilingual markdown files with correct frontmatter |
 | `/component` | When creating a new component | Generates components following design system constraints |
