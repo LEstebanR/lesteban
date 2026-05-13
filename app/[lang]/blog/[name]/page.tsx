@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 import { getAllPostUrls, getPostByUrl } from '@/lib/blog'
+import { BASE_URL } from '@/lib/constants'
 import { getCanonicalUrl } from '@/lib/utils'
 
 type PageParams = {
@@ -116,7 +117,7 @@ export default async function BlogPostPage({ params }: PageParams) {
     },
     keywords: post.tags?.join(', '),
     inLanguage: lang,
-    url: `https://lesteban.dev/${lang}/blog/${post.url}`,
+    url: `${BASE_URL}/${lang}/blog/${post.url}`,
   }
 
   return (
