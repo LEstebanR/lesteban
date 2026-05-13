@@ -2,7 +2,6 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
-import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
 import remarkRehype from 'remark-rehype'
@@ -84,7 +83,6 @@ export async function getPostByUrl(
       const processedContent = await remark()
         .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeHighlight)
-        .use(rehypeSanitize)
         .use(rehypeStringify)
         .process(content)
       const contentHtml = processedContent.toString()
