@@ -79,6 +79,7 @@ mock.module('@/hooks/use-has-mounted', () => ({
 | `/commit` | When committing changes | Conventional commit with project-specific scopes |
 | `/blog-post` | When creating a new post | Scaffolds bilingual markdown files with correct frontmatter |
 | `/component` | When creating a new component | Generates components following design system constraints |
+| `/audit` | When discovering what to improve next | Audits the full project (perf, UI/UX, a11y, SEO, DX, blog, i18n) and creates prioritized Linear issues |
 
 ## Design System
 
