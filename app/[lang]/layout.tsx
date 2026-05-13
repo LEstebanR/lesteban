@@ -119,6 +119,19 @@ export async function generateMetadata({
   }
 }
 
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Luis Esteban Ramírez',
+  url: 'https://lesteban.dev',
+  sameAs: [
+    'https://github.com/LEstebanR',
+    'https://www.linkedin.com/in/lestebanr/',
+  ],
+  jobTitle: 'Software Developer',
+  knowsAbout: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -144,6 +157,10 @@ export default async function RootLayout({
           type="application/rss+xml"
           title="Luis Esteban — Blog"
           href="/feed.xml"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
       <body
