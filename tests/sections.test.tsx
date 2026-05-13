@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, mock, test } from 'bun:test'
 import React from 'react'
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 
 const state = {
   mounted: true,
@@ -162,6 +162,12 @@ describe('Experience', () => {
   test('renders the SeeMoreButton with item count', () => {
     render(<Experience />)
     expect(screen.getByText('See 2 more')).toBeDefined()
+  })
+
+  test('clicking SeeMoreButton toggles to see-less label', () => {
+    render(<Experience />)
+    fireEvent.click(screen.getByRole('button'))
+    expect(screen.getByText('See less')).toBeDefined()
   })
 })
 
