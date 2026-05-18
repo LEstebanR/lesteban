@@ -8,6 +8,7 @@ import { useHasMounted } from '@/hooks/use-has-mounted'
 import { useLang } from '@/hooks/use-lang'
 
 import { ContactCard, ContactLink } from '@/components/cards/contact-card'
+import { Skeleton } from '@/components/ui/skeleton'
 import { resolveContactLinks } from '@/lib/data'
 
 export function Contact() {
@@ -24,11 +25,18 @@ export function Contact() {
           {dictionary['contact']}
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {/* Placeholder para evitar layout shift */}
-          <div className="h-24" />
-          <div className="h-24" />
-          <div className="h-24" />
-          <div className="h-24" />
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-card rounded-xl border py-6 px-6 flex items-center gap-4"
+            >
+              <Skeleton className="h-[35px] w-[35px] shrink-0 rounded-full" />
+              <div className="flex flex-col gap-1.5 flex-1">
+                <Skeleton className="h-4 w-28 rounded-md" />
+                <Skeleton className="h-3 w-36 rounded-md" />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     )

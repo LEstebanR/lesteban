@@ -20,6 +20,10 @@ bun test:e2e                # Run Playwright E2E tests (separate from unit tests
 bun create:post             # Interactive CLI to create a new blog post
 ```
 
+## Dependencies
+
+Pin all dependency versions exactly in `package.json` — never use `^` or `~` prefixes. When adding or bumping a package, write the exact version number.
+
 ## Branch Naming
 
 Always name branches using the format: `les/<type>-<short-description>`
@@ -37,10 +41,32 @@ Unit tests (`bun test`) run **only** `lib/`, `middleware.test.ts`, and `tests/`.
 
 E2E tests (`bun test:e2e` / `bunx playwright test`) run separately. The `e2e/` directory is excluded from `tsconfig.json` to avoid type errors.
 
+### Coverage
+
+`bunfig.toml` sets `coverageThreshold = 1.0` — 100% function **and** line coverage is required for CI to pass. Every function must be called during tests, including inline arrow functions (e.g. `onClick` handlers). Add a `fireEvent.click` or equivalent test whenever a new handler is added.
+
+### Unit test mock pattern
+
+Follow the pattern in `tests/cards.test.tsx` and `tests/sections.test.tsx`:
+- Call `mock.module(...)` for all external deps before any `await import(...)`.
+- To test multiple states (e.g. mounted vs. unmounted) in a single file without re-importing, use a **mutable `state` object** captured by the mock closure:
+
+```ts
+const state = { mounted: true }
+mock.module('@/hooks/use-has-mounted', () => ({
+  useHasMounted: () => state.mounted,
+}))
+// In a test: state.mounted = false before render
+```
+
+### Pre-existing typecheck error
+
+`bun typecheck` always emits `playwright.config.ts: Cannot find module '@playwright/test'`. This is a pre-existing issue unrelated to app code — do not investigate or attempt to fix it when verifying a branch.
+
 ### E2E conventions
 
 - The header renders `<h1>Luis Esteban</h1>` as the site logo. Use `page.locator('main h1')` to target content headings, never bare `locator('h1')`.
-- `LanguageToggle` is a `<Button>`, not a link. Use `page.getByRole('button', { name: 'ES' })` or `{ name: 'EN' }` depending on the current locale.
+- `LanguageToggle` is a `<Button>`, not a link. Use `page.getByRole('button', { name: 'Switch to Spanish' })` when on `/en`, or `{ name: 'Cambiar a inglés' }` when on `/es` — the button's accessible name comes from its `aria-label`, not the visible text.
 - shadcn `Badge` does not emit a literal `badge` CSS class. Add `data-testid="date-badge"` (or equivalent) to Badge elements you need to target in tests.
 - Never use `waitUntil: 'commit'` when testing redirected URLs — Playwright resolves before the redirect completes. Omit it to get the final URL.
 - Test i18n redirects against paths that actually exist in the app (e.g. `/blog` → `/en/blog`), not against non-existent paths like `/about`.
@@ -49,9 +75,11 @@ E2E tests (`bun test:e2e` / `bunx playwright test`) run separately. The `e2e/` d
 
 | Skill | Trigger | Purpose |
 |-------|---------|---------|
+| `/dev-issue` | When developing a Linear issue end-to-end | Updates develop, creates branch, implements, commits, pushes, opens PR |
 | `/commit` | When committing changes | Conventional commit with project-specific scopes |
 | `/blog-post` | When creating a new post | Scaffolds bilingual markdown files with correct frontmatter |
 | `/component` | When creating a new component | Generates components following design system constraints |
+| `/audit` | When discovering what to improve next | Audits the full project (perf, UI/UX, a11y, SEO, DX, blog, i18n) and creates prioritized Linear issues |
 
 ## Design System
 
@@ -84,6 +112,13 @@ The URL slug of a post must be identical across languages for the language switc
 - `components/ui/` — shadcn/ui primitives (new-york style, Radix-based)
 - `components/cards/` — composed card components (blog, project, experience, contact)
 - `components/` root — page-section feature components (hero, experience, skills, projects, contact)
+
+### Constants
+
+Site-wide string constants live in `lib/constants.ts` — import from there instead of hardcoding:
+- `BASE_URL` — `'https://lesteban.dev'`
+- `SITE_NAME` — `'LEsteban'`
+- `TWITTER_HANDLE` — `'@lestebanr'`
 
 ### Styling
 

@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
 
 import { getAllPostUrls } from '@/lib/blog'
+import { BASE_URL } from '@/lib/constants'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://lesteban.dev'
+  const baseUrl = BASE_URL
 
   // Get all blog post URLs for both languages
   const enPostUrls = await getAllPostUrls('en')
