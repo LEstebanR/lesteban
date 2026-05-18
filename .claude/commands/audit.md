@@ -155,6 +155,7 @@ For each finding, call `mcp__linear-server__save_issue` with:
 ```
 title: <actionable title>
 team: Lesteban
+project: LEsteban
 description: <markdown body>
 priority: <1–4>
 labels: [<matching label name if it exists>]
