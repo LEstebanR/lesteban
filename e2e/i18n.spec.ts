@@ -12,8 +12,7 @@ test.describe('Language switch', () => {
     await page.goto('/en/blog/first-marathon')
     await expect(page).toHaveURL('/en/blog/first-marathon')
 
-    // LanguageToggle renders as a button with the next language label in uppercase
-    const langToggle = page.getByRole('button', { name: 'ES' })
+    const langToggle = page.getByRole('button', { name: 'Switch to Spanish' })
     await langToggle.click()
 
     await expect(page).toHaveURL('/es/blog/first-marathon')
@@ -22,7 +21,7 @@ test.describe('Language switch', () => {
   test('switching lang on homepage keeps root path', async ({ page }) => {
     await page.goto('/en')
 
-    const langToggle = page.getByRole('button', { name: 'ES' })
+    const langToggle = page.getByRole('button', { name: 'Switch to Spanish' })
     await langToggle.click()
 
     await expect(page).toHaveURL('/es')

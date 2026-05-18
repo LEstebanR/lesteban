@@ -66,7 +66,7 @@ mock.module('@/hooks/use-has-mounted', () => ({
 ### E2E conventions
 
 - The header renders `<h1>Luis Esteban</h1>` as the site logo. Use `page.locator('main h1')` to target content headings, never bare `locator('h1')`.
-- `LanguageToggle` is a `<Button>`, not a link. Use `page.getByRole('button', { name: 'ES' })` or `{ name: 'EN' }` depending on the current locale.
+- `LanguageToggle` is a `<Button>`, not a link. Use `page.getByRole('button', { name: 'Switch to Spanish' })` when on `/en`, or `{ name: 'Cambiar a inglés' }` when on `/es` — the button's accessible name comes from its `aria-label`, not the visible text.
 - shadcn `Badge` does not emit a literal `badge` CSS class. Add `data-testid="date-badge"` (or equivalent) to Badge elements you need to target in tests.
 - Never use `waitUntil: 'commit'` when testing redirected URLs — Playwright resolves before the redirect completes. Omit it to get the final URL.
 - Test i18n redirects against paths that actually exist in the app (e.g. `/blog` → `/en/blog`), not against non-existent paths like `/about`.
