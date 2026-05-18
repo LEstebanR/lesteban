@@ -1,17 +1,17 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { motion } from 'framer-motion'
+import { useLang } from '@/hooks/use-lang'
+import { motion, useReducedMotion } from 'framer-motion'
 
 import Link from 'next/link'
 
 import { Heart } from 'lucide-react'
 
-import { useLang } from '@/hooks/use-lang'
-
 export function Footer() {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
+  const prefersReduced = useReducedMotion()
 
   return (
     <footer className="my-4 w-full">
@@ -32,16 +32,14 @@ export function Footer() {
             {dictionary['made-with' as keyof typeof dictionary]}
           </motion.span>
           <motion.div
-            animate={{
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
+            animate={prefersReduced ? {} : { scale: [1, 1.5, 1] }}
+            transition={
+              prefersReduced
+                ? {}
+                : { duration: 1.5, repeat: Infinity, repeatType: 'reverse' }
+            }
           >
-            <Heart className="h-4 w-4 fill-secondary text-secondary" />
+            <Heart className="fill-secondary text-secondary h-4 w-4" />
           </motion.div>
           <motion.span
             initial={{ opacity: 0 }}
