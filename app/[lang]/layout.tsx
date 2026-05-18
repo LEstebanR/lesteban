@@ -1,20 +1,18 @@
+import { getDictionary } from '@/app/[lang]/dictionaries'
 import '@/app/globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import type { Metadata } from 'next'
 
-import {
-  Bricolage_Grotesque,
-  Inter,
-  JetBrains_Mono,
-} from 'next/font/google'
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
 import { ScrollToTop } from '@/components/ui/scroll-to-top'
+
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE } from '@/lib/constants'
 import { getCanonicalUrl } from '@/lib/utils'
 
@@ -142,6 +140,7 @@ export default async function RootLayout({
 }) {
   const { lang } = await params
   const validLang = lang === 'es' ? 'es' : 'en'
+  const dictionary = await getDictionary(validLang)
   return (
     <html lang={validLang} suppressHydrationWarning>
       <head>
@@ -173,9 +172,18 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <BreadcrumbProvider>
+            <a
+              href="#main-content"
+              className="focus:bg-background focus:text-foreground focus:ring-ring sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2"
+            >
+              {dictionary['skip-to-content']}
+            </a>
             <div className="flex w-full flex-1 flex-col items-center justify-center">
               <Header />
-              <main className="mt-16 flex w-full flex-1 flex-col px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
+              <main
+                id="main-content"
+                className="mt-16 flex w-full flex-1 flex-col px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6"
+              >
                 {children}
                 <Analytics />
               </main>
