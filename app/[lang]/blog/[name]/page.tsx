@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 import { getAllPostUrls, getPostByUrl } from '@/lib/blog'
-import { BASE_URL } from '@/lib/constants'
+import { BASE_URL, TWITTER_HANDLE } from '@/lib/constants'
 import { getCanonicalUrl } from '@/lib/utils'
 
 type PageParams = {
@@ -44,7 +44,7 @@ export async function generateMetadata({
 
   const canonicalPath = `/${lang}/blog/${name}`
   const canonicalUrl = getCanonicalUrl(canonicalPath)
-  
+
   // Check if alternate language version exists
   const alternateLang = lang === 'en' ? 'es' : 'en'
   const alternatePost = await getPostByUrl(name, alternateLang)
@@ -87,6 +87,13 @@ export async function generateMetadata({
       publishedTime: post.date,
       modifiedTime: post.updatedDate || post.date,
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      creator: TWITTER_HANDLE,
+      images: post.image ? [post.image] : ['/og-image.jpg'],
+    },
   }
 }
 
@@ -122,7 +129,7 @@ export default async function BlogPostPage({ params }: PageParams) {
 
   return (
     <>
-      <ScrollProgress className="bg-primary fixed left-0 right-0 top-16 z-50" />
+      <ScrollProgress className="bg-primary fixed top-16 right-0 left-0 z-50" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -132,7 +139,7 @@ export default async function BlogPostPage({ params }: PageParams) {
         {/* Header */}
         <header className="animate-fade-in-up flex flex-col gap-6">
           <div className="flex flex-col gap-4">
-            <h1 className="font-heading from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-4xl font-bold leading-tight text-transparent md:text-5xl md:leading-tight lg:text-6xl lg:leading-tight">
+            <h1 className="font-heading from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-5xl md:leading-tight lg:text-6xl lg:leading-tight">
               {post.title}
             </h1>
           </div>
