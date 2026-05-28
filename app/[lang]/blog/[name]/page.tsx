@@ -155,6 +155,17 @@ export default async function BlogPostPage({ params }: PageParams) {
                 {post.date}
               </span>
             </Badge>
+            {post.tags &&
+              post.tags.length > 0 &&
+              post.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="rounded-full text-xs"
+                >
+                  {tag}
+                </Badge>
+              ))}
           </div>
 
           <div className="border-border via-border h-px w-full bg-gradient-to-r from-transparent to-transparent" />

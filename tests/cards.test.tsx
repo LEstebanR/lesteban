@@ -1,6 +1,7 @@
-import { afterEach, describe, expect, mock, test } from 'bun:test'
-import React from 'react'
 import { cleanup, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, mock, test } from 'bun:test'
+
+import React from 'react'
 
 mock.module('next/navigation', () => ({
   usePathname: () => '/en',
@@ -100,6 +101,12 @@ describe('BlogCard', () => {
     render(<BlogCard post={post} />)
     const img = screen.getByAltText('My First Post')
     expect(img).toBeDefined()
+  })
+
+  test('renders tag badges when tags are present', () => {
+    render(<BlogCard post={{ ...post, tags: ['react', 'nextjs'] }} />)
+    expect(screen.getByText('react')).toBeDefined()
+    expect(screen.getByText('nextjs')).toBeDefined()
   })
 })
 
