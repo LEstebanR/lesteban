@@ -1,10 +1,11 @@
 'use client'
 
+import { useLang } from '@/hooks/use-lang'
+
 import Image from 'next/image'
 import NextLink from 'next/link'
 
-import { useLang } from '@/hooks/use-lang'
-
+import { Badge } from '@/components/ui/badge'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 
 type BlogPost = {
@@ -14,6 +15,7 @@ type BlogPost = {
   date: string
   description: string
   image: string
+  tags?: string[]
 }
 
 export function BlogCard({ post }: { post: BlogPost }) {
@@ -21,7 +23,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
 
   return (
     <NextLink href={`/${lang}/blog/${post.url}`}>
-      <Card className="border-secondary group flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden border-2 p-0 transition-all duration-300 hover:border-primary/50">
+      <Card className="border-secondary group hover:border-primary/50 flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden border-2 p-0 transition-all duration-300">
         <div className="relative block h-64 w-full overflow-hidden lg:h-56">
           <Image
             src={post.image}
@@ -35,6 +37,19 @@ export function BlogCard({ post }: { post: BlogPost }) {
           <CardTitle className="group-hover:text-primary flex w-full items-start justify-between gap-2 px-6 py-4 transition-colors">
             <span className="font-heading text-lg font-bold">{post.title}</span>
           </CardTitle>
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 px-6 pb-4">
+              {post.tags.slice(0, 3).map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="rounded-full text-xs"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
         </CardHeader>
       </Card>
     </NextLink>
