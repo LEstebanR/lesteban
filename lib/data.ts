@@ -1,5 +1,5 @@
-import { ExperienceType } from '@/components/cards/experience-card'
 import { ContactLink } from '@/components/cards/contact-card'
+import { ExperienceType } from '@/components/cards/experience-card'
 
 export type Project = {
   name: string
@@ -67,11 +67,11 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/LEstebanR/dream_Interpreter',
   },
   {
-    name: 'kodempro',
-    description: 'kodempro-description',
-    stack: ['Next.js', 'Tailwind', 'Shadcn'],
-    link: 'https://kodempro.com/',
-    repo: 'https://github.com/LEstebanR/kodempro',
+    name: 'conexory',
+    description: 'conexory-description',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma', 'Neon'],
+    link: 'https://conexory.com',
+    repo: 'https://github.com/LEstebanR/conexory',
   },
   {
     name: 'humedad-arena',
