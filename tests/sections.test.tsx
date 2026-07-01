@@ -1,6 +1,7 @@
-import { afterEach, describe, expect, mock, test } from 'bun:test'
-import React from 'react'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, mock, test } from 'bun:test'
+
+import React from 'react'
 
 const state = {
   mounted: true,
@@ -87,8 +88,8 @@ const MOCK_DICT: Record<string, string> = {
   'roadmapcol-description': 'A platform for Colombia',
   oniricapp: 'OniricApp',
   'oniricapp-description': 'Dream interpreter',
-  kodempro: 'Kodempro',
-  'kodempro-description': 'Dev platform',
+  conexory: 'Conexory',
+  'conexory-description': 'Real estate SaaS platform',
   'humedad-arena': 'Humedad Arena',
   'humedad-arena-description': 'Sand moisture sensor',
   code: 'Code',
@@ -132,7 +133,13 @@ describe('Hero', () => {
 
   test('renders all stack badges', () => {
     render(<Hero lang="en" />)
-    for (const tech of ['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase']) {
+    for (const tech of [
+      'React',
+      'Tailwind',
+      'Next.js',
+      'Node.js',
+      'Supabase',
+    ]) {
       expect(screen.getByText(tech)).toBeDefined()
     }
   })
@@ -219,7 +226,7 @@ describe('Projects', () => {
     render(<Projects />)
     expect(screen.getByText('Roadmapcol')).toBeDefined()
     expect(screen.getByText('OniricApp')).toBeDefined()
-    expect(screen.getByText('Kodempro')).toBeDefined()
+    expect(screen.getByText('Conexory')).toBeDefined()
     expect(screen.getByText('Humedad Arena')).toBeDefined()
   })
 

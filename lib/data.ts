@@ -1,5 +1,5 @@
-import { ExperienceType } from '@/components/cards/experience-card'
 import { ContactLink } from '@/components/cards/contact-card'
+import { ExperienceType } from '@/components/cards/experience-card'
 
 export type Project = {
   name: string
@@ -53,6 +53,13 @@ export const EXPERIENCE: Record<string, ExperienceType> = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'conexory',
+    description: 'conexory-description',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma', 'Neon'],
+    link: 'https://conexory.com',
+    repo: 'https://github.com/LEstebanR/conexory',
+  },
+  {
     name: 'roadmapcol',
     description: 'roadmapcol-description',
     stack: ['Next.js', 'Tailwind', 'Shadcn'],
@@ -65,13 +72,6 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'Tailwind', 'Llama'],
     link: 'https://www.oniricapp.com/',
     repo: 'https://github.com/LEstebanR/dream_Interpreter',
-  },
-  {
-    name: 'kodempro',
-    description: 'kodempro-description',
-    stack: ['Next.js', 'Tailwind', 'Shadcn'],
-    link: 'https://kodempro.com/',
-    repo: 'https://github.com/LEstebanR/kodempro',
   },
   {
     name: 'humedad-arena',
