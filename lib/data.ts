@@ -53,6 +53,13 @@ export const EXPERIENCE: Record<string, ExperienceType> = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'conexory',
+    description: 'conexory-description',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma', 'Neon'],
+    link: 'https://conexory.com',
+    repo: 'https://github.com/LEstebanR/conexory',
+  },
+  {
     name: 'roadmapcol',
     description: 'roadmapcol-description',
     stack: ['Next.js', 'Tailwind', 'Shadcn'],
@@ -65,13 +72,6 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'Tailwind', 'Llama'],
     link: 'https://www.oniricapp.com/',
     repo: 'https://github.com/LEstebanR/dream_Interpreter',
-  },
-  {
-    name: 'conexory',
-    description: 'conexory-description',
-    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma', 'Neon'],
-    link: 'https://conexory.com',
-    repo: 'https://github.com/LEstebanR/conexory',
   },
   {
     name: 'humedad-arena',
