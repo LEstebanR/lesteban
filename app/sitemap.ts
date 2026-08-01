@@ -1,14 +1,14 @@
 import { MetadataRoute } from 'next'
 
-import { getAllPostUrls } from '@/lib/blog'
+import { getAllPosts } from '@/lib/blog'
 import { BASE_URL } from '@/lib/constants'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = BASE_URL
 
-  // Get all blog post URLs for both languages
-  const enPostUrls = await getAllPostUrls('en')
-  const esPostUrls = await getAllPostUrls('es')
+  // Get all blog posts for both languages
+  const enPosts = await getAllPosts('en')
+  const esPosts = await getAllPosts('es')
 
   // Static routes (only include URLs with language to avoid redirects)
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -39,16 +39,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   // Blog post routes
-  const enBlogRoutes: MetadataRoute.Sitemap = enPostUrls.map((url) => ({
-    url: `${baseUrl}/en/blog/${url}`,
-    lastModified: new Date(),
+  const enBlogRoutes: MetadataRoute.Sitemap = enPosts.map((post) => ({
+    url: `${baseUrl}/en/blog/${post.url}`,
+    lastModified: new Date(post.updatedDate || post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
 
-  const esBlogRoutes: MetadataRoute.Sitemap = esPostUrls.map((url) => ({
-    url: `${baseUrl}/es/blog/${url}`,
-    lastModified: new Date(),
+  const esBlogRoutes: MetadataRoute.Sitemap = esPosts.map((post) => ({
+    url: `${baseUrl}/es/blog/${post.url}`,
+    lastModified: new Date(post.updatedDate || post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))

@@ -74,16 +74,6 @@ export async function generateMetadata({
       ...(alternateUrl && {
         alternateLocale: lang === 'en' ? 'es_ES' : 'en_US',
       }),
-      images: post.image
-        ? [
-            {
-              url: post.image,
-              width: 1200,
-              height: 630,
-              alt: post.title,
-            },
-          ]
-        : undefined,
       publishedTime: post.date,
       modifiedTime: post.updatedDate || post.date,
     },
@@ -92,7 +82,6 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       creator: TWITTER_HANDLE,
-      images: post.image ? [post.image] : ['/og-image.jpg'],
     },
   }
 }

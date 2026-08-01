@@ -44,14 +44,12 @@ export async function generateMetadata({
       type: 'website',
       locale: lang === 'en' ? 'en_US' : 'es_ES',
       alternateLocale: lang === 'en' ? 'es_ES' : 'en_US',
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
       creator: '@lestebanr',
-      images: ['/og-image.jpg'],
     },
   }
 }
