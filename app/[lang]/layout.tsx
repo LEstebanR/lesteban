@@ -40,17 +40,8 @@ type LayoutParams = {
   }>
 }
 
-export async function generateMetadata({
-  params,
-}: LayoutParams): Promise<Metadata> {
-  const { lang } = await params
-  const validLang = lang === 'es' ? 'es' : 'en'
-  const path = `/${validLang}`
-  const canonicalUrl = getCanonicalUrl(path)
-  const alternateEn = getCanonicalUrl('/en')
-  const alternateEs = getCanonicalUrl('/es')
-
-  return {
+const homeCopy = {
+  en: {
     title: 'Luis Esteban Ramirez | Software Developer',
     description:
       'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
@@ -64,6 +55,40 @@ export async function generateMetadata({
       'Colombia',
       'Portfolio',
     ],
+  },
+  es: {
+    title: 'Luis Esteban Ramírez | Desarrollador de Software',
+    description:
+      'Portafolio personal de Luis Esteban Ramírez, desarrollador de software especializado en desarrollo web y aplicaciones. Experiencia en React, TypeScript y desarrollo full-stack.',
+    keywords: [
+      'Luis Esteban',
+      'Desarrollador de Software',
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'Colombia',
+      'Portafolio',
+    ],
+  },
+} as const
+
+export async function generateMetadata({
+  params,
+}: LayoutParams): Promise<Metadata> {
+  const { lang } = await params
+  const validLang = lang === 'es' ? 'es' : 'en'
+  const path = `/${validLang}`
+  const canonicalUrl = getCanonicalUrl(path)
+  const alternateEn = getCanonicalUrl('/en')
+  const alternateEs = getCanonicalUrl('/es')
+  const { title, description, keywords } = homeCopy[validLang]
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title,
+    description,
+    keywords: [...keywords],
     authors: [{ name: 'Luis Esteban Ramirez' }],
     creator: 'Luis Esteban Ramirez',
     publisher: 'Luis Esteban Ramirez',
@@ -80,26 +105,15 @@ export async function generateMetadata({
       locale: validLang === 'en' ? 'en_US' : 'es_ES',
       alternateLocale: validLang === 'en' ? 'es_ES' : 'en_US',
       url: canonicalUrl,
-      title: 'Luis Esteban Ramirez | Software Developer',
-      description:
-        'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
+      title,
+      description,
       siteName: `${SITE_NAME} Portfolio`,
-      images: [
-        {
-          url: '/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: 'Luis Esteban Ramirez - Software Developer Portfolio',
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Luis Esteban Ramirez | Software Developer',
-      description:
-        'Personal portfolio of Luis Esteban Ramirez, software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development.',
+      title,
+      description,
       creator: TWITTER_HANDLE,
-      images: ['/og-image.jpg'],
     },
     robots: {
       index: true,
@@ -144,14 +158,6 @@ export default async function RootLayout({
   return (
     <html lang={validLang} suppressHydrationWarning>
       <head>
-        <meta
-          name="description"
-          content="Luis Esteban Ramirez is a software developer specialized in web development and applications. Experience in React, TypeScript, and full-stack development."
-        />
-        <meta
-          name="keywords"
-          content="Luis Esteban, Software Developer, React, Next.js, TypeScript, Tailwind CSS, Colombia, Portfolio"
-        />
         <link
           rel="alternate"
           type="application/rss+xml"
