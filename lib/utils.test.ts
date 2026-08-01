@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test'
-
 import { cn, getCanonicalUrl } from './utils'
+import { describe, expect, test } from 'bun:test'
 
 describe('cn', () => {
   test('combines classes correctly', () => {
@@ -34,11 +33,11 @@ describe('cn', () => {
 
 describe('getCanonicalUrl', () => {
   test('returns full URL for path with leading slash', () => {
-    expect(getCanonicalUrl('/about')).toBe('https://lesteban.dev/about')
+    expect(getCanonicalUrl('/about')).toBe('https://www.lesteban.dev/about')
   })
 
   test('adds leading slash when path has none', () => {
-    expect(getCanonicalUrl('about')).toBe('https://lesteban.dev/about')
+    expect(getCanonicalUrl('about')).toBe('https://www.lesteban.dev/about')
   })
 
   test('does not duplicate the leading slash', () => {
@@ -48,17 +47,17 @@ describe('getCanonicalUrl', () => {
 
   test('works with nested paths', () => {
     expect(getCanonicalUrl('/blog/my-post')).toBe(
-      'https://lesteban.dev/blog/my-post'
+      'https://www.lesteban.dev/blog/my-post'
     )
   })
 
   test('works with locale prefix', () => {
     expect(getCanonicalUrl('/en/blog/my-post')).toBe(
-      'https://lesteban.dev/en/blog/my-post'
+      'https://www.lesteban.dev/en/blog/my-post'
     )
   })
 
   test('works with root path', () => {
-    expect(getCanonicalUrl('/')).toBe('https://lesteban.dev/')
+    expect(getCanonicalUrl('/')).toBe('https://www.lesteban.dev/')
   })
 })
