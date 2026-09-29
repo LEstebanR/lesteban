@@ -103,26 +103,30 @@ export function Header() {
   return (
     <header
       aria-label={currentLang === 'es' ? 'Encabezado del sitio' : 'Site header'}
-      className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b border-border py-1"
+      className="bg-background/75 border-border fixed top-0 right-0 left-0 z-40 flex h-16 w-full items-center border-b backdrop-blur-md"
     >
-      <div className="flex w-full items-center justify-between">
-        <div className="md:flex-1" />
-        <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
+        <div className="flex flex-1 items-center justify-between gap-6">
           <Link href={`/${currentLang}`} target="_self">
-            <h1 className="font-heading text-primary text-xl font-bold">
+            <h1 className="font-heading flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
+              <span aria-hidden="true" className="bg-primary size-2" />
               Luis Esteban
             </h1>
           </Link>
           {isHome ? (
             <nav
-              aria-label={currentLang === 'es' ? 'Navegación principal' : 'Main navigation'}
+              aria-label={
+                currentLang === 'es'
+                  ? 'Navegación principal'
+                  : 'Main navigation'
+              }
               className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0"
             >
               <NextLink
                 href={`/${currentLang}/blog`}
-                className="hover:text-primary hover:animate-underline-link flex items-center gap-1.5 decoration-2 underline-offset-4 transition-all duration-300 hover:underline"
+                className="text-muted-foreground hover:text-primary flex items-center gap-1.5 font-mono text-xs transition-colors"
               >
-                <BookOpen className="h-4 w-4" />
+                <BookOpen className="size-3.5" />
                 Blog
               </NextLink>
             </nav>
@@ -279,8 +283,8 @@ export function Header() {
             </DropdownMenu>
           </div>
         </div>
-        <div className="hidden flex-1 justify-end md:flex">
-          <div className="flex items-center gap-2 pr-4">
+        <div className="hidden justify-end md:flex">
+          <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
           </div>
