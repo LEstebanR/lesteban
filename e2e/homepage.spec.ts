@@ -16,9 +16,7 @@ test.describe('Homepage', () => {
     await expect(
       page.getByRole('link', { name: /view projects/i })
     ).toBeVisible()
-    await expect(
-      page.getByRole('link', { name: /contact/i }).first()
-    ).toBeVisible()
+    await expect(page.getByRole('button', { name: /contact/i })).toBeVisible()
 
     // Navigation links present
     await expect(
@@ -46,9 +44,7 @@ test.describe('Homepage', () => {
     await expect(
       page.getByRole('link', { name: /ver proyectos/i })
     ).toBeVisible()
-    await expect(
-      page.getByRole('link', { name: /contactar/i }).first()
-    ).toBeVisible()
+    await expect(page.getByRole('button', { name: /contactar/i })).toBeVisible()
 
     // Navigation links present
     await expect(
