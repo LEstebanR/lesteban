@@ -20,12 +20,11 @@ export async function RelatedPosts({ currentUrl, lang }: RelatedPostsProps) {
   if (related.length < 2) return null
 
   return (
-    <section className="flex flex-col gap-6">
-      <div className="border-border via-border h-px w-full bg-gradient-to-r from-transparent to-transparent" />
-      <h2 className="font-heading text-foreground text-2xl font-bold">
+    <section className="border-border flex flex-col gap-2 border-t pt-10">
+      <h2 className="text-muted-foreground text-sm">
         {dictionary['related-posts']}
       </h2>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="divide-border flex flex-col divide-y">
         {related.map((post) => (
           <BlogCard key={post.url} post={post} />
         ))}

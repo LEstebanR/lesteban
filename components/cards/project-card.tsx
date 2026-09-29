@@ -1,24 +1,7 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { useHasMounted } from '@/hooks/use-has-mounted'
 import { useLang } from '@/hooks/use-lang'
-
-import Image from 'next/image'
-
-import { useTheme } from 'next-themes'
-
-import { ExternalLink } from 'lucide-react'
-
-import { Badge } from '@/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Link } from '@/components/ui/link'
 
 type Project = {
   name: string
@@ -30,63 +13,48 @@ type Project = {
 export function ProjectCard({ project }: { project: Project }) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
-  const { resolvedTheme } = useTheme()
-  const mounted = useHasMounted()
   return (
-    <Card className="border-secondary flex h-full flex-col">
-      <CardHeader>
-        <CardTitle>
+    <article className="grid gap-3 py-7 first:pt-0 md:grid-cols-[1fr_auto] md:gap-x-10">
+      <div className="flex flex-col gap-2">
+        <h3 className="font-heading text-[1.75rem] leading-tight font-medium">
           {dictionary[project.name as keyof typeof dictionary]}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1">
-        <p>{dictionary[project.description as keyof typeof dictionary]}</p>
-      </CardContent>
-      <CardFooter className="flex flex-col items-center gap-2">
-        <div className="mt-2 flex flex-wrap gap-2">
+        </h3>
+        <p className="text-foreground/80 max-w-[58ch] leading-relaxed">
+          {dictionary[project.description as keyof typeof dictionary]}
+        </p>
+        <ul className="text-muted-foreground flex flex-wrap text-sm">
           {project.stack.map((stack) => (
-            <Badge
+            <li
               key={stack}
-              variant="outline"
-              className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
+              className="after:mr-1 after:content-[','] last:after:content-none"
             >
               {stack}
-            </Badge>
+            </li>
           ))}
-        </div>
-        <div className="flex w-full justify-between">
-          <div>
-            {project.repo && mounted && (
-              <Link href={project.repo}>
-                <div className="flex items-start gap-2">
-                  <Image
-                    src={
-                      resolvedTheme === 'dark'
-                        ? '/logos/github_dark.svg'
-                        : '/logos/github_light.svg'
-                    }
-                    alt="GitHub"
-                    height={20}
-                    width={20}
-                  />
-                  {dictionary['code']}
-                </div>
-              </Link>
-            )}
-          </div>
-          <div>
-            {project.link && (
-              <Link
-                href={project.link}
-                withIcon={true}
-                icon={<ExternalLink className="h-4 w-4" />}
-              >
-                {dictionary['live-demo']}
-              </Link>
-            )}
-          </div>
-        </div>
-      </CardFooter>
-    </Card>
+        </ul>
+      </div>
+      <div className="flex gap-5 text-sm md:flex-col md:items-end md:gap-2 md:pt-2">
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noreferrer"
+            className="ink-link text-primary"
+          >
+            {dictionary['live-demo']}
+          </a>
+        )}
+        {project.repo && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noreferrer"
+            className="ink-link"
+          >
+            {dictionary['code']}
+          </a>
+        )}
+      </div>
+    </article>
   )
 }

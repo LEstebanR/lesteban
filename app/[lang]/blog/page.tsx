@@ -60,28 +60,27 @@ export default async function BlogPage({ params }: PageParams) {
   const posts = await getAllPosts(lang)
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)] w-full flex-col gap-8 px-2 md:mx-0 md:px-0">
-      <div className="animate-fade-in-up my-4 flex justify-center">
-        <h1 className="font-heading from-primary to-primary/60 mb-6 bg-gradient-to-r bg-clip-text text-center text-4xl leading-tight font-bold text-transparent md:text-5xl lg:text-6xl">
+    <div className="flex min-h-[calc(100vh-8rem)] w-full flex-col gap-12 pt-16 pb-20 md:pt-24">
+      <header className="grid gap-4 md:grid-cols-12 md:gap-10">
+        <h1 className="font-heading text-6xl font-normal tracking-[-0.02em] md:col-span-3 md:text-7xl">
           {dictionary['blog']}
         </h1>
-      </div>
+        <p className="text-foreground/75 max-w-[40ch] self-end font-serif text-xl leading-relaxed md:col-span-9">
+          {dictionary['blog-description']}
+        </p>
+      </header>
 
       {posts.length === 0 ? (
-        <div className="text-muted-foreground animate-fade-in-up flex h-64 items-center justify-center [animation-delay:100ms] [animation-fill-mode:both]">
-          <p>{dictionary['no-posts']}</p>
-        </div>
+        <p className="text-muted-foreground border-border border-t py-16 text-center">
+          {dictionary['no-posts']}
+        </p>
       ) : (
-        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
-          {posts.map((post, index) => (
-            <div
-              key={post.url}
-              className="animate-fade-in-up [animation-fill-mode:both]"
-              style={{ animationDelay: `${100 + index * 75}ms` }}
-            >
-              <BlogCard post={post} />
-            </div>
-          ))}
+        <div className="grid md:grid-cols-12 md:gap-10">
+          <div className="divide-border border-border flex flex-col divide-y border-t md:col-span-9 md:col-start-4">
+            {posts.map((post) => (
+              <BlogCard key={post.url} post={post} />
+            ))}
+          </div>
         </div>
       )}
     </div>

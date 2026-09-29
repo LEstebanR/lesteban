@@ -72,7 +72,15 @@ const { BlogCard } = await import('@/components/cards/blog-card')
 const { ProjectCard } = await import('@/components/cards/project-card')
 const { ContactCard } = await import('@/components/cards/contact-card')
 const { ExperienceCard } = await import('@/components/cards/experience-card')
-const { CardAction } = await import('@/components/ui/card')
+const {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} = await import('@/components/ui/card')
 
 // ─── BlogCard ────────────────────────────────────────────────────────────────
 
@@ -242,5 +250,25 @@ describe('CardAction', () => {
   test('merges extra className', () => {
     render(<CardAction className="extra" data-testid="ca" />)
     expect(screen.getByTestId('ca').className).toContain('extra')
+  })
+})
+
+// ─── Card primitives ─────────────────────────────────────────────────────────
+
+describe('Card primitives', () => {
+  test('render every slot with its children', () => {
+    render(
+      <Card>
+        <CardHeader>
+          <CardTitle>Title</CardTitle>
+          <CardDescription>Description</CardDescription>
+        </CardHeader>
+        <CardContent>Content</CardContent>
+        <CardFooter>Footer</CardFooter>
+      </Card>
+    )
+    for (const text of ['Title', 'Description', 'Content', 'Footer']) {
+      expect(screen.getByText(text)).toBeDefined()
+    }
   })
 })
