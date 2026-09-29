@@ -6,7 +6,7 @@
 
 ## 1. Principles
 
-1. **One loud moment.** The hero name is scanned in once (clip-path reveal + a single beam). Nothing else animates on its own except the status dot.
+1. **One loud moment, a living console.** The hero name is scanned in once; after that the page stays alive quietly — ambient signals, pointer response and scroll-driven reveals, all in the language of instruments (see §6).
 2. **Instruments, not decoration.** Every structural device carries information: the timeline rail is chronological, the grid marks the hero's coordinate space, corner brackets (`.hud-frame`) mark interactive or focal surfaces.
 3. **Dark is native, light is daylight.** `defaultTheme="dark"`. Light mode is a cool daylight console, not an inverted afterthought.
 4. **Reading is sacred.** Long-form (`.blog-content`) drops the chrome: calm Geist body, 3xl measure, only a `/` marker on `h2`.
@@ -53,10 +53,33 @@ Scale: 12 (mono data) · 14 · 16/18 (body) · 20/24 (card titles) · 30 (sectio
 
 ## 6. Motion
 
-- `.scan-in` + `.scan-beam`: hero name reveal, once, 1.1s.
-- `.status-dot`: stepped blink on the availability line.
-- Hover: color transitions only (≤200ms). Blog images go from 40% grayscale to full color.
-- `prefers-reduced-motion`: all animation collapses; the beam is hidden.
+Motion behaves like instruments coming online — linear scans, stepped blinks, signal filling a rail. Never bouncy, never decorative springs.
+
+**Load (once)**
+
+- `.scan-in` + `.scan-beam`: hero name reveal, 1.1s.
+
+**Ambient (slow, low-contrast)**
+
+- `.console-grid` drifts one cell every 14s.
+- `.status-dot` and `.caret` (block cursor after the role) blink in steps.
+- `.photo-scan`: a scan pass over the portrait every 7s.
+- Current role node emits a radar ping (`animate-ping`).
+
+**Interactive**
+
+- `.console-spot`: a spotlight follows the pointer across the hero (`--mx`/`--my` written by `Hero`'s `onPointerMove`).
+- `.hud-frame` corner ticks grow 14px → 28px on hover/focus (`@property --tick`).
+- `.sweep-line`: one scan line crosses project/blog panels on hover.
+
+**Scroll-driven (CSS `animation-timeline: view()`, static where unsupported)**
+
+- `.reveal-line`: section hairline draws left → right in cyan.
+- `.rail::before`: the experience rail fills with signal as it crosses the viewport.
+- `.boot`: project panels scan in top → bottom.
+- `.chip-seq`: skill chips light up one after another (`--i` index), then settle.
+
+`prefers-reduced-motion`: every animation above is disabled; beams, scans, sweep and rail fill are hidden.
 
 ## 7. Accessibility
 

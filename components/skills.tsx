@@ -12,10 +12,11 @@ function SkillRow({ skill, skills }: { skill: string; skills: string[] }) {
     <div className="border-border grid gap-3 border-b py-5 md:grid-cols-[240px_1fr] md:items-center">
       <h3 className="text-muted-foreground text-sm">{skill}</h3>
       <ul className="flex flex-wrap gap-2">
-        {skills.map((item) => (
+        {skills.map((item, index) => (
           <li
             key={item}
-            className="border-border bg-card hover:border-primary hover:text-primary rounded-sm border px-3 py-1.5 font-mono text-sm transition-colors"
+            style={{ '--i': index } as React.CSSProperties}
+            className="chip-seq border-border bg-card hover:border-primary hover:text-primary rounded-sm border px-3 py-1.5 font-mono text-sm transition-colors"
           >
             {item}
           </li>

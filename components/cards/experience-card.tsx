@@ -33,7 +33,11 @@ export function ExperienceCard({
             ? 'border-primary bg-primary shadow-[0_0_12px_var(--primary)]'
             : 'border-border bg-background'
         )}
-      />
+      >
+        {current && (
+          <span className="bg-primary/50 absolute inset-0 animate-ping" />
+        )}
+      </span>
       <p className="text-muted-foreground font-mono text-xs">
         {dictionary[job.startDate as keyof typeof dictionary]} —{' '}
         {dictionary[job.endDate as keyof typeof dictionary]}

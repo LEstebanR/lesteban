@@ -23,6 +23,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
       href={`/${lang}/blog/${post.url}`}
       className="group hud-frame border-border bg-card focus-visible:ring-ring flex h-full flex-col border outline-none focus-visible:ring-2"
     >
+      <span aria-hidden="true" className="sweep-line z-10" />
       <div className="relative aspect-[16/9] w-full overflow-hidden">
         <Image
           src={post.image}

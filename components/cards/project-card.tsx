@@ -25,7 +25,8 @@ export function ProjectCard({ project }: { project: Project }) {
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
   return (
-    <article className="hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 backdrop-blur-sm transition-colors">
+    <article className="group boot hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 backdrop-blur-sm transition-colors">
+      <span aria-hidden="true" className="sweep-line" />
       <h3 className="font-heading text-2xl font-semibold tracking-tight">
         {dictionary[project.name as keyof typeof dictionary]}
       </h3>

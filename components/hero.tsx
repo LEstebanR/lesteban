@@ -22,8 +22,17 @@ export function Hero({ lang }: HeroProps) {
   const mounted = useHasMounted()
   const isDark = resolvedTheme === 'dark'
 
+  const trackPointer = (event: React.PointerEvent<HTMLElement>) => {
+    const { top } = event.currentTarget.getBoundingClientRect()
+    event.currentTarget.style.setProperty('--mx', `${event.clientX}px`)
+    event.currentTarget.style.setProperty('--my', `${event.clientY - top}px`)
+  }
+
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-12 py-16">
+    <section
+      onPointerMove={trackPointer}
+      className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-12 py-16"
+    >
       <div
         aria-hidden="true"
         className="console-grid pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
@@ -31,6 +40,10 @@ export function Hero({ lang }: HeroProps) {
       <div
         aria-hidden="true"
         className="console-glow pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
+      />
+      <div
+        aria-hidden="true"
+        className="console-spot pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
       />
 
       <p className="text-muted-foreground flex items-center gap-2 font-mono text-xs">
@@ -52,6 +65,7 @@ export function Hero({ lang }: HeroProps) {
         <div className="flex max-w-xl flex-col gap-6">
           <p className="text-primary font-heading text-xl font-medium md:text-2xl">
             {dictionary['software-developer']}
+            <span aria-hidden="true" className="caret" />
           </p>
           <p className="text-foreground/80 text-lg leading-relaxed text-pretty">
             {dictionary['about-me-description-1']}{' '}
@@ -114,6 +128,7 @@ export function Hero({ lang }: HeroProps) {
 
         <figure className="hud-frame border-border bg-card w-full max-w-[220px] border p-3 md:max-w-[280px]">
           <div className="scanlines relative aspect-square overflow-hidden">
+            <span aria-hidden="true" className="photo-scan" />
             <Image
               src="/profile_pic.jpeg"
               alt="Luis Esteban"

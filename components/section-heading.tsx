@@ -12,7 +12,9 @@ export function SectionHeading({ children, meta }: SectionHeadingProps) {
         </span>
         {children}
       </h2>
-      <div className="bg-border mb-2.5 h-px flex-1" />
+      <div className="bg-border mb-2.5 h-px flex-1">
+        <div className="reveal-line bg-primary/60 h-px w-full" />
+      </div>
       {meta && (
         <span className="text-muted-foreground mb-1 font-mono text-xs">
           {meta}
