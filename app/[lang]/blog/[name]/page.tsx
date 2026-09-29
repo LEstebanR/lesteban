@@ -118,50 +118,47 @@ export default async function BlogPostPage({ params }: PageParams) {
 
   return (
     <>
-      <ScrollProgress className="bg-primary fixed top-16 right-0 left-0 z-50" />
+      <ScrollProgress className="bg-foreground/70 fixed top-16 right-0 left-0 z-50 h-px" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <SetBreadcrumb path={name} title={post.short_title} />
-      <div className="mt-8 flex flex-col gap-8">
-        {/* Header */}
-        <header className="animate-fade-in-up flex flex-col gap-6">
-          <div className="flex flex-col gap-4">
-            <h1 className="font-heading from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-5xl md:leading-tight lg:text-6xl lg:leading-tight">
-              {post.title}
-            </h1>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
+      <div className="mx-auto flex w-full max-w-[65ch] flex-col gap-12 pt-16 pb-20 md:pt-24">
+        <header className="flex flex-col gap-6">
+          <div className="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
             <Badge
               variant="outline"
-              className="border-primary bg-primary/10 dark:bg-primary/20 flex items-center gap-2 rounded-full px-3 py-1"
+              className="text-muted-foreground gap-1.5 rounded-sm border-none px-0 text-sm font-normal tabular-nums"
               data-testid="date-badge"
             >
-              <Calendar className="text-primary h-3.5 w-3.5" />
-              <span className="text-primary text-sm font-medium">
-                {post.date}
-              </span>
+              <Calendar className="size-3.5" />
+              {post.date}
             </Badge>
-            {post.tags &&
-              post.tags.length > 0 &&
-              post.tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="rounded-full text-xs"
-                >
-                  {tag}
-                </Badge>
-              ))}
+            {post.tags && post.tags.length > 0 && (
+              <ul className="flex flex-wrap">
+                {post.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="after:mr-1 after:content-[','] last:after:content-none"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-
-          <div className="border-border via-border h-px w-full bg-gradient-to-r from-transparent to-transparent" />
+          <h1 className="font-heading text-[clamp(2.4rem,6vw,3.75rem)] leading-[1.05] font-normal tracking-[-0.02em] text-balance">
+            {post.title}
+          </h1>
+          {post.description && (
+            <p className="text-foreground/70 font-serif text-[1.35rem] leading-relaxed text-pretty italic">
+              {post.description}
+            </p>
+          )}
         </header>
-        {/* Content */}
         <article
-          className="blog-content animate-fade-in-up [animation-delay:200ms] [animation-fill-mode:both]"
+          className="blog-content"
           dangerouslySetInnerHTML={{ __html: post.content || '' }}
         />
         <RelatedPosts currentUrl={post.url} lang={lang} />
