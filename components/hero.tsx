@@ -68,7 +68,7 @@ export function Hero({ lang }: HeroProps) {
               variant="outline"
               className="border-border bg-card text-foreground hover:border-primary/50 hover:bg-card/80 rounded-lg font-semibold transition-all"
             >
-              {dictionary['contact']}
+              {dictionary['contact-cta']}
             </Button>
           </Link>
         </div>

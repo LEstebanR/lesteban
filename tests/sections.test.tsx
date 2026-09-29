@@ -59,8 +59,8 @@ const MOCK_DICT: Record<string, string> = {
   'about-me-description-2': 'for everyone.',
   'available-to-collaborate': 'available to collaborate',
   'view-projects': 'View projects',
+  'contact-cta': 'Contact',
   contact: 'Contact',
-  'indie-hacker-in-progress': 'Indie Hacker in Progress',
   // Experience
   experience: 'Experience',
   'see-more': 'See more',
