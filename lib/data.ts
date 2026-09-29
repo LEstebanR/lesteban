@@ -60,18 +60,18 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/LEstebanR/conexory',
   },
   {
+    name: 'lesfin',
+    description: 'lesfin-description',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma', 'Neon'],
+    link: 'https://www.lesfin.app',
+    repo: 'https://github.com/LEstebanR/lesfin',
+  },
+  {
     name: 'roadmapcol',
     description: 'roadmapcol-description',
     stack: ['Next.js', 'Tailwind', 'Shadcn'],
     link: 'https://roadmapcol.com/',
     repo: 'https://github.com/LEstebanR/roadmapcol',
-  },
-  {
-    name: 'oniricapp',
-    description: 'oniricapp-description',
-    stack: ['Next.js', 'Tailwind', 'Llama'],
-    link: 'https://www.oniricapp.com/',
-    repo: 'https://github.com/LEstebanR/dream_Interpreter',
   },
   {
     name: 'humedad-arena',

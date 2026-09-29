@@ -1,15 +1,14 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { useHasMounted } from '@/hooks/use-has-mounted'
+import { useLang } from '@/hooks/use-lang'
 
 import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
 import { ExternalLink } from 'lucide-react'
-
-import { useHasMounted } from '@/hooks/use-has-mounted'
-import { useLang } from '@/hooks/use-lang'
 
 import { Badge } from '@/components/ui/badge'
 import {
