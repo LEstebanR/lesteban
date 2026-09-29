@@ -119,11 +119,3 @@ export const CONTACT_LINKS_STATIC = [
     darkIcon: '/logos/location_dark.svg',
   },
 ]
-
-export function resolveContactLinks(isDark: boolean): ContactLink[] {
-  return CONTACT_LINKS_STATIC.map(({ lightIcon, darkIcon, ...rest }) => ({
-    ...rest,
-    icon: isDark ? darkIcon : lightIcon,
-    iconColor: '',
-  }))
-}
