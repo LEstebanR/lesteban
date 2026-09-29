@@ -1,15 +1,10 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { useHasMounted } from '@/hooks/use-has-mounted'
 
-import Image from 'next/image'
+import Link from 'next/link'
 
-import { useTheme } from 'next-themes'
-
-import { Badge } from '@/components/ui/badge'
-import { Link } from '@/components/ui/link'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Button } from '@/components/ui/button'
 
 interface HeroProps {
   lang: 'en' | 'es'
@@ -17,103 +12,68 @@ interface HeroProps {
 
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
-  const { resolvedTheme } = useTheme()
-  const mounted = useHasMounted()
 
   return (
-    <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between px-2 py-4 md:px-0 md:py-8">
-      <div className="from-primary to-primary/60 animate-float animate-fade-in-scale mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1 [animation-fill-mode:both]">
-        <div className="bg-background flex h-full w-full items-center justify-center rounded-full">
-          <Image
-            src="/profile_pic.jpeg"
-            alt="Luis Esteban"
-            width={700}
-            height={700}
-            className="h-full w-full rounded-full object-cover"
-            priority
-          />
-        </div>
-      </div>
-      <h1 className="font-heading animate-fade-in-up mb-6 text-center text-3xl font-bold text-balance [animation-delay:100ms] [animation-fill-mode:both] md:mb-0 md:text-6xl">
-        {dictionary['hello']}{' '}
-        <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
-          Luis Esteban
-        </span>
-      </h1>
-      <p className="text-muted-foreground animate-fade-in-up mb-6 text-xl text-pretty [animation-delay:200ms] [animation-fill-mode:both] sm:text-2xl md:mb-0">
-        {dictionary['software-developer']}
-      </p>
-      <p className="text-foreground/80 animate-fade-in-up mx-auto mb-6 max-w-prose text-lg text-pretty [animation-delay:300ms] [animation-fill-mode:both] md:mb-0 md:text-xl">
-        {dictionary['about-me-description-1']}{' '}
-        <span className="text-primary font-bold">
-          {dictionary['global-impact']}
-        </span>{' '}
-        {dictionary['about-me-description-2']}
-      </p>
-      <Badge
-        variant="outline"
-        className="border-primary bg-primary/10 dark:bg-primary/20 animate-fade-in-scale mb-2 rounded-full p-2 px-3 text-sm [animation-delay:400ms] [animation-fill-mode:both]"
-      >
-        <span className="text-primary dark:text-primary/90 text-sm font-bold">
-          {dictionary['indie-hacker-in-progress']}
-        </span>
-      </Badge>
+    <section className="relative mx-auto max-w-4xl px-6 py-16 md:py-24">
+      {/* Subtle glow effect */}
+      <div
+        className="pointer-events-none absolute top-12 left-20 h-64 w-64 opacity-50 blur-3xl md:left-40 md:h-80 md:w-80"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(0, 184, 212, 0.35) 0%, transparent 70%)',
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 [animation-delay:500ms] [animation-fill-mode:both] md:mb-0">
-        {['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase'].map((tech) => (
-          <Badge
-            key={tech}
-            variant="outline"
-            className="bg-secondary/10 dark:bg-secondary/30 text-secondary dark:text-secondary-foreground border-secondary rounded-full text-sm"
-          >
-            {tech}
-          </Badge>
-        ))}
-      </div>
-      <div className="animate-fade-in-up mb-6 flex gap-4 [animation-delay:600ms] [animation-fill-mode:both] md:mb-0">
-        <Link href="https://github.com/LEstebanR" withIcon>
-          {mounted ? (
-            <Image
-              src={
-                resolvedTheme === 'dark'
-                  ? '/logos/github_dark.svg'
-                  : '/logos/github_light.svg'
-              }
-              className="transition-transform duration-300 hover:scale-150"
-              alt="Github"
-              width={30}
-              height={30}
-            />
-          ) : (
-            <Skeleton className="h-[30px] w-[30px] rounded-full" />
-          )}
-        </Link>
-        <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
-          <Image
-            src={'/logos/linkedin.svg'}
-            className="transition-transform duration-300 hover:scale-150"
-            alt="LinkedIn"
-            width={30}
-            height={30}
-          />
-        </Link>
-        <Link href="mailto:leramirezca@gmail.com">
-          {mounted ? (
-            <Image
-              src={
-                resolvedTheme === 'dark'
-                  ? '/logos/mail_dark.svg'
-                  : '/logos/mail_light.svg'
-              }
-              className="transition-transform duration-300 hover:scale-150"
-              alt="Mail"
-              width={33}
-              height={33}
-            />
-          ) : (
-            <Skeleton className="h-[33px] w-[33px] rounded-full" />
-          )}
-        </Link>
+      <div className="relative">
+        {/* Eyebrow */}
+        <p className="text-primary mb-4 font-mono text-xs font-medium tracking-wider uppercase">
+          {'// '}
+          {lang === 'es'
+            ? 'disponible para colaborar'
+            : 'available to collaborate'}
+        </p>
+
+        {/* Main headline */}
+        <h1 className="font-heading mb-3 text-4xl leading-tight font-bold md:text-5xl lg:text-6xl">
+          {dictionary['hello']}{' '}
+          <span className="text-primary">Luis Esteban</span>
+        </h1>
+
+        {/* Role */}
+        <p className="text-muted-foreground mb-6 text-xl font-medium md:text-2xl">
+          {dictionary['software-developer']}
+        </p>
+
+        {/* Bio */}
+        <p className="text-muted-foreground mb-8 max-w-xl text-base leading-relaxed md:text-lg">
+          {dictionary['about-me-description-1']}{' '}
+          <span className="text-primary font-semibold">
+            {dictionary['global-impact']}
+          </span>{' '}
+          {dictionary['about-me-description-2']}
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-3">
+          <Link href={`/${lang}#projects`} scroll={true}>
+            <Button
+              size="lg"
+              className="shadow-primary/30 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg font-semibold shadow-lg transition-all hover:scale-105"
+            >
+              {lang === 'es' ? 'Ver proyectos' : 'View projects'}
+            </Button>
+          </Link>
+          <Link href={`/${lang}#contact`} scroll={true}>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-border bg-card text-foreground hover:border-primary/50 hover:bg-card/80 rounded-lg font-semibold transition-all"
+            >
+              {lang === 'es' ? 'Contactar' : 'Contact'}
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   )

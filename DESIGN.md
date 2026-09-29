@@ -1,259 +1,223 @@
-# Design System Inspired by Apple
+# Design System — Editorial Minimalism with Light Cyan Accent
 
 ## 1. Visual Theme & Atmosphere
 
-Apple's web language is a precision editorial system that alternates between gallery-like calm and retail-density information blocks. The visual tone stays restrained: broad neutral canvases, quiet chrome, and product imagery given almost all of the expressive weight. The interface is engineered to disappear so hardware, materials, and finish options become the narrative foreground.
+This design system is inspired by Delba (https://delba.dev) and editorial portfolio layouts. The visual language emphasizes whitespace, calm typography, and a light-only color palette with a soft cyan accent. There is no dark mode in v1.
 
-Across the five analyzed pages, the rhythm is consistent but not monolithic. Marketing surfaces (homepage and Environment) use cinematic black-and-light chaptering, while commerce surfaces (Store and Shop flows) introduce tighter spacing, more utility controls, and denser card stacks without breaking the core brand grammar. The result is one system with two gears: showcase mode and transaction mode.
+The atmosphere is professional yet approachable, with a focus on content hierarchy and readability. Wide margins, generous vertical spacing, and a serif-sans font pairing create an editorial feel. Work and projects are presented as light cards or lists, not dense grids.
 
-Typography is the stabilizer. SF Pro Display carries hero and merchandising hierarchy with compact line heights and controlled tracking, while SF Pro Text handles product metadata, navigation, filters, and dense selection UI. The typography stays understated, but the scale range is wide enough to support both billboard hero messaging and micro utility labels.
+The cyan accent (#00b8d4) provides just enough visual energy without overwhelming the calm neutral foundation. It appears in CTAs, links, hover states, and subtle glow effects. The background grid (if present) is kept at ≤2% opacity to maintain the minimal aesthetic.
 
 **Key Characteristics:**
-- Binary section rhythm: light canvases (`#ffffff`, `#f8f8f8`) in light mode alternating with deep dark surfaces (`#181818`, `#292929`) in dark mode
-- Navy-to-teal action family for action and link semantics (`#134686`, `#0089d0`, `#568de9`); coral secondary accent (`#f05461`) for brand highlights
-- Dual operating modes in one system: cinematic showcase modules and dense commerce configurators
-- Heavy reliance on imagery and material finishes; UI chrome remains visually thin
-- Tight headline metrics (SF Pro Display, semibold) paired with compact body/link typography (SF Pro Text)
-- Pill and capsule geometry as signature action language (`18px` to `980px` and circular controls)
-- Depth used sparingly; contrast and surface separation do most of the layering work
-- Multi-page color-block rhythm: black hero chapters -> pale neutral merchandising fields -> utility white retail surfaces -> dark micro-surfaces for controls
+
+- Light-only palette: no dark mode toggle or dark variants
+- Editorial whitespace: generous vertical rhythm and horizontal breathing room
+- Serif + sans pairing for editorial contrast (or high-quality sans throughout)
+- Cyan accent (#00b8d4) as the primary interactive color
+- Minimal cyberpunk: soft cyan glow, ultra-subtle grid (≤2% opacity)
+- Work/projects as light cards with borders, not heavy shadows or dense grids
+- Natural, approachable copy (ES: Colombia natural, EN: professional-casual)
+- Delba-inspired layout rhythm: hero → work list → experience → about → contact
 
 ## 2. Color Palette & Roles
 
-> **Source:** CSS custom properties defined in `app/globals.css` (Tailwind CSS v4 OKLCH tokens, converted to sRGB hex for reference)
+> **Source:** CSS custom properties defined in `app/globals.css` (light-only design, no dark mode)
 
-### Primary (Light Mode)
-- **Pure White** (`#ffffff`): Main page background and product list surfaces.
-- **Near-White Canvas** (`#f8f8f8`): Cards, muted areas, and subtle elevated surfaces in light contexts.
-- **Dark Charcoal** (`#3a3a3a`): Primary text and dark-fill control color on light canvases.
+### Foundation (Light Only)
 
-### Primary (Dark Mode)
-- **Deep Background** (`#181818`): Main dark mode canvas, immersive section backgrounds, deep UI anchors.
-- **Elevated Card** (`#292929`): Card and raised surface step in dark mode.
-- **Near-Black Popover** (`#030303`): Deepest dark layer for popovers and maximum-contrast elements.
-- **Light Foreground** (`#eeeeee`): Primary text on dark canvases.
+- **Background** (`--bg`): `#f7f8fa` — Main page canvas, soft off-white
+- **Elevated Surface** (`--bg-elev`): `#ffffff` — Cards, nav, modals, and raised components
+- **Text** (`--text`): `#0f1419` — Primary body and heading text
+- **Muted Text** (`--muted`): `#5b6570` — Secondary text, metadata, helper copy
+- **Border** (`--border`): `rgba(15, 20, 25, 0.08)` — Subtle dividers and card containment
 
-### Action & Brand Accent
-- **Navy Primary** (`#134686`): Primary action fill and brand anchor in light mode.
-- **Bright Blue Primary** (`#568de9`): Primary action color in dark mode; high-luminance interactive treatment.
-- **Sky Blue Accent** (`#0089d0`): Inline links and accent treatment for mid-contrast contexts.
-- **Coral Secondary** (`#f05461`): Brand secondary accent for highlights, decorative emphasis, and secondary actions.
-- **Teal Focus Signal** (`#008994`): Ring/focus state and keyboard navigation emphasis across both modes. Dark mode variant: `#0099a3`.
+### Accent & Interactive
 
-### Surface & Utility
-- **Dark Muted Surface** (`#161616`): Muted and bordered dark surfaces; tight dark utility containment.
-- **Dark Input** (`#0b0b0b`): Form field backgrounds in dark mode.
+- **Cyan Primary** (`--cyan`): `#00b8d4` — Primary CTA, links, active states, brand accent
+- **Cyan Soft** (`--cyan-soft`): `rgba(0, 184, 212, 0.12)` — Subtle backgrounds for tags and highlights
+- **Cyan Glow** (`--cyan-glow`): `rgba(0, 184, 212, 0.35)` — Soft glow effects on hover, focus, and hero accents
 
-### Neutrals & Text
-- **Muted Foreground** (`#636363`): Body secondary copy, helper descriptions, tertiary metadata in light mode.
-- **Medium Gray** (`#808080`): Secondary text and muted content in dark mode.
-- **Light Border** (`#dedede`): Dividers, subtle outlines, and field containment in light mode.
-- **Dark Border** (`#161616`): Dividers and outlines in dark mode.
+### Semantic Colors
 
-### Semantic & Chart
-- **Selection/Focus Signal** (`#134686` / `#008994`): Shared focus and selected-state signal; navy in action contexts, teal in ring/outline contexts.
-- **Destructive Red** (`#e7000b`): Error states, destructive actions, and warning signals.
-- **Amber** (`#e18528`): Warning-adjacent chart and accent highlight color. Dark mode variant: `#f2943c`.
-- **Teal Chart** (`#008994`): Chart accent 1 and teal data series.
-- **Blue Chart** (`#0089d0`): Chart accent 2 and blue data series.
-
-### Gradient System
-- The interface is predominantly solid-surface driven. Visual richness comes from photography and component layering rather than persistent UI gradients.
+- Use `--cyan` for success-adjacent states when needed
+- Use a muted red (e.g., `#e53e3e`) for destructive actions or errors if required
+- Keep the palette minimal; avoid introducing additional accent colors
 
 ## 3. Typography Rules
 
 ### Font Family
-- **Display Family:** `SF Pro Display`, fallbacks `SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif`
-- **Text Family:** `SF Pro Text`, fallbacks `SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif`
-- **Usage Split:** Display family handles hero/product headlines and merchandising headings; Text family handles navigation, controls, labels, and dense commerce copy.
+
+- **Sans Family:** `Inter`, fallback `system-ui, sans-serif` — Primary font for body, UI, and most headings
+- **Mono Family:** `JetBrains Mono`, fallback `monospace` — Code, technical labels, and eyebrow text
+- **Optional Serif Family:** Consider adding a serif like `Lora` or `Merriweather` for large editorial headings if desired. Otherwise, Inter at bold weights is sufficient.
 
 ### Hierarchy
-| Role | Size | Weight | Line Height | Letter Spacing | Notes |
-|------|------|--------|-------------|----------------|-------|
-| Hero Display XL | 80px | 600 | 1.00-1.05 | -1.2px | Environment/store hero scale |
-| Hero Display L | 56px | 600 | 1.07 | -0.28px | Homepage hero moments |
-| Section Display | 48px | 500-600 | 1.08 | -0.144px | Major chapter headings |
-| Product Heading | 40px | 600 | 1.10 | normal | Product and campaign section titles |
-| Feature Display | 38px | 600 | 1.21 | 0.152px | Device and merchandising callouts |
-| Promo Display | 32px | 300-600 | 1.09-1.13 | 0.128px to 0.352px | Module-level sub-heroes |
-| Card/Product Title | 28px | 600 | 1.14 | 0.196px | Tile-level naming and key copy |
-| Utility Heading | 24px | 600 | 1.17 | 0.216px / -0.2px | Configurator and grouped content headers |
-| Link/Action Heading | 21px | 600 | 1.14-1.38 | 0.231px | Larger promotional links |
-| Subhead | 19px | 600 | 1.21 | 0.228px | Compact section intros |
-| Body Primary | 17px | 400 | 1.47 | -0.374px | Standard body and retail descriptions |
-| Body Emphasis | 17px | 600 | 1.24 | -0.374px | Emphasized labels and key values |
-| Control Label | 14px | 400-600 | 1.29-1.47 | -0.224px | Buttons, helper labels, compact nav text |
-| Micro UI | 12px | 400-600 | 1.00-1.33 | -0.12px | Fine print, micro labels |
-| Legal/Meta | 10px | 400 | 1.30-1.47 | -0.08px | Dense metadata and legal support text |
+
+| Role               | Size    | Weight | Line Height | Letter Spacing | Notes                                         |
+| ------------------ | ------- | ------ | ----------- | -------------- | --------------------------------------------- |
+| Hero Display       | 56px    | 700    | 1.1         | -0.03em        | Main hero headline                            |
+| Section Heading    | 20-24px | 600    | 1.3         | 0              | Section labels (e.g., "Proyectos destacados") |
+| Card/Project Title | 18px    | 600    | 1.4         | 0              | Card headings                                 |
+| Body Primary       | 16px    | 400    | 1.65        | 0              | Standard body copy, descriptions              |
+| Body Secondary     | 14px    | 500    | 1.55        | 0              | Metadata, smaller descriptions                |
+| Eyebrow/Label      | 12px    | 500    | 1.2         | 0.08em         | Uppercase eyebrow text in mono font           |
+| Button/CTA         | 14px    | 600    | 1.2         | 0              | Button labels and action text                 |
 
 ### Principles
-- **Continuity across page types:** The same typographic DNA spans cinematic launches and product-purchase flows, preventing a brand split between marketing and commerce.
-- **Compression at scale:** Display tiers use tight leading and controlled tracking to feel machined and product-first.
-- **Readable density at retail depth:** SF Pro Text balances compactness with enough vertical rhythm for long product lists and option matrices.
-- **Measured weight ladder:** 600 is the dominant emphasis weight; 700 appears selectively; 300 is used sparingly for contrast in larger lines.
 
-### Note on Font Substitutes
-- Closest freely available substitutes: `Inter` for text-heavy implementation and `SF Pro Display-like` metrics approximated with `Inter Tight` for headings.
-- When substituting, increase line-height slightly (+0.02 to +0.06) on body sizes and reduce negative tracking intensity to preserve readability.
+- **Editorial clarity:** Use generous line height (1.55–1.65) for body text to improve readability
+- **Calm hierarchy:** Bold weights (600–700) for headings, normal (400) for body
+- **Minimal tracking:** Avoid heavy letter-spacing except for uppercase labels
+- **Serif-sans pairing (optional):** If a serif is added, reserve it for large editorial headings; use sans for everything else
 
 ## 4. Component Stylings
 
-### Buttons
-- **Primary Fill Action:** `#134686` background, `#ffffff` text, 8px radius, compact horizontal padding (commonly 8px 15px). Dark mode: `#568de9` background. Used for decisive purchase/progression actions.
-- **Dark Fill Action:** `#3a3a3a` background, `#ffffff` text, 8px radius. Used when light surfaces need a restrained high-contrast primary.
-- **Pill/Capsule Action Family:** large capsule actions at `18px`-`56px` radii and extreme pill links at `980px`. Establishes the soft but precise call-to-action silhouette.
-- **Utility Filter/Button Shells:** light shells (`#f8f8f8` or translucent white) with subtle gray borders (`#dedede`) for dense configuration contexts.
-- **Pressed Behavior:** active controls commonly reduce scale or shift fill slightly to indicate physical press confirmation.
+### Buttons & CTAs
 
-### Cards & Containers
-- **Editorial/Product Cards:** light cards on `#f8f8f8` or white fields with minimal framing and image-first composition.
-- **Dark Utility Cards:** dark steps (`#292929` to `#161616`) used for overlays, media controls, and dark-context modules.
-- **Configurator Panels:** rounded containers (often 12px-18px) with clear but restrained border definition.
-- **Carousel/Spotlight Modules:** larger rounded shells (`28px`-`36px`) for featured content lanes.
+- **Primary CTA:** `background: var(--cyan)`, `color: #fff`, `border-radius: 10px`, `padding: 12px 20px`, optional soft `box-shadow: 0 0 24px var(--cyan-glow)`
+- **Ghost/Outline CTA:** `background: var(--bg-elev)`, `color: var(--text)`, `border: 1px solid var(--border)`, same radius and padding
+- **Hover states:** Increase border opacity or add subtle scale transform (`scale(1.02)`)
+
+### Cards
+
+- **Editorial Card:** `background: var(--bg-elev)`, `border: 1px solid var(--border)`, `border-radius: 14px`, `padding: 24px`
+- **Hover state:** `border-color: rgba(0, 184, 212, 0.35)`, `box-shadow: 0 8px 32px rgba(0, 184, 212, 0.1)`
+- **Gradient border (optional):** Use a subtle gradient pseudo-element (`::before`) with `linear-gradient(135deg, transparent 40%, var(--cyan-soft))` for a soft glow effect
+- Keep cards light and airy; avoid heavy shadows
 
 ### Inputs & Forms
-- **Retail Input Fields:** translucent or white backgrounds (`#f8f8f8`), dark text (`#3a3a3a`), border-led containment (`#dedede`).
-- **Selection Controls:** circular/toggle-like control geometry appears frequently in product selection interfaces.
-- **Density Strategy:** form fields remain visually quiet to keep device imagery and pricing hierarchy dominant.
+
+- `background: var(--bg-elev)`, `border: 1px solid var(--border)`, `border-radius: 8px`, `padding: 10px 14px`
+- `focus:border-color: var(--cyan)`, `focus:ring: 0 0 0 3px var(--cyan-soft)`
 
 ### Navigation
-- **Global Marketing Nav:** compact dark translucent bar with small-type links and restrained iconography.
-- **Store/Sub-shop Nav Layers:** additional utility bars, chips, and segmented controls for category and product narrowing.
-- **Link Hierarchy:** link blues remain the primary interactive signal while neutral text supports dense navigation sets.
+
+- **Top nav:** `background: var(--bg-elev)` or transparent, `border-bottom: 1px solid var(--border)`
+- **Logo:** Mono font, regular weight, cyan accent on part of the name (e.g., `les<span class="cyan">teban</span>.dev`)
+- **Links:** `color: var(--muted)`, `hover:color: var(--cyan)`, smooth transition
+
+### Tags & Badges
+
+- `background: var(--cyan-soft)`, `color: #0088a3` (darker cyan for contrast), `border-radius: 6px`, `padding: 4px 8px`, mono font at 11px
 
 ### Image Treatment
-- **Object-First Photography:** hardware and accessories are foregrounded on controlled solid surfaces.
-- **High-fidelity finish rendering:** reflective/material details are central to visual persuasion.
-- **Mixed framing:** full-bleed hero scenes coexist with rounded retail cards and tightly cropped merchandising thumbnails.
 
-### Other Distinctive Components
-- **Product Configurator Matrix:** option stacks and selectors combining chips, radio-style controls, and contextual pricing/summary blocks.
-- **Carousel Control Dots/Arrows:** circular control vocabulary in muted overlays for gallery progression.
-- **Environment Story Panels:** narrative chapters that blend editorial typography with cinematic product/environment visuals.
+- Clean, minimal framing with subtle borders if needed
+- Use `border-radius: 10px` for a modern, soft look
+- Avoid heavy filters or overlays; keep images crisp
 
 ## 5. Layout Principles
 
 ### Spacing System
-- Base unit is effectively `8px`, but the system supports dense micro-steps for precision alignment.
-- Frequently reused spacing values across pages: `2`, `4`, `6`, `7`, `8`, `9`, `10`, `12`, `14`, `17`, `20` px.
-- Universal rhythm constants visible across both marketing and retail flows: `8px` unit scaffolding with `14-20px` utility intervals for component padding and list spacing.
+
+- Base unit: `8px`
+- Common spacing values: `12px`, `16px`, `20px`, `24px`, `32px`, `48px`, `64px`
+- Use generous vertical spacing between sections (`48px`–`64px`)
+- Card/grid gaps: `16px` for tight layouts, `24px` for breathing room
 
 ### Grid & Container
-- **Showcase pages:** large central columns with broad horizontal breathing room and full-width color chapters.
-- **Commerce pages:** tighter multi-column product and control grids with frequent modular stacking.
-- **Container behavior:** constrained readable core with generous outer margins at desktop widths.
+
+- **Max-width container:** `1100px` centered with `margin: 0 auto`
+- **Horizontal padding:** `40px` on desktop, `20px` on mobile
+- **Work/Projects grid:** `repeat(2, 1fr)` on tablet+, single column on mobile, `gap: 16px`
 
 ### Whitespace Philosophy
-- **Scene pacing:** major visual chapters use broad top/bottom breathing room.
-- **Information compaction where needed:** retail pages deliberately compress spacing to expose more actionable information per viewport.
-- **Contrast-led separation:** section transitions rely more on surface changes than decorative separators.
+
+- **Editorial breathing room:** Large top/bottom padding on hero and major sections
+- **Content focus:** Wide horizontal margins keep the eye on the content
+- **Minimal density:** Unlike e-commerce sites, this is a portfolio — space is a feature, not a bug
 
 ### Border Radius Scale
-- **5px:** tiny utility links/tags and minor small shells.
-- **8px-12px:** standard controls and compact fields.
-- **16px-18px:** cards, module frames, and commerce panels.
-- **28px-36px:** larger module and spotlight containers.
-- **56px / 100px / 980px:** capsules, large pills, and signature elongated CTA forms.
-- **50%:** circular media and selection controls.
+
+- **Small:** `6px` for tags and small buttons
+- **Medium:** `10px` for buttons and inputs
+- **Large:** `14px` for cards and major containers
+- **Circular:** `50%` for avatars and icon buttons
 
 ## 6. Depth & Elevation
 
-| Level | Treatment | Use |
-|------|-----------|-----|
-| Level 0 | Flat neutral surfaces (`#ffffff`, `#f8f8f8` / dark: `#181818`) | Main narrative and product stages |
-| Level 1 | Subtle border containment (`#dedede` / dark: `#161616`) | Filters, input fields, utility cards |
-| Level 2 | Soft shadow (`rgba(0,0,0,0.08)` to `rgba(0,0,0,0.22)` where present) | Highlighted cards and elevated merchandise modules |
-| Level 3 | Dark-surface stepping (`#292929` → `#161616` → `#030303`) | Overlays, media controls, dark utility clusters |
-| Accessibility | Navy/teal focus signal (`#134686` / `#008994`) | Keyboard and selection emphasis |
+| Level   | Treatment                                                               | Use                        |
+| ------- | ----------------------------------------------------------------------- | -------------------------- |
+| Level 0 | Flat neutral surface (`--bg`)                                           | Main page canvas           |
+| Level 1 | Elevated white (`--bg-elev`) with subtle border                         | Cards, nav, modals         |
+| Level 2 | Border + soft hover glow (`box-shadow: 0 8px 32px rgba(0,184,212,0.1)`) | Interactive cards on hover |
+| Level 3 | Optional cyan glow for hero elements                                    | Hero accents, primary CTAs |
 
-Depth is intentionally restrained. Apple favors tonal contrast, surface stepping, and compositional hierarchy over heavy shadow stacks.
-
-### Decorative Depth
-- Decorative depth is primarily created by photographic realism and material rendering, not synthetic UI effects.
-- Translucent overlays and glass-like utility bars provide mild atmospheric layering in navigation and controls.
+Depth is minimal. Tonal contrast and border containment do most of the work. Avoid heavy drop shadows.
 
 ## 7. Do's and Don'ts
 
 ### Do
-- Use the neutral foundation (`#ffffff`, `#f8f8f8` / dark: `#181818`, `#292929`) as the structural foundation.
-- Reserve blue accents for genuine action and navigation semantics.
-- Keep typography tight and deliberate, especially at display scales.
-- Maintain the capsule/circle geometry language for controls and key actions.
-- Let product imagery carry visual drama; keep chrome understated.
-- Use border-led containment in dense retail contexts instead of heavy card ornamentation.
-- Preserve clear separation between showcase modules and transactional modules while keeping core tokens shared.
+
+- Use the light-only palette (`--bg`, `--bg-elev`, `--text`, `--muted`, `--cyan`)
+- Embrace whitespace and vertical rhythm
+- Keep cyan accent usage selective (CTAs, links, hover states)
+- Use Inter (or a similar high-quality sans) for most text
+- Maintain calm, editorial pacing
+- Present work/projects as light cards or list items, not dense grids
 
 ### Don't
-- Don’t introduce additional accent palettes beyond navy primary (`#134686`), sky blue accent (`#0089d0`), and coral secondary (`#f05461`).
-- Don’t overuse shadows, glow effects, or decorative gradients in core UI chrome.
-- Don’t mix unrelated font families or loosen tracking indiscriminately.
-- Don’t flatten all corners to a single radius; Apple uses purposeful radius tiers.
-- Don’t overload commerce modules with thick borders or loud visual effects.
-- Don’t remove neutral contrast cadence between dark and light chapters.
-- Don’t treat marketing and purchase flows as separate design systems.
+
+- Don't add dark mode in v1
+- Don't use heavy shadows or dramatic depth effects
+- Don't overcrowd the layout with dense information blocks
+- Don't introduce additional accent colors beyond cyan
+- Don't use em dashes (—) in copy; use regular dashes or commas
+- Don't leave the cyberpunk grid at high opacity; keep it ≤2% if used at all
 
 ## 8. Responsive Behavior
 
 ### Breakpoints
-| Name | Width | Key Changes |
-|------|-------|-------------|
-| Small Mobile | 374px and below | Tightened retail controls, single-column product stacks |
-| Mobile | 375px-640px | One-column modules, compact action rows, condensed selectors |
-| Tablet | 641px-833px | Expanded cards and mixed 1-2 column transitions |
-| Tablet Wide | 834px-1023px | More stable multi-column merchandising, larger text blocks |
-| Desktop | 1024px-1240px | Full retail layouts and product comparison structures |
-| Desktop Wide | 1241px-1440px | Marketing hero expansion and broader section spacing |
-| Large Desktop | 1441px+ | Maximum chapter breathing room and wide editorial composition |
+
+| Name    | Width          | Key Changes                                                  |
+| ------- | -------------- | ------------------------------------------------------------ |
+| Mobile  | < 640px        | Single-column layout, reduced padding (20px), stacked nav    |
+| Tablet  | 640px – 1024px | Two-column work grid, moderate padding (32px)                |
+| Desktop | > 1024px       | Max-width container (1100px), full horizontal padding (40px) |
 
 ### Touch Targets
-- Primary and secondary actions are generally presented in tap-friendly pill/button geometries.
-- Circular media and selection controls align with minimum touchable intent in mobile contexts.
-- Dense commerce UI uses compact labels but maintains clear hit regions via surrounding shape padding.
+
+- Minimum tap target: `44px × 44px` for buttons and links on mobile
+- Increase padding on mobile to ensure comfortable interaction
 
 ### Collapsing Strategy
-- Marketing hero typography scales down in discrete tiers while preserving hierarchy contrast.
-- Product and commerce grids collapse from multi-column to stacked cards with persistent selector visibility.
-- Utility navigation compresses into simpler link/control groupings while preserving key actions.
-- Option/configuration clusters become vertically sequenced to keep purchase flow linear on small screens.
 
-### Image Behavior
-- Product imagery preserves aspect and centrality through breakpoints.
-- Hero visuals remain dominant on mobile, with text repositioned around media priority.
-- Retail thumbnails stay legible via tighter crop logic and denser card stacking.
-- Image-led modules continue to anchor the rhythm as layout density increases.
+- Hero typography scales down gracefully (56px → 40px → 32px)
+- Work/projects grid collapses to single column on mobile
+- Navigation compresses into a simpler horizontal list or hamburger menu if needed
 
 ## 9. Agent Prompt Guide
 
 ### Quick Color Reference
-- Primary action (light mode): **Navy Primary** (`#134686`)
-- Primary action (dark mode): **Bright Blue** (`#568de9`)
-- Inline link / accent: **Sky Blue** (`#0089d0`)
-- Secondary brand accent: **Coral** (`#f05461`)
-- Focus / ring signal: **Teal** (`#008994`)
-- Dark mode canvas: **Deep Background** (`#181818`)
-- Light mode canvas: **Near-White Canvas** (`#f8f8f8`)
-- Primary text (light): **Dark Charcoal** (`#3a3a3a`)
-- Primary text (dark): **Light Foreground** (`#eeeeee`)
-- Secondary text: **Muted Foreground** (`#636363`)
-- Border (light): **Light Border** (`#dedede`)
-- Destructive / error: **Destructive Red** (`#e7000b`)
+
+- Background: `#f7f8fa` (`--bg`)
+- Elevated surface: `#ffffff` (`--bg-elev`)
+- Primary text: `#0f1419` (`--text`)
+- Muted text: `#5b6570` (`--muted`)
+- Border: `rgba(15, 20, 25, 0.08)` (`--border`)
+- Cyan accent: `#00b8d4` (`--cyan`)
+- Cyan soft: `rgba(0, 184, 212, 0.12)` (`--cyan-soft`)
+- Cyan glow: `rgba(0, 184, 212, 0.35)` (`--cyan-glow`)
 
 ### Example Component Prompts
-- "Design a product hero on a dark canvas (`#181818`) with Space Grotesk semibold headline (48-56px), concise supporting copy, and two capsule CTAs using `#568de9` and `#f05461`."
-- "Create a configuration panel on white (`#ffffff`) with 18px rounded cards, `#dedede` border fields, DM Sans 17px body copy, and compact option selectors."
-- "Build a card grid alternating `#f8f8f8` and white surfaces, with image-first cards, restrained shadows, and 14-17px DM Sans metadata."
-- "Generate a carousel control cluster using circular buttons (50% radius), muted gray overlays, and clear active feedback for gallery navigation."
-- "Compose a mixed marketing + editorial page rhythm: dark showcase chapter (`#181818`) -> light feature chapter (`#f8f8f8`) -> dense card module while keeping navy/teal accents only for actions and links."
+
+- "Design a hero section with a large Inter bold headline (56px), a short subtitle (20px muted), and two buttons: a cyan primary CTA and a ghost secondary button."
+- "Create a project card with a white background, 1px subtle border, 14px border-radius, 24px padding, a bold title, a muted description, and a row of cyan-soft tags at the bottom."
+- "Build a navigation bar with a mono logo (`lesteban.dev` with cyan accent), horizontal link list (muted text, cyan on hover), and a language toggle."
+- "Compose a work/experience section as a two-column grid of light cards on desktop, single column on mobile, with 16px gap between cards."
 
 ### Iteration Guide
-1. Lock the neutral foundation first (`#ffffff`, `#f8f8f8` / dark: `#181818`, `#292929`) before tuning accents.
-2. Keep blue accents scarce and purposeful; if everything is blue, hierarchy collapses.
-3. Tune typography in this order: display scale, body readability, then micro labels.
-4. Match radius by component class (field, card, capsule, circle) rather than one-size-fits-all rounding.
-5. Increase density gradually when moving from showcase sections to commerce sections.
-6. Validate that product imagery remains the strongest visual layer after each revision.
+
+1. Start with the neutral foundation (`--bg`, `--bg-elev`, `--text`, `--muted`)
+2. Add cyan accents sparingly (CTAs, links, hover states)
+3. Tune typography scale and line heights for readability
+4. Use border-radius consistently (6px, 10px, 14px, 50%)
+5. Test responsive collapse: two-column → single-column
+6. Validate that whitespace remains generous, not cramped
 
 ### Known Gaps
-- Destructive/error is defined (`#e7000b`); success and warning tokens are not explicitly defined — use amber (`#e18528`) for warning-adjacent states and derive success from a compatible green if needed.
-- Some interaction micro-states vary by module and are not represented as universal system tokens.
-- A few modules expose context-specific typography overrides that do not appear as shared system tokens.
+
+- No dark mode defined (intentional for v1)
+- Destructive/error states not fully specified; use a muted red (`#e53e3e`) if needed
+- Serif font is optional; if not added, rely on Inter bold weights for all headings
+- Success states can use cyan variants or a compatible green if needed

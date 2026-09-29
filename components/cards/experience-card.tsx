@@ -1,10 +1,9 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { useLang } from '@/hooks/use-lang'
 
 import { Calendar, Code } from 'lucide-react'
-
-import { useLang } from '@/hooks/use-lang'
 
 import { Badge } from '@/components/ui/badge'
 
@@ -21,27 +20,36 @@ export function ExperienceCard({ job }: { job: ExperienceType }) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
-    <div className="bg-card border-border flex flex-col gap-2 rounded-lg border p-4">
-      <h3 className="font-heading text-primary text-lg font-bold">
+    <div className="border-border bg-card hover:border-primary/20 rounded-2xl border p-6 transition-all">
+      <h3 className="font-heading text-primary mb-2 text-lg font-semibold">
         {dictionary[job.position as keyof typeof dictionary]}
       </h3>
-      <div className="flex items-center gap-2">
-        <h2 className="font-heading font-bold">{job.company}</h2>
-        <Calendar className="ml-1 h-4 w-4 font-bold" />
-        <h2 className="font-heading font-bold">
-          {dictionary[job.startDate as keyof typeof dictionary]} -{' '}
-          {dictionary[job.endDate as keyof typeof dictionary]}
-        </h2>
+      <div className="text-muted-foreground mb-3 flex flex-wrap items-center gap-2 text-sm">
+        <span className="font-semibold">{job.company}</span>
+        <span className="text-border">•</span>
+        <div className="flex items-center gap-1.5">
+          <Calendar className="h-3.5 w-3.5" />
+          <span>
+            {dictionary[job.startDate as keyof typeof dictionary]} -{' '}
+            {dictionary[job.endDate as keyof typeof dictionary]}
+          </span>
+        </div>
       </div>
-      <p>{dictionary[job.description as keyof typeof dictionary]}</p>
+      <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+        {dictionary[job.description as keyof typeof dictionary]}
+      </p>
 
-      <div className="wrap flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <Code className="text-primary h-4 w-4" />
         {job.stack.map((stack) => (
           <Badge
             key={stack}
             variant="outline"
-            className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
+            className="bg-cyan-soft border-transparent font-mono text-xs font-medium"
+            style={{
+              backgroundColor: 'var(--cyan-soft)',
+              color: '#0088a3',
+            }}
           >
             {stack}
           </Badge>

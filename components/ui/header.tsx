@@ -9,8 +9,6 @@ import React from 'react'
 import NextLink from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
-import { useTheme } from 'next-themes'
-
 import {
   BookOpen,
   ChevronRight,
@@ -18,8 +16,6 @@ import {
   Languages,
   Mail,
   Menu,
-  Moon,
-  Sun,
 } from 'lucide-react'
 
 import { useBreadcrumb } from '@/components/breadcrumb-provider'
@@ -39,10 +35,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-// Removed custom Link; using NextLink for internal navigation
-import { ThemeToggle } from '@/components/ui/theme-toggle'
 
-// Mobile-only links (preserved previous links)
 const MOBILE_LINKS: { icon: React.ReactNode; href: string; label: string }[] = [
   {
     icon: (
@@ -79,9 +72,7 @@ const MOBILE_LINKS: { icon: React.ReactNode; href: string; label: string }[] = [
   { icon: <Mail />, href: 'mailto:leramirezca@gmail.com', label: 'Email' },
 ]
 
-// HeaderLink type removed; no longer mapping links
 export function Header() {
-  const { setTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
   const { customBreadcrumbs } = useBreadcrumb()
@@ -103,27 +94,49 @@ export function Header() {
   return (
     <header
       aria-label={currentLang === 'es' ? 'Encabezado del sitio' : 'Site header'}
-      className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b border-border py-1"
+      className="bg-card/80 border-border fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b py-1 backdrop-blur-sm"
     >
       <div className="flex w-full items-center justify-between">
         <div className="md:flex-1" />
-        <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
+        <div className="flex w-full items-center justify-between px-6 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
           <Link href={`/${currentLang}`} target="_self">
-            <h1 className="font-heading text-primary text-xl font-bold">
-              Luis Esteban
+            <h1 className="font-mono text-sm font-medium">
+              les<span className="text-primary">teban</span>.dev
             </h1>
           </Link>
           {isHome ? (
             <nav
-              aria-label={currentLang === 'es' ? 'Navegación principal' : 'Main navigation'}
-              className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0"
+              aria-label={
+                currentLang === 'es'
+                  ? 'Navegación principal'
+                  : 'Main navigation'
+              }
+              className="text-muted-foreground hidden w-1/2 flex-wrap items-center justify-end gap-6 px-1 text-sm font-medium md:flex md:px-0"
             >
               <NextLink
+                href={`/${currentLang}#experience`}
+                className="hover:text-primary transition-colors"
+              >
+                {currentLang === 'es' ? 'Experiencia' : 'Experience'}
+              </NextLink>
+              <NextLink
+                href={`/${currentLang}#projects`}
+                className="hover:text-primary transition-colors"
+              >
+                {currentLang === 'es' ? 'Proyectos' : 'Projects'}
+              </NextLink>
+              <NextLink
                 href={`/${currentLang}/blog`}
-                className="hover:text-primary hover:animate-underline-link flex items-center gap-1.5 decoration-2 underline-offset-4 transition-all duration-300 hover:underline"
+                className="hover:text-primary flex items-center gap-1.5 transition-colors"
               >
                 <BookOpen className="h-4 w-4" />
                 Blog
+              </NextLink>
+              <NextLink
+                href={`/${currentLang}#contact`}
+                className="hover:text-primary transition-colors"
+              >
+                {currentLang === 'es' ? 'Contacto' : 'Contact'}
               </NextLink>
             </nav>
           ) : (
@@ -142,7 +155,6 @@ export function Header() {
                     const href =
                       `/${currentLang}/` +
                       pathWithoutLang.slice(0, idx + 1).join('/')
-                    // Check if there's a custom breadcrumb title for this segment
                     const customTitle = customBreadcrumbs[seg]
                     const label =
                       customTitle ||
@@ -176,10 +188,9 @@ export function Header() {
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background mt-2 w-screen rounded-t-none">
+              <DropdownMenuContent className="bg-card mt-2 w-screen rounded-t-none">
                 <DropdownMenuGroup>
                   <>
-                    {/* Breadcrumbs first (only when not on home) */}
                     {!isHome && (
                       <>
                         <DropdownMenuItem asChild>
@@ -195,7 +206,6 @@ export function Header() {
                           const href =
                             `/${currentLang}/` +
                             pathWithoutLang.slice(0, idx + 1).join('/')
-                          // Check if there's a custom breadcrumb title for this segment
                           const customTitle = customBreadcrumbs[seg]
                           const label =
                             customTitle ||
@@ -229,7 +239,6 @@ export function Header() {
                         <DropdownMenuSeparator />
                       </>
                     )}
-                    {/* Blog only on home */}
                     {isHome && (
                       <DropdownMenuItem asChild>
                         <NextLink
@@ -241,7 +250,6 @@ export function Header() {
                         </NextLink>
                       </DropdownMenuItem>
                     )}
-                    {/* External links always */}
                     {MOBILE_LINKS.map((link) => (
                       <DropdownMenuItem key={link.label} asChild>
                         <a
@@ -258,15 +266,6 @@ export function Header() {
                   </>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setTheme('dark')}>
-                  <Moon />
-                  Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme('light')}>
-                  <Sun />
-                  Light
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => setLang('en')}>
                   <Languages />
                   English
@@ -282,7 +281,6 @@ export function Header() {
         <div className="hidden flex-1 justify-end md:flex">
           <div className="flex items-center gap-2 pr-4">
             <LanguageToggle />
-            <ThemeToggle />
           </div>
         </div>
       </div>

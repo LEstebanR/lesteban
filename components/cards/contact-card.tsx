@@ -1,11 +1,10 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { useLang } from '@/hooks/use-lang'
 
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { useLang } from '@/hooks/use-lang'
 
 import {
   Card,
@@ -27,14 +26,14 @@ export function ContactCard({ link }: { link: ContactLink }) {
   const dictionary = getClientDictionary(lang)
   return (
     <Link href={link.href} target={link.href === '#' ? '_self' : '_blank'}>
-      <Card className="border-secondary cursor-pointer">
-        <CardHeader className="flex items-center gap-4">
-          <Image src={link.icon} alt={link.label} width={35} height={35} />
+      <Card className="border-border hover:border-primary/35 hover:shadow-primary/10 cursor-pointer rounded-2xl border transition-all hover:shadow-lg">
+        <CardHeader className="flex flex-row items-center gap-4">
+          <Image src={link.icon} alt={link.label} width={32} height={32} />
           <div className="flex flex-col gap-1">
-            <CardTitle>
+            <CardTitle className="text-base font-semibold">
               {dictionary[link.label as keyof typeof dictionary]}
             </CardTitle>
-            <CardDescription>{link.user}</CardDescription>
+            <CardDescription className="text-sm">{link.user}</CardDescription>
           </div>
         </CardHeader>
       </Card>

@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import type { Metadata } from 'next'
 
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -18,12 +18,6 @@ import { getCanonicalUrl } from '@/lib/utils'
 
 const inter = Inter({
   variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -170,11 +164,12 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${bricolageGrotesque.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col`}
+        className={`${inter.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           <BreadcrumbProvider>

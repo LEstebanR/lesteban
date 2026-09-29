@@ -126,35 +126,20 @@ describe('Hero', () => {
     expect(screen.getByText('Luis Esteban')).toBeDefined()
   })
 
-  test('renders the indie-hacker badge', () => {
+  test('renders the role/job title', () => {
     render(<Hero lang="en" />)
-    expect(screen.getByText('Indie Hacker in Progress')).toBeDefined()
+    expect(screen.getByText('Software Developer')).toBeDefined()
   })
 
-  test('renders all stack badges', () => {
+  test('renders the bio with global impact', () => {
     render(<Hero lang="en" />)
-    for (const tech of [
-      'React',
-      'Tailwind',
-      'Next.js',
-      'Node.js',
-      'Supabase',
-    ]) {
-      expect(screen.getByText(tech)).toBeDefined()
-    }
+    expect(screen.getByText('global impact')).toBeDefined()
   })
 
-  test('when mounted renders social link images (not skeletons)', () => {
+  test('renders CTA buttons', () => {
     render(<Hero lang="en" />)
-    expect(screen.getByAltText('Github')).toBeDefined()
-    expect(screen.getByAltText('Mail')).toBeDefined()
-  })
-
-  test('when unmounted renders skeletons for theme-dependent social icons', () => {
-    state.mounted = false
-    render(<Hero lang="en" />)
-    expect(screen.queryByAltText('Github')).toBeNull()
-    expect(screen.queryByAltText('Mail')).toBeNull()
+    const buttons = screen.getAllByRole('link')
+    expect(buttons.length).toBeGreaterThanOrEqual(2)
   })
 })
 
@@ -217,9 +202,14 @@ describe('Skills', () => {
 // ─── Projects ────────────────────────────────────────────────────────────────
 
 describe('Projects', () => {
-  test('renders the Projects heading', () => {
+  test('renders the Projects section label', () => {
     render(<Projects />)
-    expect(screen.getByText('Projects')).toBeDefined()
+    expect(
+      screen.getByText(
+        (content) =>
+          content.includes('Proyectos') || content.includes('Projects')
+      )
+    ).toBeDefined()
   })
 
   test('renders all project names', () => {
@@ -240,23 +230,16 @@ describe('Projects', () => {
 // ─── Contact ─────────────────────────────────────────────────────────────────
 
 describe('Contact', () => {
-  test('when mounted renders the Contact heading', () => {
+  test('renders the Contact heading', () => {
     render(<Contact />)
     expect(screen.getByText('Contact')).toBeDefined()
   })
 
-  test('when mounted renders all 4 contact cards', () => {
+  test('renders all 4 contact cards', () => {
     render(<Contact />)
     expect(screen.getByText('GitHub')).toBeDefined()
     expect(screen.getByText('LinkedIn')).toBeDefined()
     expect(screen.getByText('Email')).toBeDefined()
     expect(screen.getByText('Location')).toBeDefined()
-  })
-
-  test('when unmounted renders skeleton placeholders instead of cards', () => {
-    state.mounted = false
-    render(<Contact />)
-    expect(screen.queryByText('GitHub')).toBeNull()
-    expect(screen.queryByText('LinkedIn')).toBeNull()
   })
 })

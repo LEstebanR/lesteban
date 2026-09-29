@@ -4,83 +4,50 @@
 @import 'highlight.js/styles/github.css' (prefers-color-scheme: light);
 @import 'highlight.js/styles/github-dark.css' (prefers-color-scheme: dark);
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.35 0 0);
-  --card: oklch(0.98 0 0);
-  --card-foreground: oklch(0.35 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.35 0 0);
-  --primary: oklch(0.3991 0.1196 256.44);
-  --primary-foreground: oklch(0.7 0.1196 256.44);
-  --secondary: oklch(0.6595 0.191 19.34);
-  --secondary-foreground: oklch(0.7559 0.0715 31.18);
-  --muted: oklch(0.98 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.6 0.15 240);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.98 0 0);
-  --ring: oklch(0.55 0.15 200 / 0.5);
-  --chart-1: oklch(0.55 0.15 200);
-  --chart-2: oklch(0.6 0.15 240);
-  --chart-3: oklch(0.35 0 0);
-  --chart-4: oklch(0.577 0.245 27.325);
-  --chart-5: oklch(0.7 0.15 60);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.35 0 0);
-  --sidebar-primary: oklch(1 0 0);
-  --sidebar-primary-foreground: oklch(0.35 0 0);
-  --sidebar-accent: oklch(0.6 0.15 240);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.55 0.15 200 / 0.5);
-}
-
-.dark {
-  --background: oklch(0.208 0 0);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.28 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.1 0 0);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.65 0.15 260);
-  --primary-foreground: oklch(0.95 0 0);
-  --secondary: oklch(0.45 0.12 35);
-  --secondary-foreground: oklch(0.9 0.05 35);
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.65 0.15 240);
-  --accent-foreground: oklch(0.1 0 0);
-  --destructive: oklch(0.6 0.2 25);
-  --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.2 0 0);
-  --input: oklch(0.15 0 0);
-  --ring: oklch(0.6 0.15 200 / 0.5);
-  --chart-1: oklch(0.6 0.15 200);
-  --chart-2: oklch(0.65 0.15 240);
-  --chart-3: oklch(0.7 0 0);
-  --chart-4: oklch(0.6 0.2 25);
-  --chart-5: oklch(0.75 0.15 60);
-  --sidebar: oklch(0.15 0 0);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.6 0.15 200);
-  --sidebar-primary-foreground: oklch(0.95 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.6 0.15 200 / 0.5);
+  /* Light-only design system - no dark mode in v1 */
+  /* Base colors from the Delba-inspired light cyan palette */
+  --bg: #f7f8fa;
+  --bg-elev: #ffffff;
+  --text: #0f1419;
+  --muted: #5b6570;
+  --border: rgba(15, 20, 25, 0.08);
+  --cyan: #00b8d4;
+  --cyan-soft: rgba(0, 184, 212, 0.12);
+  --cyan-glow: rgba(0, 184, 212, 0.35);
+  
+  /* Tailwind-compatible tokens (mapped from new palette) */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--bg-elev);
+  --card-foreground: var(--text);
+  --popover: var(--bg-elev);
+  --popover-foreground: var(--text);
+  --primary: var(--cyan);
+  --primary-foreground: #ffffff;
+  --secondary: #e7e9eb;
+  --secondary-foreground: var(--text);
+  --muted: var(--bg-elev);
+  --muted-foreground: var(--muted);
+  --accent: var(--cyan);
+  --accent-foreground: #ffffff;
+  --destructive: #e53e3e;
+  --destructive-foreground: #ffffff;
+  --border: var(--border);
+  --input: var(--bg-elev);
+  --ring: var(--cyan-soft);
+  --chart-1: var(--cyan);
+  --chart-2: #0088a3;
+  --chart-3: var(--muted);
+  --chart-4: var(--destructive);
+  --chart-5: #48bb78;
+  --radius: 0.625rem;
 }
 
 @theme inline {
   --font-sans: var(--font-inter), sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
-  --font-heading: var(--font-bricolage), var(--font-inter), sans-serif;
+  --font-heading: var(--font-inter), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -109,14 +76,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
@@ -125,6 +84,10 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+    background-image:
+      linear-gradient(rgba(0, 184, 212, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 184, 212, 0.02) 1px, transparent 1px);
+    background-size: 48px 48px;
   }
   .font-heading {
     font-family: var(--font-heading);
@@ -132,7 +95,7 @@
 
   /* Blog content typography improvements */
   .blog-content {
-    @apply prose prose-lg dark:prose-invert max-w-none font-sans;
+    @apply prose prose-lg max-w-none font-sans;
 
     /* Headings general - with scroll margin for anchor links */
     @apply prose-headings:font-heading prose-headings:text-foreground;
@@ -145,7 +108,7 @@
 
     /* H2 styles - with decorative underline and transition */
     @apply prose-h2:text-3xl prose-h2:font-bold prose-h2:text-primary;
-    @apply prose-h2:underline prose-h2:decoration-secondary/60;
+    @apply prose-h2:underline prose-h2:decoration-primary/30;
     @apply prose-h2:underline-offset-6 prose-h2:decoration-2;
     @apply prose-h2:mt-12 prose-h2:mb-6;
     @apply prose-h2:transition-all prose-h2:duration-300;
