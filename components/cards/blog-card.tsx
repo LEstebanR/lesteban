@@ -5,9 +5,6 @@ import { useLang } from '@/hooks/use-lang'
 import Image from 'next/image'
 import NextLink from 'next/link'
 
-import { Badge } from '@/components/ui/badge'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
-
 type BlogPost = {
   url: string
   title: string
@@ -22,36 +19,41 @@ export function BlogCard({ post }: { post: BlogPost }) {
   const lang = useLang()
 
   return (
-    <NextLink href={`/${lang}/blog/${post.url}`}>
-      <Card className="border-secondary group hover:border-primary/50 flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden border-2 p-0 transition-all duration-300">
-        <div className="relative block h-64 w-full overflow-hidden lg:h-56">
+    <NextLink
+      href={`/${lang}/blog/${post.url}`}
+      className="group focus-visible:ring-ring flex h-full flex-col gap-4 outline-none focus-visible:ring-4"
+    >
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="ink bg-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"
+        />
+        <div className="halftone relative aspect-[4/3] overflow-hidden">
           <Image
             src={post.image}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
-        <CardHeader className="w-full flex-1 px-0">
-          <CardTitle className="group-hover:text-primary flex w-full items-start justify-between gap-2 px-6 py-4 transition-colors">
-            <span className="font-heading text-lg font-bold">{post.title}</span>
-          </CardTitle>
-          {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 px-6 pb-4">
-              {post.tags.slice(0, 3).map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="rounded-full text-xs"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          )}
-        </CardHeader>
-      </Card>
+      </div>
+      <span className="text-primary text-sm font-bold">{post.date}</span>
+      <h3 className="font-heading decoration-secondary text-2xl leading-tight font-black tracking-tight decoration-4 underline-offset-4 group-hover:underline">
+        {post.title}
+      </h3>
+      {post.tags && post.tags.length > 0 && (
+        <ul className="text-muted-foreground flex flex-wrap gap-x-2 text-sm font-medium">
+          {post.tags.slice(0, 3).map((tag) => (
+            <li
+              key={tag}
+              className="after:text-primary after:ml-2 after:content-['/'] last:after:content-none"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
     </NextLink>
   )
 }
