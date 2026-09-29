@@ -57,6 +57,9 @@ const MOCK_DICT: Record<string, string> = {
   'about-me-description-1': 'I build products with',
   'global-impact': 'global impact',
   'about-me-description-2': 'for everyone.',
+  'available-to-collaborate': 'available to collaborate',
+  'view-projects': 'View projects',
+  contact: 'Contact',
   'indie-hacker-in-progress': 'Indie Hacker in Progress',
   // Experience
   experience: 'Experience',
@@ -81,7 +84,7 @@ const MOCK_DICT: Record<string, string> = {
   'frontend-development': 'Frontend Development',
   'backend-development': 'Backend Development',
   database: 'Database',
-  'programing-languages': 'Programming Languages',
+  'programming-languages': 'Programming Languages',
   // Projects
   projects: 'Projects',
   roadmapcol: 'Roadmapcol',
@@ -95,7 +98,6 @@ const MOCK_DICT: Record<string, string> = {
   code: 'Code',
   'live-demo': 'Live Demo',
   // Contact
-  contact: 'Contact',
   github: 'GitHub',
   linkedin: 'LinkedIn',
   email: 'Email',

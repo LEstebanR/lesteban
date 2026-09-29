@@ -29,9 +29,7 @@ export function Hero({ lang }: HeroProps) {
         {/* Eyebrow */}
         <p className="text-primary mb-4 font-mono text-xs font-medium tracking-wider uppercase">
           {'// '}
-          {lang === 'es'
-            ? 'disponible para colaborar'
-            : 'available to collaborate'}
+          {dictionary['available-to-collaborate']}
         </p>
 
         {/* Main headline */}
@@ -61,7 +59,7 @@ export function Hero({ lang }: HeroProps) {
               size="lg"
               className="shadow-primary/30 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg font-semibold shadow-lg transition-all hover:scale-105"
             >
-              {lang === 'es' ? 'Ver proyectos' : 'View projects'}
+              {dictionary['view-projects']}
             </Button>
           </Link>
           <Link href={`/${lang}#contact`} scroll={true}>
@@ -70,7 +68,7 @@ export function Hero({ lang }: HeroProps) {
               variant="outline"
               className="border-border bg-card text-foreground hover:border-primary/50 hover:bg-card/80 rounded-lg font-semibold transition-all"
             >
-              {lang === 'es' ? 'Contactar' : 'Contact'}
+              {dictionary['contact']}
             </Button>
           </Link>
         </div>

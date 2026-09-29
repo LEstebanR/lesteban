@@ -166,7 +166,7 @@ describe('ContactCard', () => {
 
   const locationLink = {
     label: 'location',
-    href: '#',
+    href: 'https://maps.app.goo.gl/7wQxN1bVW8YZxwfU7',
     user: 'Colombia',
     icon: '/logos/location_light.svg',
     iconColor: '',
@@ -194,10 +194,10 @@ describe('ContactCard', () => {
     expect(link.getAttribute('target')).toBe('_blank')
   })
 
-  test('location link with href="#" opens in _self', () => {
+  test('location link opens in _blank', () => {
     render(<ContactCard link={locationLink} />)
     const link = screen.getByRole('link')
-    expect(link.getAttribute('target')).toBe('_self')
+    expect(link.getAttribute('target')).toBe('_blank')
   })
 })
 

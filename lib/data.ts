@@ -1,4 +1,3 @@
-import { ContactLink } from '@/components/cards/contact-card'
 import { ExperienceType } from '@/components/cards/experience-card'
 
 export type Project = {
@@ -13,7 +12,7 @@ export type Skills = {
   frontend: string[]
   backend: string[]
   database: string[]
-  programing_languages: string[]
+  programming_languages: string[]
 }
 
 export const EXPERIENCE: Record<string, ExperienceType> = {
@@ -85,8 +84,8 @@ export const PROJECTS: Project[] = [
 export const SKILLS: Skills = {
   frontend: ['React', 'Next', 'Tailwind'],
   backend: ['Node.js', 'Supabase'],
-  database: ['MongoDB', 'PostgresSQL'],
-  programing_languages: ['Javascript', 'Typescript'],
+  database: ['MongoDB', 'PostgreSQL'],
+  programming_languages: ['Javascript', 'Typescript'],
 }
 
 export const CONTACT_LINKS_STATIC = [
@@ -113,7 +112,7 @@ export const CONTACT_LINKS_STATIC = [
   },
   {
     label: 'location',
-    href: '#',
+    href: 'https://maps.app.goo.gl/7wQxN1bVW8YZxwfU7',
     user: 'Colombia',
     lightIcon: '/logos/location_light.svg',
     darkIcon: '/logos/location_dark.svg',

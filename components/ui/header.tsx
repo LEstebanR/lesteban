@@ -240,15 +240,44 @@ export function Header() {
                       </>
                     )}
                     {isHome && (
-                      <DropdownMenuItem asChild>
-                        <NextLink
-                          href={`/${currentLang}/blog`}
-                          className="flex items-center gap-2"
-                        >
-                          <BookOpen className="h-4 w-4" />
-                          Blog
-                        </NextLink>
-                      </DropdownMenuItem>
+                      <>
+                        <DropdownMenuItem asChild>
+                          <NextLink
+                            href={`/${currentLang}#experience`}
+                            className="flex items-center gap-2"
+                          >
+                            {currentLang === 'es'
+                              ? 'Experiencia'
+                              : 'Experience'}
+                          </NextLink>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <NextLink
+                            href={`/${currentLang}#projects`}
+                            className="flex items-center gap-2"
+                          >
+                            {currentLang === 'es' ? 'Proyectos' : 'Projects'}
+                          </NextLink>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <NextLink
+                            href={`/${currentLang}/blog`}
+                            className="flex items-center gap-2"
+                          >
+                            <BookOpen className="h-4 w-4" />
+                            Blog
+                          </NextLink>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <NextLink
+                            href={`/${currentLang}#contact`}
+                            className="flex items-center gap-2"
+                          >
+                            {currentLang === 'es' ? 'Contacto' : 'Contact'}
+                          </NextLink>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                      </>
                     )}
                     {MOBILE_LINKS.map((link) => (
                       <DropdownMenuItem key={link.label} asChild>

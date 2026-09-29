@@ -70,9 +70,9 @@ export function Skills() {
           skills={SKILLS.database}
         />
         <Skill
-          skill={dictionary['programing-languages' as keyof typeof dictionary]}
+          skill={dictionary['programming-languages' as keyof typeof dictionary]}
           icon={<Code className="text-primary h-5 w-5" />}
-          skills={SKILLS.programing_languages}
+          skills={SKILLS.programming_languages}
         />
       </div>
     </section>
