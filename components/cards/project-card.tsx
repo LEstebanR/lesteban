@@ -10,6 +10,7 @@ import { useTheme } from 'next-themes'
 
 import { ArrowUpRight } from 'lucide-react'
 
+import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
 
 type Project = {
@@ -25,10 +26,16 @@ export function ProjectCard({ project }: { project: Project }) {
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
   return (
-    <article className="group boot hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 backdrop-blur-sm transition-colors">
+    <article
+      data-scramble-host
+      className="group boot hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 backdrop-blur-sm transition-colors"
+    >
       <span aria-hidden="true" className="sweep-line" />
       <h3 className="font-heading text-2xl font-semibold tracking-tight">
-        {dictionary[project.name as keyof typeof dictionary]}
+        <ScrambleText
+          text={dictionary[project.name as keyof typeof dictionary]}
+          duration={500}
+        />
       </h3>
       <p className="text-foreground/75 flex-1 leading-relaxed">
         {dictionary[project.description as keyof typeof dictionary]}

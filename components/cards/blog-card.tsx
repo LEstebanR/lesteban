@@ -5,6 +5,8 @@ import { useLang } from '@/hooks/use-lang'
 import Image from 'next/image'
 import NextLink from 'next/link'
 
+import { ScrambleText } from '@/components/scramble-text'
+
 type BlogPost = {
   url: string
   title: string
@@ -21,6 +23,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <NextLink
       href={`/${lang}/blog/${post.url}`}
+      data-scramble-host
       className="group hud-frame border-border bg-card focus-visible:ring-ring flex h-full flex-col border outline-none focus-visible:ring-2"
     >
       <span aria-hidden="true" className="sweep-line z-10" />
@@ -38,7 +41,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
           {post.date}
         </time>
         <h3 className="font-heading group-hover:text-primary text-xl leading-snug font-semibold transition-colors">
-          {post.title}
+          <ScrambleText text={post.title} duration={600} />
         </h3>
         <p className="text-foreground/70 line-clamp-2 text-sm leading-relaxed">
           {post.description}

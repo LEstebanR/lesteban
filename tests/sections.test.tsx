@@ -46,6 +46,11 @@ mock.module('next-themes', () => ({
   useTheme: () => ({ resolvedTheme: state.theme }),
 }))
 
+// Canvas is not implemented in happy-dom; its maths is covered in lib/neural-field.test.ts
+mock.module('@/components/neural-field', () => ({
+  NeuralField: () => null,
+}))
+
 mock.module('@/hooks/use-has-mounted', () => ({
   useHasMounted: () => state.mounted,
 }))

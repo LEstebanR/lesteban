@@ -61,12 +61,18 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 **Ambient (slow, low-contrast)**
 
+- `NeuralField` (`components/neural-field.tsx`, maths in `lib/neural-field.ts`): a canvas network of drifting nodes behind the hero; links brighten and reach toward the pointer. Pauses off-screen, still frame under reduced motion, colour read from `--primary` (so it follows the theme).
+
 - `.console-grid` drifts one cell every 14s.
 - `.status-dot` and `.caret` (block cursor after the role) blink in steps.
 - `.photo-scan`: a scan pass over the portrait every 7s.
 - Current role node emits a radar ping (`animate-ping`).
 
 **Interactive**
+
+- `ScrambleText`: section titles, project and blog titles re-decode when the pointer enters their `[data-scramble-host]`.
+- `.reticle`: a HUD crosshair with live `x / y` coordinates follows the pointer across the hero (desktop).
+- `.glitch-host` / `.glitch-layer`: the portrait tears into hue-shifted slices for 600ms on hover.
 
 - `.console-spot`: a spotlight follows the pointer across the hero (`--mx`/`--my` written by `Hero`'s `onPointerMove`).
 - `.hud-frame` corner ticks grow 14px → 28px on hover/focus (`@property --tick`).
@@ -78,8 +84,10 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `.rail::before`: the experience rail fills with signal as it crosses the viewport.
 - `.boot`: project panels scan in top → bottom.
 - `.chip-seq`: skill chips light up one after another (`--i` index), then settle.
+- `.boot` panels flicker like a CRT powering on as they finish scanning in.
+- `ScrollTelemetry`: fixed right-edge readout (xl+) with a filling bar and a `00%`–`100%` counter driven by `@property --scroll` on the root scroll timeline.
 
-`prefers-reduced-motion`: every animation above is disabled; beams, scans, sweep and rail fill are hidden.
+`prefers-reduced-motion`: every animation above is disabled; beams, scans, sweep, rail fill, reticle and glitch are hidden; text never scrambles; the neural field draws one still frame.
 
 ## 7. Accessibility
 

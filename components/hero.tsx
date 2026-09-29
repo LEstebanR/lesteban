@@ -3,10 +3,14 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { useHasMounted } from '@/hooks/use-has-mounted'
 
+import { useRef } from 'react'
+
 import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
+import { NeuralField } from '@/components/neural-field'
+import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
 import { Skeleton } from '@/components/ui/skeleton'
 
@@ -21,17 +25,20 @@ export function Hero({ lang }: HeroProps) {
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
   const isDark = resolvedTheme === 'dark'
+  const coordsRef = useRef<HTMLSpanElement>(null)
 
   const trackPointer = (event: React.PointerEvent<HTMLElement>) => {
     const { top } = event.currentTarget.getBoundingClientRect()
     event.currentTarget.style.setProperty('--mx', `${event.clientX}px`)
     event.currentTarget.style.setProperty('--my', `${event.clientY - top}px`)
+    const coords = coordsRef.current as HTMLSpanElement
+    coords.textContent = `x ${String(Math.round(event.clientX)).padStart(4, '0')} · y ${String(Math.round(event.clientY - top)).padStart(4, '0')}`
   }
 
   return (
     <section
       onPointerMove={trackPointer}
-      className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-12 py-16"
+      className="hero-zone relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-12 py-16"
     >
       <div
         aria-hidden="true"
@@ -45,6 +52,18 @@ export function Hero({ lang }: HeroProps) {
         aria-hidden="true"
         className="console-spot pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
       />
+      <NeuralField className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 h-full w-screen -translate-x-1/2" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-1/2 z-10 hidden w-screen -translate-x-1/2 md:block"
+      >
+        <div className="reticle hud-frame">
+          <span
+            ref={coordsRef}
+            className="text-primary absolute top-full left-full mt-1 ml-1 font-mono text-[10px] whitespace-nowrap"
+          />
+        </div>
+      </div>
 
       <p className="text-muted-foreground flex items-center gap-2 font-mono text-xs">
         <span className="bg-primary status-dot inline-block size-1.5 rounded-full" />
@@ -56,7 +75,7 @@ export function Hero({ lang }: HeroProps) {
           {dictionary['hello']}
         </span>
         <span className="scan-in block text-[clamp(3rem,11vw,8.5rem)] leading-[0.88] font-semibold tracking-tight uppercase">
-          Luis Esteban
+          <ScrambleText text="Luis Esteban" duration={1300} />
           <span aria-hidden="true" className="scan-beam" />
         </span>
       </h1>
@@ -127,8 +146,16 @@ export function Hero({ lang }: HeroProps) {
         </div>
 
         <figure className="hud-frame border-border bg-card w-full max-w-[220px] border p-3 md:max-w-[280px]">
-          <div className="scanlines relative aspect-square overflow-hidden">
+          <div className="scanlines glitch-host relative aspect-square overflow-hidden">
             <span aria-hidden="true" className="photo-scan" />
+            <Image
+              src="/profile_pic.jpeg"
+              alt=""
+              aria-hidden="true"
+              width={560}
+              height={560}
+              className="glitch-layer absolute inset-0 z-[1] size-full object-cover"
+            />
             <Image
               src="/profile_pic.jpeg"
               alt="Luis Esteban"

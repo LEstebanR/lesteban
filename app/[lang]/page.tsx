@@ -6,6 +6,7 @@ import { Contact } from '@/components/contact'
 import { Experience } from '@/components/experience'
 import { Hero } from '@/components/hero'
 import { Projects } from '@/components/projects'
+import { ScrollTelemetry } from '@/components/scroll-telemetry'
 import { Skills } from '@/components/skills'
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <Contact />
+      <ScrollTelemetry />
     </div>
   )
 }

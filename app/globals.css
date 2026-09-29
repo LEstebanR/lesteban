@@ -499,6 +499,18 @@ html {
     clip-path: inset(-2px -2px 100% -2px);
     opacity: 0.2;
   }
+  55% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 0.35;
+  }
+  68% {
+    opacity: 1;
+  }
+  74% {
+    opacity: 0.6;
+  }
   to {
     clip-path: inset(-2px -2px -2px -2px);
     opacity: 1;
@@ -518,6 +530,116 @@ html {
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* HUD reticle that tracks the pointer inside the hero */
+.reticle {
+  position: absolute;
+  left: var(--mx, -100px);
+  top: var(--my, -100px);
+  width: 36px;
+  height: 36px;
+  translate: -50% -50%;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  --tick: 9px;
+  --tick-color: var(--primary);
+}
+
+.hero-zone:hover .reticle {
+  opacity: 1;
+}
+
+.reticle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  translate: -50% -50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+/* Slice glitch on hover: a duplicate layer tears sideways for a moment */
+@keyframes glitch-slice {
+  0% {
+    opacity: 1;
+    clip-path: inset(10% 0 74% 0);
+    transform: translateX(-16px);
+  }
+  12% {
+    clip-path: inset(56% 0 26% 0);
+    transform: translateX(14px);
+  }
+  24% {
+    clip-path: inset(28% 0 52% 0);
+    transform: translateX(-10px);
+  }
+  36% {
+    clip-path: inset(78% 0 4% 0);
+    transform: translateX(18px);
+  }
+  48% {
+    clip-path: inset(40% 0 42% 0);
+    transform: translateX(-6px);
+  }
+  60% {
+    clip-path: inset(4% 0 88% 0);
+    transform: translateX(12px);
+  }
+  72%,
+  100% {
+    opacity: 0;
+    clip-path: inset(50% 0 50% 0);
+    transform: none;
+  }
+}
+
+.glitch-layer {
+  opacity: 0;
+  filter: hue-rotate(150deg) saturate(2.4) contrast(1.2);
+  pointer-events: none;
+}
+
+.glitch-host:hover .glitch-layer {
+  animation: glitch-slice 600ms steps(1, end);
+}
+
+/* Scroll telemetry: percentage counter driven by the root scroll timeline */
+@property --scroll {
+  syntax: '<integer>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes telemetry {
+  to {
+    --scroll: 100;
+  }
+}
+
+.telemetry {
+  visibility: hidden;
+}
+
+@supports (animation-timeline: scroll()) {
+  .telemetry {
+    visibility: visible;
+    animation: telemetry linear both;
+    animation-timeline: scroll(root);
+  }
+
+  .telemetry-bar {
+    animation: draw-y linear both;
+    animation-timeline: scroll(root);
+  }
+
+  .telemetry-value::after {
+    counter-reset: scroll var(--scroll);
+    content: counter(scroll, decimal-leading-zero) '%';
   }
 }
 
@@ -552,7 +674,13 @@ html {
   }
   .reveal-line,
   .boot,
-  .chip-seq {
+  .chip-seq,
+  .telemetry,
+  .telemetry-bar {
     animation: none !important;
+  }
+  .reticle,
+  .glitch-layer {
+    display: none;
   }
 }
