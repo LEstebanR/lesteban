@@ -4,8 +4,6 @@ import { useState } from 'react'
 
 import { ChevronDown } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-
 interface SeeMoreButtonProps {
   children: React.ReactNode
   seeMoreCopy: string
@@ -36,24 +34,23 @@ export function SeeMoreButton({
   return (
     <>
       <div
-        className={`grid transition-all duration-500 ease-in-out ${
+        className={`-m-2 grid transition-all duration-500 ease-in-out ${
           seeMore ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
-        <div className="overflow-hidden">
-          <div className="flex flex-col gap-5">{children}</div>
-        </div>
+        <div className="overflow-hidden">{children}</div>
       </div>
-      <Button
-        variant="outline"
+      <button
+        type="button"
         onClick={() => setSeeMore(!seeMore)}
-        className="border-primary text-primary hover:bg-primary mx-auto w-fit cursor-pointer rounded-full hover:text-white"
+        aria-expanded={seeMore}
+        className="toy toy-press bg-secondary text-secondary-foreground focus-visible:ring-ring flex w-fit cursor-pointer items-center gap-2 rounded-full px-5 py-2 text-sm font-bold outline-none focus-visible:ring-4"
       >
         {label}
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-300 ${seeMore ? 'rotate-180' : ''}`}
+          className={`size-4 transition-transform duration-300 ${seeMore ? 'rotate-180' : ''}`}
         />
-      </Button>
+      </button>
     </>
   )
 }

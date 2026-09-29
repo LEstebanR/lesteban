@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, mock, test } from 'bun:test'
 
 import React from 'react'
@@ -72,7 +72,16 @@ const { BlogCard } = await import('@/components/cards/blog-card')
 const { ProjectCard } = await import('@/components/cards/project-card')
 const { ContactCard } = await import('@/components/cards/contact-card')
 const { ExperienceCard } = await import('@/components/cards/experience-card')
-const { CardAction } = await import('@/components/ui/card')
+const { Marquee } = await import('@/components/marquee')
+const {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} = await import('@/components/ui/card')
 
 // ─── BlogCard ────────────────────────────────────────────────────────────────
 
@@ -145,6 +154,14 @@ describe('ProjectCard', () => {
   test('does not show repo link when repo is undefined', () => {
     render(<ProjectCard project={{ ...project, repo: undefined }} />)
     expect(screen.queryByText('Code')).toBeNull()
+  })
+
+  test('tilts on pointer move and resets on leave without crashing', () => {
+    render(<ProjectCard project={project} tone={0} />)
+    const card = screen.getByRole('article')
+    fireEvent.pointerMove(card, { clientX: 10, clientY: 10 })
+    fireEvent.pointerLeave(card)
+    expect(screen.getByText('Roadmapcol')).toBeDefined()
   })
 
   test('does not show live demo link when link is undefined', () => {
@@ -242,5 +259,37 @@ describe('CardAction', () => {
   test('merges extra className', () => {
     render(<CardAction className="extra" data-testid="ca" />)
     expect(screen.getByTestId('ca').className).toContain('extra')
+  })
+})
+
+// ─── Card primitives ─────────────────────────────────────────────────────────
+
+describe('Card primitives', () => {
+  test('render every slot with its children', () => {
+    render(
+      <Card>
+        <CardHeader>
+          <CardTitle>Title</CardTitle>
+          <CardDescription>Description</CardDescription>
+        </CardHeader>
+        <CardContent>Content</CardContent>
+        <CardFooter>Footer</CardFooter>
+      </Card>
+    )
+    for (const text of ['Title', 'Description', 'Content', 'Footer']) {
+      expect(screen.getByText(text)).toBeDefined()
+    }
+  })
+})
+
+// ─── Marquee ─────────────────────────────────────────────────────────────────
+
+describe('Marquee', () => {
+  test('renders the items twice, hiding the duplicate row', () => {
+    const { container } = render(<Marquee items={['React', 'Next']} />)
+    expect(screen.getAllByText('React')).toHaveLength(2)
+    expect(container.querySelectorAll('[aria-hidden="true"] li')).toHaveLength(
+      2
+    )
   })
 })

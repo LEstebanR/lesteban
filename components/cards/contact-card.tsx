@@ -1,18 +1,11 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-
-import Image from 'next/image'
-import Link from 'next/link'
-
 import { useLang } from '@/hooks/use-lang'
 
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import Link from 'next/link'
+
+import { cn } from '@/lib/utils'
 
 export type ContactLink = {
   label: string
@@ -25,19 +18,20 @@ export type ContactLink = {
 export function ContactCard({ link }: { link: ContactLink }) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
+  const isStatic = link.href === '#'
   return (
-    <Link href={link.href} target={link.href === '#' ? '_self' : '_blank'}>
-      <Card className="border-secondary cursor-pointer">
-        <CardHeader className="flex items-center gap-4">
-          <Image src={link.icon} alt={link.label} width={35} height={35} />
-          <div className="flex flex-col gap-1">
-            <CardTitle>
-              {dictionary[link.label as keyof typeof dictionary]}
-            </CardTitle>
-            <CardDescription>{link.user}</CardDescription>
-          </div>
-        </CardHeader>
-      </Card>
+    <Link
+      href={link.href}
+      target={isStatic ? '_self' : '_blank'}
+      className={cn(
+        'toy bg-card text-card-foreground flex flex-col rounded-lg px-5 py-3',
+        isStatic ? 'pointer-events-none' : 'toy-press'
+      )}
+    >
+      <span className="text-muted-foreground text-xs font-bold">
+        {dictionary[link.label as keyof typeof dictionary]}
+      </span>
+      <span className="font-heading text-lg font-bold">{link.user}</span>
     </Link>
   )
 }

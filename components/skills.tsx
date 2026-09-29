@@ -1,42 +1,40 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-
-import { Code, Database, Layout, Server } from 'lucide-react'
-
 import { useLang } from '@/hooks/use-lang'
 
-import { Badge } from '@/components/ui/badge'
+import { Reveal } from '@/components/reveal'
+import { SectionTitle } from '@/components/section-title'
+
 import { SKILLS } from '@/lib/data'
 
-function Skill({
+const ROTATIONS = ['-5deg', '4deg', '-2deg', '6deg']
+
+function SkillBox({
   skill,
-  icon,
   skills,
+  tone,
 }: {
   skill: string
-  icon: React.ReactNode
   skills: string[]
+  tone: string
 }) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex gap-2">
-        {icon}
-        <h3 className="font-heading text-lg font-bold">{skill}</h3>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill) => {
-          return (
-            <Badge
-              key={skill}
-              variant="outline"
-              className="bg-primary/10 dark:bg-primary/20 text-primary/70 dark:text-primary/90 border-primary rounded-full text-sm"
-            >
-              {skill}
-            </Badge>
-          )
-        })}
-      </div>
+    <div className="toy bg-card flex h-full flex-col gap-5 rounded-xl p-6">
+      <h3 className="font-heading text-xl font-bold">{skill}</h3>
+      <ul className="flex flex-wrap gap-3">
+        {skills.map((item, i) => (
+          <li
+            key={item}
+            style={
+              { '--r': ROTATIONS[i % ROTATIONS.length] } as React.CSSProperties
+            }
+            className={`sticker toy rounded-full px-4 py-1.5 font-bold ${tone}`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
@@ -45,38 +43,42 @@ export function Skills() {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="font-heading text-primary text-2xl font-bold">{dictionary.skills}</h1>
+    <section className="-mx-4 flex flex-col gap-10 overflow-x-clip px-4 md:-mx-8 md:px-8">
+      <SectionTitle>{dictionary.skills}</SectionTitle>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <Skill
-          skill={dictionary['frontend-development' as keyof typeof dictionary]}
-          icon={
-            <Layout className="h-5 w-5 text-primary transition-transform duration-300 hover:scale-110" />
-          }
-          skills={SKILLS.frontend}
-        />
-        <Skill
-          skill={dictionary['backend-development' as keyof typeof dictionary]}
-          icon={
-            <Server className="h-5 w-5 text-accent transition-transform duration-300 hover:scale-110" />
-          }
-          skills={SKILLS.backend}
-        />
-        <Skill
-          skill={dictionary['database' as keyof typeof dictionary]}
-          icon={
-            <Database className="h-5 w-5 text-chart-5 transition-transform duration-300 hover:scale-110" />
-          }
-          skills={SKILLS.database}
-        />
-        <Skill
-          skill={dictionary['programing-languages' as keyof typeof dictionary]}
-          icon={
-            <Code className="h-5 w-5 text-secondary transition-transform duration-300 hover:scale-110" />
-          }
-          skills={SKILLS.programing_languages}
-        />
+        <Reveal>
+          <SkillBox
+            skill={
+              dictionary['frontend-development' as keyof typeof dictionary]
+            }
+            skills={SKILLS.frontend}
+            tone="bg-primary text-primary-foreground"
+          />
+        </Reveal>
+        <Reveal>
+          <SkillBox
+            skill={dictionary['backend-development' as keyof typeof dictionary]}
+            skills={SKILLS.backend}
+            tone="bg-pink text-pink-foreground"
+          />
+        </Reveal>
+        <Reveal>
+          <SkillBox
+            skill={dictionary['database' as keyof typeof dictionary]}
+            skills={SKILLS.database}
+            tone="bg-secondary text-secondary-foreground"
+          />
+        </Reveal>
+        <Reveal>
+          <SkillBox
+            skill={
+              dictionary['programing-languages' as keyof typeof dictionary]
+            }
+            skills={SKILLS.programing_languages}
+            tone="bg-accent text-accent-foreground"
+          />
+        </Reveal>
       </div>
-    </div>
+    </section>
   )
 }

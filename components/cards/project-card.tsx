@@ -1,24 +1,15 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-import { useHasMounted } from '@/hooks/use-has-mounted'
 import { useLang } from '@/hooks/use-lang'
-
-import Image from 'next/image'
-
-import { useTheme } from 'next-themes'
-
-import { ExternalLink } from 'lucide-react'
-
-import { Badge } from '@/components/ui/badge'
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Link } from '@/components/ui/link'
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from 'framer-motion'
+
+import { cn } from '@/lib/utils'
 
 type Project = {
   name: string
@@ -27,66 +18,93 @@ type Project = {
   link?: string
   repo?: string
 }
-export function ProjectCard({ project }: { project: Project }) {
+
+const TONES = [
+  'bg-primary text-primary-foreground',
+  'bg-secondary text-secondary-foreground',
+  'bg-pink text-pink-foreground',
+  'bg-card text-card-foreground',
+]
+
+const SPRING = { stiffness: 220, damping: 16 }
+
+export function ProjectCard({
+  project,
+  tone = 3,
+}: {
+  project: Project
+  tone?: number
+}) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
-  const { resolvedTheme } = useTheme()
-  const mounted = useHasMounted()
+  const reduce = useReducedMotion()
+  const tiltX = useMotionValue(0)
+  const tiltY = useMotionValue(0)
+  const rotateX = useSpring(tiltX, SPRING)
+  const rotateY = useSpring(tiltY, SPRING)
+
+  const tilt = (event: React.PointerEvent<HTMLElement>) => {
+    if (reduce) return
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / (rect.width || 1) - 0.5
+    const y = (event.clientY - rect.top) / (rect.height || 1) - 0.5
+    tiltY.set(x * 16)
+    tiltX.set(-y * 16)
+  }
+
+  const resetTilt = () => {
+    tiltX.set(0)
+    tiltY.set(0)
+  }
+
   return (
-    <Card className="border-secondary flex h-full flex-col">
-      <CardHeader>
-        <CardTitle>
-          {dictionary[project.name as keyof typeof dictionary]}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1">
-        <p>{dictionary[project.description as keyof typeof dictionary]}</p>
-      </CardContent>
-      <CardFooter className="flex flex-col items-center gap-2">
-        <div className="mt-2 flex flex-wrap gap-2">
-          {project.stack.map((stack) => (
-            <Badge
-              key={stack}
-              variant="outline"
-              className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
-            >
-              {stack}
-            </Badge>
-          ))}
-        </div>
-        <div className="flex w-full justify-between">
-          <div>
-            {project.repo && mounted && (
-              <Link href={project.repo}>
-                <div className="flex items-start gap-2">
-                  <Image
-                    src={
-                      resolvedTheme === 'dark'
-                        ? '/logos/github_dark.svg'
-                        : '/logos/github_light.svg'
-                    }
-                    alt="GitHub"
-                    height={20}
-                    width={20}
-                  />
-                  {dictionary['code']}
-                </div>
-              </Link>
-            )}
-          </div>
-          <div>
-            {project.link && (
-              <Link
-                href={project.link}
-                withIcon={true}
-                icon={<ExternalLink className="h-4 w-4" />}
-              >
-                {dictionary['live-demo']}
-              </Link>
-            )}
-          </div>
-        </div>
-      </CardFooter>
-    </Card>
+    <motion.article
+      onPointerMove={tilt}
+      onPointerLeave={resetTilt}
+      style={{ rotateX, rotateY, transformPerspective: 900 }}
+      className={cn(
+        'toy flex h-full flex-col gap-5 rounded-xl p-7',
+        TONES[tone % TONES.length]
+      )}
+    >
+      <h3 className="font-heading text-4xl font-extrabold tracking-tight">
+        {dictionary[project.name as keyof typeof dictionary]}
+      </h3>
+      <p className="flex-1 text-lg leading-relaxed opacity-90">
+        {dictionary[project.description as keyof typeof dictionary]}
+      </p>
+      <ul className="flex flex-wrap gap-2">
+        {project.stack.map((stack) => (
+          <li
+            key={stack}
+            className="rounded-full border-2 border-current/30 px-3 py-0.5 text-xs font-bold"
+          >
+            {stack}
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-wrap gap-3 pt-2">
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noreferrer"
+            className="toy toy-press bg-foreground text-background rounded-full px-5 py-2 text-sm font-bold"
+          >
+            {dictionary['live-demo']}
+          </a>
+        )}
+        {project.repo && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noreferrer"
+            className="toy toy-press bg-card text-card-foreground rounded-full px-5 py-2 text-sm font-bold"
+          >
+            {dictionary['code']}
+          </a>
+        )}
+      </div>
+    </motion.article>
   )
 }

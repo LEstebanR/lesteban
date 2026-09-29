@@ -50,5 +50,7 @@
   "made-with": "Hecho con",
   "by": "por",
   "related-posts": "Posts relacionados",
-  "skip-to-content": "Saltar al contenido principal"
+  "skip-to-content": "Saltar al contenido principal",
+  "hero-drag-hint": "Psst… las letras se mueven. Intenta arrastrarlas.",
+  "contact-cta": "¿Tienes una idea? Hablemos."
 }

@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import type { Metadata } from 'next'
 
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from 'next/font/google'
+import { Manrope, Syne } from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -16,20 +16,14 @@ import { ScrollToTop } from '@/components/ui/scroll-to-top'
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE } from '@/lib/constants'
 import { getCanonicalUrl } from '@/lib/utils'
 
-const inter = Inter({
-  variable: '--font-inter',
+const syne = Syne({
+  variable: '--font-syne',
   subsets: ['latin'],
   display: 'swap',
 })
 
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
+const manrope = Manrope({
+  variable: '--font-manrope',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -170,7 +164,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${bricolageGrotesque.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col`}
+        className={`${syne.variable} ${manrope.variable} flex min-h-screen flex-col`}
       >
         <ThemeProvider
           attribute="class"
@@ -188,7 +182,7 @@ export default async function RootLayout({
               <Header />
               <main
                 id="main-content"
-                className="mt-16 flex w-full flex-1 flex-col px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6"
+                className="mt-16 flex w-full max-w-6xl flex-1 flex-col px-4 md:px-8"
               >
                 {children}
                 <Analytics />
