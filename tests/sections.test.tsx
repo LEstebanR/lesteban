@@ -144,17 +144,19 @@ describe('Hero', () => {
     }
   })
 
-  test('when mounted renders social link images (not skeletons)', () => {
+  test('renders social links as text', () => {
     render(<Hero lang="en" />)
-    expect(screen.getByAltText('Github')).toBeDefined()
-    expect(screen.getByAltText('Mail')).toBeDefined()
+    expect(screen.getByText('GitHub').getAttribute('href')).toBe(
+      'https://github.com/LEstebanR'
+    )
+    expect(screen.getByText('Email').getAttribute('href')).toBe(
+      'mailto:leramirezca@gmail.com'
+    )
   })
 
-  test('when unmounted renders skeletons for theme-dependent social icons', () => {
-    state.mounted = false
+  test('renders the portrait', () => {
     render(<Hero lang="en" />)
-    expect(screen.queryByAltText('Github')).toBeNull()
-    expect(screen.queryByAltText('Mail')).toBeNull()
+    expect(screen.getByAltText('Luis Esteban')).toBeDefined()
   })
 })
 
@@ -240,23 +242,16 @@ describe('Projects', () => {
 // ─── Contact ─────────────────────────────────────────────────────────────────
 
 describe('Contact', () => {
-  test('when mounted renders the Contact heading', () => {
+  test('renders the Contact heading', () => {
     render(<Contact />)
     expect(screen.getByText('Contact')).toBeDefined()
   })
 
-  test('when mounted renders all 4 contact cards', () => {
+  test('renders all 4 contact rows', () => {
     render(<Contact />)
     expect(screen.getByText('GitHub')).toBeDefined()
     expect(screen.getByText('LinkedIn')).toBeDefined()
     expect(screen.getByText('Email')).toBeDefined()
     expect(screen.getByText('Location')).toBeDefined()
-  })
-
-  test('when unmounted renders skeleton placeholders instead of cards', () => {
-    state.mounted = false
-    render(<Contact />)
-    expect(screen.queryByText('GitHub')).toBeNull()
-    expect(screen.queryByText('LinkedIn')).toBeNull()
   })
 })

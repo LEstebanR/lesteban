@@ -1,18 +1,11 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-
-import Image from 'next/image'
-import Link from 'next/link'
-
 import { useLang } from '@/hooks/use-lang'
 
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import Link from 'next/link'
+
+import { cn } from '@/lib/utils'
 
 export type ContactLink = {
   label: string
@@ -22,22 +15,35 @@ export type ContactLink = {
   iconColor: string
 }
 
-export function ContactCard({ link }: { link: ContactLink }) {
+/** One signpost arrow. Alternating arrows point the other way. */
+export function ContactCard({
+  link,
+  flip = false,
+}: {
+  link: ContactLink
+  flip?: boolean
+}) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
+  const isStatic = link.href === '#'
   return (
-    <Link href={link.href} target={link.href === '#' ? '_self' : '_blank'}>
-      <Card className="border-secondary cursor-pointer">
-        <CardHeader className="flex items-center gap-4">
-          <Image src={link.icon} alt={link.label} width={35} height={35} />
-          <div className="flex flex-col gap-1">
-            <CardTitle>
-              {dictionary[link.label as keyof typeof dictionary]}
-            </CardTitle>
-            <CardDescription>{link.user}</CardDescription>
-          </div>
-        </CardHeader>
-      </Card>
+    <Link
+      href={link.href}
+      target={isStatic ? '_self' : '_blank'}
+      className={cn(
+        'sign-arrow bg-secondary text-secondary-foreground focus-visible:ring-ring relative z-10 flex w-[88%] flex-col px-6 py-3 outline-none focus-visible:ring-4 sm:w-4/5',
+        flip
+          ? 'flip self-end pl-10 text-right [clip-path:polygon(0_50%,1.5rem_0,100%_0,100%_100%,1.5rem_100%)]'
+          : 'pr-10 [clip-path:polygon(0_0,calc(100%-1.5rem)_0,100%_50%,calc(100%-1.5rem)_100%,0_100%)]',
+        isStatic && 'pointer-events-none'
+      )}
+    >
+      <span className="text-primary font-mono text-xs">
+        {dictionary[link.label as keyof typeof dictionary]}
+      </span>
+      <span className="font-heading truncate text-xl font-extrabold">
+        {link.user}
+      </span>
     </Link>
   )
 }

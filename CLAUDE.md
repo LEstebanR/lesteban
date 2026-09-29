@@ -29,6 +29,7 @@ Pin all dependency versions exactly in `package.json` — never use `^` or `~` p
 Always name branches using the format: `les/<type>-<short-description>`
 
 Examples:
+
 - `les/fix-e2e-ci-tests`
 - `les/feat-blog-rss-feed`
 - `les/refac-header-language-toggle`
@@ -48,6 +49,7 @@ E2E tests (`bun test:e2e` / `bunx playwright test`) run separately. The `e2e/` d
 ### Unit test mock pattern
 
 Follow the pattern in `tests/cards.test.tsx` and `tests/sections.test.tsx`:
+
 - Call `mock.module(...)` for all external deps before any `await import(...)`.
 - To test multiple states (e.g. mounted vs. unmounted) in a single file without re-importing, use a **mutable `state` object** captured by the mock closure:
 
@@ -73,23 +75,23 @@ mock.module('@/hooks/use-has-mounted', () => ({
 
 ## Available Skills
 
-| Skill | Trigger | Purpose |
-|-------|---------|---------|
-| `/dev-issue` | When developing a Linear issue end-to-end | Updates develop, creates branch, implements, commits, pushes, opens PR |
-| `/commit` | When committing changes | Conventional commit with project-specific scopes |
-| `/blog-post` | When creating a new post | Scaffolds bilingual markdown files with correct frontmatter |
-| `/component` | When creating a new component | Generates components following design system constraints |
-| `/audit` | When discovering what to improve next | Audits the full project (perf, UI/UX, a11y, SEO, DX, blog, i18n) and creates prioritized Linear issues |
+| Skill        | Trigger                                   | Purpose                                                                                                |
+| ------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `/dev-issue` | When developing a Linear issue end-to-end | Updates develop, creates branch, implements, commits, pushes, opens PR                                 |
+| `/commit`    | When committing changes                   | Conventional commit with project-specific scopes                                                       |
+| `/blog-post` | When creating a new post                  | Scaffolds bilingual markdown files with correct frontmatter                                            |
+| `/component` | When creating a new component             | Generates components following design system constraints                                               |
+| `/audit`     | When discovering what to improve next     | Audits the full project (perf, UI/UX, a11y, SEO, DX, blog, i18n) and creates prioritized Linear issues |
 
 ## Design System
 
 All UI work must follow the design system documented in [`DESIGN.md`](./DESIGN.md). Key rules:
 
 - **Colors:** Use only the CSS tokens defined in `app/globals.css` (`--primary`, `--secondary`, `--accent`, `--destructive`, etc.). Do not hardcode hex values — map to Tailwind utilities (`text-primary`, `bg-secondary`, `border-border`, etc.). Full palette and roles are in `DESIGN.md §2`.
-- **Typography:** `font-sans` (DM Sans) for body, `font-heading` (Space Grotesk) for headings, `font-mono` (Geist Mono) for code. Scale, weights, and tracking rules are in `DESIGN.md §3`.
+- **Typography:** `font-heading`/`font-sans` (Overpass) for headings and body, `font-mono` (Overpass Mono) for coordinates, dates and tags. Scale, weights, and tracking rules are in `DESIGN.md §3`.
 - **Spacing & radius:** Follow the radius scale (`rounded-sm` → `rounded-xl`, up to full pills). Base spacing unit is 8px. Details in `DESIGN.md §5`.
 - **Dark mode:** All new components must work in both light and dark mode. Tokens switch automatically via the `.dark` class — avoid hardcoding light-only or dark-only colors.
-- **Depth:** Prefer tonal contrast and border containment over shadows. See elevation levels in `DESIGN.md §6`.
+- **Depth:** No shadows — tonal sign panels and dashed trail rules. Map pieces and motion in `DESIGN.md §4–6`.
 
 ## Architecture
 
@@ -116,6 +118,7 @@ The URL slug of a post must be identical across languages for the language switc
 ### Constants
 
 Site-wide string constants live in `lib/constants.ts` — import from there instead of hardcoding:
+
 - `BASE_URL` — `'https://lesteban.dev'`
 - `SITE_NAME` — `'LEsteban'`
 - `TWITTER_HANDLE` — `'@lestebanr'`
@@ -127,6 +130,7 @@ Tailwind CSS v4 with CSS custom properties defined in `app/globals.css` using th
 ### Import Order
 
 Prettier enforces this order via `@trivago/prettier-plugin-sort-imports`:
+
 1. React
 2. Next.js
 3. `next-themes`

@@ -1,12 +1,9 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-
-import { Calendar, Code } from 'lucide-react'
-
 import { useLang } from '@/hooks/use-lang'
 
-import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 
 export type ExperienceType = {
   position: string
@@ -17,36 +14,45 @@ export type ExperienceType = {
   stack: string[]
 }
 
-export function ExperienceCard({ job }: { job: ExperienceType }) {
+export function ExperienceCard({
+  job,
+  current = false,
+}: {
+  job: ExperienceType
+  current?: boolean
+}) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
-    <div className="bg-card border-border flex flex-col gap-2 rounded-lg border p-4">
-      <h3 className="font-heading text-primary text-lg font-bold">
+    <li className="arrive relative flex flex-col gap-2">
+      <span
+        aria-hidden="true"
+        className={cn(
+          'border-primary absolute top-1 -left-10 size-6 rounded-full border-[3px]',
+          current ? 'bg-primary' : 'bg-background'
+        )}
+      />
+      <p className="text-muted-foreground font-mono text-xs">
+        {dictionary[job.startDate as keyof typeof dictionary]} →{' '}
+        {dictionary[job.endDate as keyof typeof dictionary]}
+      </p>
+      <h3 className="font-heading text-2xl font-extrabold">
         {dictionary[job.position as keyof typeof dictionary]}
       </h3>
-      <div className="flex items-center gap-2">
-        <h2 className="font-heading font-bold">{job.company}</h2>
-        <Calendar className="ml-1 h-4 w-4 font-bold" />
-        <h2 className="font-heading font-bold">
-          {dictionary[job.startDate as keyof typeof dictionary]} -{' '}
-          {dictionary[job.endDate as keyof typeof dictionary]}
-        </h2>
-      </div>
-      <p>{dictionary[job.description as keyof typeof dictionary]}</p>
-
-      <div className="wrap flex items-center gap-2">
-        <Code className="text-primary h-4 w-4" />
+      <p className="text-primary font-bold">{job.company}</p>
+      <p className="text-foreground/85 max-w-2xl leading-relaxed">
+        {dictionary[job.description as keyof typeof dictionary]}
+      </p>
+      <ul className="flex flex-wrap gap-2 pt-1">
         {job.stack.map((stack) => (
-          <Badge
+          <li
             key={stack}
-            variant="outline"
-            className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
+            className="bg-accent text-accent-foreground rounded-full px-2.5 py-0.5 font-mono text-xs"
           >
             {stack}
-          </Badge>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </li>
   )
 }

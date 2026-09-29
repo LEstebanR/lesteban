@@ -103,24 +103,31 @@ export function Header() {
   return (
     <header
       aria-label={currentLang === 'es' ? 'Encabezado del sitio' : 'Site header'}
-      className="bg-background fixed top-0 right-0 left-0 z-10 flex h-16 w-full items-center border-b border-border py-1"
+      className="bg-background/85 border-border fixed top-0 right-0 left-0 z-40 flex h-16 w-full items-center border-b backdrop-blur-md"
     >
-      <div className="flex w-full items-center justify-between">
-        <div className="md:flex-1" />
-        <div className="flex w-full items-center justify-between px-2 md:px-4 lg:w-3/6 lg:px-0 2xl:w-2/6">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
+        <div className="flex flex-1 items-center justify-between gap-6">
           <Link href={`/${currentLang}`} target="_self">
-            <h1 className="font-heading text-primary text-xl font-bold">
+            <h1 className="font-heading flex items-center gap-2 text-lg font-black tracking-tight">
+              <span
+                aria-hidden="true"
+                className="bg-primary h-4 w-1.5 rounded-[2px]"
+              />
               Luis Esteban
             </h1>
           </Link>
           {isHome ? (
             <nav
-              aria-label={currentLang === 'es' ? 'Navegación principal' : 'Main navigation'}
+              aria-label={
+                currentLang === 'es'
+                  ? 'Navegación principal'
+                  : 'Main navigation'
+              }
               className="hidden w-1/2 flex-wrap items-center justify-end gap-2 px-1 md:flex md:px-0"
             >
               <NextLink
                 href={`/${currentLang}/blog`}
-                className="hover:text-primary hover:animate-underline-link flex items-center gap-1.5 decoration-2 underline-offset-4 transition-all duration-300 hover:underline"
+                className="bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground flex items-center gap-1.5 rounded-full px-4 py-1 text-sm font-bold transition-colors"
               >
                 <BookOpen className="h-4 w-4" />
                 Blog
@@ -279,8 +286,8 @@ export function Header() {
             </DropdownMenu>
           </div>
         </div>
-        <div className="hidden flex-1 justify-end md:flex">
-          <div className="flex items-center gap-2 pr-4">
+        <div className="hidden justify-end md:flex">
+          <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
           </div>
