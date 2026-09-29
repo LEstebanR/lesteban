@@ -7,7 +7,6 @@ export type Project = {
   stack: string[]
   link?: string
   repo?: string
-  status?: 'paused'
 }
 
 export type Skills = {
@@ -65,6 +64,7 @@ export const PROJECTS: Project[] = [
     description: 'lesfin-description',
     stack: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma', 'Neon'],
     link: 'https://www.lesfin.app',
+    repo: 'https://github.com/LEstebanR/lesfin',
   },
   {
     name: 'roadmapcol',
@@ -72,14 +72,6 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'Tailwind', 'Shadcn'],
     link: 'https://roadmapcol.com/',
     repo: 'https://github.com/LEstebanR/roadmapcol',
-  },
-  {
-    name: 'oniricapp',
-    description: 'oniricapp-description',
-    stack: ['Next.js', 'Tailwind', 'Llama'],
-    link: 'https://www.oniricapp.com/',
-    repo: 'https://github.com/LEstebanR/dream_Interpreter',
-    status: 'paused',
   },
   {
     name: 'humedad-arena',

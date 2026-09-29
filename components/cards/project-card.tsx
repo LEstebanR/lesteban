@@ -26,7 +26,6 @@ type Project = {
   stack: string[]
   link?: string
   repo?: string
-  status?: 'paused'
 }
 export function ProjectCard({ project }: { project: Project }) {
   const lang = useLang()
@@ -36,19 +35,9 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Card className="border-secondary flex h-full flex-col">
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <CardTitle>
-            {dictionary[project.name as keyof typeof dictionary]}
-          </CardTitle>
-          {project.status && (
-            <Badge
-              variant="outline"
-              className="bg-accent/10 text-accent border-accent rounded-full text-xs"
-            >
-              {dictionary[project.status as keyof typeof dictionary]}
-            </Badge>
-          )}
-        </div>
+        <CardTitle>
+          {dictionary[project.name as keyof typeof dictionary]}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
         <p>{dictionary[project.description as keyof typeof dictionary]}</p>

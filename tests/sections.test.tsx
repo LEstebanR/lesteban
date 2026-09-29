@@ -86,15 +86,12 @@ const MOCK_DICT: Record<string, string> = {
   projects: 'Projects',
   roadmapcol: 'Roadmapcol',
   'roadmapcol-description': 'A platform for Colombia',
-  oniricapp: 'OniricApp',
-  'oniricapp-description': 'Dream interpreter',
   conexory: 'Conexory',
   'conexory-description': 'Real estate SaaS platform',
   lesfin: 'LESFin',
   'lesfin-description': 'Personal finance tracker',
   'humedad-arena': 'Humedad Arena',
   'humedad-arena-description': 'Sand moisture sensor',
-  paused: 'Paused',
   code: 'Code',
   'live-demo': 'Live Demo',
   // Contact
@@ -227,16 +224,10 @@ describe('Projects', () => {
 
   test('renders all project names', () => {
     render(<Projects />)
-    expect(screen.getByText('Roadmapcol')).toBeDefined()
-    expect(screen.getByText('OniricApp')).toBeDefined()
     expect(screen.getByText('Conexory')).toBeDefined()
     expect(screen.getByText('LESFin')).toBeDefined()
+    expect(screen.getByText('Roadmapcol')).toBeDefined()
     expect(screen.getByText('Humedad Arena')).toBeDefined()
-  })
-
-  test('renders paused status for OniricApp', () => {
-    render(<Projects />)
-    expect(screen.getByText('Paused')).toBeDefined()
   })
 
   test('renders stack badges for each project', () => {
