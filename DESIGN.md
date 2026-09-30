@@ -53,16 +53,18 @@ Scale: 12 (mono data) · 14 · 16/18 (body) · 20/24 (card titles) · 30 (sectio
 
 ## 6. Motion
 
-Motion behaves like instruments coming online — linear scans, stepped blinks, signal filling a rail. Never bouncy, never decorative springs.
+Motion behaves like instruments coming online — linear scans, stepped blinks, glyphs decoding, signal filling a rail. Never bouncy, never decorative springs.
 
 **Load (once)**
 
-- `.scan-in` + `.scan-beam`: hero name reveal, 1.1s.
+- `.scan-in` + `.scan-beam`: the hero name is revealed by a scan beam (1.1s) while `ScrambleText` decodes it from random glyphs.
+- The portrait gets the same treatment: `.scan-in` + beam, plus `DecodeMask` (`components/decode-mask.tsx`) — a 12×12 glyph mosaic that clears row by row in sync with the beam (CSS `cell-fade` fallback without JS).
+- `.seq` boot sequence: status, greeting, role, lede, stack chips (one by one) and socials enter in order (`--d` delay in ms) with a blur-to-sharp lift.
 
 **Ambient (slow, low-contrast)**
 
-- `NeuralField` (`components/neural-field.tsx`, maths in `lib/neural-field.ts`): a canvas network of drifting nodes behind the hero; links brighten and reach toward the pointer. Pauses off-screen, still frame under reduced motion, colour read from `--primary` (so it follows the theme).
-
+- `.aurora`: three blurred light masses (cyan, violet, cyan) orbit on 19–31s loops and breathe; the aurora rises and fades as the hero scrolls away (`.aurora-exit`).
+- `NeuralField` (`components/neural-field.tsx`, maths in `lib/neural-field.ts`): a canvas network of drifting nodes behind the hero; links brighten and reach toward the pointer. Pauses off-screen, colour read from `--primary` (follows the theme).
 - `.console-grid` drifts one cell every 14s.
 - `.status-dot` and `.caret` (block cursor after the role) blink in steps.
 - `.photo-scan`: a scan pass over the portrait every 7s.
@@ -70,27 +72,31 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 **Interactive**
 
-- `ScrambleText`: section titles, project and blog titles re-decode when the pointer enters their `[data-scramble-host]`.
-- `.reticle`: a HUD crosshair with live `x / y` coordinates follows the pointer across the hero (desktop).
+- `.console-spot`: a spotlight follows the pointer across the hero with inertia (`--mx`/`--my` from `Hero`'s `onPointerMove`, eased through registered `--sx`/`--sy`).
+- `.reticle`: a HUD crosshair with live `x / y` coordinates follows the pointer (desktop).
+- `ScrambleText` re-decodes on hover inside any `[data-scramble-host]`: section, project and blog titles, header Blog link, experience companies, contact handles, footer wordmark. `DecodeMask` re-runs when the portrait is hovered.
 - `.glitch-host` / `.glitch-layer`: the portrait tears into hue-shifted slices for 600ms on hover.
-
-- `.console-spot`: a spotlight follows the pointer across the hero (`--mx`/`--my` written by `Hero`'s `onPointerMove`).
+- `.jitter`: social icons shake briefly on hover.
 - `.hud-frame` corner ticks grow 14px → 28px on hover/focus (`@property --tick`).
 - `.sweep-line`: one scan line crosses project/blog panels on hover.
 
-**Scroll-driven (CSS `animation-timeline: view()`, static where unsupported)**
+**Scroll-driven (CSS `animation-timeline`, static where unsupported)**
 
-- `.reveal-line`: section hairline draws left → right in cyan.
+- `.reveal-line`: section hairline draws left → right in cyan; `.slash`: the `/` flickers on.
 - `.rail::before`: the experience rail fills with signal as it crosses the viewport.
-- `.boot`: project panels scan in top → bottom.
+- `.boot`: project panels scan in top → bottom and flicker like a CRT powering on.
 - `.chip-seq`: skill chips light up one after another (`--i` index), then settle.
-- `.boot` panels flicker like a CRT powering on as they finish scanning in.
 - `ScrollTelemetry`: fixed right-edge readout (xl+) with a filling bar and a `00%`–`100%` counter driven by `@property --scroll` on the root scroll timeline.
 
-`prefers-reduced-motion`: every animation above is disabled; beams, scans, sweep, rail fill, reticle and glitch are hidden; text never scrambles; the neural field draws one still frame.
+`prefers-reduced-motion`: every animation above is disabled; beams, scans, sweep, rail fill, reticle, glitch and decode mosaic are hidden; text never scrambles; the aurora and neural field hold still.
 
 ## 7. Accessibility
 
 - Contrast: body text ≥ 7:1 in dark, ≥ 10:1 in light; muted text ≥ 4.5:1.
 - Focus: `focus-visible:ring-2 ring-ring` on all links/cards.
 - Decorative layers (grid, glow, beam, markers) are `aria-hidden`.
+
+## 8. Brand mark
+
+- `app/icon.svg` (favicon): ink-navy tile, cyan HUD corner ticks and the `/▮` prompt (section slash + hero caret).
+- `public/favicon.ico` (16/32/48) and `app/apple-icon.png` (180, square) are rasterised from the same SVG.
