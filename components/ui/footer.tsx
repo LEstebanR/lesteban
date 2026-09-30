@@ -7,6 +7,8 @@ import Link from 'next/link'
 
 import { Heart } from 'lucide-react'
 
+import { ScrambleText } from '@/components/scramble-text'
+
 export function Footer() {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
@@ -22,9 +24,10 @@ export function Footer() {
           <Link
             href={`/${lang}`}
             target="_self"
+            data-scramble-host
             className="hover:text-primary text-foreground transition-colors"
           >
-            LEstebanR
+            <ScrambleText text="LEstebanR" duration={450} />
           </Link>
         </span>
       </div>

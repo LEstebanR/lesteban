@@ -3,6 +3,8 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { useLang } from '@/hooks/use-lang'
 
+import { ScrambleText } from '@/components/scramble-text'
+
 import { cn } from '@/lib/utils'
 
 export type ExperienceType = {
@@ -24,7 +26,7 @@ export function ExperienceCard({
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
-    <li className="relative flex flex-col gap-3">
+    <li data-scramble-host className="relative flex flex-col gap-3">
       <span
         aria-hidden="true"
         className={cn(
@@ -46,7 +48,11 @@ export function ExperienceCard({
         <h3 className="font-heading text-xl font-semibold">
           {dictionary[job.position as keyof typeof dictionary]}
         </h3>
-        <span className="text-primary font-medium">{job.company}</span>
+        <ScrambleText
+          text={job.company}
+          duration={450}
+          className="text-primary font-medium"
+        />
       </div>
       <p className="text-foreground/80 max-w-2xl leading-relaxed">
         {dictionary[job.description as keyof typeof dictionary]}

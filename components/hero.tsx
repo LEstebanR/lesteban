@@ -9,6 +9,7 @@ import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
+import { DecodeMask } from '@/components/decode-mask'
 import { NeuralField } from '@/components/neural-field'
 import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
@@ -46,8 +47,14 @@ export function Hero({ lang }: HeroProps) {
       />
       <div
         aria-hidden="true"
-        className="console-glow pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
-      />
+        className="aurora-exit pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
+      >
+        <div className="aurora absolute inset-0">
+          <div className="aurora-blob aurora-a" />
+          <div className="aurora-blob aurora-b" />
+          <div className="aurora-blob aurora-c" />
+        </div>
+      </div>
       <div
         aria-hidden="true"
         className="console-spot pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
@@ -65,13 +72,16 @@ export function Hero({ lang }: HeroProps) {
         </div>
       </div>
 
-      <p className="text-muted-foreground flex items-center gap-2 font-mono text-xs">
+      <p className="seq text-muted-foreground flex items-center gap-2 font-mono text-xs">
         <span className="bg-primary status-dot inline-block size-1.5 rounded-full" />
-        {dictionary['indie-hacker-in-progress']}
+        {dictionary['hero-status']}
       </p>
 
       <h1 className="font-heading">
-        <span className="text-muted-foreground mb-3 block font-sans text-lg md:text-xl">
+        <span
+          className="seq text-muted-foreground mb-3 block font-sans text-lg md:text-xl"
+          style={{ '--d': 100 } as React.CSSProperties}
+        >
           {dictionary['hello']}
         </span>
         <span className="scan-in block text-[clamp(3rem,11vw,8.5rem)] leading-[0.88] font-semibold tracking-tight uppercase">
@@ -82,29 +92,39 @@ export function Hero({ lang }: HeroProps) {
 
       <div className="grid gap-10 md:grid-cols-[1fr_280px] md:items-end">
         <div className="flex max-w-xl flex-col gap-6">
-          <p className="text-primary font-heading text-xl font-medium md:text-2xl">
-            {dictionary['software-developer']}
+          <p
+            className="seq text-primary font-heading text-xl font-medium md:text-2xl"
+            style={{ '--d': 1000 } as React.CSSProperties}
+          >
+            {dictionary['hero-role']}
             <span aria-hidden="true" className="caret" />
           </p>
-          <p className="text-foreground/80 text-lg leading-relaxed text-pretty">
-            {dictionary['about-me-description-1']}{' '}
-            <span className="text-foreground font-medium">
-              {dictionary['global-impact']}
-            </span>{' '}
-            {dictionary['about-me-description-2']}
+          <p
+            className="seq text-foreground/80 text-lg leading-relaxed text-pretty"
+            style={{ '--d': 1150 } as React.CSSProperties}
+          >
+            {dictionary['hero-lede']}
           </p>
           <ul className="flex flex-wrap gap-2" aria-label="Stack">
-            {STACK.map((tech) => (
+            {STACK.map((tech, index) => (
               <li
                 key={tech}
-                className="border-border text-muted-foreground rounded-sm border px-2.5 py-1 font-mono text-xs"
+                style={{ '--d': 1300 + index * 80 } as React.CSSProperties}
+                className="seq border-border text-muted-foreground hover:border-primary hover:text-primary rounded-sm border px-2.5 py-1 font-mono text-xs transition-colors"
               >
                 {tech}
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-5">
-            <Link href="https://github.com/LEstebanR" withIcon>
+          <div
+            className="seq flex items-center justify-center gap-5 md:justify-start"
+            style={{ '--d': 1750 } as React.CSSProperties}
+          >
+            <Link
+              href="https://github.com/LEstebanR"
+              withIcon
+              className="jitter"
+            >
               {mounted ? (
                 <Image
                   src={
@@ -120,7 +140,11 @@ export function Hero({ lang }: HeroProps) {
                 <Skeleton className="size-6 rounded-full" />
               )}
             </Link>
-            <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
+            <Link
+              href="https://www.linkedin.com/in/lestebanr/"
+              withIcon
+              className="jitter"
+            >
               <Image
                 src="/logos/linkedin.svg"
                 alt="LinkedIn"
@@ -128,7 +152,7 @@ export function Hero({ lang }: HeroProps) {
                 height={24}
               />
             </Link>
-            <Link href="mailto:leramirezca@gmail.com">
+            <Link href="mailto:leramirezca@gmail.com" className="jitter">
               {mounted ? (
                 <Image
                   src={
@@ -145,8 +169,14 @@ export function Hero({ lang }: HeroProps) {
           </div>
         </div>
 
-        <figure className="hud-frame border-border bg-card w-full max-w-[220px] border p-3 md:max-w-[280px]">
-          <div className="scanlines glitch-host relative aspect-square overflow-hidden">
+        <figure
+          data-scramble-host
+          className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
+          style={{ '--d': 150 } as React.CSSProperties}
+        >
+          <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
+            <DecodeMask />
+            <span aria-hidden="true" className="scan-beam z-[4]" />
             <span aria-hidden="true" className="photo-scan" />
             <Image
               src="/profile_pic.jpeg"

@@ -1,10 +1,6 @@
 {
-  "software-developer": "Desarrollador de Software",
   "projects": "Proyectos",
   "contact": "Contacto",
-  "about-me-description-1": "El trabajo en equipo es mi forma favorita de crecer, me enfoco en escribir código limpio y mantenible. Mi objetivo es construir productos con",
-  "global-impact": "impacto global",
-  "about-me-description-2": "que mejoren la vida de las personas.",
   "experience": "Experiencia",
   "frontend-developer": "Desarrollador Frontend",
   "fullstack-developer": "Desarrollador Fullstack",
@@ -43,12 +39,14 @@
   "lesfin-description": "Gestor de finanzas personales para cuentas, deudas, suscripciones y presupuesto. Todo tu dinero en un solo lugar.",
   "lesfin": "LESFin",
   "hello": "Hola, soy",
-  "indie-hacker-in-progress": "Indie Hacker en proceso",
   "blog": "Blog",
   "no-posts": "Aún no hay entradas",
   "blog-description": "Artículos sobre desarrollo de software, productividad y crecimiento personal por Luis Esteban Ramírez.",
   "made-with": "Hecho con",
   "by": "por",
   "related-posts": "Posts relacionados",
-  "skip-to-content": "Saltar al contenido principal"
+  "skip-to-content": "Saltar al contenido principal",
+  "hero-status": "Construyendo mis propios productos",
+  "hero-role": "Desarrollador frontend e indie hacker",
+  "hero-lede": "Construyo productos web de principio a fin. De día desarrollo interfaces para software que la gente usa a diario en su trabajo; en mis ratos libres construyo y lanzo mis propias ideas."
 }

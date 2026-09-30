@@ -9,7 +9,7 @@ export function SectionHeading({ children, meta }: SectionHeadingProps) {
   return (
     <div data-scramble-host className="flex items-end gap-4">
       <h2 className="font-heading text-2xl font-semibold tracking-tight md:text-3xl">
-        <span aria-hidden="true" className="text-primary mr-2">
+        <span aria-hidden="true" className="slash text-primary mr-2">
           /
         </span>
         <ScrambleText text={children} />

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 
-const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/[]{}=+*#%&'
+export const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/[]{}=+*#%&'
 
 interface ScrambleTextProps {
   text: string

@@ -27,12 +27,12 @@ export function BlogCard({ post }: { post: BlogPost }) {
       className="group hud-frame border-border bg-card focus-visible:ring-ring flex h-full flex-col border outline-none focus-visible:ring-2"
     >
       <span aria-hidden="true" className="sweep-line z-10" />
-      <div className="relative aspect-[16/9] w-full overflow-hidden">
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover grayscale-[40%] transition duration-500 group-hover:grayscale-0"
+          className="object-cover object-[50%_22%] grayscale-[40%] transition duration-500 group-hover:grayscale-0"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>

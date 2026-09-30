@@ -23,6 +23,7 @@ import {
 } from 'lucide-react'
 
 import { useBreadcrumb } from '@/components/breadcrumb-provider'
+import { ScrambleText } from '@/components/scramble-text'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -124,10 +125,11 @@ export function Header() {
             >
               <NextLink
                 href={`/${currentLang}/blog`}
+                data-scramble-host
                 className="text-muted-foreground hover:text-primary flex items-center gap-1.5 font-mono text-xs transition-colors"
               >
                 <BookOpen className="size-3.5" />
-                Blog
+                <ScrambleText text="Blog" duration={350} />
               </NextLink>
             </nav>
           ) : (

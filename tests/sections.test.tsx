@@ -58,11 +58,9 @@ mock.module('@/hooks/use-has-mounted', () => ({
 const MOCK_DICT: Record<string, string> = {
   // Hero
   hello: 'Hello,',
-  'software-developer': 'Software Developer',
-  'about-me-description-1': 'I build products with',
-  'global-impact': 'global impact',
-  'about-me-description-2': 'for everyone.',
-  'indie-hacker-in-progress': 'Indie Hacker in Progress',
+  'hero-status': 'Building my own products',
+  'hero-role': 'Frontend developer & indie hacker',
+  'hero-lede': 'I build web products end to end.',
   // Experience
   experience: 'Experience',
   'see-more': 'See more',
@@ -131,9 +129,11 @@ describe('Hero', () => {
     expect(screen.getByText('Luis Esteban')).toBeDefined()
   })
 
-  test('renders the indie-hacker badge', () => {
+  test('renders the status, role and lede copy', () => {
     render(<Hero lang="en" />)
-    expect(screen.getByText('Indie Hacker in Progress')).toBeDefined()
+    expect(screen.getByText('Building my own products')).toBeDefined()
+    expect(screen.getByText('Frontend developer & indie hacker')).toBeDefined()
+    expect(screen.getByText('I build web products end to end.')).toBeDefined()
   })
 
   test('renders all stack badges', () => {

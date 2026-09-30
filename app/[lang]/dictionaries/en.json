@@ -1,10 +1,6 @@
 {
-  "software-developer": "Software Developer",
   "projects": "Projects",
   "contact": "Contact",
-  "about-me-description-1": "Collaborative environments are my favorite way to grow, and I focus on writing clean, maintainable code. My goal is to build products with",
-  "global-impact": "global impact",
-  "about-me-description-2": "that improve people's lives.",
   "experience": "Experience",
   "frontend-developer": "Frontend Developer",
   "fullstack-developer": "Fullstack Developer",
@@ -43,12 +39,14 @@
   "lesfin-description": "Personal finance tracker for accounts, debts, subscriptions, and budget. All your money in one clear place.",
   "lesfin": "LESFin",
   "hello": "Hi, I'm",
-  "indie-hacker-in-progress": "Indie Hacker in progress",
   "blog": "Blog",
   "no-posts": "No posts yet",
   "blog-description": "Articles on software development, productivity, and personal growth by Luis Esteban Ramirez.",
   "made-with": "Made with",
   "by": "by",
   "related-posts": "Related posts",
-  "skip-to-content": "Skip to main content"
+  "skip-to-content": "Skip to main content",
+  "hero-status": "Building my own products",
+  "hero-role": "Frontend developer & indie hacker",
+  "hero-lede": "I build web products end to end. By day I develop interfaces for software people use every day at work; after hours I build and launch my own ideas."
 }
