@@ -1,12 +1,11 @@
 'use client'
 
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
-
-import { Calendar, Code } from 'lucide-react'
-
 import { useLang } from '@/hooks/use-lang'
 
-import { Badge } from '@/components/ui/badge'
+import { ScrambleText } from '@/components/scramble-text'
+
+import { cn } from '@/lib/utils'
 
 export type ExperienceType = {
   position: string
@@ -17,36 +16,54 @@ export type ExperienceType = {
   stack: string[]
 }
 
-export function ExperienceCard({ job }: { job: ExperienceType }) {
+export function ExperienceCard({
+  job,
+  current = false,
+}: {
+  job: ExperienceType
+  current?: boolean
+}) {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
-    <div className="bg-card border-border flex flex-col gap-2 rounded-lg border p-4">
-      <h3 className="font-heading text-primary text-lg font-bold">
-        {dictionary[job.position as keyof typeof dictionary]}
-      </h3>
-      <div className="flex items-center gap-2">
-        <h2 className="font-heading font-bold">{job.company}</h2>
-        <Calendar className="ml-1 h-4 w-4 font-bold" />
-        <h2 className="font-heading font-bold">
-          {dictionary[job.startDate as keyof typeof dictionary]} -{' '}
-          {dictionary[job.endDate as keyof typeof dictionary]}
-        </h2>
+    <li data-scramble-host className="relative flex flex-col gap-3">
+      <span
+        aria-hidden="true"
+        className={cn(
+          'absolute top-2 -left-[29px] size-2.5 border md:-left-[37px]',
+          current
+            ? 'border-primary bg-primary shadow-[0_0_12px_var(--primary)]'
+            : 'border-border bg-background'
+        )}
+      >
+        {current && (
+          <span className="bg-primary/50 absolute inset-0 animate-ping" />
+        )}
+      </span>
+      <p className="text-muted-foreground font-mono text-xs">
+        {dictionary[job.startDate as keyof typeof dictionary]} —{' '}
+        {dictionary[job.endDate as keyof typeof dictionary]}
+      </p>
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <h3 className="font-heading text-xl font-semibold">
+          {dictionary[job.position as keyof typeof dictionary]}
+        </h3>
+        <ScrambleText
+          text={job.company}
+          duration={450}
+          className="text-primary font-medium"
+        />
       </div>
-      <p>{dictionary[job.description as keyof typeof dictionary]}</p>
-
-      <div className="wrap flex items-center gap-2">
-        <Code className="text-primary h-4 w-4" />
+      <p className="text-foreground/80 max-w-2xl leading-relaxed">
+        {dictionary[job.description as keyof typeof dictionary]}
+      </p>
+      <ul className="flex flex-wrap gap-x-4 gap-y-1">
         {job.stack.map((stack) => (
-          <Badge
-            key={stack}
-            variant="outline"
-            className="bg-secondary/10 dark:bg-secondary/30 text-secondary/70 dark:text-secondary-foreground border-secondary rounded-full text-sm"
-          >
+          <li key={stack} className="text-muted-foreground font-mono text-xs">
             {stack}
-          </Badge>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </li>
   )
 }

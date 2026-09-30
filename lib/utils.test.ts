@@ -1,4 +1,4 @@
-import { cn, getCanonicalUrl } from './utils'
+import { cn, getCanonicalUrl, prefersReducedMotion } from './utils'
 import { describe, expect, test } from 'bun:test'
 
 describe('cn', () => {
@@ -59,5 +59,16 @@ describe('getCanonicalUrl', () => {
 
   test('works with root path', () => {
     expect(getCanonicalUrl('/')).toBe('https://www.lesteban.dev/')
+  })
+})
+
+describe('prefersReducedMotion', () => {
+  test('reflects the prefers-reduced-motion media query', () => {
+    const original = window.matchMedia
+    window.matchMedia = ((query: string) => ({
+      matches: query === '(prefers-reduced-motion: reduce)',
+    })) as unknown as typeof window.matchMedia
+    expect(prefersReducedMotion()).toBe(true)
+    window.matchMedia = original
   })
 })

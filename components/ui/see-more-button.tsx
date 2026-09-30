@@ -40,18 +40,19 @@ export function SeeMoreButton({
           seeMore ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
-        <div className="overflow-hidden">
-          <div className="flex flex-col gap-5">{children}</div>
-        </div>
+        {/* -ml/pl gives markers that sit outside the content edge (timeline
+            dots) room to render inside the clipping box */}
+        <div className="-ml-3 overflow-hidden pl-3">{children}</div>
       </div>
       <Button
         variant="outline"
         onClick={() => setSeeMore(!seeMore)}
-        className="border-primary text-primary hover:bg-primary mx-auto w-fit cursor-pointer rounded-full hover:text-white"
+        aria-expanded={seeMore}
+        className="hover:border-primary hover:text-primary w-fit rounded-sm font-mono text-xs"
       >
         {label}
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-300 ${seeMore ? 'rotate-180' : ''}`}
+          className={`size-3.5 transition-transform duration-300 ${seeMore ? 'rotate-180' : ''}`}
         />
       </Button>
     </>

@@ -3,11 +3,15 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { useHasMounted } from '@/hooks/use-has-mounted'
 
+import { useRef } from 'react'
+
 import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
-import { Badge } from '@/components/ui/badge'
+import { DecodeMask } from '@/components/decode-mask'
+import { NeuralField } from '@/components/neural-field'
+import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
 import { Skeleton } from '@/components/ui/skeleton'
 
@@ -15,105 +19,210 @@ interface HeroProps {
   lang: 'en' | 'es'
 }
 
+const STACK = ['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase']
+
+/** Boot-sequence delay (ms) for a `.seq` element. */
+const seq = (ms: number) => ({ '--d': ms }) as React.CSSProperties
+
+const pad = (n: number) => String(Math.round(n)).padStart(4, '0')
+
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
+  const isDark = resolvedTheme === 'dark'
+  const backdropRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const coordsRef = useRef<HTMLSpanElement>(null)
+  // Measured once per hover: section top in document coordinates and the
+  // layers' left edge (w-screen includes a visible scrollbar, so it isn't 0)
+  const sectionTop = useRef(0)
+  const layerLeft = useRef(0)
+
+  const measure = (event: React.PointerEvent<HTMLElement>) => {
+    sectionTop.current =
+      event.currentTarget.getBoundingClientRect().top + window.scrollY
+    layerLeft.current = (
+      backdropRef.current as HTMLDivElement
+    ).getBoundingClientRect().left
+  }
+
+  // Pointer position feeds the spotlight and the reticle. Only the two
+  // layers that use it get the custom properties, and no layout is read.
+  const trackPointer = (event: React.PointerEvent<HTMLElement>) => {
+    const x = event.clientX - layerLeft.current
+    const y = event.clientY + window.scrollY - sectionTop.current
+    for (const layer of [backdropRef.current, overlayRef.current]) {
+      layer?.style.setProperty('--mx', `${x}px`)
+      layer?.style.setProperty('--my', `${y}px`)
+    }
+    ;(coordsRef.current as HTMLSpanElement).textContent =
+      `x ${pad(x)} · y ${pad(y)}`
+  }
 
   return (
-    <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-between px-2 py-4 md:px-0 md:py-8">
-      <div className="from-primary to-primary/60 animate-float animate-fade-in-scale mx-auto h-32 w-32 rounded-full bg-gradient-to-br p-1 [animation-fill-mode:both]">
-        <div className="bg-background flex h-full w-full items-center justify-center rounded-full">
-          <Image
-            src="/profile_pic.jpeg"
-            alt="Luis Esteban"
-            width={700}
-            height={700}
-            className="h-full w-full rounded-full object-cover"
-            priority
+    <section
+      onPointerEnter={measure}
+      onPointerMove={trackPointer}
+      className="hero-zone relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-12 py-16"
+    >
+      <div
+        ref={backdropRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden"
+      >
+        <div className="console-grid absolute inset-0" />
+        <div className="aurora-exit absolute inset-0">
+          <div className="aurora absolute inset-0">
+            <div className="aurora-blob aurora-a" />
+            <div className="aurora-blob aurora-b" />
+            <div className="aurora-blob aurora-c" />
+          </div>
+        </div>
+        <div className="console-spot" />
+        <NeuralField className="absolute inset-0 size-full" />
+      </div>
+      <div
+        ref={overlayRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-1/2 z-10 hidden w-screen -translate-x-1/2 md:block"
+      >
+        <div className="reticle hud-frame">
+          <span
+            ref={coordsRef}
+            className="text-primary absolute top-full left-full mt-1 ml-1 font-mono text-[10px] whitespace-nowrap"
           />
         </div>
       </div>
-      <h1 className="font-heading animate-fade-in-up mb-6 text-center text-3xl font-bold text-balance [animation-delay:100ms] [animation-fill-mode:both] md:mb-0 md:text-6xl">
-        {dictionary['hello']}{' '}
-        <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
-          Luis Esteban
+
+      <p className="seq text-muted-foreground flex items-center gap-2 font-mono text-xs">
+        <span className="bg-primary status-dot inline-block size-1.5 rounded-full" />
+        {dictionary['hero-status']}
+      </p>
+
+      <h1 className="font-heading">
+        <span
+          className="seq text-muted-foreground mb-3 block font-sans text-lg md:text-xl"
+          style={seq(100)}
+        >
+          {dictionary['hello']}
+        </span>
+        <span className="scan-in block text-[clamp(3rem,11vw,8.5rem)] leading-[0.88] font-semibold tracking-tight uppercase">
+          <ScrambleText text="Luis Esteban" duration={1300} />
+          <span aria-hidden="true" className="scan-beam" />
         </span>
       </h1>
-      <p className="text-muted-foreground animate-fade-in-up mb-6 text-xl text-pretty [animation-delay:200ms] [animation-fill-mode:both] sm:text-2xl md:mb-0">
-        {dictionary['software-developer']}
-      </p>
-      <p className="text-foreground/80 animate-fade-in-up mx-auto mb-6 max-w-prose text-lg text-pretty [animation-delay:300ms] [animation-fill-mode:both] md:mb-0 md:text-xl">
-        {dictionary['about-me-description-1']}{' '}
-        <span className="text-primary font-bold">
-          {dictionary['global-impact']}
-        </span>{' '}
-        {dictionary['about-me-description-2']}
-      </p>
-      <Badge
-        variant="outline"
-        className="border-primary bg-primary/10 dark:bg-primary/20 animate-fade-in-scale mb-2 rounded-full p-2 px-3 text-sm [animation-delay:400ms] [animation-fill-mode:both]"
-      >
-        <span className="text-primary dark:text-primary/90 text-sm font-bold">
-          {dictionary['indie-hacker-in-progress']}
-        </span>
-      </Badge>
 
-      <div className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 [animation-delay:500ms] [animation-fill-mode:both] md:mb-0">
-        {['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase'].map((tech) => (
-          <Badge
-            key={tech}
-            variant="outline"
-            className="bg-secondary/10 dark:bg-secondary/30 text-secondary dark:text-secondary-foreground border-secondary rounded-full text-sm"
+      <div className="grid gap-10 md:grid-cols-[1fr_280px] md:items-end">
+        <div className="flex max-w-xl flex-col gap-6">
+          <p
+            className="seq text-primary font-heading text-xl font-medium md:text-2xl"
+            style={seq(1000)}
           >
-            {tech}
-          </Badge>
-        ))}
-      </div>
-      <div className="animate-fade-in-up mb-6 flex gap-4 [animation-delay:600ms] [animation-fill-mode:both] md:mb-0">
-        <Link href="https://github.com/LEstebanR" withIcon>
-          {mounted ? (
+            {dictionary['hero-role']}
+            <span aria-hidden="true" className="caret" />
+          </p>
+          <p
+            className="seq text-foreground/80 text-lg leading-relaxed text-pretty"
+            style={seq(1150)}
+          >
+            {dictionary['hero-lede']}
+          </p>
+          <ul className="flex flex-wrap gap-2" aria-label="Stack">
+            {STACK.map((tech, index) => (
+              <li
+                key={tech}
+                style={seq(1300 + index * 80)}
+                className="seq border-border text-muted-foreground hover:border-primary hover:text-primary rounded-sm border px-2.5 py-1 font-mono text-xs transition-colors"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+          <div
+            className="seq flex items-center justify-center gap-5 md:justify-start"
+            style={seq(1750)}
+          >
+            <Link
+              href="https://github.com/LEstebanR"
+              withIcon
+              className="jitter"
+            >
+              {mounted ? (
+                <Image
+                  src={
+                    isDark
+                      ? '/logos/github_dark.svg'
+                      : '/logos/github_light.svg'
+                  }
+                  alt="Github"
+                  width={24}
+                  height={24}
+                />
+              ) : (
+                <Skeleton className="size-6 rounded-full" />
+              )}
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/lestebanr/"
+              withIcon
+              className="jitter"
+            >
+              <Image
+                src="/logos/linkedin.svg"
+                alt="LinkedIn"
+                width={24}
+                height={24}
+              />
+            </Link>
+            <Link href="mailto:leramirezca@gmail.com" className="jitter">
+              {mounted ? (
+                <Image
+                  src={
+                    isDark ? '/logos/mail_dark.svg' : '/logos/mail_light.svg'
+                  }
+                  alt="Mail"
+                  width={26}
+                  height={26}
+                />
+              ) : (
+                <Skeleton className="size-6 rounded-full" />
+              )}
+            </Link>
+          </div>
+        </div>
+
+        <figure
+          data-scramble-host
+          className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
+          style={seq(150)}
+        >
+          <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
+            <DecodeMask />
+            <span aria-hidden="true" className="scan-beam z-[4]" />
+            <span aria-hidden="true" className="photo-scan" />
             <Image
-              src={
-                resolvedTheme === 'dark'
-                  ? '/logos/github_dark.svg'
-                  : '/logos/github_light.svg'
-              }
-              className="transition-transform duration-300 hover:scale-150"
-              alt="Github"
-              width={30}
-              height={30}
+              src="/profile_pic.jpeg"
+              alt=""
+              aria-hidden="true"
+              width={560}
+              height={560}
+              className="glitch-layer absolute inset-0 z-[1] size-full object-cover"
             />
-          ) : (
-            <Skeleton className="h-[30px] w-[30px] rounded-full" />
-          )}
-        </Link>
-        <Link href="https://www.linkedin.com/in/lestebanr/" withIcon>
-          <Image
-            src={'/logos/linkedin.svg'}
-            className="transition-transform duration-300 hover:scale-150"
-            alt="LinkedIn"
-            width={30}
-            height={30}
-          />
-        </Link>
-        <Link href="mailto:leramirezca@gmail.com">
-          {mounted ? (
             <Image
-              src={
-                resolvedTheme === 'dark'
-                  ? '/logos/mail_dark.svg'
-                  : '/logos/mail_light.svg'
-              }
-              className="transition-transform duration-300 hover:scale-150"
-              alt="Mail"
-              width={33}
-              height={33}
+              src="/profile_pic.jpeg"
+              alt="Luis Esteban"
+              width={560}
+              height={560}
+              className="size-full object-cover contrast-110 grayscale-[35%]"
+              priority
             />
-          ) : (
-            <Skeleton className="h-[33px] w-[33px] rounded-full" />
-          )}
-        </Link>
+          </div>
+          <figcaption className="text-muted-foreground mt-3 flex justify-between font-mono text-[11px]">
+            <span>Colombia</span>
+            <span>UTC−5</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   )

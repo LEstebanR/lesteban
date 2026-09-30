@@ -6,6 +6,8 @@ export interface BlogPost {
   date: string
   description: string
   image: string
+  /** CSS object-position for cropped covers, e.g. '50% 22%' (default: centre). */
+  imagePosition?: string
   content?: string
   author?: string
   tags?: string[]
@@ -20,6 +22,7 @@ export interface BlogPostMetadata {
   date: string
   description: string
   image: string
+  image_position?: string
   author?: string
   tags?: string[]
   updated_date?: string

@@ -5,6 +5,7 @@ url: 'first-marathon'
 date: '2025-11-01'
 description: '5 things I learned from my first personal challenge'
 image: '/blog/marathon_image.jpg'
+image_position: '50% 22%'
 ---
 
 I recently ran my first marathon, and while I obviously learned a lot about running and about my body, the most important lessons were mental ones, and I want to write about them here.

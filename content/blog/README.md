@@ -27,11 +27,11 @@ Cada archivo debe tener el siguiente formato:
 
 ```markdown
 ---
-title: "Título del post"
-url: "nombre-del-post"
-date: "2025-10-30"
-description: "Descripción corta del post que aparecerá en las cards"
-image: "/blog/imagen.jpg"
+title: 'Título del post'
+url: 'nombre-del-post'
+date: '2025-10-30'
+description: 'Descripción corta del post que aparecerá en las cards'
+image: '/blog/imagen.jpg'
 ---
 
 # Contenido del post
@@ -47,21 +47,27 @@ Aquí va el contenido en Markdown...
 - `description`: Descripción corta (se muestra en las cards del listado)
 - `image`: Ruta de la imagen destacada (debe estar en `/public/blog/`)
 
+## Campos opcionales
+
+- `image_position`: encuadre de la imagen cuando se recorta en las cards y en la imagen Open Graph (valor CSS `object-position`, p. ej. `"50% 22%"` para subir el encuadre hacia una cara). Por defecto se centra.
+
 ## ⚠️ Importante sobre el campo `url`
 
 El campo `url` es crucial para que el cambio de idioma funcione correctamente.
 
 **Ejemplo correcto:**
+
 - Archivo en español: `content/blog/es/mi-articulo-sobre-nextjs.md`
+
   ```yaml
-  url: "nextjs-article"
-  title: "Mi artículo sobre Next.js"
+  url: 'nextjs-article'
+  title: 'Mi artículo sobre Next.js'
   ```
 
 - Archivo en inglés: `content/blog/en/my-nextjs-article.md`
   ```yaml
-  url: "nextjs-article"  # ← MISMA URL
-  title: "My Next.js article"
+  url: 'nextjs-article' # ← MISMA URL
+  title: 'My Next.js article'
   ```
 
 De esta forma, cuando el usuario esté en `/en/blog/nextjs-article` y cambie a español, irá a `/es/blog/nextjs-article` correctamente.
@@ -71,11 +77,13 @@ De esta forma, cuando el usuario esté en `/en/blog/nextjs-article` y cambie a e
 Las imágenes deben guardarse en `/public/blog/` para que sean accesibles.
 
 Ejemplo:
+
 - Archivo: `/public/blog/mi-imagen.jpg`
 - Referencia en el frontmatter: `image: "/blog/mi-imagen.jpg"`
 
 ## Ejemplo completo
 
 Ver los archivos de ejemplo:
+
 - `es/ejemplo-primer-post.md`
 - `en/example-first-post.md`

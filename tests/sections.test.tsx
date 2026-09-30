@@ -46,6 +46,11 @@ mock.module('next-themes', () => ({
   useTheme: () => ({ resolvedTheme: state.theme }),
 }))
 
+// Canvas is not implemented in happy-dom; its maths is covered in lib/neural-field.test.ts
+mock.module('@/components/neural-field', () => ({
+  NeuralField: () => null,
+}))
+
 mock.module('@/hooks/use-has-mounted', () => ({
   useHasMounted: () => state.mounted,
 }))
@@ -53,11 +58,9 @@ mock.module('@/hooks/use-has-mounted', () => ({
 const MOCK_DICT: Record<string, string> = {
   // Hero
   hello: 'Hello,',
-  'software-developer': 'Software Developer',
-  'about-me-description-1': 'I build products with',
-  'global-impact': 'global impact',
-  'about-me-description-2': 'for everyone.',
-  'indie-hacker-in-progress': 'Indie Hacker in Progress',
+  'hero-status': 'Building my own products',
+  'hero-role': 'Frontend developer & indie hacker',
+  'hero-lede': 'I build web products end to end.',
   // Experience
   experience: 'Experience',
   'see-more': 'See more',
@@ -126,9 +129,11 @@ describe('Hero', () => {
     expect(screen.getByText('Luis Esteban')).toBeDefined()
   })
 
-  test('renders the indie-hacker badge', () => {
+  test('renders the status, role and lede copy', () => {
     render(<Hero lang="en" />)
-    expect(screen.getByText('Indie Hacker in Progress')).toBeDefined()
+    expect(screen.getByText('Building my own products')).toBeDefined()
+    expect(screen.getByText('Frontend developer & indie hacker')).toBeDefined()
+    expect(screen.getByText('I build web products end to end.')).toBeDefined()
   })
 
   test('renders all stack badges', () => {
@@ -148,6 +153,18 @@ describe('Hero', () => {
     render(<Hero lang="en" />)
     expect(screen.getByAltText('Github')).toBeDefined()
     expect(screen.getByAltText('Mail')).toBeDefined()
+  })
+
+  test('pointer movement feeds the spotlight and reticle layers', () => {
+    const { container } = render(<Hero lang="en" />)
+    const section = container.querySelector('section') as HTMLElement
+    fireEvent.pointerEnter(section)
+    fireEvent.pointerMove(section, { clientX: 120, clientY: 80 })
+    const overlay = container.querySelector('.reticle')
+      ?.parentElement as HTMLElement
+    expect(overlay.style.getPropertyValue('--mx')).toBe('120px')
+    expect(overlay.style.getPropertyValue('--my')).toBe('80px')
+    expect(overlay.textContent).toContain('x 0120')
   })
 
   test('when unmounted renders skeletons for theme-dependent social icons', () => {
