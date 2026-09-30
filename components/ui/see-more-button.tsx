@@ -40,7 +40,9 @@ export function SeeMoreButton({
           seeMore ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
-        <div className="overflow-hidden">{children}</div>
+        {/* -ml/pl gives markers that sit outside the content edge (timeline
+            dots) room to render inside the clipping box */}
+        <div className="-ml-3 overflow-hidden pl-3">{children}</div>
       </div>
       <Button
         variant="outline"

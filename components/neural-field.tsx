@@ -60,6 +60,9 @@ export function NeuralField({ className }: { className?: string }) {
       rect = canvas.getBoundingClientRect()
       measuredAt = window.scrollY
       readColor()
+      // Resizing clears the canvas; redraw so the still frame (reduced motion)
+      // doesn't vanish until the next animation frame that never comes
+      draw()
     }
 
     const draw = () => {
@@ -115,10 +118,12 @@ export function NeuralField({ className }: { className?: string }) {
       visible = entry.isIntersecting
       if (visible && !raf && !reduce) raf = requestAnimationFrame(loop)
     })
-    const themeObserver = new MutationObserver(readColor)
+    const themeObserver = new MutationObserver(() => {
+      readColor()
+      draw()
+    })
 
     resize()
-    draw()
     if (!reduce) raf = requestAnimationFrame(loop)
     window.addEventListener('resize', resize)
     host.addEventListener('pointermove', onPointerMove)

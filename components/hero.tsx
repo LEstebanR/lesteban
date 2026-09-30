@@ -34,18 +34,23 @@ export function Hero({ lang }: HeroProps) {
   const backdropRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const coordsRef = useRef<HTMLSpanElement>(null)
-  // Section top in document coordinates, measured once per hover
+  // Measured once per hover: section top in document coordinates and the
+  // layers' left edge (w-screen includes a visible scrollbar, so it isn't 0)
   const sectionTop = useRef(0)
+  const layerLeft = useRef(0)
 
   const measure = (event: React.PointerEvent<HTMLElement>) => {
     sectionTop.current =
       event.currentTarget.getBoundingClientRect().top + window.scrollY
+    layerLeft.current = (
+      backdropRef.current as HTMLDivElement
+    ).getBoundingClientRect().left
   }
 
   // Pointer position feeds the spotlight and the reticle. Only the two
   // layers that use it get the custom properties, and no layout is read.
   const trackPointer = (event: React.PointerEvent<HTMLElement>) => {
-    const x = event.clientX
+    const x = event.clientX - layerLeft.current
     const y = event.clientY + window.scrollY - sectionTop.current
     for (const layer of [backdropRef.current, overlayRef.current]) {
       layer?.style.setProperty('--mx', `${x}px`)
