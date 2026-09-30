@@ -5,6 +5,7 @@ import { ImageResponse } from 'next/og'
 import {
   BrandOgImage,
   ogImageContentType,
+  ogImageOptions,
   ogImageSize,
 } from '@/components/og/brand-og-image'
 
@@ -24,11 +25,11 @@ export default async function Image({
   return new ImageResponse(
     (
       <BrandOgImage
-        eyebrow="lesteban.dev"
+        eyebrow="lesteban.dev/blog"
         title={dictionary['blog']}
         subtitle={dictionary['blog-description']}
       />
     ),
-    { ...size }
+    ogImageOptions()
   )
 }

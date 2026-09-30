@@ -100,3 +100,4 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 - `app/icon.svg` (favicon): ink-navy tile, cyan HUD corner ticks and the `/▮` prompt (section slash + hero caret).
 - `public/favicon.ico` (16/32/48) and `app/apple-icon.png` (180, square) are rasterised from the same SVG.
+- Open Graph cards (`components/og/brand-og-image.tsx`): ink-navy canvas with coordinate grid, aurora glow, HUD corner ticks, the brand mark and Tektur display type; blog posts show their cover in a framed panel. Fonts are static TTFs in `public/fonts/og/` (Satori can't read WOFF2 or variable fonts); colours are the hex equivalents of the dark tokens in `lib/og.ts`.

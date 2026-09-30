@@ -3,6 +3,7 @@ import { ImageResponse } from 'next/og'
 import {
   BrandOgImage,
   ogImageContentType,
+  ogImageOptions,
   ogImageSize,
 } from '@/components/og/brand-og-image'
 
@@ -22,29 +23,15 @@ export default async function Image({
   const validLang = lang === 'es' ? 'es' : 'en'
   const post = await getPostByUrl(name, validLang)
 
-  if (post?.image) {
-    return new ImageResponse(
-      (
-        <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-          <img
-            src={getPublicAssetDataUri(post.image)}
-            alt={post.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </div>
-      ),
-      { ...size }
-    )
-  }
-
   return new ImageResponse(
     (
       <BrandOgImage
         eyebrow="lesteban.dev/blog"
         title={post?.title ?? 'Blog'}
         subtitle={post?.description}
+        image={post?.image ? getPublicAssetDataUri(post.image) : undefined}
       />
     ),
-    { ...size }
+    ogImageOptions()
   )
 }
