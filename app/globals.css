@@ -29,6 +29,9 @@
   --grid-line: oklch(0.52 0.12 222 / 0.09);
   --glow: oklch(0.7 0.13 215 / 0.25);
   --aurora-a: oklch(0.75 0.13 210 / 0.32);
+  /* Code blocks stay dark in both themes (github-dark highlighting) */
+  --code-bg: oklch(0.14 0.02 258);
+  --code-border: oklch(0.31 0.035 258);
   --aurora-b: oklch(0.65 0.2 300 / 0.2);
   --chart-1: oklch(0.52 0.12 222);
   --chart-2: oklch(0.52 0.21 298);
@@ -175,8 +178,8 @@
 
   .blog-content pre {
     @apply my-8 overflow-x-auto rounded-md border p-4;
-    border-color: oklch(0.31 0.035 258);
-    background: oklch(0.14 0.02 258);
+    border-color: var(--code-border);
+    background: var(--code-bg);
   }
 
   .blog-content pre code {
@@ -203,87 +206,81 @@ html {
 
 /* ── Signature pieces ──────────────────────────────────────────────────── */
 
-/* Faint coordinate grid that fades out towards the edges */
+/* Faint coordinate grid that fades out towards the edges. The grid lives on
+   an oversized pseudo-element so its drift is a composited transform. */
 .console-grid {
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 80% 70% at 30% 20%, black, transparent);
+}
+
+.console-grid::before {
+  content: '';
+  position: absolute;
+  inset: -48px;
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 70% at 30% 20%, black, transparent);
   animation: grid-drift 14s linear infinite;
 }
 
 @keyframes grid-drift {
   to {
-    background-position:
-      0 48px,
-      48px 0;
+    transform: translate(48px, 48px);
   }
 }
 
-/* Pointer spotlight: --mx/--my are written by the hero on pointer move.
-   --sx/--sy are registered so the light follows the pointer with inertia. */
-@property --sx {
-  syntax: '<length-percentage>';
-  inherits: false;
-  initial-value: 72%;
-}
-
-@property --sy {
-  syntax: '<length-percentage>';
-  inherits: false;
-  initial-value: 18%;
-}
-
+/* Pointer spotlight: a fixed-size light moved by transform toward
+   --mx/--my (written by the hero), easing behind the pointer. */
 .console-spot {
-  --sx: var(--mx, 72%);
-  --sy: var(--my, 18%);
-  background: radial-gradient(
-    460px circle at var(--sx) var(--sy),
-    var(--glow),
-    transparent 70%
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 920px;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--glow), transparent 50%);
+  transform: translate(
+    calc(var(--mx, 72vw) - 50%),
+    calc(var(--my, 160px) - 50%)
   );
-  transition:
-    --sx 900ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    --sy 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* Aurora: two blurred light masses orbiting slowly behind the hero */
+/* Aurora: soft light masses orbiting slowly behind the hero. The blobs are
+   pre-softened gradients, so they move on the compositor with no filter. */
 .aurora {
-  overflow: hidden;
-  filter: blur(40px);
+  animation: aurora-breathe 9s ease-in-out infinite;
 }
 
 .aurora-blob {
   position: absolute;
+  aspect-ratio: 1;
   border-radius: 9999px;
+  background: radial-gradient(circle, var(--blob), transparent 70%);
   will-change: transform;
 }
 
 .aurora-a {
+  --blob: var(--aurora-a);
   top: -25%;
   right: -8%;
   width: min(62vw, 820px);
-  aspect-ratio: 1;
-  background: radial-gradient(circle, var(--aurora-a), transparent 65%);
   animation: aurora-a 19s ease-in-out infinite alternate;
 }
 
 .aurora-b {
+  --blob: var(--aurora-b);
   top: 5%;
   left: 18%;
   width: min(48vw, 640px);
-  aspect-ratio: 1;
-  background: radial-gradient(circle, var(--aurora-b), transparent 65%);
   animation: aurora-b 26s ease-in-out infinite alternate;
 }
 
 .aurora-c {
+  --blob: var(--aurora-a);
   bottom: -30%;
   left: -10%;
   width: min(44vw, 560px);
-  aspect-ratio: 1;
-  background: radial-gradient(circle, var(--aurora-a), transparent 65%);
   opacity: 0.6;
   animation: aurora-c 31s ease-in-out infinite alternate;
 }
@@ -335,10 +332,6 @@ html {
   50% {
     opacity: 0.7;
   }
-}
-
-.aurora {
-  animation: aurora-breathe 9s ease-in-out infinite;
 }
 
 /* Corner-bracket frame: a HUD target around important surfaces */
@@ -498,8 +491,8 @@ html {
   background: linear-gradient(
     to bottom,
     transparent,
-    oklch(0.86 0.12 200 / 0.18) 85%,
-    oklch(0.86 0.12 200 / 0.85)
+    var(--glow) 85%,
+    color-mix(in oklch, var(--primary) 85%, transparent)
   );
   pointer-events: none;
   animation: photo-scan 7s cubic-bezier(0.5, 0, 0.3, 1) 2s infinite;
@@ -539,10 +532,6 @@ html {
 }
 
 /* Timeline rail that fills with signal as you scroll */
-.rail::before {
-  display: none;
-}
-
 /* Scroll-driven reveals: progressive enhancement, static where unsupported */
 @supports (animation-timeline: view()) {
   .reveal-line {
@@ -579,6 +568,19 @@ html {
     animation-timeline: view();
     animation-range: entry calc(30% + var(--i, 0) * 12%) cover
       calc(35% + var(--i, 0) * 6%);
+  }
+
+  .slash {
+    display: inline-block;
+    animation: slash-on linear both;
+    animation-timeline: view();
+    animation-range: entry 30% cover 40%;
+  }
+
+  .aurora-exit {
+    animation: aurora-exit linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
   }
 }
 
@@ -642,15 +644,15 @@ html {
 /* HUD reticle that tracks the pointer inside the hero */
 .reticle {
   position: absolute;
-  left: var(--mx, -100px);
-  top: var(--my, -100px);
+  top: 0;
+  left: 0;
   width: 36px;
   height: 36px;
-  translate: -50% -50%;
+  /* Moved by transform (composited), never by left/top */
+  translate: calc(var(--mx, -100px) - 50%) calc(var(--my, -100px) - 50%);
   opacity: 0;
   transition: opacity 200ms ease;
   --tick: 9px;
-  --tick-color: var(--primary);
 }
 
 .hero-zone:hover .reticle {
@@ -833,20 +835,6 @@ html {
   }
 }
 
-@supports (animation-timeline: view()) {
-  .slash {
-    display: inline-block;
-    animation: slash-on linear both;
-    animation-timeline: view();
-    animation-range: entry 30% cover 40%;
-  }
-
-  .aurora-exit {
-    animation: aurora-exit linear both;
-    animation-timeline: view();
-    animation-range: exit 0% exit 100%;
-  }
-}
 
 @keyframes aurora-exit {
   to {
@@ -878,29 +866,28 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  /* Purely decorative moving parts disappear */
   .scan-beam,
   .photo-scan,
   .sweep-line,
-  .rail::before {
-    display: none;
-  }
-  .reveal-line,
-  .boot,
-  .chip-seq,
-  .telemetry,
-  .telemetry-bar {
-    animation: none !important;
-  }
+  .rail::before,
   .reticle,
   .glitch-layer,
   .decode-mask {
     display: none;
   }
+  /* Everything else holds its final, static state */
+  .reveal-line,
+  .boot,
+  .chip-seq,
+  .slash,
+  .telemetry,
+  .telemetry-bar,
+  .seq,
   .aurora,
   .aurora-blob,
   .aurora-exit,
-  .seq,
-  .slash {
+  .console-grid::before {
     animation: none !important;
   }
 }

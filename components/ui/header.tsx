@@ -264,20 +264,20 @@ export function Header() {
                   </>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setTheme('dark')}>
+                <DropdownMenuItem onSelect={() => setTheme('dark')}>
                   <Moon />
                   Dark
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme('light')}>
+                <DropdownMenuItem onSelect={() => setTheme('light')}>
                   <Sun />
                   Light
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setLang('en')}>
+                <DropdownMenuItem onSelect={() => setLang('en')}>
                   <Languages />
                   English
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLang('es')}>
+                <DropdownMenuItem onSelect={() => setLang('es')}>
                   <Languages />
                   Español
                 </DropdownMenuItem>
@@ -285,11 +285,9 @@ export function Header() {
             </DropdownMenu>
           </div>
         </div>
-        <div className="hidden justify-end md:flex">
-          <div className="flex items-center gap-2">
-            <LanguageToggle />
-            <ThemeToggle />
-          </div>
+        <div className="hidden items-center gap-2 md:flex">
+          <LanguageToggle />
+          <ThemeToggle />
         </div>
       </div>
     </header>

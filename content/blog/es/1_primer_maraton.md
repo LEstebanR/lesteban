@@ -5,6 +5,7 @@ url: 'first-marathon'
 date: '2025-11-01'
 description: '5 cosas que aprendí de mi primer reto personal'
 image: '/blog/marathon_image.jpg'
+image_position: '50% 22%'
 ---
 
 Hace poco corrí mi primera maratón y aunque obviamente aprendí mucho sobre correr y sobre mi cuerpo, los aprendizajes más importantes fueron a nivel mental y los quiero escribir aquí.

@@ -1,8 +1,10 @@
 'use client'
 
-import { useCallback, useEffect, useRef } from 'react'
+import { useHostDecode } from '@/hooks/use-host-decode'
 
-import { GLYPHS } from '@/components/scramble-text'
+import { useRef } from 'react'
+
+import { GLYPHS, randomGlyph } from '@/components/scramble-text'
 
 interface DecodeMaskProps {
   cols?: number
@@ -15,9 +17,8 @@ interface DecodeMaskProps {
 
 /**
  * A mosaic of glyph cells over an image that clears row by row, the image
- * counterpart of `ScrambleText`. Runs on mount and whenever the pointer
- * enters the closest `[data-scramble-host]`. Without JS the cells fade out
- * on their own (CSS fallback), so the image is never hidden for good.
+ * counterpart of `ScrambleText`. Without JS the cells fade out on their own
+ * (CSS fallback), so the image is never hidden for good.
  */
 export function DecodeMask({
   cols = 12,
@@ -26,47 +27,37 @@ export function DecodeMask({
   delay = 150,
 }: DecodeMaskProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const frame = useRef(0)
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const clearedRows = useRef(0)
 
-  const decode = useCallback(() => {
-    const grid = ref.current as HTMLDivElement
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const cells = Array.from(grid.children) as HTMLElement[]
-    cancelAnimationFrame(frame.current)
-    const start = performance.now()
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1)
-      const front = progress * rows
-      cells.forEach((cell, i) => {
-        const row = Math.floor(i / cols)
+  const cells = () =>
+    (ref.current as HTMLDivElement).children as HTMLCollectionOf<HTMLElement>
+
+  useHostDecode(ref, {
+    duration,
+    delay,
+    onStart: () => {
+      clearedRows.current = 0
+      for (const cell of Array.from(cells())) {
         cell.style.animation = 'none'
-        if (row < Math.floor(front)) {
-          cell.style.opacity = '0'
-          return
-        }
         cell.style.opacity = '1'
-        cell.dataset.front = String(row === Math.floor(front))
-        if (Math.random() < 0.35) {
-          cell.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
-        }
-      })
-      if (progress < 1) frame.current = requestAnimationFrame(tick)
-    }
-    frame.current = requestAnimationFrame(tick)
-  }, [cols, rows, duration])
-
-  useEffect(() => {
-    const grid = ref.current as HTMLDivElement
-    const host = grid.closest<HTMLElement>('[data-scramble-host]') ?? grid
-    timer.current = setTimeout(decode, delay)
-    host.addEventListener('pointerenter', decode)
-    return () => {
-      clearTimeout(timer.current)
-      cancelAnimationFrame(frame.current)
-      host.removeEventListener('pointerenter', decode)
-    }
-  }, [decode, delay])
+        cell.dataset.front = 'false'
+      }
+    },
+    onFrame: (progress) => {
+      const all = cells()
+      const front = Math.floor(progress * rows)
+      // Rows the front has passed since the last frame are cleared once
+      for (let i = clearedRows.current * cols; i < front * cols; i++) {
+        all[i].style.opacity = '0'
+      }
+      clearedRows.current = front
+      // Rows still ahead keep shuffling; the front row is highlighted
+      for (let i = front * cols; i < all.length; i++) {
+        if (i < (front + 1) * cols) all[i].dataset.front = 'true'
+        if (Math.random() < 0.35) all[i].textContent = randomGlyph()
+      }
+    },
+  })
 
   return (
     <div

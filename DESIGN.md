@@ -63,18 +63,18 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 **Ambient (slow, low-contrast)**
 
-- `.aurora`: three blurred light masses (cyan, violet, cyan) orbit on 19–31s loops and breathe; the aurora rises and fades as the hero scrolls away (`.aurora-exit`).
+- `.aurora`: three pre-softened radial light masses (cyan, violet, cyan) orbit on 19–31s loops and breathe — transform/opacity only, no `filter` — and rise and fade as the hero scrolls away (`.aurora-exit`).
 - `NeuralField` (`components/neural-field.tsx`, maths in `lib/neural-field.ts`): a canvas network of drifting nodes behind the hero; links brighten and reach toward the pointer. Pauses off-screen, colour read from `--primary` (follows the theme).
-- `.console-grid` drifts one cell every 14s.
+- `.console-grid` drifts one cell every 14s (an oversized `::before` moved by `transform`).
 - `.status-dot` and `.caret` (block cursor after the role) blink in steps.
 - `.photo-scan`: a scan pass over the portrait every 7s.
 - Current role node emits a radar ping (`animate-ping`).
 
 **Interactive**
 
-- `.console-spot`: a spotlight follows the pointer across the hero with inertia (`--mx`/`--my` from `Hero`'s `onPointerMove`, eased through registered `--sx`/`--sy`).
+- `.console-spot`: a 920px light moved by `transform` toward the pointer, easing behind it (`--mx`/`--my` are written by `Hero` only on the backdrop and reticle layers; no layout reads per move).
 - `.reticle`: a HUD crosshair with live `x / y` coordinates follows the pointer (desktop).
-- `ScrambleText` re-decodes on hover inside any `[data-scramble-host]`: section, project and blog titles, header Blog link, experience companies, contact handles, footer wordmark. `DecodeMask` re-runs when the portrait is hovered.
+- `ScrambleText` (driven by `hooks/use-host-decode.ts`, shared with `DecodeMask`) re-decodes on hover inside any `[data-scramble-host]`: section, project and blog titles, header Blog link, experience companies, contact handles, footer wordmark. `DecodeMask` re-runs when the portrait is hovered.
 - `.glitch-host` / `.glitch-layer`: the portrait tears into hue-shifted slices for 600ms on hover.
 - `.jitter`: social icons shake briefly on hover.
 - `.hud-frame` corner ticks grow 14px → 28px on hover/focus (`@property --tick`).

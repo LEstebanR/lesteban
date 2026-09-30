@@ -155,12 +155,16 @@ describe('Hero', () => {
     expect(screen.getByAltText('Mail')).toBeDefined()
   })
 
-  test('pointer movement feeds the spotlight position', () => {
+  test('pointer movement feeds the spotlight and reticle layers', () => {
     const { container } = render(<Hero lang="en" />)
     const section = container.querySelector('section') as HTMLElement
+    fireEvent.pointerEnter(section)
     fireEvent.pointerMove(section, { clientX: 120, clientY: 80 })
-    expect(section.style.getPropertyValue('--mx')).toBe('120px')
-    expect(section.style.getPropertyValue('--my')).toBe('80px')
+    const overlay = container.querySelector('.reticle')
+      ?.parentElement as HTMLElement
+    expect(overlay.style.getPropertyValue('--mx')).toBe('120px')
+    expect(overlay.style.getPropertyValue('--my')).toBe('80px')
+    expect(overlay.textContent).toContain('x 0120')
   })
 
   test('when unmounted renders skeletons for theme-dependent social icons', () => {

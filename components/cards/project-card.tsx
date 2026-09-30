@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <article
       data-scramble-host
-      className="group boot hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 backdrop-blur-sm transition-colors"
+      className="group boot hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 transition-colors"
     >
       <span aria-hidden="true" className="sweep-line" />
       <h3 className="font-heading text-2xl font-semibold tracking-tight">

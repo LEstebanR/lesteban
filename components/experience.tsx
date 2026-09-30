@@ -9,6 +9,9 @@ import { SeeMoreButton } from '@/components/ui/see-more-button'
 
 import { EXPERIENCE } from '@/lib/data'
 
+const RAIL =
+  'rail border-border relative flex flex-col gap-10 border-l pl-6 md:pl-8'
+
 export function Experience() {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
@@ -16,7 +19,7 @@ export function Experience() {
   return (
     <section className="flex flex-col gap-8">
       <SectionHeading>{dictionary['experience']}</SectionHeading>
-      <ol className="rail border-border relative flex flex-col gap-10 border-l pl-6 md:pl-8">
+      <ol className={RAIL}>
         <ExperienceCard job={EXPERIENCE.aleluya} current />
         <ExperienceCard job={EXPERIENCE.aleluya_freelance} />
       </ol>
@@ -25,7 +28,7 @@ export function Experience() {
         seeLessCopy={dictionary['see-less']}
         count={2}
       >
-        <ol className="rail border-border relative flex flex-col gap-10 border-l pl-6 md:pl-8">
+        <ol className={RAIL}>
           <ExperienceCard job={EXPERIENCE.devpeoplz} />
           <ExperienceCard job={EXPERIENCE.nominapp} />
         </ol>

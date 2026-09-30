@@ -3,11 +3,13 @@
 import { useEffect, useRef } from 'react'
 
 import {
+  type FieldNode,
   createNodes,
-  linkNodes,
+  forEachLink,
   pointerInfluence,
   stepNodes,
 } from '@/lib/neural-field'
+import { prefersReducedMotion } from '@/lib/utils'
 
 const LINK_DISTANCE = 140
 const POINTER_RADIUS = 200
@@ -25,11 +27,14 @@ export function NeuralField({ className }: { className?: string }) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduce = prefersReducedMotion()
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
     let width = 0
     let height = 0
-    let nodes = createNodes(0, 0, 0)
+    let nodes: FieldNode[] = []
+    let boosts = new Float32Array(0)
+    let rect = canvas.getBoundingClientRect()
+    let measuredAt = window.scrollY
     let pointer: { x: number; y: number } | null = null
     let color = 'rgb(95, 227, 240)'
     let raf = 0
@@ -41,6 +46,7 @@ export function NeuralField({ className }: { className?: string }) {
         getComputedStyle(canvas).getPropertyValue('--primary').trim() || color
       ctx.strokeStyle = color
       ctx.fillStyle = color
+      ctx.lineWidth = 1
     }
 
     const resize = () => {
@@ -50,25 +56,28 @@ export function NeuralField({ className }: { className?: string }) {
       canvas.height = height * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       nodes = createNodes(Math.round((width * height) / 16000), width, height)
+      boosts = new Float32Array(nodes.length)
+      rect = canvas.getBoundingClientRect()
+      measuredAt = window.scrollY
       readColor()
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height)
-      for (const { a, b, strength } of linkNodes(nodes, LINK_DISTANCE)) {
-        const boost = Math.max(
-          pointerInfluence(nodes[a], pointer, POINTER_RADIUS),
-          pointerInfluence(nodes[b], pointer, POINTER_RADIUS)
-        )
-        ctx.globalAlpha = strength * (0.14 + boost * 0.6)
-        ctx.lineWidth = 1
+      // Pointer influence once per node per frame, reused by every link
+      nodes.forEach((node, i) => {
+        boosts[i] = pointerInfluence(node, pointer, POINTER_RADIUS)
+      })
+      forEachLink(nodes, LINK_DISTANCE, (a, b, strength) => {
+        ctx.globalAlpha =
+          strength * (0.14 + Math.max(boosts[a], boosts[b]) * 0.6)
         ctx.beginPath()
         ctx.moveTo(nodes[a].x, nodes[a].y)
         ctx.lineTo(nodes[b].x, nodes[b].y)
         ctx.stroke()
-      }
-      for (const node of nodes) {
-        const boost = pointerInfluence(node, pointer, POINTER_RADIUS)
+      })
+      nodes.forEach((node, i) => {
+        const boost = boosts[i]
         ctx.globalAlpha = 0.3 + boost * 0.7
         ctx.fillRect(node.x - 1, node.y - 1, 2 + boost * 2, 2 + boost * 2)
         if (boost > 0.35 && pointer) {
@@ -78,7 +87,7 @@ export function NeuralField({ className }: { className?: string }) {
           ctx.lineTo(pointer.x, pointer.y)
           ctx.stroke()
         }
-      }
+      })
     }
 
     const loop = () => {
@@ -87,9 +96,15 @@ export function NeuralField({ className }: { className?: string }) {
       raf = visible ? requestAnimationFrame(loop) : 0
     }
 
-    const host = canvas.parentElement as HTMLElement
+    // The canvas ignores pointer events; listen on the section around it and
+    // re-measure it only after the page has scrolled, not on every move
+    const host =
+      canvas.closest('section') ?? (canvas.parentElement as HTMLElement)
     const onPointerMove = (event: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect()
+      if (window.scrollY !== measuredAt) {
+        rect = canvas.getBoundingClientRect()
+        measuredAt = window.scrollY
+      }
       pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top }
     }
     const onPointerLeave = () => {

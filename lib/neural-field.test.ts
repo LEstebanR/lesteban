@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test'
 
 import {
   createNodes,
-  linkNodes,
+  forEachLink,
   pointerInfluence,
   stepNodes,
 } from '@/lib/neural-field'
@@ -35,14 +35,16 @@ describe('stepNodes', () => {
   })
 })
 
-describe('linkNodes', () => {
-  test('links only nodes within range, stronger when closer', () => {
+describe('forEachLink', () => {
+  test('visits only nodes within range, stronger when closer', () => {
     const nodes = [
       { x: 0, y: 0, vx: 0, vy: 0 },
       { x: 50, y: 0, vx: 0, vy: 0 },
       { x: 500, y: 0, vx: 0, vy: 0 },
     ]
-    expect(linkNodes(nodes, 100)).toEqual([{ a: 0, b: 1, strength: 0.5 }])
+    const links: number[][] = []
+    forEachLink(nodes, 100, (a, b, strength) => links.push([a, b, strength]))
+    expect(links).toEqual([[0, 1, 0.5]])
   })
 })
 

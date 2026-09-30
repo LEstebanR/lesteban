@@ -1,3 +1,4 @@
+import type { BlogPost } from '@/types/blog'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
@@ -6,8 +7,6 @@ import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
 import remarkRehype from 'remark-rehype'
-
-import type { BlogPost } from '@/types/blog'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 
@@ -34,6 +33,15 @@ function calculateReadingTime(content: string): number {
   return Math.ceil(words / wordsPerMinute)
 }
 
+/**
+ * Read a post file. Content is normalised to NFC so accents authored in
+ * decomposed form (common on macOS) behave like single characters everywhere
+ * they're rendered: pages, metadata, OG images and decode animations.
+ */
+function readPostFile(fullPath: string) {
+  return matter(fs.readFileSync(fullPath, 'utf8').normalize('NFC'))
+}
+
 export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
   const langDirectory = path.join(postsDirectory, lang)
 
@@ -48,8 +56,7 @@ export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
     .map((fileName) => {
       const slug = fileName.replace(/\.md$/, '')
       const fullPath = path.join(langDirectory, fileName)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data } = matter(fileContents)
+      const { data } = readPostFile(fullPath)
 
       return {
         slug,
@@ -59,6 +66,7 @@ export async function getAllPosts(lang: 'en' | 'es'): Promise<BlogPost[]> {
         date: data.date,
         description: data.description,
         image: data.image,
+        imagePosition: data.image_position,
         author: data.author,
         tags: data.tags,
         updatedDate: data.updated_date,
@@ -86,8 +94,7 @@ export async function getPostByUrl(
     if (!fileName.endsWith('.md')) continue
 
     const fullPath = path.join(langDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
+    const { data, content } = readPostFile(fullPath)
 
     const postUrl = data.url || fileName.replace(/\.md$/, '')
 
@@ -112,6 +119,7 @@ export async function getPostByUrl(
         date: data.date,
         description: data.description,
         image: data.image,
+        imagePosition: data.image_position,
         content: contentHtml,
         author: data.author || 'Luis Esteban Ramirez',
         tags: data.tags || [],
@@ -139,8 +147,7 @@ export async function getAllPostUrls(lang: 'en' | 'es'): Promise<string[]> {
     if (!fileName.endsWith('.md')) continue
 
     const fullPath = path.join(langDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
+    const { data } = readPostFile(fullPath)
 
     urls.push(data.url || fileName.replace(/\.md$/, ''))
   }

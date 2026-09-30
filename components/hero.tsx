@@ -21,46 +21,64 @@ interface HeroProps {
 
 const STACK = ['React', 'Tailwind', 'Next.js', 'Node.js', 'Supabase']
 
+/** Boot-sequence delay (ms) for a `.seq` element. */
+const seq = (ms: number) => ({ '--d': ms }) as React.CSSProperties
+
+const pad = (n: number) => String(Math.round(n)).padStart(4, '0')
+
 export function Hero({ lang }: HeroProps) {
   const dictionary = getClientDictionary(lang)
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
   const isDark = resolvedTheme === 'dark'
+  const backdropRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
   const coordsRef = useRef<HTMLSpanElement>(null)
+  // Section top in document coordinates, measured once per hover
+  const sectionTop = useRef(0)
 
+  const measure = (event: React.PointerEvent<HTMLElement>) => {
+    sectionTop.current =
+      event.currentTarget.getBoundingClientRect().top + window.scrollY
+  }
+
+  // Pointer position feeds the spotlight and the reticle. Only the two
+  // layers that use it get the custom properties, and no layout is read.
   const trackPointer = (event: React.PointerEvent<HTMLElement>) => {
-    const { top } = event.currentTarget.getBoundingClientRect()
-    event.currentTarget.style.setProperty('--mx', `${event.clientX}px`)
-    event.currentTarget.style.setProperty('--my', `${event.clientY - top}px`)
-    const coords = coordsRef.current as HTMLSpanElement
-    coords.textContent = `x ${String(Math.round(event.clientX)).padStart(4, '0')} · y ${String(Math.round(event.clientY - top)).padStart(4, '0')}`
+    const x = event.clientX
+    const y = event.clientY + window.scrollY - sectionTop.current
+    for (const layer of [backdropRef.current, overlayRef.current]) {
+      layer?.style.setProperty('--mx', `${x}px`)
+      layer?.style.setProperty('--my', `${y}px`)
+    }
+    ;(coordsRef.current as HTMLSpanElement).textContent =
+      `x ${pad(x)} · y ${pad(y)}`
   }
 
   return (
     <section
+      onPointerEnter={measure}
       onPointerMove={trackPointer}
       className="hero-zone relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-12 py-16"
     >
       <div
+        ref={backdropRef}
         aria-hidden="true"
-        className="console-grid pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
-      />
-      <div
-        aria-hidden="true"
-        className="aurora-exit pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
+        className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden"
       >
-        <div className="aurora absolute inset-0">
-          <div className="aurora-blob aurora-a" />
-          <div className="aurora-blob aurora-b" />
-          <div className="aurora-blob aurora-c" />
+        <div className="console-grid absolute inset-0" />
+        <div className="aurora-exit absolute inset-0">
+          <div className="aurora absolute inset-0">
+            <div className="aurora-blob aurora-a" />
+            <div className="aurora-blob aurora-b" />
+            <div className="aurora-blob aurora-c" />
+          </div>
         </div>
+        <div className="console-spot" />
+        <NeuralField className="absolute inset-0 size-full" />
       </div>
       <div
-        aria-hidden="true"
-        className="console-spot pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
-      />
-      <NeuralField className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 h-full w-screen -translate-x-1/2" />
-      <div
+        ref={overlayRef}
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 left-1/2 z-10 hidden w-screen -translate-x-1/2 md:block"
       >
@@ -80,7 +98,7 @@ export function Hero({ lang }: HeroProps) {
       <h1 className="font-heading">
         <span
           className="seq text-muted-foreground mb-3 block font-sans text-lg md:text-xl"
-          style={{ '--d': 100 } as React.CSSProperties}
+          style={seq(100)}
         >
           {dictionary['hello']}
         </span>
@@ -94,14 +112,14 @@ export function Hero({ lang }: HeroProps) {
         <div className="flex max-w-xl flex-col gap-6">
           <p
             className="seq text-primary font-heading text-xl font-medium md:text-2xl"
-            style={{ '--d': 1000 } as React.CSSProperties}
+            style={seq(1000)}
           >
             {dictionary['hero-role']}
             <span aria-hidden="true" className="caret" />
           </p>
           <p
             className="seq text-foreground/80 text-lg leading-relaxed text-pretty"
-            style={{ '--d': 1150 } as React.CSSProperties}
+            style={seq(1150)}
           >
             {dictionary['hero-lede']}
           </p>
@@ -109,7 +127,7 @@ export function Hero({ lang }: HeroProps) {
             {STACK.map((tech, index) => (
               <li
                 key={tech}
-                style={{ '--d': 1300 + index * 80 } as React.CSSProperties}
+                style={seq(1300 + index * 80)}
                 className="seq border-border text-muted-foreground hover:border-primary hover:text-primary rounded-sm border px-2.5 py-1 font-mono text-xs transition-colors"
               >
                 {tech}
@@ -118,7 +136,7 @@ export function Hero({ lang }: HeroProps) {
           </ul>
           <div
             className="seq flex items-center justify-center gap-5 md:justify-start"
-            style={{ '--d': 1750 } as React.CSSProperties}
+            style={seq(1750)}
           >
             <Link
               href="https://github.com/LEstebanR"
@@ -172,7 +190,7 @@ export function Hero({ lang }: HeroProps) {
         <figure
           data-scramble-host
           className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
-          style={{ '--d': 150 } as React.CSSProperties}
+          style={seq(150)}
         >
           <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
             <DecodeMask />

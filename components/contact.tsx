@@ -18,16 +18,12 @@ export function Contact() {
   const { resolvedTheme } = useTheme()
   const mounted = useHasMounted()
 
-  const CONTACT_LINKS = mounted
-    ? resolveContactLinks(resolvedTheme === 'dark')
-    : []
-
   return (
     <section className="flex flex-col gap-4 pb-16">
       <SectionHeading>{dictionary['contact']}</SectionHeading>
       <div className="border-border grid grid-cols-1 border-t md:grid-cols-2 md:gap-x-10">
         {mounted
-          ? CONTACT_LINKS.map((link, index) => (
+          ? resolveContactLinks(resolvedTheme === 'dark').map((link, index) => (
               <ContactCard key={index} link={link as ContactLink} />
             ))
           : Array.from({ length: 4 }).map((_, i) => (

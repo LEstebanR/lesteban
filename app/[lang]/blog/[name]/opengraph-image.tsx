@@ -29,7 +29,14 @@ export default async function Image({
         eyebrow="lesteban.dev/blog"
         title={post?.title ?? 'Blog'}
         subtitle={post?.description}
-        image={post?.image ? getPublicAssetDataUri(post.image) : undefined}
+        image={
+          post?.image
+            ? {
+                src: getPublicAssetDataUri(post.image),
+                position: post.imagePosition,
+              }
+            : undefined
+        }
       />
     ),
     ogImageOptions()

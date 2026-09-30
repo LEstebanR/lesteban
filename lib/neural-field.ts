@@ -1,5 +1,4 @@
 export type FieldNode = { x: number; y: number; vx: number; vy: number }
-export type FieldLink = { a: number; b: number; strength: number }
 
 /** Scatter `count` nodes over a w×h field with small random velocities. */
 export function createNodes(
@@ -28,24 +27,27 @@ export function stepNodes(nodes: FieldNode[], width: number, height: number) {
   }
 }
 
-/** Pairs of nodes closer than `maxDistance`, with strength 1 (touching) → 0 (at the limit). */
-export function linkNodes(
+/**
+ * Visit every pair of nodes closer than `maxDistance`, with strength
+ * 1 (touching) → 0 (at the limit). Compares squared distances and allocates
+ * nothing, since it runs every animation frame.
+ */
+export function forEachLink(
   nodes: FieldNode[],
-  maxDistance: number
-): FieldLink[] {
-  const links: FieldLink[] = []
+  maxDistance: number,
+  visit: (a: number, b: number, strength: number) => void
+) {
+  const maxSquared = maxDistance * maxDistance
   for (let a = 0; a < nodes.length; a++) {
     for (let b = a + 1; b < nodes.length; b++) {
-      const distance = Math.hypot(
-        nodes[a].x - nodes[b].x,
-        nodes[a].y - nodes[b].y
-      )
-      if (distance < maxDistance) {
-        links.push({ a, b, strength: 1 - distance / maxDistance })
+      const dx = nodes[a].x - nodes[b].x
+      const dy = nodes[a].y - nodes[b].y
+      const squared = dx * dx + dy * dy
+      if (squared < maxSquared) {
+        visit(a, b, 1 - Math.sqrt(squared) / maxDistance)
       }
     }
   }
-  return links
 }
 
 /** 0 → 1 influence of a point on a node, fading out at `radius`. */

@@ -1,4 +1,4 @@
-import { OG_COLORS, getBrandMarkDataUri, getOgFonts } from '@/lib/og'
+import { OG_COLORS, getBrandMarkDataUri, getOgFonts, withAlpha } from '@/lib/og'
 
 export const ogImageSize = { width: 1200, height: 630 }
 export const ogImageContentType = 'image/png'
@@ -56,12 +56,10 @@ export function BrandOgImage({
   title: string
   subtitle?: string
   status?: string
-  image?: string
+  image?: { src: string; position?: string }
 }) {
-  // Markdown frontmatter may arrive decomposed (NFD); Satori would draw the
-  // accents as separate glyphs, so compose them first.
-  title = title.normalize('NFC')
-  subtitle = subtitle?.normalize('NFC')
+  // The home card (with a status line) shows the role as an accent line
+  const accent = Boolean(status)
 
   return (
     <div
@@ -71,7 +69,7 @@ export function BrandOgImage({
         height: '100%',
         display: 'flex',
         backgroundColor: OG_COLORS.background,
-        backgroundImage: `radial-gradient(circle at 88% 0%, rgba(92,233,240,0.30), transparent 48%), radial-gradient(circle at 30% 85%, rgba(182,136,254,0.20), transparent 42%)`,
+        backgroundImage: `radial-gradient(circle at 88% 0%, ${withAlpha(OG_COLORS.primary, 0.3)}, transparent 48%), radial-gradient(circle at 30% 85%, ${withAlpha(OG_COLORS.secondary, 0.2)}, transparent 42%)`,
         fontFamily: 'Geist',
         color: OG_COLORS.foreground,
       }}
@@ -82,7 +80,7 @@ export function BrandOgImage({
           position: 'absolute',
           inset: 0,
           display: 'flex',
-          backgroundImage: `linear-gradient(rgba(92,233,240,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(92,233,240,0.07) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(${withAlpha(OG_COLORS.primary, 0.07)} 1px, transparent 1px), linear-gradient(90deg, ${withAlpha(OG_COLORS.primary, 0.07)} 1px, transparent 1px)`,
           backgroundSize: '48px 48px',
         }}
       />
@@ -170,16 +168,16 @@ export function BrandOgImage({
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  fontFamily: status ? 'Tektur' : 'Geist',
-                  fontWeight: status ? 600 : 400,
-                  fontSize: status ? 38 : 28,
+                  fontFamily: accent ? 'Tektur' : 'Geist',
+                  fontWeight: accent ? 600 : 400,
+                  fontSize: accent ? 38 : 28,
                   lineHeight: 1.35,
-                  color: status ? OG_COLORS.primary : OG_COLORS.muted,
+                  color: accent ? OG_COLORS.primary : OG_COLORS.muted,
                   maxWidth: 900,
                 }}
               >
                 {subtitle}
-                {status && (
+                {accent && (
                   <div
                     style={{
                       width: 20,
@@ -220,11 +218,11 @@ export function BrandOgImage({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={image}
+              src={image.src}
               alt=""
               width={360}
               height={420}
-              style={{ objectFit: 'cover', objectPosition: '50% 22%' }}
+              style={{ objectFit: 'cover', objectPosition: image.position }}
             />
           </div>
         )}

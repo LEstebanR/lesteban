@@ -14,6 +14,7 @@ type BlogPost = {
   date: string
   description: string
   image: string
+  imagePosition?: string
   tags?: string[]
 }
 
@@ -32,7 +33,8 @@ export function BlogCard({ post }: { post: BlogPost }) {
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover object-[50%_22%] grayscale-[40%] transition duration-500 group-hover:grayscale-0"
+          className="object-cover grayscale-[40%] transition duration-500 group-hover:grayscale-0"
+          style={{ objectPosition: post.imagePosition }}
           sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
