@@ -50,8 +50,8 @@ const MOCK_DICT: Record<string, string> = {
   linkedin: 'LinkedIn',
   email: 'Email',
   location: 'Location',
-  'frontend-developer': 'Software Developer',
-  'frontend-developer-freelance': 'Software Developer Freelance',
+  'frontend-developer': 'Frontend Developer',
+  'frontend-developer-freelance': 'Frontend Developer Freelance',
   'aleluya-description': 'Worked at Aleluya on payroll features',
   'aleluya-freelance-description': 'Freelance at Aleluya',
   'january-2025': 'January 2025',
@@ -223,7 +223,7 @@ describe('ExperienceCard', () => {
 
   test('renders the translated position', () => {
     render(<ExperienceCard job={job} />)
-    expect(screen.getByText('Software Developer')).toBeDefined()
+    expect(screen.getByText('Frontend Developer')).toBeDefined()
   })
 
   test('renders the company name', () => {
