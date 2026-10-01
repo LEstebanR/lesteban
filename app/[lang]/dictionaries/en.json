@@ -2,9 +2,9 @@
   "projects": "Projects",
   "contact": "Contact",
   "experience": "Experience",
-  "frontend-developer": "Frontend Developer",
+  "frontend-developer": "Software Developer",
   "fullstack-developer": "Fullstack Developer",
-  "frontend-developer-freelance": "Frontend Developer Freelance",
+  "frontend-developer-freelance": "Software Developer Freelance",
   "january-2025": "January 2025",
   "current": "Current",
   "august-2024": "August 2024",
@@ -47,6 +47,6 @@
   "related-posts": "Related posts",
   "skip-to-content": "Skip to main content",
   "hero-status": "Building my own products",
-  "hero-role": "Frontend developer & indie hacker",
+  "hero-role": "Software developer & indie hacker",
   "hero-lede": "I build web products end to end. By day I develop interfaces for software people use every day at work; after hours I build and launch my own ideas."
 }

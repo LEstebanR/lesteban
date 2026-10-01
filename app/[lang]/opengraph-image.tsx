@@ -11,7 +11,7 @@ import {
 
 export const size = ogImageSize
 export const contentType = ogImageContentType
-export const alt = 'Luis Esteban Ramirez — Frontend developer & indie hacker'
+export const alt = 'Luis Esteban Ramirez — Software developer & indie hacker'
 
 export default async function Image({
   params,
