@@ -59,7 +59,7 @@ const MOCK_DICT: Record<string, string> = {
   // Hero
   hello: 'Hello,',
   'hero-status': 'Building my own products',
-  'hero-role': 'Frontend developer & indie hacker',
+  'hero-role': 'Software developer & indie hacker',
   'hero-lede': 'I build web products end to end.',
   // Experience
   experience: 'Experience',
@@ -132,7 +132,7 @@ describe('Hero', () => {
   test('renders the status, role and lede copy', () => {
     render(<Hero lang="en" />)
     expect(screen.getByText('Building my own products')).toBeDefined()
-    expect(screen.getByText('Frontend developer & indie hacker')).toBeDefined()
+    expect(screen.getByText('Software developer & indie hacker')).toBeDefined()
     expect(screen.getByText('I build web products end to end.')).toBeDefined()
   })
 
