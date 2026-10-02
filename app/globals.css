@@ -920,33 +920,46 @@ html[data-season='halloween'] .status-dot {
   box-shadow: 0 0 8px var(--secondary);
 }
 
-/* A wireframe ghost hides behind the portrait frame and peeks out every 9s:
-   leans out, bobs, flickers and ducks back in. Hologram scanlines. */
+/* Ghost palette: a pale glowing sheet with hollow eyes. Lavender-grey on the
+   daylight console so it still reads against paper. */
+html[data-season='halloween'] {
+  --ghost-body: oklch(0.55 0.09 295);
+  --ghost-glow: oklch(0.6 0.16 300 / 0.5);
+  --ghost-hollow: oklch(0.2 0.04 285);
+}
+
+html[data-season='halloween'].dark {
+  --ghost-body: oklch(0.97 0.02 290);
+  --ghost-glow: oklch(0.72 0.17 300 / 0.6);
+  --ghost-hollow: oklch(0.14 0.03 280);
+}
+
+.ghost-glyph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 14px var(--ghost-glow));
+}
+
+.ghost-hollow {
+  fill: var(--ghost-hollow);
+}
+
+/* One ghost hides behind the portrait frame and peeks out every 9s: leans
+   out, bobs, flickers and ducks back in. */
 html[data-season='halloween'] .peeking-ghost {
   display: block;
   position: absolute;
-  top: 14%;
+  top: 10%;
   right: 0;
   z-index: 0;
-  width: 84px;
-  aspect-ratio: 40 / 48;
+  width: 96px;
+  aspect-ratio: 60 / 80;
   pointer-events: none;
   transform: translateX(-30%);
   transform-origin: 0 100%;
-  filter: drop-shadow(0 0 8px var(--secondary));
-  animation: ghost-peek 9s cubic-bezier(0.3, 0.7, 0.2, 1) 3s infinite;
-}
-
-.peeking-ghost svg {
-  mask-image: repeating-linear-gradient(
-    to bottom,
-    black 0 2px,
-    rgb(0 0 0 / 0.5) 2px 3px
-  );
-}
-
-.ghost-sheet {
-  fill: color-mix(in oklch, var(--secondary) 18%, transparent);
+  animation: ghost-peek 9s cubic-bezier(0.3, 0.7, 0.2, 1) 2s infinite;
 }
 
 @keyframes ghost-peek {
@@ -981,6 +994,139 @@ html[data-season='halloween'] .peeking-ghost {
   66%,
   100% {
     transform: translateX(-30%) rotate(0);
+  }
+}
+
+/* Floating ghosts: three drift across the viewport on long routes (fixed,
+   so they keep you company down the page), bobbing as they go and thinning
+   out mid-flight. They float behind the content, slipping under cards. */
+.floaters {
+  display: none;
+}
+
+html[data-season='halloween'] .floaters {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floater {
+  position: absolute;
+  top: 0;
+  left: 0;
+  aspect-ratio: 60 / 80;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.floater-bob {
+  animation: ghost-bob 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes ghost-bob {
+  from {
+    transform: translateY(-6px) rotate(-4deg);
+  }
+  to {
+    transform: translateY(6px) rotate(4deg);
+  }
+}
+
+/* Left to right across the upper page */
+.floater-a {
+  width: 92px;
+  animation: float-a 46s ease-in-out 1s infinite;
+}
+
+@keyframes float-a {
+  0% {
+    opacity: 0;
+    transform: translate(-12vw, 24vh) scaleX(1);
+  }
+  8% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 0.25;
+    transform: translate(28vw, 14vh);
+  }
+  45% {
+    opacity: 0.75;
+    transform: translate(52vw, 22vh);
+  }
+  62% {
+    opacity: 0.7;
+    transform: translate(78vw, 10vh);
+  }
+  72%,
+  100% {
+    opacity: 0;
+    transform: translate(108vw, 16vh);
+  }
+}
+
+/* Right to left, rising from the lower page, facing its way */
+.floater-b {
+  width: 72px;
+  animation: float-b 58s ease-in-out 5s infinite;
+}
+
+@keyframes float-b {
+  0% {
+    opacity: 0;
+    transform: translate(105vw, 78vh) scaleX(-1);
+  }
+  10% {
+    opacity: 0.7;
+  }
+  35% {
+    opacity: 0.2;
+    transform: translate(64vw, 60vh) scaleX(-1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translate(40vw, 66vh) scaleX(-1);
+  }
+  68% {
+    opacity: 0.6;
+    transform: translate(12vw, 44vh) scaleX(-1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translate(-14vw, 36vh) scaleX(-1);
+  }
+}
+
+/* A big one rising slowly up the left gutter */
+.floater-c {
+  width: 128px;
+  animation: float-c 40s ease-in-out 11s infinite;
+}
+
+@keyframes float-c {
+  0% {
+    opacity: 0;
+    transform: translate(3vw, 105vh);
+  }
+  15% {
+    opacity: 0.55;
+  }
+  45% {
+    opacity: 0.18;
+    transform: translate(9vw, 48vh);
+  }
+  65% {
+    opacity: 0.5;
+    transform: translate(5vw, 22vh);
+  }
+  85%,
+  100% {
+    opacity: 0;
+    transform: translate(11vw, -30vh);
   }
 }
 
@@ -1148,6 +1294,9 @@ html[data-season='halloween'] .telemetry-anomaly {
 @media (prefers-reduced-motion: reduce) {
   html[data-season='halloween'] .ghost-trace,
   html[data-season='halloween'] .reticle-ghost {
+    display: none;
+  }
+  html[data-season='halloween'] .floaters {
     display: none;
   }
   html[data-season='halloween'] .peeking-ghost,

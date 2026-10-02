@@ -5,6 +5,7 @@ import { useLang } from '@/hooks/use-lang'
 import { Contact } from '@/components/contact'
 import { Experience } from '@/components/experience'
 import { Hero } from '@/components/hero'
+import { FloatingGhosts } from '@/components/peeking-ghost'
 import { Projects } from '@/components/projects'
 import { ScrollTelemetry } from '@/components/scroll-telemetry'
 import { Skills } from '@/components/skills'
@@ -19,6 +20,7 @@ export default function Home() {
       <Skills />
       <Contact />
       <ScrollTelemetry />
+      <FloatingGhosts />
     </div>
   )
 }

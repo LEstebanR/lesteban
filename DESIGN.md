@@ -110,7 +110,9 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 The palette stays; the console is haunted. Every seasonal layer is `display: none` outside the season.
 
-- `PeekingGhost` (`components/peeking-ghost.tsx`): a wireframe hologram ghost hides behind the portrait frame and peeks out every 9s — leans out, bobs, flickers, ducks back in.
+- Ghosts are ethereal sheets (`GhostGlyph`): a glowing body fading toward a ragged tail, hollow eyes, violet glow. `--ghost-body` is near-white on the dark console and lavender-grey in daylight.
+- `FloatingGhosts` (`components/peeking-ghost.tsx`, home page): three ghosts of different sizes drift across the viewport on long routes (46s / 58s / 40s), bobbing and thinning out mid-flight. Fixed behind the content (`z-index: -1`), so they slip under cards instead of over text.
+- `PeekingGhost`: one hides behind the portrait frame and peeks out every 9s — leans out, bobs, flickers, ducks back in.
 - `.possess`: every 12s the hero name splits into ultraviolet and ectoplasm green (`oklch(0.85 0.2 150)`) and jerks sideways for ~0.5s.
 - `.power-flicker`: the hero backdrop loses power twice in a row every 14s (backdrop only, never the text).
 - `.season-only` / `.season-off`: the status line reads `Presence detected · EVP 13 Hz` (`hero-status-halloween`) with a violet alert dot, and the footer heart becomes a ghost.
@@ -118,4 +120,4 @@ The palette stays; the console is haunted. Every seasonal layer is `display: non
 - `.reticle-ghost`: two ultraviolet afterimages of the reticle trail the pointer (260ms / 620ms lag).
 - `.telemetry-anomaly`: the scroll telemetry flickers `anomaly` for about a second every 9s.
 - `OCCULT_GLYPHS` (`components/scramble-text.tsx`): `ScrambleText` and `DecodeMask` mix `☾†‡✟◬⸸ᛟ` into their decode glyphs.
-- Reduced motion: scan ghost and reticle trail hidden; peeking ghost stays hidden, no possession or power dips; anomaly label static.
+- Reduced motion: scan ghost and reticle trail hidden; floating ghosts hidden, peeking ghost stays hidden, no possession or power dips; anomaly label static.
