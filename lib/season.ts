@@ -13,6 +13,15 @@ export function isHalloween(date: Date = new Date()): boolean {
  */
 export const SEASON_SCRIPT = `if(new Date().getMonth()===${HALLOWEEN_MONTH})document.documentElement.dataset.season='halloween'`
 
+/**
+ * Client-side twin of `SEASON_SCRIPT`. Switching language swaps the `[lang]`
+ * root layout, so React renders a fresh `<html>` without the flag and the
+ * inline script never runs again on a client navigation; this restores it.
+ */
+export function applySeason(date: Date = new Date()) {
+  if (isHalloween(date)) document.documentElement.dataset.season = 'halloween'
+}
+
 /** Client-side read of the flag set by `SEASON_SCRIPT`. */
 export function isHalloweenActive(): boolean {
   return document.documentElement.dataset.season === 'halloween'

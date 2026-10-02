@@ -3,6 +3,7 @@ import { afterEach, describe, expect, test } from 'bun:test'
 import {
   HALLOWEEN_MONTH,
   SEASON_SCRIPT,
+  applySeason,
   isHalloween,
   isHalloweenActive,
 } from '@/lib/season'
@@ -39,5 +40,22 @@ describe('isHalloweenActive', () => {
     expect(isHalloweenActive()).toBe(false)
     document.documentElement.dataset.season = 'halloween'
     expect(isHalloweenActive()).toBe(true)
+  })
+})
+
+describe('applySeason', () => {
+  test('flags <html> in October', () => {
+    applySeason(new Date(2026, 9, 15))
+    expect(isHalloweenActive()).toBe(true)
+  })
+
+  test('leaves <html> alone outside October', () => {
+    applySeason(new Date(2026, 10, 1))
+    expect(isHalloweenActive()).toBe(false)
+  })
+
+  test('defaults to the current date', () => {
+    applySeason()
+    expect(isHalloweenActive()).toBe(isHalloween())
   })
 })

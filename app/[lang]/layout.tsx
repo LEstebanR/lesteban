@@ -9,6 +9,7 @@ import { Geist, Geist_Mono, Tektur } from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { SeasonNight } from '@/components/season-night'
+import { SeasonSync } from '@/components/season-sync'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
@@ -176,6 +177,7 @@ export default async function RootLayout({
       <body
         className={`${geist.variable} ${tektur.variable} ${geistMono.variable} flex min-h-screen flex-col`}
       >
+        <SeasonSync lang={validLang} />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
