@@ -81,7 +81,6 @@ export function Hero({ lang }: HeroProps) {
             <div className="aurora-blob aurora-b" />
             <div className="aurora-blob aurora-c" />
           </div>
-          <JackOLantern />
           <Bats />
         </div>
         <div className="console-spot" />
@@ -201,6 +200,7 @@ export function Hero({ lang }: HeroProps) {
         </div>
 
         <div className="relative mx-auto w-full max-w-[220px] md:mx-0 md:max-w-[280px]">
+          <JackOLantern />
           <PeekingGhost />
           <figure
             data-scramble-host

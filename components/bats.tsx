@@ -36,9 +36,18 @@ function BatGlyph() {
   )
 }
 
+/** The jack-o'-lantern's keeper: a bat that keeps circling it. */
+export function LanternBat() {
+  return (
+    <span aria-hidden="true" className="bat-lurker">
+      <BatGlyph />
+    </span>
+  )
+}
+
 /**
- * A colony of bats fluttering across the hero (erratic, bobbing flight), plus
- * one that keeps circling the jack-o'-lantern. With `night`, a sparser flock
+ * A colony of bats fluttering across the hero (erratic, bobbing flight). With
+ * `night`, a sparser flock
  * crosses the whole viewport instead, on every view. Decorative, CSS-driven,
  * and rendered only during the Halloween season.
  */
@@ -60,11 +69,6 @@ export function Bats({ night = false }: { night?: boolean }) {
           <BatGlyph />
         </span>
       ))}
-      {!night && (
-        <span className="bat-lurker">
-          <BatGlyph />
-        </span>
-      )}
     </div>
   )
 }

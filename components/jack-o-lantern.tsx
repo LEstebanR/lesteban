@@ -1,5 +1,7 @@
 import { useId } from 'react'
 
+import { LanternBat } from '@/components/bats'
+
 const stop = (offset: number, color: string, opacity = 1) => (
   <stop
     offset={offset}
@@ -21,7 +23,8 @@ const FACE = [
 /**
  * A carved jack-o'-lantern lit from inside: shaded lobes, a twisted stem,
  * an angular face whose cut walls show the rind's thickness, and a candle
- * that flickers through the holes. Decorative; Halloween season only.
+ * that flickers through the holes, with a bat circling it. Decorative;
+ * Halloween season only.
  */
 export function JackOLantern() {
   const id = useId()
@@ -108,6 +111,7 @@ export function JackOLantern() {
           ))}
         </g>
       </svg>
+      <LanternBat />
     </div>
   )
 }

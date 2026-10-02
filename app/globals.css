@@ -966,32 +966,32 @@ html[data-season='halloween'].dark {
   --fog: oklch(0.45 0.05 290 / 0.28);
 }
 
-/* Jack-o'-lantern: rises once behind the hero where the eye rests (top
-   right), then the candle inside flickers through the carved face. It sits
-   under the neural field, so the network's links cross in front of it. */
+/* Jack-o'-lantern: sits on the ground beside the portrait (out of the web's
+   corner), rises once, then the candle inside flickers through the carved
+   face. Its keeper bat circles it. */
 .jack-lantern {
   display: none;
 }
 
 html[data-season='halloween'] .jack-lantern {
+  --jack-w: clamp(64px, calc(14vw - 40px), 170px);
   display: block;
   position: absolute;
-  top: 4%;
-  right: 4%;
-  width: clamp(120px, 17vw, 250px);
+  right: calc(100% + 1rem);
+  bottom: 0;
+  width: var(--jack-w);
   aspect-ratio: 200 / 190;
   filter: drop-shadow(
-    0 0 60px color-mix(in oklch, var(--flame) 35%, transparent)
+    0 0 50px color-mix(in oklch, var(--flame) 35%, transparent)
   );
   animation: moonrise 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both;
 }
 
-/* Phones: smaller, tucked into the hero's top padding above the status line */
+/* Phones: the portrait is centred, so the pumpkin waits in its left margin */
 @media (width < 48rem) {
   html[data-season='halloween'] .jack-lantern {
-    top: 0;
-    right: 3%;
-    width: 64px;
+    --jack-w: 56px;
+    right: calc(100% + 0.5rem);
   }
 }
 
@@ -1257,21 +1257,18 @@ html[data-season='halloween'] .bats {
 
 /* The lantern's keeper: orbits the pumpkin, smaller as it swings behind */
 .bat-lurker {
-  --jack-w: clamp(120px, 17vw, 250px);
   position: absolute;
-  top: calc(4% + var(--jack-w) * 0.3);
-  right: calc(4% + var(--jack-w) * 0.5 - 22px);
-  width: 44px;
+  top: 18%;
+  left: calc(50% - 20px);
+  width: 40px;
   aspect-ratio: 2;
   animation: bat-orbit 9s linear 3.4s infinite both;
 }
 
 @media (width < 48rem) {
   .bat-lurker {
-    --jack-w: 64px;
-    top: 10px;
-    right: calc(3% + 10px);
-    width: 26px;
+    left: calc(50% - 12px);
+    width: 24px;
   }
 }
 
@@ -1955,7 +1952,8 @@ html[data-season='halloween'] .corner-web {
 
 @media (prefers-reduced-motion: reduce) {
   html[data-season='halloween'] .aurora-exit::before,
-  html[data-season='halloween'] .bats {
+  html[data-season='halloween'] .bats,
+  .bat-lurker {
     display: none;
   }
   html[data-season='halloween'] .aurora-exit::after,
