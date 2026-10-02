@@ -3,7 +3,9 @@ import { afterEach, describe, expect, test } from 'bun:test'
 
 import React from 'react'
 
-const { ScrambleText } = await import('@/components/scramble-text')
+const { GLYPHS, OCCULT_GLYPHS, ScrambleText, randomGlyph } = await import(
+  '@/components/scramble-text'
+)
 const { DecodeMask } = await import('@/components/decode-mask')
 
 const realMatchMedia = window.matchMedia
@@ -49,6 +51,26 @@ describe('ScrambleText', () => {
     const { container } = render(<ScrambleText text="Calm" duration={40} />)
     await settle(60)
     expect(container.textContent).toBe('Calm')
+  })
+})
+
+describe('randomGlyph', () => {
+  const realRandom = Math.random
+
+  afterEach(() => {
+    Math.random = realRandom
+    delete document.documentElement.dataset.season
+  })
+
+  test('draws from the console glyphs out of season', () => {
+    Math.random = () => 0.9999
+    expect(randomGlyph()).toBe(GLYPHS.at(-1) as string)
+  })
+
+  test('picks up occult interference during Halloween', () => {
+    document.documentElement.dataset.season = 'halloween'
+    Math.random = () => 0.9999
+    expect(randomGlyph()).toBe(OCCULT_GLYPHS.at(-1) as string)
   })
 })
 

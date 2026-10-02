@@ -87,6 +87,9 @@ export function Hero({ lang }: HeroProps) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 left-1/2 z-10 hidden w-screen -translate-x-1/2 md:block"
       >
+        {/* Spectral afterimages that trail the reticle (Halloween only) */}
+        <div className="reticle reticle-ghost hud-frame" />
+        <div className="reticle reticle-ghost reticle-ghost-far hud-frame" />
         <div className="reticle hud-frame">
           <span
             ref={coordsRef}
@@ -201,6 +204,8 @@ export function Hero({ lang }: HeroProps) {
             <DecodeMask />
             <span aria-hidden="true" className="scan-beam z-[4]" />
             <span aria-hidden="true" className="photo-scan" />
+            {/* Only the scan band sees it (Halloween only) */}
+            <span aria-hidden="true" className="ghost-trace" />
             <Image
               src="/profile_pic.jpeg"
               alt=""

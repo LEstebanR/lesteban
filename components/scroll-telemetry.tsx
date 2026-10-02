@@ -10,6 +10,7 @@ export function ScrollTelemetry() {
         <div className="telemetry-bar bg-primary absolute inset-0 origin-top shadow-[0_0_8px_var(--primary)]" />
       </div>
       <span className="telemetry-value text-primary" />
+      <span className="telemetry-anomaly text-secondary">anomaly</span>
     </div>
   )
 }

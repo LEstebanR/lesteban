@@ -4,10 +4,16 @@ import { useHostDecode } from '@/hooks/use-host-decode'
 
 import { useRef } from 'react'
 
+import { isHalloweenActive } from '@/lib/season'
+
 export const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/[]{}=+*#%&'
 
+/** Mixed in during the Halloween season: the decoder picks up interference. */
+export const OCCULT_GLYPHS = '☾†‡✟◬⸸ᛟ'
+
 export function randomGlyph(): string {
-  return GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
+  const pool = isHalloweenActive() ? GLYPHS + OCCULT_GLYPHS : GLYPHS
+  return pool[Math.floor(Math.random() * pool.length)]
 }
 
 interface ScrambleTextProps {

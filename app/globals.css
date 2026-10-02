@@ -835,7 +835,6 @@ html {
   }
 }
 
-
 @keyframes aurora-exit {
   to {
     opacity: 0;
@@ -889,5 +888,125 @@ html {
   .aurora-exit,
   .console-grid::before {
     animation: none !important;
+  }
+}
+
+/* ── Season: Halloween · Ghost in the Machine ──────────────────────────────
+   Active while <html data-season="halloween"> (set in October by the head
+   script in lib/season.ts). The palette stays; the instruments start picking
+   up something that isn't there. Outside the season these layers don't
+   render at all. */
+
+.ghost-trace,
+.reticle-ghost,
+.telemetry-anomaly {
+  display: none;
+}
+
+/* The portrait scanner sees a figure standing at your shoulder. A soft
+   head-and-shoulders silhouette, clipped to the scan band, riding every
+   third pass (21s = 3 × 7s, same delay and easing as .photo-scan), so it only
+   shows up now and then and never to the naked eye. */
+html[data-season='halloween'] .ghost-trace {
+  --ghost: oklch(0.95 0.04 200 / 0.55);
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 11% 14% at 16% 36%,
+      var(--ghost) 30%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 24% 26% at 16% 82%,
+      var(--ghost) 25%,
+      transparent 100%
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: ghost-trace 21s cubic-bezier(0.5, 0, 0.3, 1) 2s infinite;
+}
+
+@keyframes ghost-trace {
+  0% {
+    opacity: 0.85;
+    clip-path: inset(-2% 0 84% 0);
+  }
+  7.33% {
+    opacity: 0.85;
+    clip-path: inset(100% 0 -18% 0);
+  }
+  7.34%,
+  100% {
+    opacity: 0;
+    clip-path: inset(100% 0 -18% 0);
+  }
+}
+
+/* Spectral reticle afterimages: the same HUD target, lagging behind the
+   pointer in ultraviolet, fainter the further back they trail. */
+html[data-season='halloween'] .reticle-ghost {
+  display: block;
+  --tick-color: var(--secondary);
+  transition:
+    translate 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 200ms ease;
+}
+
+html[data-season='halloween'] .reticle-ghost::before {
+  background: var(--secondary);
+  box-shadow: 0 0 8px var(--secondary);
+}
+
+html[data-season='halloween'] .hero-zone:hover .reticle-ghost {
+  opacity: 0.6;
+}
+
+html[data-season='halloween'] .reticle-ghost-far {
+  transition-duration: 620ms, 200ms;
+}
+
+html[data-season='halloween'] .hero-zone:hover .reticle-ghost-far {
+  opacity: 0.3;
+}
+
+/* Telemetry flags an anomaly for a moment every few seconds, and
+   is gone again before you can be sure. */
+html[data-season='halloween'] .telemetry-anomaly {
+  display: block;
+  writing-mode: vertical-rl;
+  opacity: 0;
+  animation: anomaly 9s steps(1) 4s infinite;
+}
+
+@keyframes anomaly {
+  0%,
+  2%,
+  4% {
+    opacity: 1;
+  }
+  1%,
+  3%,
+  12%,
+  100% {
+    opacity: 0;
+  }
+  5%,
+  11% {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season='halloween'] .ghost-trace,
+  html[data-season='halloween'] .reticle-ghost {
+    display: none;
+  }
+  html[data-season='halloween'] .telemetry-anomaly {
+    animation: none !important;
+    opacity: 0.85;
   }
 }

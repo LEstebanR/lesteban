@@ -101,3 +101,17 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `app/icon.svg` (favicon): ink-navy tile, cyan HUD corner ticks and the `/▮` prompt (section slash + hero caret).
 - `public/favicon.ico` (16/32/48) and `app/apple-icon.png` (180, square) are rasterised from the same SVG.
 - Open Graph cards (`components/og/brand-og-image.tsx`): ink-navy canvas with coordinate grid, aurora glow, HUD corner ticks, the brand mark and Tektur display type; blog posts show their cover in a framed panel. Fonts are static TTFs in `public/fonts/og/` (Satori can't read WOFF2 or variable fonts); colours are the hex equivalents of the dark tokens in `lib/og.ts`.
+
+## 9. Seasons
+
+`lib/season.ts` ships an inline `<head>` script that sets `<html data-season="halloween">` during the visitor's own October, before first paint. Seasonal styling hangs off that attribute only, so it switches itself off on 1 November with no rebuild.
+
+**Halloween · Ghost in the Machine** (`app/globals.css`, end of file)
+
+The palette stays; the instruments pick up something that isn't there. Every seasonal layer is `display: none` outside the season.
+
+- `.ghost-trace`: a soft head-and-shoulders silhouette at the portrait's shoulder, clipped to the `.photo-scan` band and riding every third pass (21s cycle), so only the scanner ever sees it.
+- `.reticle-ghost`: two ultraviolet afterimages of the reticle trail the pointer (260ms / 620ms lag).
+- `.telemetry-anomaly`: the scroll telemetry flickers `anomaly` for about a second every 9s.
+- `OCCULT_GLYPHS` (`components/scramble-text.tsx`): `ScrambleText` and `DecodeMask` mix `☾†‡✟◬⸸ᛟ` into their decode glyphs.
+- Reduced motion: ghost and reticle trail hidden, anomaly label static.
