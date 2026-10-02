@@ -835,7 +835,6 @@ html {
   }
 }
 
-
 @keyframes aurora-exit {
   to {
     opacity: 0;
@@ -888,6 +887,185 @@ html {
   .aurora-blob,
   .aurora-exit,
   .console-grid::before {
+    animation: none !important;
+  }
+}
+
+/* ── Season: Halloween · Ember Signal ──────────────────────────────────────
+   Active while <html data-season="halloween"> (set in October by the head
+   script in lib/season.ts). The console runs on ember instead of ice: the
+   signal turns pumpkin amber, the existing ultraviolet stays as the second
+   signal, the aurora smoulders, embers rise and a blood moon comes up behind
+   the network. Everything else inherits the tokens, so no component changes. */
+
+html[data-season='halloween'] {
+  --background: oklch(0.975 0.008 75);
+  --foreground: oklch(0.22 0.03 285);
+  --card: oklch(0.995 0.004 75);
+  --card-foreground: oklch(0.22 0.03 285);
+  --popover: oklch(0.995 0.004 75);
+  --popover-foreground: oklch(0.22 0.03 285);
+  --primary: oklch(0.55 0.16 45);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.5 0.21 300);
+  --muted: oklch(0.94 0.012 75);
+  --muted-foreground: oklch(0.48 0.03 290);
+  --accent: oklch(0.94 0.045 65);
+  --accent-foreground: oklch(0.36 0.1 45);
+  --border: oklch(0.87 0.02 75);
+  --input: oklch(0.87 0.02 75);
+  --ring: oklch(0.55 0.16 45 / 0.6);
+  --grid-line: oklch(0.55 0.16 45 / 0.08);
+  --glow: oklch(0.72 0.16 55 / 0.22);
+  --aurora-a: oklch(0.78 0.15 60 / 0.3);
+  --aurora-b: oklch(0.62 0.2 300 / 0.18);
+  --chart-1: oklch(0.55 0.16 45);
+  --moon-core: oklch(0.9 0.07 70 / 0.55);
+  --moon-edge: oklch(0.8 0.11 55 / 0.4);
+  --moon-crater: oklch(0.72 0.12 50 / 0.18);
+  --ember: oklch(0.62 0.19 45);
+}
+
+html[data-season='halloween'].dark {
+  --background: oklch(0.15 0.02 282);
+  --foreground: oklch(0.93 0.012 80);
+  --card: oklch(0.185 0.024 282);
+  --card-foreground: oklch(0.93 0.012 80);
+  --popover: oklch(0.185 0.024 282);
+  --popover-foreground: oklch(0.93 0.012 80);
+  --primary: oklch(0.79 0.16 60);
+  --primary-foreground: oklch(0.17 0.03 282);
+  --secondary: oklch(0.72 0.17 300);
+  --muted: oklch(0.22 0.026 282);
+  --muted-foreground: oklch(0.7 0.025 290);
+  --accent: oklch(0.28 0.05 50);
+  --accent-foreground: oklch(0.9 0.08 70);
+  --border: oklch(0.31 0.03 282);
+  --input: oklch(0.31 0.03 282);
+  --ring: oklch(0.79 0.16 60 / 0.6);
+  --grid-line: oklch(0.79 0.16 60 / 0.06);
+  --glow: oklch(0.75 0.17 50 / 0.16);
+  --aurora-a: oklch(0.62 0.18 42 / 0.3);
+  --aurora-b: oklch(0.5 0.2 300 / 0.3);
+  --chart-1: oklch(0.79 0.16 60);
+  --moon-core: oklch(0.7 0.16 45 / 0.42);
+  --moon-edge: oklch(0.5 0.18 30 / 0.3);
+  --moon-crater: oklch(0.4 0.14 30 / 0.2);
+  --ember: oklch(0.82 0.16 65);
+}
+
+/* Blood moon: rises once behind the hero, then glows with the aurora. It sits
+   under the neural field, so the network's links cross in front of it. */
+html[data-season='halloween'] .aurora::before {
+  content: '';
+  position: absolute;
+  top: 9%;
+  right: 12%;
+  width: clamp(140px, 20vw, 280px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 34% 30%, var(--moon-crater), transparent 12%),
+    radial-gradient(circle at 63% 57%, var(--moon-crater), transparent 16%),
+    radial-gradient(circle at 42% 70%, var(--moon-crater), transparent 9%),
+    radial-gradient(circle at 40% 36%, var(--moon-core), var(--moon-edge) 72%);
+  box-shadow: 0 0 140px 40px var(--glow);
+  mask-image: radial-gradient(circle, black 66%, transparent 71%);
+  animation: moonrise 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both;
+}
+
+@keyframes moonrise {
+  from {
+    opacity: 0;
+    transform: translateY(45%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Embers: three tiled dot layers drifting up through the hero. The tile
+   heights (180/240/360) divide 720px, so one 720px rise loops seamlessly. */
+html[data-season='halloween'] .aurora-exit::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -720px 0;
+  background-image:
+    radial-gradient(circle, var(--ember) 0 1px, transparent 1.5px),
+    radial-gradient(circle, var(--ember) 0 1.5px, transparent 2px),
+    radial-gradient(circle, var(--ember) 0 1px, transparent 1.5px);
+  background-size:
+    230px 180px,
+    370px 240px,
+    310px 360px;
+  background-position:
+    20px 40px,
+    140px 10px,
+    80px 200px;
+  opacity: 0.45;
+  mask-image: linear-gradient(to top, black 30%, transparent 85%);
+  animation:
+    ember-rise 40s linear infinite,
+    ember-flicker 3.2s steps(1) infinite;
+}
+
+@keyframes ember-rise {
+  to {
+    transform: translateY(-720px);
+  }
+}
+
+@keyframes ember-flicker {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  55% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.35;
+  }
+}
+
+/* The status dot and the prompt caret burn like a candle instead of blinking */
+@keyframes candle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0.55;
+  }
+  24% {
+    opacity: 0.9;
+  }
+  52% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0.4;
+  }
+}
+
+html[data-season='halloween'] .status-dot,
+html[data-season='halloween'] .caret {
+  animation: candle 2.4s steps(1) infinite;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season='halloween'] .aurora-exit::before {
+    display: none;
+  }
+  html[data-season='halloween'] .aurora::before {
     animation: none !important;
   }
 }

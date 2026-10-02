@@ -101,3 +101,15 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `app/icon.svg` (favicon): ink-navy tile, cyan HUD corner ticks and the `/▮` prompt (section slash + hero caret).
 - `public/favicon.ico` (16/32/48) and `app/apple-icon.png` (180, square) are rasterised from the same SVG.
 - Open Graph cards (`components/og/brand-og-image.tsx`): ink-navy canvas with coordinate grid, aurora glow, HUD corner ticks, the brand mark and Tektur display type; blog posts show their cover in a framed panel. Fonts are static TTFs in `public/fonts/og/` (Satori can't read WOFF2 or variable fonts); colours are the hex equivalents of the dark tokens in `lib/og.ts`.
+
+## 9. Seasons
+
+`lib/season.ts` ships an inline `<head>` script that sets `<html data-season="halloween">` during the visitor's own October, before first paint. Seasonal styling hangs off that attribute only, so it switches itself off on 1 November with no rebuild.
+
+**Halloween · Ember Signal** (`app/globals.css`, end of file)
+
+- Tokens: the signal turns pumpkin amber (`--primary` `oklch(0.79 0.16 60)` dark / `oklch(0.55 0.16 45)` light), canvases lean toward night plum, the existing ultraviolet stays as the second signal. Every component, the neural field and the scan beams inherit it.
+- Blood moon: `.aurora::before` rises once (2.8s) behind the network and breathes with the aurora.
+- Embers: `.aurora-exit::before` tiles three dot layers that rise 720px every 40s (seamless loop, transform only).
+- Candle: `.status-dot` and `.caret` flicker irregularly instead of blinking.
+- Reduced motion: embers hidden, moon static.
