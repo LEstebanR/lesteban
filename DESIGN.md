@@ -108,9 +108,12 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 **Halloween · The Web** (`app/globals.css`, end of file)
 
-Web developer, web: the hero's network becomes a spider web.
+Web developer, web: the hero's network becomes a spider web, spun in pumpkin orange.
+
+- Orange: `--secondary` becomes pumpkin orange (`oklch(0.76 0.17 55)` dark / `oklch(0.6 0.18 48)` light) and the violet aurora mass warms to ember. The web, threads, silk, spider eyes and markings use it; cyan stays the console's signal, so the two read as one complementary palette.
 
 - `NeuralField` weaves a web from the top-right corner (`createWeb` / `forEachThread` / `stepWeb` in `lib/neural-field.ts`): 13 spokes × 9 rings, ring threads scalloped toward the hub, silk thinning toward the rim. The pointer pushes nearby threads and they spring back with a damped wobble. Same colour source (`--primary`), same pause-off-screen and reduced-motion still frame.
 - `Spider` (`components/spider.tsx`, xl+): hangs from that corner on a thread in the right gutter, lowers itself from 14vh to 70vh along the root scroll timeline, sways like a pendulum and twitches its legs now and then.
+- `CrawlingSpider` (`components/crawling-spider.tsx`): small spiders walk along every section hairline and the top edge of the portrait frame — dash, freeze, dash, turn back (26s cycle, staggered per section, `cqw` transforms), legs swinging in an alternating gait.
 - Corner silk: `.hud-frame::before` (not the reticle or hairlines) collects a few rings and spokes in its top-right corner and shivers on hover.
-- Reduced motion: the web is a still frame, the spider hangs still.
+- Reduced motion: the web is a still frame, the spider hangs still, crawlers are hidden.

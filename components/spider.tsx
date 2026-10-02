@@ -38,14 +38,14 @@ export function Spider() {
           cx="14.8"
           cy="12"
           r="0.7"
-          className="fill-primary"
+          className="fill-secondary"
           stroke="none"
         />
         <circle
           cx="17.2"
           cy="12"
           r="0.7"
-          className="fill-primary"
+          className="fill-secondary"
           stroke="none"
         />
       </svg>

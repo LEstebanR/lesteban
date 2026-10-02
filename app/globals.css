@@ -898,6 +898,19 @@ html {
    lowers itself from that corner as you scroll, and the HUD frames collect a
    little silk in their corners. */
 
+/* Pumpkin orange takes over the second signal: the web is spun in it over
+   the cyan console (complementary, so the two read as one palette), and the
+   violet aurora mass warms into an ember glow. */
+html[data-season='halloween'] {
+  --secondary: oklch(0.6 0.18 48);
+  --aurora-b: oklch(0.78 0.15 55 / 0.38);
+}
+
+html[data-season='halloween'].dark {
+  --secondary: oklch(0.76 0.17 55);
+  --aurora-b: oklch(0.64 0.18 45 / 0.4);
+}
+
 /* Spider: a fixed pendulum in the right gutter. The thread is a 70vh line
    scaled down; the body rides the same root scroll timeline to its end. */
 .spider {
@@ -925,8 +938,8 @@ html {
   width: 1px;
   height: 70vh;
   background: linear-gradient(
-    var(--muted-foreground),
-    color-mix(in oklch, var(--muted-foreground) 50%, transparent)
+    var(--secondary),
+    color-mix(in oklch, var(--secondary) 40%, transparent)
   );
   transform-origin: top;
   transform: scaleY(0.2);
@@ -1007,7 +1020,7 @@ html {
 /* Corner silk: a few rings and spokes in the top-right corner of every HUD
    surface (not the reticle or hairline dividers). It shivers on hover. */
 html[data-season='halloween'] .hud-frame:not(.reticle, .h-px)::before {
-  --silk: color-mix(in oklch, var(--foreground) 24%, transparent);
+  --silk: color-mix(in oklch, var(--secondary) 55%, transparent);
   content: '';
   position: absolute;
   top: -1px;
@@ -1047,7 +1060,113 @@ html[data-season='halloween'] .hud-frame:not(.reticle, .h-px):hover::before {
   }
 }
 
+/* Crawling spiders: walk the top edge of their parent (section hairlines,
+   the portrait frame) like real ones do — dash, freeze, dash, turn back.
+   The track is a size container, so cqw moves them on the compositor. */
+.crawler {
+  display: none;
+}
+
+html[data-season='halloween'] .crawler {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -11px;
+  height: 22px;
+  container-type: inline-size;
+  pointer-events: none;
+}
+
+.crawler-spider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  animation: crawl 26s linear infinite;
+  animation-delay: var(--crawl-delay, 0s);
+}
+
+.crawler-legs-a,
+.crawler-legs-b {
+  transform-box: view-box;
+  transform-origin: 50% 55%;
+  animation: legs 0.18s ease-in-out infinite alternate;
+}
+
+.crawler-legs-b {
+  animation-direction: alternate-reverse;
+}
+
+/* Alternating gait: the two leg sets swing against each other */
+@keyframes legs {
+  from {
+    transform: rotate(-9deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+
+@keyframes crawl {
+  0% {
+    transform: translateX(0) rotate(90deg);
+  }
+  7% {
+    transform: translateX(14cqw) rotate(90deg);
+  }
+  14% {
+    transform: translateX(14cqw) rotate(90deg);
+  }
+  19% {
+    transform: translateX(31cqw) rotate(96deg);
+  }
+  29% {
+    transform: translateX(31cqw) rotate(90deg);
+  }
+  33% {
+    transform: translateX(47cqw) rotate(90deg);
+  }
+  35% {
+    transform: translateX(47cqw) rotate(-90deg);
+  }
+  38% {
+    transform: translateX(40cqw) rotate(-90deg);
+  }
+  44% {
+    transform: translateX(40cqw) rotate(90deg);
+  }
+  52% {
+    transform: translateX(calc(100cqw - 22px)) rotate(90deg);
+  }
+  60% {
+    transform: translateX(calc(100cqw - 22px)) rotate(-90deg);
+  }
+  68% {
+    transform: translateX(62cqw) rotate(-90deg);
+  }
+  75% {
+    transform: translateX(62cqw) rotate(-84deg);
+  }
+  86% {
+    transform: translateX(18cqw) rotate(-90deg);
+  }
+  91% {
+    transform: translateX(18cqw) rotate(-90deg);
+  }
+  97% {
+    transform: translateX(0) rotate(-90deg);
+  }
+  100% {
+    transform: translateX(0) rotate(90deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html[data-season='halloween'] .crawler {
+    display: none;
+  }
   html[data-season='halloween'] .spider,
   .spider-thread,
   .spider-body,

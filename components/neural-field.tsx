@@ -49,9 +49,12 @@ export function NeuralField({ className }: { className?: string }) {
     let visible = true
 
     const readColor = () => {
-      // Read the resolved token (the build may emit it as lab()/oklch()/rgb())
+      // Read the resolved token (the build may emit it as lab()/oklch()/rgb()).
+      // The web is spun in the seasonal second signal (pumpkin orange).
       color =
-        getComputedStyle(canvas).getPropertyValue('--primary').trim() || color
+        getComputedStyle(canvas)
+          .getPropertyValue(weave ? '--secondary' : '--primary')
+          .trim() || color
       ctx.strokeStyle = color
       ctx.fillStyle = color
       ctx.lineWidth = 1
@@ -78,7 +81,7 @@ export function NeuralField({ className }: { className?: string }) {
 
     const drawWeb = (current: Web) => {
       // Hub threads: from the corner to the first ring
-      ctx.globalAlpha = 0.18
+      ctx.globalAlpha = 0.3
       ctx.beginPath()
       for (let spoke = 0; spoke < current.spokes; spoke++) {
         ctx.moveTo(width, 0)
@@ -91,7 +94,7 @@ export function NeuralField({ className }: { className?: string }) {
         // Silk thins out toward the rim so the web stays in its corner
         const rim = Math.floor(a / current.spokes) / current.rings
         ctx.globalAlpha =
-          0.2 * (1 - rim) + Math.max(boosts[a], boosts[b]) * 0.55
+          0.34 * (1 - rim) + Math.max(boosts[a], boosts[b]) * 0.55
         ctx.beginPath()
         ctx.moveTo(from.x, from.y)
         if (kind === 'ring') {

@@ -9,6 +9,7 @@ import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
+import { CrawlingSpider } from '@/components/crawling-spider'
 import { DecodeMask } from '@/components/decode-mask'
 import { NeuralField } from '@/components/neural-field'
 import { ScrambleText } from '@/components/scramble-text'
@@ -197,6 +198,7 @@ export function Hero({ lang }: HeroProps) {
           className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
           style={seq(150)}
         >
+          <CrawlingSpider delay={4} />
           <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
             <DecodeMask />
             <span aria-hidden="true" className="scan-beam z-[4]" />
