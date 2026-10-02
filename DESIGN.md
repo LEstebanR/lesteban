@@ -101,3 +101,16 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `app/icon.svg` (favicon): ink-navy tile, cyan HUD corner ticks and the `/▮` prompt (section slash + hero caret).
 - `public/favicon.ico` (16/32/48) and `app/apple-icon.png` (180, square) are rasterised from the same SVG.
 - Open Graph cards (`components/og/brand-og-image.tsx`): ink-navy canvas with coordinate grid, aurora glow, HUD corner ticks, the brand mark and Tektur display type; blog posts show their cover in a framed panel. Fonts are static TTFs in `public/fonts/og/` (Satori can't read WOFF2 or variable fonts); colours are the hex equivalents of the dark tokens in `lib/og.ts`.
+
+## 9. Seasons
+
+`lib/season.ts` ships an inline `<head>` script that sets `<html data-season="halloween">` during the visitor's own October, before first paint. Seasonal styling hangs off that attribute only, so it switches itself off on 1 November with no rebuild.
+
+**Halloween · The Web** (`app/globals.css`, end of file)
+
+Web developer, web: the hero's network becomes a spider web.
+
+- `NeuralField` weaves a web from the top-right corner (`createWeb` / `forEachThread` / `stepWeb` in `lib/neural-field.ts`): 13 spokes × 9 rings, ring threads scalloped toward the hub, silk thinning toward the rim. The pointer pushes nearby threads and they spring back with a damped wobble. Same colour source (`--primary`), same pause-off-screen and reduced-motion still frame.
+- `Spider` (`components/spider.tsx`, xl+): hangs from that corner on a thread in the right gutter, lowers itself from 14vh to 70vh along the root scroll timeline, sways like a pendulum and twitches its legs now and then.
+- Corner silk: `.hud-frame::before` (not the reticle or hairlines) collects a few rings and spokes in its top-right corner and shivers on hover.
+- Reduced motion: the web is a still frame, the spider hangs still.

@@ -8,6 +8,7 @@ import { Hero } from '@/components/hero'
 import { Projects } from '@/components/projects'
 import { ScrollTelemetry } from '@/components/scroll-telemetry'
 import { Skills } from '@/components/skills'
+import { Spider } from '@/components/spider'
 
 export default function Home() {
   const lang = useLang()
@@ -19,6 +20,7 @@ export default function Home() {
       <Skills />
       <Contact />
       <ScrollTelemetry />
+      <Spider />
     </div>
   )
 }

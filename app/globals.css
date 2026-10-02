@@ -835,7 +835,6 @@ html {
   }
 }
 
-
 @keyframes aurora-exit {
   to {
     opacity: 0;
@@ -888,6 +887,171 @@ html {
   .aurora-blob,
   .aurora-exit,
   .console-grid::before {
+    animation: none !important;
+  }
+}
+
+/* ── Season: Halloween · The Web ───────────────────────────────────────────
+   Active while <html data-season="halloween"> (set in October by the head
+   script in lib/season.ts). Web developer, web: the hero's neural network is
+   spun into a spider web from the top-right corner (NeuralField), a spider
+   lowers itself from that corner as you scroll, and the HUD frames collect a
+   little silk in their corners. */
+
+/* Spider: a fixed pendulum in the right gutter. The thread is a 70vh line
+   scaled down; the body rides the same root scroll timeline to its end. */
+.spider {
+  display: none;
+}
+
+@media (width >= 80rem) {
+  html[data-season='halloween'] .spider {
+    display: block;
+    position: fixed;
+    top: 4rem;
+    right: 6rem;
+    z-index: 30;
+    width: 26px;
+    pointer-events: none;
+    transform-origin: 50% 0;
+    animation: spider-sway 3.6s ease-in-out infinite alternate;
+  }
+}
+
+.spider-thread {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 70vh;
+  background: linear-gradient(
+    var(--muted-foreground),
+    color-mix(in oklch, var(--muted-foreground) 50%, transparent)
+  );
+  transform-origin: top;
+  transform: scaleY(0.2);
+}
+
+.spider-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  transform: translateY(calc(14vh - 2px));
+}
+
+.spider-legs {
+  transform-origin: 16px 18px;
+  animation: spider-twitch 6s steps(1) infinite;
+}
+
+@supports (animation-timeline: scroll()) {
+  .spider-thread {
+    animation: spider-thread linear both;
+    animation-timeline: scroll(root);
+  }
+
+  .spider-body {
+    animation: spider-descend linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes spider-sway {
+  from {
+    transform: rotate(-2.5deg);
+  }
+  to {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes spider-thread {
+  from {
+    transform: scaleY(0.2);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes spider-descend {
+  from {
+    transform: translateY(calc(14vh - 2px));
+  }
+  to {
+    transform: translateY(calc(70vh - 2px));
+  }
+}
+
+@keyframes spider-twitch {
+  0%,
+  100% {
+    transform: none;
+  }
+  70% {
+    transform: scaleX(0.9);
+  }
+  72% {
+    transform: none;
+  }
+  74% {
+    transform: scaleX(0.92);
+  }
+  76% {
+    transform: none;
+  }
+}
+
+/* Corner silk: a few rings and spokes in the top-right corner of every HUD
+   surface (not the reticle or hairline dividers). It shivers on hover. */
+html[data-season='halloween'] .hud-frame:not(.reticle, .h-px)::before {
+  --silk: color-mix(in oklch, var(--foreground) 24%, transparent);
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  background:
+    repeating-radial-gradient(
+      circle at 100% 0,
+      transparent 0 7px,
+      var(--silk) 7px 8px
+    ),
+    repeating-conic-gradient(
+      from 180deg at 100% 0,
+      var(--silk) 0 1.4deg,
+      transparent 1.4deg 18deg
+    );
+  mask-image: radial-gradient(circle at 100% 0, black 35%, transparent 70%);
+  transform-origin: 100% 0;
+}
+
+html[data-season='halloween'] .hud-frame:not(.reticle, .h-px):hover::before {
+  animation: silk-shiver 600ms ease-out;
+}
+
+@keyframes silk-shiver {
+  20% {
+    transform: rotate(3deg) scale(1.04);
+  }
+  45% {
+    transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season='halloween'] .spider,
+  .spider-thread,
+  .spider-body,
+  .spider-legs {
     animation: none !important;
   }
 }
