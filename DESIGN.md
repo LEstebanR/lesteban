@@ -108,10 +108,14 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 **Halloween · Ghost in the Machine** (`app/globals.css`, end of file)
 
-The palette stays; the instruments pick up something that isn't there. Every seasonal layer is `display: none` outside the season.
+The palette stays; the console is haunted. Every seasonal layer is `display: none` outside the season.
 
-- `.ghost-trace`: a soft head-and-shoulders silhouette at the portrait's shoulder, clipped to the `.photo-scan` band and riding every third pass (21s cycle), so only the scanner ever sees it.
+- `PeekingGhost` (`components/peeking-ghost.tsx`): a wireframe hologram ghost hides behind the portrait frame and peeks out every 9s — leans out, bobs, flickers, ducks back in.
+- `.possess`: every 12s the hero name splits into ultraviolet and ectoplasm green (`oklch(0.85 0.2 150)`) and jerks sideways for ~0.5s.
+- `.power-flicker`: the hero backdrop loses power twice in a row every 14s (backdrop only, never the text).
+- `.season-only` / `.season-off`: the status line reads `Presence detected · EVP 13 Hz` (`hero-status-halloween`) with a violet alert dot, and the footer heart becomes a ghost.
+- `.ghost-trace`: a soft head-and-shoulders silhouette at the portrait's shoulder, clipped to the `.photo-scan` band on every pass.
 - `.reticle-ghost`: two ultraviolet afterimages of the reticle trail the pointer (260ms / 620ms lag).
 - `.telemetry-anomaly`: the scroll telemetry flickers `anomaly` for about a second every 9s.
 - `OCCULT_GLYPHS` (`components/scramble-text.tsx`): `ScrambleText` and `DecodeMask` mix `☾†‡✟◬⸸ᛟ` into their decode glyphs.
-- Reduced motion: ghost and reticle trail hidden, anomaly label static.
+- Reduced motion: scan ghost and reticle trail hidden; peeking ghost stays hidden, no possession or power dips; anomaly label static.

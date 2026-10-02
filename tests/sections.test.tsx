@@ -59,6 +59,7 @@ const MOCK_DICT: Record<string, string> = {
   // Hero
   hello: 'Hello,',
   'hero-status': 'Building my own products',
+  'hero-status-halloween': 'Presence detected · EVP 13 Hz',
   'hero-role': 'Software developer & indie hacker',
   'hero-lede': 'I build web products end to end.',
   // Experience

@@ -899,16 +899,161 @@ html {
 
 .ghost-trace,
 .reticle-ghost,
-.telemetry-anomaly {
+.telemetry-anomaly,
+.peeking-ghost,
+.season-only {
   display: none;
+}
+
+/* Seasonal copy swaps: the status line and the footer heart */
+html[data-season='halloween'] .season-only {
+  display: inline;
+}
+
+html[data-season='halloween'] .season-off {
+  display: none;
+}
+
+/* The status dot turns into an alert light */
+html[data-season='halloween'] .status-dot {
+  background: var(--secondary);
+  box-shadow: 0 0 8px var(--secondary);
+}
+
+/* A wireframe ghost hides behind the portrait frame and peeks out every 9s:
+   leans out, bobs, flickers and ducks back in. Hologram scanlines. */
+html[data-season='halloween'] .peeking-ghost {
+  display: block;
+  position: absolute;
+  top: 14%;
+  right: 0;
+  z-index: 0;
+  width: 84px;
+  aspect-ratio: 40 / 48;
+  pointer-events: none;
+  transform: translateX(-30%);
+  transform-origin: 0 100%;
+  filter: drop-shadow(0 0 8px var(--secondary));
+  animation: ghost-peek 9s cubic-bezier(0.3, 0.7, 0.2, 1) 3s infinite;
+}
+
+.peeking-ghost svg {
+  mask-image: repeating-linear-gradient(
+    to bottom,
+    black 0 2px,
+    rgb(0 0 0 / 0.5) 2px 3px
+  );
+}
+
+.ghost-sheet {
+  fill: color-mix(in oklch, var(--secondary) 18%, transparent);
+}
+
+@keyframes ghost-peek {
+  0%,
+  30% {
+    transform: translateX(-30%) rotate(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(62%) rotate(10deg);
+  }
+  47% {
+    transform: translateX(58%) translateY(-5px) rotate(6deg);
+  }
+  54% {
+    transform: translateX(62%) rotate(10deg);
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  56% {
+    opacity: 1;
+  }
+  57% {
+    opacity: 0.4;
+  }
+  58% {
+    opacity: 1;
+    transform: translateX(62%) rotate(10deg);
+  }
+  66%,
+  100% {
+    transform: translateX(-30%) rotate(0);
+  }
+}
+
+/* Possession: every 12s the name splits into ultraviolet and ectoplasm green
+   and jerks sideways for about half a second. */
+html[data-season='halloween'] .possess {
+  display: inline-block;
+  animation: possess 12s steps(1) 4.5s infinite;
+}
+
+@keyframes possess {
+  0%,
+  100% {
+    text-shadow: none;
+    transform: none;
+  }
+  95.5% {
+    text-shadow:
+      -5px 0 var(--secondary),
+      5px 0 oklch(0.85 0.2 150 / 0.8);
+    transform: skewX(-6deg) translateX(4px);
+  }
+  96.2% {
+    text-shadow:
+      4px 0 var(--secondary),
+      -4px 0 oklch(0.85 0.2 150 / 0.8);
+    transform: translateX(-6px);
+  }
+  96.9% {
+    text-shadow: none;
+    transform: none;
+  }
+  97.4% {
+    text-shadow:
+      -8px 1px var(--secondary),
+      8px -1px oklch(0.85 0.2 150 / 0.8);
+    transform: skewX(4deg) translateX(-2px);
+  }
+  98.2% {
+    text-shadow: none;
+    transform: none;
+  }
+}
+
+/* The lights dip: the hero backdrop loses power twice in a row every 14s */
+html[data-season='halloween'] .power-flicker {
+  animation: power-dip 14s steps(1) 6s infinite;
+}
+
+@keyframes power-dip {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.25;
+  }
+  94% {
+    opacity: 1;
+  }
+  95.5% {
+    opacity: 0.45;
+  }
+  96.5% {
+    opacity: 1;
+  }
 }
 
 /* The portrait scanner sees a figure standing at your shoulder. A soft
    head-and-shoulders silhouette, clipped to the scan band, riding every
-   third pass (21s = 3 × 7s, same delay and easing as .photo-scan), so it only
-   shows up now and then and never to the naked eye. */
+   pass (same 7s cycle, delay and easing as .photo-scan). */
 html[data-season='halloween'] .ghost-trace {
-  --ghost: oklch(0.95 0.04 200 / 0.55);
+  --ghost: oklch(0.95 0.04 200 / 0.7);
   display: block;
   position: absolute;
   inset: 0;
@@ -927,19 +1072,19 @@ html[data-season='halloween'] .ghost-trace {
     );
   mix-blend-mode: screen;
   opacity: 0;
-  animation: ghost-trace 21s cubic-bezier(0.5, 0, 0.3, 1) 2s infinite;
+  animation: ghost-trace 7s cubic-bezier(0.5, 0, 0.3, 1) 2s infinite;
 }
 
 @keyframes ghost-trace {
   0% {
-    opacity: 0.85;
+    opacity: 1;
     clip-path: inset(-2% 0 84% 0);
   }
-  7.33% {
-    opacity: 0.85;
+  22% {
+    opacity: 1;
     clip-path: inset(100% 0 -18% 0);
   }
-  7.34%,
+  23%,
   100% {
     opacity: 0;
     clip-path: inset(100% 0 -18% 0);
@@ -962,7 +1107,7 @@ html[data-season='halloween'] .reticle-ghost::before {
 }
 
 html[data-season='halloween'] .hero-zone:hover .reticle-ghost {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 html[data-season='halloween'] .reticle-ghost-far {
@@ -970,7 +1115,7 @@ html[data-season='halloween'] .reticle-ghost-far {
 }
 
 html[data-season='halloween'] .hero-zone:hover .reticle-ghost-far {
-  opacity: 0.3;
+  opacity: 0.45;
 }
 
 /* Telemetry flags an anomaly for a moment every few seconds, and
@@ -1004,6 +1149,11 @@ html[data-season='halloween'] .telemetry-anomaly {
   html[data-season='halloween'] .ghost-trace,
   html[data-season='halloween'] .reticle-ghost {
     display: none;
+  }
+  html[data-season='halloween'] .peeking-ghost,
+  html[data-season='halloween'] .possess,
+  html[data-season='halloween'] .power-flicker {
+    animation: none !important;
   }
   html[data-season='halloween'] .telemetry-anomaly {
     animation: none !important;

@@ -11,6 +11,7 @@ import { useTheme } from 'next-themes'
 
 import { DecodeMask } from '@/components/decode-mask'
 import { NeuralField } from '@/components/neural-field'
+import { PeekingGhost } from '@/components/peeking-ghost'
 import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -69,7 +70,7 @@ export function Hero({ lang }: HeroProps) {
       <div
         ref={backdropRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden"
+        className="power-flicker pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden"
       >
         <div className="console-grid absolute inset-0" />
         <div className="aurora-exit absolute inset-0">
@@ -100,7 +101,10 @@ export function Hero({ lang }: HeroProps) {
 
       <p className="seq text-muted-foreground flex items-center gap-2 font-mono text-xs">
         <span className="bg-primary status-dot inline-block size-1.5 rounded-full" />
-        {dictionary['hero-status']}
+        <span className="season-off">{dictionary['hero-status']}</span>
+        <span className="season-only">
+          {dictionary['hero-status-halloween']}
+        </span>
       </p>
 
       <h1 className="font-heading">
@@ -111,7 +115,11 @@ export function Hero({ lang }: HeroProps) {
           {dictionary['hello']}
         </span>
         <span className="scan-in block text-[clamp(3rem,11vw,8.5rem)] leading-[0.88] font-semibold tracking-tight uppercase">
-          <ScrambleText text="Luis Esteban" duration={1300} />
+          <ScrambleText
+            text="Luis Esteban"
+            duration={1300}
+            className="possess"
+          />
           <span aria-hidden="true" className="scan-beam" />
         </span>
       </h1>
@@ -195,39 +203,42 @@ export function Hero({ lang }: HeroProps) {
           </div>
         </div>
 
-        <figure
-          data-scramble-host
-          className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
-          style={seq(150)}
-        >
-          <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
-            <DecodeMask />
-            <span aria-hidden="true" className="scan-beam z-[4]" />
-            <span aria-hidden="true" className="photo-scan" />
-            {/* Only the scan band sees it (Halloween only) */}
-            <span aria-hidden="true" className="ghost-trace" />
-            <Image
-              src="/profile_pic.jpeg"
-              alt=""
-              aria-hidden="true"
-              width={560}
-              height={560}
-              className="glitch-layer absolute inset-0 z-[1] size-full object-cover"
-            />
-            <Image
-              src="/profile_pic.jpeg"
-              alt="Luis Esteban"
-              width={560}
-              height={560}
-              className="size-full object-cover contrast-110 grayscale-[35%]"
-              priority
-            />
-          </div>
-          <figcaption className="text-muted-foreground mt-3 flex justify-between font-mono text-[11px]">
-            <span>Colombia</span>
-            <span>UTC−5</span>
-          </figcaption>
-        </figure>
+        <div className="relative mx-auto w-full max-w-[220px] md:mx-0 md:max-w-[280px]">
+          <PeekingGhost />
+          <figure
+            data-scramble-host
+            className="seq hud-frame border-border bg-card relative z-10 w-full border p-3"
+            style={seq(150)}
+          >
+            <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
+              <DecodeMask />
+              <span aria-hidden="true" className="scan-beam z-[4]" />
+              <span aria-hidden="true" className="photo-scan" />
+              {/* Only the scan band sees it (Halloween only) */}
+              <span aria-hidden="true" className="ghost-trace" />
+              <Image
+                src="/profile_pic.jpeg"
+                alt=""
+                aria-hidden="true"
+                width={560}
+                height={560}
+                className="glitch-layer absolute inset-0 z-[1] size-full object-cover"
+              />
+              <Image
+                src="/profile_pic.jpeg"
+                alt="Luis Esteban"
+                width={560}
+                height={560}
+                className="size-full object-cover contrast-110 grayscale-[35%]"
+                priority
+              />
+            </div>
+            <figcaption className="text-muted-foreground mt-3 flex justify-between font-mono text-[11px]">
+              <span>Colombia</span>
+              <span>UTC−5</span>
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   )
