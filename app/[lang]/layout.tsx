@@ -14,6 +14,7 @@ import { Header } from '@/components/ui/header'
 import { ScrollToTop } from '@/components/ui/scroll-to-top'
 
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE } from '@/lib/constants'
+import { SEASON_SCRIPT } from '@/lib/season'
 import { getCanonicalUrl } from '@/lib/utils'
 
 const geist = Geist({
@@ -159,6 +160,7 @@ export default async function RootLayout({
   return (
     <html lang={validLang} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: SEASON_SCRIPT }} />
         <link
           rel="alternate"
           type="application/rss+xml"
