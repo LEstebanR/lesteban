@@ -109,11 +109,11 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 **Halloween · Ember Signal** (`app/globals.css`, end of file)
 
 - Tokens: the signal turns pumpkin amber (`--primary` `oklch(0.79 0.16 60)` dark / `oklch(0.55 0.16 45)` light), canvases lean toward night plum, the existing ultraviolet stays as the second signal. Every component, the neural field and the scan beams inherit it.
-- Blood moon: `.aurora::before` rises once (2.8s) behind the network and breathes with the aurora.
+- `JackOLantern` (`components/jack-o-lantern.tsx`): a carved pumpkin crowns the hero's top-right corner (64px on phones, tucked above the status line). Five shaded lobes, a twisted stem, an angular face whose cut walls show the rind, and a candle flickering through the holes (`--pumpkin-*`, `--flame*` tokens). It rises once (2.8s) under the neural field.
 - Embers: `.aurora-exit::before` tiles three dot layers that rise 720px every 40s (seamless loop, transform only).
 - Candle: `.status-dot` and `.caret` flicker irregularly instead of blinking; the portrait frame glows warm from below in the same rhythm.
-- `Bats` (`components/bats.tsx`): a flock of five crosses the moon every 18s, wings flapping, silhouettes with an ember rim.
+- `Bats` (`components/bats.tsx`): a flock of five crosses the lantern every 18s, wings flapping, silhouettes with an ember rim.
 - Ground fog: `.aurora-exit::after` drifts soft banks along the bottom of the hero.
 - `.jack`: the header brand square and the footer heart become a pixel jack-o'-lantern, face cut out of the shell over a flickering candle.
 - `.season-only` / `.season-off`: the status line reads `Carving pumpkins & shipping products` (`hero-status-halloween`).
-- Reduced motion: embers and bats hidden; moon, fog, candle and pumpkin static.
+- Reduced motion: embers and bats hidden; lantern, fog, candle and pumpkin static.

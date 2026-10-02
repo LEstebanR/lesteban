@@ -11,6 +11,7 @@ import { useTheme } from 'next-themes'
 
 import { Bats } from '@/components/bats'
 import { DecodeMask } from '@/components/decode-mask'
+import { JackOLantern } from '@/components/jack-o-lantern'
 import { NeuralField } from '@/components/neural-field'
 import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
@@ -79,6 +80,7 @@ export function Hero({ lang }: HeroProps) {
             <div className="aurora-blob aurora-b" />
             <div className="aurora-blob aurora-c" />
           </div>
+          <JackOLantern />
           <Bats />
         </div>
         <div className="console-spot" />
