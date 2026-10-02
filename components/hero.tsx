@@ -9,6 +9,7 @@ import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
+import { Bats } from '@/components/bats'
 import { DecodeMask } from '@/components/decode-mask'
 import { NeuralField } from '@/components/neural-field'
 import { ScrambleText } from '@/components/scramble-text'
@@ -78,6 +79,7 @@ export function Hero({ lang }: HeroProps) {
             <div className="aurora-blob aurora-b" />
             <div className="aurora-blob aurora-c" />
           </div>
+          <Bats />
         </div>
         <div className="console-spot" />
         <NeuralField className="absolute inset-0 size-full" />
@@ -97,7 +99,10 @@ export function Hero({ lang }: HeroProps) {
 
       <p className="seq text-muted-foreground flex items-center gap-2 font-mono text-xs">
         <span className="bg-primary status-dot inline-block size-1.5 rounded-full" />
-        {dictionary['hero-status']}
+        <span className="season-off">{dictionary['hero-status']}</span>
+        <span className="season-only">
+          {dictionary['hero-status-halloween']}
+        </span>
       </p>
 
       <h1 className="font-heading">

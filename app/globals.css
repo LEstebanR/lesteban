@@ -924,6 +924,12 @@ html[data-season='halloween'] {
   --moon-edge: oklch(0.8 0.11 55 / 0.4);
   --moon-crater: oklch(0.72 0.12 50 / 0.18);
   --ember: oklch(0.62 0.19 45);
+  --bat: oklch(0.25 0.04 285);
+  --fog: oklch(0.88 0.03 290 / 0.7);
+  --jack-shell: oklch(0.68 0.19 48);
+  --jack-light: oklch(0.95 0.17 98);
+  --jack-dim: oklch(0.8 0.16 75);
+  --jack-stem: oklch(0.55 0.12 140);
 }
 
 html[data-season='halloween'].dark {
@@ -948,10 +954,12 @@ html[data-season='halloween'].dark {
   --aurora-a: oklch(0.62 0.18 42 / 0.3);
   --aurora-b: oklch(0.5 0.2 300 / 0.3);
   --chart-1: oklch(0.79 0.16 60);
-  --moon-core: oklch(0.7 0.16 45 / 0.42);
-  --moon-edge: oklch(0.5 0.18 30 / 0.3);
+  --moon-core: oklch(0.72 0.17 45 / 0.6);
+  --moon-edge: oklch(0.52 0.19 30 / 0.45);
   --moon-crater: oklch(0.4 0.14 30 / 0.2);
   --ember: oklch(0.82 0.16 65);
+  --bat: oklch(0.1 0.02 282);
+  --fog: oklch(0.45 0.05 290 / 0.28);
 }
 
 /* Blood moon: rises once behind the hero, then glows with the aurora. It sits
@@ -1061,9 +1069,176 @@ html[data-season='halloween'] .caret {
   box-shadow: 0 0 10px var(--primary);
 }
 
+/* Seasonal copy swaps: the status line and the footer heart */
+.season-only,
+.bats {
+  display: none;
+}
+
+html[data-season='halloween'] .season-only {
+  display: inline;
+}
+
+html[data-season='halloween'] .season-off {
+  display: none;
+}
+
+/* Bats: a small flock crosses the moon every 18s, wings flapping. They fly
+   over the moon and under the network, silhouettes with an ember rim. */
+html[data-season='halloween'] .bats {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bat {
+  position: absolute;
+  right: -60px;
+  width: 38px;
+  aspect-ratio: 2;
+  color: var(--bat);
+  opacity: 0;
+  animation: bat-flight 18s ease-in-out infinite;
+  animation-delay: calc(2.5s + var(--bat-delay, 0s));
+}
+
+.bat-wings {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  stroke: var(--primary);
+  stroke-width: 0.6;
+  stroke-opacity: 0.9;
+  transform-origin: 50% 40%;
+  animation: bat-flap 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes bat-flight {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(var(--bat-scale, 1));
+  }
+  8% {
+    transform: translate(-22vw, 3vh) scale(var(--bat-scale, 1));
+  }
+  16% {
+    transform: translate(-44vw, -2vh) scale(var(--bat-scale, 1));
+  }
+  24% {
+    transform: translate(-68vw, 4vh) scale(var(--bat-scale, 1));
+  }
+  32% {
+    opacity: 1;
+    transform: translate(-100vw, -1vh) scale(var(--bat-scale, 1));
+  }
+  32.1%,
+  100% {
+    opacity: 0;
+    transform: translate(-100vw, -1vh) scale(var(--bat-scale, 1));
+  }
+}
+
+@keyframes bat-flap {
+  to {
+    transform: scaleY(0.3);
+  }
+}
+
+/* Ground fog: soft banks drifting along the bottom of the hero */
+html[data-season='halloween'] .aurora-exit::after {
+  content: '';
+  position: absolute;
+  left: -40%;
+  right: -40%;
+  bottom: -6%;
+  height: 38%;
+  background:
+    radial-gradient(ellipse 22% 55% at 18% 100%, var(--fog), transparent),
+    radial-gradient(ellipse 26% 45% at 52% 100%, var(--fog), transparent),
+    radial-gradient(ellipse 20% 60% at 84% 100%, var(--fog), transparent);
+  animation: fog-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  from {
+    transform: translateX(-10%);
+  }
+  to {
+    transform: translateX(10%);
+  }
+}
+
+/* The portrait frame glows warm from below, as if a candle sat in front of
+   it, flickering with the caret. */
+html[data-season='halloween'] .hero-zone figure::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  box-shadow: 0 18px 48px -14px
+    color-mix(in oklch, var(--primary) 70%, transparent);
+  animation: candle 2.4s steps(1) infinite;
+}
+
+/* Jack-o'-lantern: the brand square and the footer heart become a pixel
+   pumpkin, its face cut out of the shell over a flickering candle. */
+html[data-season='halloween'] .jack {
+  display: inline-block;
+  position: relative;
+  width: 0.8rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  background: var(--jack-light);
+  vertical-align: -1px;
+  animation: jack-candle 2.4s steps(1) infinite;
+}
+
+html[data-season='halloween'] .jack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  background: var(--jack-shell);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill-rule='evenodd' d='M0 0h10v10H0zM2 3h2v2H2zM6 3h2v2H6zM2 6h6v2H7V7H6v1H4V7H3v1H2z'/%3E%3C/svg%3E")
+    0 0 / 100% 100% no-repeat;
+}
+
+html[data-season='halloween'] .jack::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 3px;
+  background: var(--jack-stem);
+}
+
+@keyframes jack-candle {
+  0%,
+  100% {
+    background: var(--jack-light);
+  }
+  30% {
+    background: var(--jack-dim);
+  }
+  45% {
+    background: var(--jack-light);
+  }
+  78% {
+    background: var(--jack-dim);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html[data-season='halloween'] .aurora-exit::before {
+  html[data-season='halloween'] .aurora-exit::before,
+  html[data-season='halloween'] .bats {
     display: none;
+  }
+  html[data-season='halloween'] .aurora-exit::after,
+  html[data-season='halloween'] .hero-zone figure::before,
+  html[data-season='halloween'] .jack {
+    animation: none !important;
   }
   html[data-season='halloween'] .aurora::before {
     animation: none !important;

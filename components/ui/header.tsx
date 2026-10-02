@@ -110,7 +110,7 @@ export function Header() {
         <div className="flex flex-1 items-center justify-between gap-6">
           <Link href={`/${currentLang}`} target="_self">
             <h1 className="font-heading flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
-              <span aria-hidden="true" className="bg-primary size-2" />
+              <span aria-hidden="true" className="jack bg-primary size-2" />
               Luis Esteban
             </h1>
           </Link>
