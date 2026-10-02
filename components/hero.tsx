@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
-import { CrawlingSpider } from '@/components/crawling-spider'
+import { CrawlingSpider, RoamingSpiders } from '@/components/crawling-spider'
 import { DecodeMask } from '@/components/decode-mask'
 import { NeuralField } from '@/components/neural-field'
 import { ScrambleText } from '@/components/scramble-text'
@@ -82,6 +82,7 @@ export function Hero({ lang }: HeroProps) {
         </div>
         <div className="console-spot" />
         <NeuralField className="absolute inset-0 size-full" />
+        <RoamingSpiders />
       </div>
       <div
         ref={overlayRef}
@@ -117,7 +118,7 @@ export function Hero({ lang }: HeroProps) {
       <div className="grid gap-10 md:grid-cols-[1fr_280px] md:items-end">
         <div className="flex max-w-xl flex-col gap-6">
           <p
-            className="seq text-primary font-heading text-xl font-medium md:text-2xl"
+            className="hero-role seq text-primary font-heading text-xl font-medium md:text-2xl"
             style={seq(1000)}
           >
             {dictionary['hero-role']}

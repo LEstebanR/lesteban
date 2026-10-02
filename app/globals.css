@@ -924,7 +924,7 @@ html[data-season='halloween'].dark {
     top: 4rem;
     right: 6rem;
     z-index: 30;
-    width: 26px;
+    width: 40px;
     pointer-events: none;
     transform-origin: 50% 0;
     animation: spider-sway 3.6s ease-in-out infinite alternate;
@@ -949,8 +949,8 @@ html[data-season='halloween'].dark {
   position: absolute;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
+  width: 40px;
+  height: 40px;
   transform: translateY(calc(14vh - 2px));
 }
 
@@ -1072,8 +1072,8 @@ html[data-season='halloween'] .crawler {
   position: absolute;
   left: 0;
   right: 0;
-  top: -11px;
-  height: 22px;
+  top: -13px;
+  height: 26px;
   container-type: inline-size;
   pointer-events: none;
 }
@@ -1082,8 +1082,8 @@ html[data-season='halloween'] .crawler {
   position: absolute;
   top: 0;
   left: 0;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   animation: crawl 26s linear infinite;
   animation-delay: var(--crawl-delay, 0s);
 }
@@ -1138,10 +1138,10 @@ html[data-season='halloween'] .crawler {
     transform: translateX(40cqw) rotate(90deg);
   }
   52% {
-    transform: translateX(calc(100cqw - 22px)) rotate(90deg);
+    transform: translateX(calc(100cqw - 26px)) rotate(90deg);
   }
   60% {
-    transform: translateX(calc(100cqw - 22px)) rotate(-90deg);
+    transform: translateX(calc(100cqw - 26px)) rotate(-90deg);
   }
   68% {
     transform: translateX(62cqw) rotate(-90deg);
@@ -1163,8 +1163,166 @@ html[data-season='halloween'] .crawler {
   }
 }
 
+/* Orange where the eye lands: the role line, its caret, the status dot, the
+   section slashes and their hairlines. Cyan stays on everything else. */
+html[data-season='halloween'] .hero-role,
+html[data-season='halloween'] .slash {
+  color: var(--secondary);
+}
+
+html[data-season='halloween'] .caret,
+html[data-season='halloween'] .status-dot {
+  background: var(--secondary);
+  box-shadow: 0 0 10px var(--secondary);
+}
+
+html[data-season='halloween'] .reveal-line {
+  background: color-mix(in oklch, var(--secondary) 70%, transparent);
+}
+
+/* Roaming spiders: three routes across the hero backdrop (a size container,
+   so cqw/cqh keep the routes proportional). The glyph faces up, so the
+   rotation is the heading: 90deg right, 180deg down, 270deg left. */
+.roamers {
+  display: none;
+}
+
+html[data-season='halloween'] .roamers {
+  display: block;
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  pointer-events: none;
+}
+
+.roamer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  will-change: transform;
+}
+
+/* Down from the web's hub, a detour, back up home */
+.roamer-a {
+  animation: roam-a 34s linear 1.5s infinite;
+}
+
+@keyframes roam-a {
+  0% {
+    transform: translate(93cqw, 3cqh) rotate(205deg);
+  }
+  9%,
+  15% {
+    transform: translate(86cqw, 24cqh) rotate(205deg);
+  }
+  17% {
+    transform: translate(86cqw, 24cqh) rotate(245deg);
+  }
+  25%,
+  32% {
+    transform: translate(70cqw, 34cqh) rotate(245deg);
+  }
+  34% {
+    transform: translate(70cqw, 34cqh) rotate(165deg);
+  }
+  44%,
+  51% {
+    transform: translate(73cqw, 60cqh) rotate(165deg);
+  }
+  53% {
+    transform: translate(73cqw, 60cqh) rotate(25deg);
+  }
+  66%,
+  72% {
+    transform: translate(81cqw, 30cqh) rotate(25deg);
+  }
+  74% {
+    transform: translate(81cqw, 30cqh) rotate(20deg);
+  }
+  86%,
+  96% {
+    transform: translate(93cqw, 3cqh) rotate(20deg);
+  }
+  100% {
+    transform: translate(93cqw, 3cqh) rotate(205deg);
+  }
+}
+
+/* Along the floor of the hero, left to right, then gone */
+.roamer-b {
+  animation: roam-b 28s linear 5s infinite;
+}
+
+@keyframes roam-b {
+  0% {
+    transform: translate(-4cqw, 90cqh) rotate(90deg);
+  }
+  10%,
+  16% {
+    transform: translate(14cqw, 90cqh) rotate(90deg);
+  }
+  24%,
+  29% {
+    transform: translate(31cqw, 86cqh) rotate(80deg);
+  }
+  31% {
+    transform: translate(31cqw, 86cqh) rotate(115deg);
+  }
+  40%,
+  46% {
+    transform: translate(48cqw, 93cqh) rotate(95deg);
+  }
+  58%,
+  62% {
+    transform: translate(72cqw, 88cqh) rotate(80deg);
+  }
+  74%,
+  100% {
+    transform: translate(104cqw, 91cqh) rotate(95deg);
+  }
+}
+
+/* In from the top, wanders, climbs back out */
+.roamer-c {
+  animation: roam-c 31s linear 9s infinite;
+}
+
+@keyframes roam-c {
+  0% {
+    transform: translate(40cqw, -5cqh) rotate(175deg);
+  }
+  10%,
+  18% {
+    transform: translate(42cqw, 14cqh) rotate(175deg);
+  }
+  20% {
+    transform: translate(42cqw, 14cqh) rotate(125deg);
+  }
+  30%,
+  38% {
+    transform: translate(55cqw, 24cqh) rotate(125deg);
+  }
+  40% {
+    transform: translate(55cqw, 24cqh) rotate(330deg);
+  }
+  52%,
+  58% {
+    transform: translate(50cqw, 8cqh) rotate(330deg);
+  }
+  60% {
+    transform: translate(50cqw, 8cqh) rotate(355deg);
+  }
+  70%,
+  100% {
+    transform: translate(49cqw, -6cqh) rotate(355deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html[data-season='halloween'] .crawler {
+  html[data-season='halloween'] .crawler,
+  html[data-season='halloween'] .roamers {
     display: none;
   }
   html[data-season='halloween'] .spider,

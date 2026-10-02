@@ -81,7 +81,7 @@ export function NeuralField({ className }: { className?: string }) {
 
     const drawWeb = (current: Web) => {
       // Hub threads: from the corner to the first ring
-      ctx.globalAlpha = 0.3
+      ctx.globalAlpha = 0.42
       ctx.beginPath()
       for (let spoke = 0; spoke < current.spokes; spoke++) {
         ctx.moveTo(width, 0)
@@ -94,7 +94,7 @@ export function NeuralField({ className }: { className?: string }) {
         // Silk thins out toward the rim so the web stays in its corner
         const rim = Math.floor(a / current.spokes) / current.rings
         ctx.globalAlpha =
-          0.34 * (1 - rim) + Math.max(boosts[a], boosts[b]) * 0.55
+          0.45 * (1 - rim) + Math.max(boosts[a], boosts[b]) * 0.55
         ctx.beginPath()
         ctx.moveTo(from.x, from.y)
         if (kind === 'ring') {
