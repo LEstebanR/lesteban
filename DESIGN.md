@@ -101,3 +101,23 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `app/icon.svg` (favicon): ink-navy tile, cyan HUD corner ticks and the `/▮` prompt (section slash + hero caret).
 - `public/favicon.ico` (16/32/48) and `app/apple-icon.png` (180, square) are rasterised from the same SVG.
 - Open Graph cards (`components/og/brand-og-image.tsx`): ink-navy canvas with coordinate grid, aurora glow, HUD corner ticks, the brand mark and Tektur display type; blog posts show their cover in a framed panel. Fonts are static TTFs in `public/fonts/og/` (Satori can't read WOFF2 or variable fonts); colours are the hex equivalents of the dark tokens in `lib/og.ts`.
+
+## 9. Seasons
+
+`lib/season.ts` ships an inline `<head>` script that sets `<html data-season="halloween">` during the visitor's own October, before first paint. Seasonal styling hangs off that attribute only, so it switches itself off on 1 November with no rebuild.
+
+**Halloween · Ember Signal** (`app/globals.css`, end of file)
+
+- Tokens: the signal turns pumpkin amber (`--primary` `oklch(0.79 0.16 60)` dark / `oklch(0.55 0.16 45)` light), canvases lean toward night plum, the existing ultraviolet stays as the second signal. Every component, the neural field and the scan beams inherit it.
+- `JackOLantern` (`components/jack-o-lantern.tsx`): a carved pumpkin sits on the ground beside the portrait, out of the web's corner (56px on phones, in the portrait's left margin). Five shaded lobes, a twisted stem, an angular face whose cut walls show the rind, and a candle flickering through the holes (`--pumpkin-*`, `--flame*` tokens). It rises once (2.8s), its keeper bat circling it.
+- Embers: `.aurora-exit::before` tiles three dot layers that rise 720px every 40s (seamless loop, transform only).
+- Candle: `.status-dot` and `.caret` flicker irregularly instead of blinking; the portrait frame glows warm from below in the same rhythm.
+- `Bats` (`components/bats.tsx`): front-view bats (pointed ears, ember eyes, wings beating on a shoulder hinge) flutter across the hero every 12s on an erratic, bobbing line; one keeps orbiting the lantern (`LanternBat`). With `night`, a sparser flock crosses the viewport every 26s on every view.
+- Ghosts (`components/peeking-ghost.tsx`): one peeks out from behind the portrait every 9s; three drift across the viewport behind the content on every view (`--ghost-*` tokens; smaller and fainter on phones).
+- Cobwebs: the neural field is spun into a web from the hero's top-right corner, behind the lantern, in pale `--silk`. `CornerWeb` (`components/corner-web.tsx`) hangs a web with a dangling spider in the Experience and Skills sections and in the blog headers; HUD cards get corner silk; `CrawlingSpider` walks every section hairline and the post divider; `Spider` hangs in the right gutter (xl+) and lowers with the scroll.
+- `SeasonSync` (`components/season-sync.tsx`): switching language swaps the `[lang]` root layout and renders a fresh `<html>`, which the head script never sees on a client navigation; `applySeason()` restores the flag before paint.
+- `SeasonNight` (`components/season-night.tsx`, in the locale layout): ghosts, night bats and the gutter spider on every view.
+- Ground fog: `.aurora-exit::after` drifts soft banks along the bottom of the hero.
+- `.jack`: the header brand square and the footer heart become a pixel jack-o'-lantern, face cut out of the shell over a flickering candle.
+- `.season-only` / `.season-off`: the status line reads `Carving pumpkins & shipping products` (`hero-status-halloween`).
+- Reduced motion: embers, bats, floating ghosts and crawling spiders hidden; lantern, fog, candle, pumpkin, peeking ghost, web spiders static.

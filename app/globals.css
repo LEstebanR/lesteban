@@ -835,7 +835,6 @@ html {
   }
 }
 
-
 @keyframes aurora-exit {
   to {
     opacity: 0;
@@ -888,6 +887,1094 @@ html {
   .aurora-blob,
   .aurora-exit,
   .console-grid::before {
+    animation: none !important;
+  }
+}
+
+/* ── Season: Halloween · Ember Signal ──────────────────────────────────────
+   Active while <html data-season="halloween"> (set in October by the head
+   script in lib/season.ts). The console runs on ember instead of ice: the
+   signal turns pumpkin amber, the existing ultraviolet stays as the second
+   signal, the aurora smoulders, embers rise and a carved jack-o'-lantern comes up behind
+   the network. Everything else inherits the tokens, so no component changes. */
+
+html[data-season='halloween'] {
+  --background: oklch(0.975 0.008 75);
+  --foreground: oklch(0.22 0.03 285);
+  --card: oklch(0.995 0.004 75);
+  --card-foreground: oklch(0.22 0.03 285);
+  --popover: oklch(0.995 0.004 75);
+  --popover-foreground: oklch(0.22 0.03 285);
+  --primary: oklch(0.55 0.16 45);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.5 0.21 300);
+  --muted: oklch(0.94 0.012 75);
+  --muted-foreground: oklch(0.48 0.03 290);
+  --accent: oklch(0.94 0.045 65);
+  --accent-foreground: oklch(0.36 0.1 45);
+  --border: oklch(0.87 0.02 75);
+  --input: oklch(0.87 0.02 75);
+  --ring: oklch(0.55 0.16 45 / 0.6);
+  --grid-line: oklch(0.55 0.16 45 / 0.08);
+  --glow: oklch(0.72 0.16 55 / 0.22);
+  --aurora-a: oklch(0.78 0.15 60 / 0.3);
+  --aurora-b: oklch(0.62 0.2 300 / 0.18);
+  --chart-1: oklch(0.55 0.16 45);
+  --pumpkin-light: oklch(0.82 0.16 64);
+  --pumpkin: oklch(0.68 0.19 46);
+  --pumpkin-deep: oklch(0.46 0.16 36);
+  --pumpkin-shadow: oklch(0.3 0.09 32);
+  --pumpkin-rind: oklch(0.88 0.11 78);
+  --flame-core: oklch(0.98 0.12 100);
+  --flame: oklch(0.84 0.18 72);
+  --stem: oklch(0.5 0.08 115);
+  --stem-deep: oklch(0.3 0.05 85);
+  --ember: oklch(0.62 0.19 45);
+  --bat: oklch(0.25 0.04 285);
+  --fog: oklch(0.88 0.03 290 / 0.7);
+  --jack-shell: oklch(0.68 0.19 48);
+  --jack-light: oklch(0.95 0.17 98);
+  --jack-dim: oklch(0.8 0.16 75);
+  --jack-stem: oklch(0.55 0.12 140);
+}
+
+html[data-season='halloween'].dark {
+  --background: oklch(0.15 0.02 282);
+  --foreground: oklch(0.93 0.012 80);
+  --card: oklch(0.185 0.024 282);
+  --card-foreground: oklch(0.93 0.012 80);
+  --popover: oklch(0.185 0.024 282);
+  --popover-foreground: oklch(0.93 0.012 80);
+  --primary: oklch(0.79 0.16 60);
+  --primary-foreground: oklch(0.17 0.03 282);
+  --secondary: oklch(0.72 0.17 300);
+  --muted: oklch(0.22 0.026 282);
+  --muted-foreground: oklch(0.7 0.025 290);
+  --accent: oklch(0.28 0.05 50);
+  --accent-foreground: oklch(0.9 0.08 70);
+  --border: oklch(0.31 0.03 282);
+  --input: oklch(0.31 0.03 282);
+  --ring: oklch(0.79 0.16 60 / 0.6);
+  --grid-line: oklch(0.79 0.16 60 / 0.06);
+  --glow: oklch(0.75 0.17 50 / 0.16);
+  --aurora-a: oklch(0.62 0.18 42 / 0.3);
+  --aurora-b: oklch(0.5 0.2 300 / 0.3);
+  --chart-1: oklch(0.79 0.16 60);
+  --pumpkin-shadow: oklch(0.16 0.05 30);
+  --ember: oklch(0.82 0.16 65);
+  --bat: oklch(0.1 0.02 282);
+  --fog: oklch(0.45 0.05 290 / 0.28);
+}
+
+/* Jack-o'-lantern: sits on the ground beside the portrait (out of the web's
+   corner), rises once, then the candle inside flickers through the carved
+   face. Its keeper bat circles it. */
+.jack-lantern {
+  display: none;
+}
+
+html[data-season='halloween'] .jack-lantern {
+  --jack-w: clamp(64px, calc(14vw - 40px), 170px);
+  display: block;
+  position: absolute;
+  right: calc(100% + 1rem);
+  bottom: 0;
+  width: var(--jack-w);
+  aspect-ratio: 200 / 190;
+  filter: drop-shadow(
+    0 0 50px color-mix(in oklch, var(--flame) 35%, transparent)
+  );
+  animation: moonrise 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both;
+}
+
+/* Phones: the portrait is centred, so the pumpkin waits in its left margin */
+@media (width < 48rem) {
+  html[data-season='halloween'] .jack-lantern {
+    --jack-w: 56px;
+    right: calc(100% + 0.5rem);
+  }
+}
+
+.jack-ribs ellipse {
+  stroke: var(--pumpkin-deep);
+  stroke-width: 1.2;
+  stroke-opacity: 0.6;
+}
+
+.jack-highlight {
+  fill: var(--pumpkin-light);
+  opacity: 0.5;
+}
+
+.jack-shadow {
+  fill: var(--pumpkin-shadow);
+  opacity: 0.5;
+}
+
+.jack-rind {
+  fill: var(--pumpkin-rind);
+}
+
+.jack-flicker {
+  animation: lantern-flicker 3.1s steps(1) infinite;
+}
+
+@keyframes lantern-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  14% {
+    opacity: 0.82;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  47% {
+    opacity: 0.74;
+  }
+  52% {
+    opacity: 1;
+  }
+  81% {
+    opacity: 0.86;
+  }
+}
+
+@keyframes moonrise {
+  from {
+    opacity: 0;
+    transform: translateY(45%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Embers: three tiled dot layers drifting up through the hero. The tile
+   heights (180/240/360) divide 720px, so one 720px rise loops seamlessly. */
+html[data-season='halloween'] .aurora-exit::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -720px 0;
+  background-image:
+    radial-gradient(circle, var(--ember) 0 1px, transparent 1.5px),
+    radial-gradient(circle, var(--ember) 0 1.5px, transparent 2px),
+    radial-gradient(circle, var(--ember) 0 1px, transparent 1.5px);
+  background-size:
+    230px 180px,
+    370px 240px,
+    310px 360px;
+  background-position:
+    20px 40px,
+    140px 10px,
+    80px 200px;
+  opacity: 0.45;
+  mask-image: linear-gradient(to top, black 30%, transparent 85%);
+  animation:
+    ember-rise 40s linear infinite,
+    ember-flicker 3.2s steps(1) infinite;
+}
+
+@keyframes ember-rise {
+  to {
+    transform: translateY(-720px);
+  }
+}
+
+@keyframes ember-flicker {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  55% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.35;
+  }
+}
+
+/* The status dot and the prompt caret burn like a candle instead of blinking */
+@keyframes candle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0.55;
+  }
+  24% {
+    opacity: 0.9;
+  }
+  52% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0.4;
+  }
+}
+
+html[data-season='halloween'] .status-dot,
+html[data-season='halloween'] .caret {
+  animation: candle 2.4s steps(1) infinite;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* Seasonal copy swaps: the status line and the footer heart */
+.season-only,
+.bats {
+  display: none;
+}
+
+html[data-season='halloween'] .season-only {
+  display: inline;
+}
+
+html[data-season='halloween'] .season-off {
+  display: none;
+}
+
+/* Bats: a colony of five flutters across the hero every 12s on an erratic,
+   swooping line, bobbing as they go, wings beating on their shoulder hinge.
+   A sixth keeps circling the lantern. Dark silhouettes with an ember rim and
+   glowing eyes, backlit so they read on the night canvas too. */
+html[data-season='halloween'] .bats {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bat-glyph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: var(--bat);
+  stroke: var(--primary);
+  stroke-width: 0.7;
+  stroke-opacity: 0.85;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  filter: drop-shadow(
+    0 0 6px color-mix(in oklch, var(--flame) 55%, transparent)
+  );
+  animation: bat-bob 0.7s ease-in-out infinite alternate;
+}
+
+.bat-wing {
+  transform-box: fill-box;
+  transform-origin: 0% 55%;
+  animation: bat-flap 0.34s ease-in-out infinite;
+}
+
+.bat-bones {
+  fill: none;
+  stroke-width: 0.6;
+  stroke-opacity: 0.5;
+}
+
+.bat-eye {
+  fill: var(--flame);
+  stroke: none;
+}
+
+.bat {
+  position: absolute;
+  right: -100px;
+  width: 80px;
+  aspect-ratio: 2;
+  opacity: 0;
+  animation: bat-flight 12s ease-in-out infinite;
+  animation-delay: calc(2.5s + var(--bat-delay, 0s));
+}
+
+.bat:nth-child(even) .bat-glyph {
+  animation-duration: 0.9s;
+}
+
+.bat:nth-child(even) .bat-wing {
+  animation-duration: 0.28s;
+}
+
+@keyframes bat-flight {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(var(--bat-scale, 1));
+  }
+  10% {
+    transform: translate(-14vw, 5vh) scale(var(--bat-scale, 1));
+  }
+  20% {
+    transform: translate(-30vw, -3vh) scale(var(--bat-scale, 1));
+  }
+  30% {
+    transform: translate(-46vw, 6vh) scale(var(--bat-scale, 1));
+  }
+  40% {
+    transform: translate(-64vw, 0) scale(var(--bat-scale, 1));
+  }
+  50% {
+    transform: translate(-84vw, 7vh) scale(var(--bat-scale, 1));
+  }
+  58% {
+    opacity: 1;
+    transform: translate(calc(-100vw - 100px), 2vh) scale(var(--bat-scale, 1));
+  }
+  58.1%,
+  100% {
+    opacity: 0;
+    transform: translate(calc(-100vw - 100px), 2vh) scale(var(--bat-scale, 1));
+  }
+}
+
+@keyframes bat-bob {
+  from {
+    transform: translateY(-7px) rotate(-5deg);
+  }
+  to {
+    transform: translateY(7px) rotate(5deg);
+  }
+}
+
+@keyframes bat-flap {
+  0%,
+  100% {
+    transform: rotate(-36deg);
+  }
+  50% {
+    transform: rotate(26deg) scaleY(0.8);
+  }
+}
+
+/* The lantern's keeper: orbits the pumpkin, smaller as it swings behind */
+.bat-lurker {
+  position: absolute;
+  top: 18%;
+  left: calc(50% - 20px);
+  width: 40px;
+  aspect-ratio: 2;
+  animation: bat-orbit 9s linear 3.4s infinite both;
+}
+
+@media (width < 48rem) {
+  .bat-lurker {
+    left: calc(50% - 12px);
+    width: 24px;
+  }
+}
+
+@keyframes bat-orbit {
+  0%,
+  100% {
+    transform: translate(calc(var(--jack-w) * 0.75), 0) scale(0.9);
+  }
+  25% {
+    transform: translate(0, calc(var(--jack-w) * 0.5)) scale(1);
+  }
+  50% {
+    transform: translate(calc(var(--jack-w) * -0.75), 0) scale(0.8);
+  }
+  62% {
+    transform: translate(
+        calc(var(--jack-w) * -0.35),
+        calc(var(--jack-w) * -0.45)
+      )
+      scale(0.62);
+  }
+  75% {
+    transform: translate(0, calc(var(--jack-w) * -0.55)) scale(0.58);
+  }
+  88% {
+    transform: translate(calc(var(--jack-w) * 0.45), calc(var(--jack-w) * -0.4))
+      scale(0.7);
+  }
+}
+
+/* Ground fog: soft banks drifting along the bottom of the hero */
+html[data-season='halloween'] .aurora-exit::after {
+  content: '';
+  position: absolute;
+  left: -40%;
+  right: -40%;
+  bottom: -6%;
+  height: 38%;
+  background:
+    radial-gradient(ellipse 22% 55% at 18% 100%, var(--fog), transparent),
+    radial-gradient(ellipse 26% 45% at 52% 100%, var(--fog), transparent),
+    radial-gradient(ellipse 20% 60% at 84% 100%, var(--fog), transparent);
+  animation: fog-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  from {
+    transform: translateX(-10%);
+  }
+  to {
+    transform: translateX(10%);
+  }
+}
+
+/* The portrait frame glows warm from below, as if a candle sat in front of
+   it, flickering with the caret. */
+html[data-season='halloween'] .hero-zone figure::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  box-shadow: 0 18px 48px -14px
+    color-mix(in oklch, var(--primary) 70%, transparent);
+  animation: candle 2.4s steps(1) infinite;
+}
+
+/* Jack-o'-lantern: the brand square and the footer heart become a pixel
+   pumpkin, its face cut out of the shell over a flickering candle. */
+html[data-season='halloween'] .jack {
+  display: inline-block;
+  position: relative;
+  width: 0.8rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  background: var(--jack-light);
+  vertical-align: -1px;
+  animation: jack-candle 2.4s steps(1) infinite;
+}
+
+html[data-season='halloween'] .jack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  background: var(--jack-shell);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill-rule='evenodd' d='M0 0h10v10H0zM2 3h2v2H2zM6 3h2v2H6zM2 6h6v2H7V7H6v1H4V7H3v1H2z'/%3E%3C/svg%3E")
+    0 0 / 100% 100% no-repeat;
+}
+
+html[data-season='halloween'] .jack::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 3px;
+  background: var(--jack-stem);
+}
+
+@keyframes jack-candle {
+  0%,
+  100% {
+    background: var(--jack-light);
+  }
+  30% {
+    background: var(--jack-dim);
+  }
+  45% {
+    background: var(--jack-light);
+  }
+  78% {
+    background: var(--jack-dim);
+  }
+}
+
+/* Ghosts (from Ghost in the Machine): a pale glowing sheet with hollow
+   eyes. Lavender-grey on the daylight console so it still reads on paper. */
+.peeking-ghost,
+.floaters {
+  display: none;
+}
+
+html[data-season='halloween'] {
+  --ghost-body: oklch(0.55 0.09 295);
+  --ghost-glow: oklch(0.6 0.16 300 / 0.5);
+  --ghost-hollow: oklch(0.2 0.04 285);
+}
+
+html[data-season='halloween'].dark {
+  --ghost-body: oklch(0.97 0.02 290);
+  --ghost-glow: oklch(0.72 0.17 300 / 0.6);
+  --ghost-hollow: oklch(0.14 0.03 280);
+}
+
+.ghost-glyph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 14px var(--ghost-glow));
+}
+
+.ghost-hollow {
+  fill: var(--ghost-hollow);
+}
+
+/* One ghost hides behind the portrait frame and peeks out every 9s: leans
+   out, bobs, flickers and ducks back in. */
+html[data-season='halloween'] .peeking-ghost {
+  display: block;
+  position: absolute;
+  top: 10%;
+  right: 0;
+  z-index: 0;
+  width: 96px;
+  aspect-ratio: 60 / 80;
+  pointer-events: none;
+  transform: translateX(-30%);
+  transform-origin: 0 100%;
+  animation: ghost-peek 9s cubic-bezier(0.3, 0.7, 0.2, 1) 2s infinite;
+}
+
+@keyframes ghost-peek {
+  0%,
+  30% {
+    transform: translateX(-30%) rotate(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(62%) rotate(10deg);
+  }
+  47% {
+    transform: translateX(58%) translateY(-5px) rotate(6deg);
+  }
+  54% {
+    transform: translateX(62%) rotate(10deg);
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  56% {
+    opacity: 1;
+  }
+  57% {
+    opacity: 0.4;
+  }
+  58% {
+    opacity: 1;
+    transform: translateX(62%) rotate(10deg);
+  }
+  66%,
+  100% {
+    transform: translateX(-30%) rotate(0);
+  }
+}
+
+/* Floating ghosts: three drift across the viewport on long routes (fixed,
+   so they keep you company down the page), bobbing as they go and thinning
+   out mid-flight. They float behind the content, slipping under cards. */
+html[data-season='halloween'] .floaters {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floater {
+  position: absolute;
+  top: 0;
+  left: 0;
+  aspect-ratio: 60 / 80;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.floater-bob {
+  animation: ghost-bob 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes ghost-bob {
+  from {
+    transform: translateY(-6px) rotate(-4deg);
+  }
+  to {
+    transform: translateY(6px) rotate(4deg);
+  }
+}
+
+/* Phones: smaller and fainter so they never sit on the copy */
+@media (width < 48rem) {
+  html[data-season='halloween'] .floaters {
+    opacity: 0.55;
+  }
+  .floater {
+    scale: 0.6;
+  }
+  .bat {
+    width: 48px;
+  }
+}
+
+/* Left to right across the upper page */
+.floater-a {
+  width: 92px;
+  animation: float-a 46s ease-in-out 1s infinite;
+}
+
+@keyframes float-a {
+  0% {
+    opacity: 0;
+    transform: translate(-12vw, 24vh) scaleX(1);
+  }
+  8% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 0.25;
+    transform: translate(28vw, 14vh);
+  }
+  45% {
+    opacity: 0.75;
+    transform: translate(52vw, 22vh);
+  }
+  62% {
+    opacity: 0.7;
+    transform: translate(78vw, 10vh);
+  }
+  72%,
+  100% {
+    opacity: 0;
+    transform: translate(108vw, 16vh);
+  }
+}
+
+/* Right to left, rising from the lower page, facing its way */
+.floater-b {
+  width: 72px;
+  animation: float-b 58s ease-in-out 5s infinite;
+}
+
+@keyframes float-b {
+  0% {
+    opacity: 0;
+    transform: translate(105vw, 78vh) scaleX(-1);
+  }
+  10% {
+    opacity: 0.7;
+  }
+  35% {
+    opacity: 0.2;
+    transform: translate(64vw, 60vh) scaleX(-1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translate(40vw, 66vh) scaleX(-1);
+  }
+  68% {
+    opacity: 0.6;
+    transform: translate(12vw, 44vh) scaleX(-1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translate(-14vw, 36vh) scaleX(-1);
+  }
+}
+
+/* A big one rising slowly up the left gutter */
+.floater-c {
+  width: 128px;
+  animation: float-c 40s ease-in-out 11s infinite;
+}
+
+@keyframes float-c {
+  0% {
+    opacity: 0;
+    transform: translate(3vw, 105vh);
+  }
+  15% {
+    opacity: 0.55;
+  }
+  45% {
+    opacity: 0.18;
+    transform: translate(9vw, 48vh);
+  }
+  65% {
+    opacity: 0.5;
+    transform: translate(5vw, 22vh);
+  }
+  85%,
+  100% {
+    opacity: 0;
+    transform: translate(11vw, -30vh);
+  }
+}
+
+/* Cobwebs (from The Web): the neural field is spun into a web from the
+   top-right corner, behind the lantern, in pale silk so the pumpkin stays the
+   only orange there. HUD surfaces get corner silk and a spider hangs in the
+   right gutter. */
+html[data-season='halloween'] {
+  --silk: oklch(0.42 0.03 285);
+}
+
+html[data-season='halloween'].dark {
+  --silk: oklch(0.88 0.02 290);
+}
+
+/* Spider: a fixed pendulum in the right gutter. The thread is a 70vh line
+   scaled down; the body rides the same root scroll timeline to its end. */
+.spider {
+  display: none;
+}
+
+@media (width >= 80rem) {
+  html[data-season='halloween'] .spider {
+    display: block;
+    position: fixed;
+    top: 4rem;
+    right: calc(4% + clamp(120px, 17vw, 250px) + 1.5rem);
+    z-index: 30;
+    width: 40px;
+    pointer-events: none;
+    transform-origin: 50% 0;
+    animation: spider-sway 3.6s ease-in-out infinite alternate;
+  }
+}
+
+.spider-thread {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 70vh;
+  background: linear-gradient(
+    var(--silk),
+    color-mix(in oklch, var(--silk) 40%, transparent)
+  );
+  transform-origin: top;
+  transform: scaleY(0.2);
+}
+
+.spider-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  transform: translateY(calc(14vh - 2px));
+}
+
+.spider-legs {
+  transform-origin: 16px 18px;
+  animation: spider-twitch 6s steps(1) infinite;
+}
+
+@supports (animation-timeline: scroll()) {
+  .spider-thread {
+    animation: spider-thread linear both;
+    animation-timeline: scroll(root);
+  }
+
+  .spider-body {
+    animation: spider-descend linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes spider-sway {
+  from {
+    transform: rotate(-2.5deg);
+  }
+  to {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes spider-thread {
+  from {
+    transform: scaleY(0.2);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes spider-descend {
+  from {
+    transform: translateY(calc(14vh - 2px));
+  }
+  to {
+    transform: translateY(calc(70vh - 2px));
+  }
+}
+
+@keyframes spider-twitch {
+  0%,
+  100% {
+    transform: none;
+  }
+  70% {
+    transform: scaleX(0.9);
+  }
+  72% {
+    transform: none;
+  }
+  74% {
+    transform: scaleX(0.92);
+  }
+  76% {
+    transform: none;
+  }
+}
+
+/* Corner silk: a few rings and spokes in the top-right corner of every HUD
+   surface (not the reticle, hairlines or the candlelit portrait). It shivers
+   on hover. */
+html[data-season='halloween'] .hud-frame:not(.reticle, .h-px, figure)::before {
+  --silk-line: color-mix(in oklch, var(--silk) 55%, transparent);
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  background:
+    repeating-radial-gradient(
+      circle at 100% 0,
+      transparent 0 7px,
+      var(--silk-line) 7px 8px
+    ),
+    repeating-conic-gradient(
+      from 180deg at 100% 0,
+      var(--silk-line) 0 1.4deg,
+      transparent 1.4deg 18deg
+    );
+  mask-image: radial-gradient(circle at 100% 0, black 35%, transparent 70%);
+  transform-origin: 100% 0;
+}
+
+html[data-season='halloween']
+  .hud-frame:not(.reticle, .h-px, figure):hover::before {
+  animation: silk-shiver 600ms ease-out;
+}
+
+@keyframes silk-shiver {
+  20% {
+    transform: rotate(3deg) scale(1.04);
+  }
+  45% {
+    transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(1deg);
+  }
+}
+
+/* Crawling spiders: walk the top edge of their parent (section hairlines,
+   the portrait frame) like real ones do — dash, freeze, dash, turn back.
+   The track is a size container, so cqw moves them on the compositor. */
+.crawler {
+  display: none;
+}
+
+html[data-season='halloween'] .crawler {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -13px;
+  height: 26px;
+  container-type: inline-size;
+  pointer-events: none;
+}
+
+.crawler-spider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  animation: crawl 26s linear infinite;
+  animation-delay: var(--crawl-delay, 0s);
+}
+
+.crawler-legs-a,
+.crawler-legs-b {
+  transform-box: view-box;
+  transform-origin: 50% 55%;
+  animation: legs 0.18s ease-in-out infinite alternate;
+}
+
+.crawler-legs-b {
+  animation-direction: alternate-reverse;
+}
+
+/* Alternating gait: the two leg sets swing against each other */
+@keyframes legs {
+  from {
+    transform: rotate(-9deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+
+@keyframes crawl {
+  0% {
+    transform: translateX(0) rotate(90deg);
+  }
+  7% {
+    transform: translateX(14cqw) rotate(90deg);
+  }
+  14% {
+    transform: translateX(14cqw) rotate(90deg);
+  }
+  19% {
+    transform: translateX(31cqw) rotate(96deg);
+  }
+  29% {
+    transform: translateX(31cqw) rotate(90deg);
+  }
+  33% {
+    transform: translateX(47cqw) rotate(90deg);
+  }
+  35% {
+    transform: translateX(47cqw) rotate(-90deg);
+  }
+  38% {
+    transform: translateX(40cqw) rotate(-90deg);
+  }
+  44% {
+    transform: translateX(40cqw) rotate(90deg);
+  }
+  52% {
+    transform: translateX(calc(100cqw - 26px)) rotate(90deg);
+  }
+  60% {
+    transform: translateX(calc(100cqw - 26px)) rotate(-90deg);
+  }
+  68% {
+    transform: translateX(62cqw) rotate(-90deg);
+  }
+  75% {
+    transform: translateX(62cqw) rotate(-84deg);
+  }
+  86% {
+    transform: translateX(18cqw) rotate(-90deg);
+  }
+  91% {
+    transform: translateX(18cqw) rotate(-90deg);
+  }
+  97% {
+    transform: translateX(0) rotate(-90deg);
+  }
+  100% {
+    transform: translateX(0) rotate(90deg);
+  }
+}
+
+/* Night bats: on every view a sparser flock crosses the viewport every 26s,
+   fixed behind the content like the ghosts. */
+html[data-season='halloween'] .night-bats {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.night-bats .bat {
+  animation-duration: 26s;
+  animation-delay: calc(9s + var(--bat-delay, 0s) * 1.6);
+}
+
+.night-bats .bat:nth-child(n + 4) {
+  display: none;
+}
+
+/* Corner web: a cobweb spun across the top-right corner of a page header,
+   a small spider dangling from it and swaying on its thread. */
+.corner-web {
+  display: none;
+}
+
+html[data-season='halloween'] .corner-web {
+  display: block;
+  position: absolute;
+  top: -2rem;
+  right: -1rem;
+  width: clamp(110px, 18vw, 190px);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+@media (width >= 48rem) {
+  html[data-season='halloween'] .corner-web {
+    right: -4rem;
+  }
+}
+
+.corner-web-silk {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--silk);
+  stroke-width: 0.7;
+  stroke-opacity: 0.6;
+  mask-image: radial-gradient(circle at 100% 0, black 40%, transparent 72%);
+}
+
+.corner-web-dangler {
+  position: absolute;
+  top: 28%;
+  right: 30%;
+  width: 26px;
+  transform-origin: 50% 0;
+  animation: spider-sway 3.2s ease-in-out infinite alternate;
+}
+
+.corner-web-thread {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 64px;
+  background: var(--silk);
+  opacity: 0.6;
+}
+
+.corner-web-spider {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 26px;
+  height: 26px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season='halloween'] .aurora-exit::before,
+  html[data-season='halloween'] .bats,
+  .bat-lurker {
+    display: none;
+  }
+  html[data-season='halloween'] .aurora-exit::after,
+  html[data-season='halloween'] .hero-zone figure::before,
+  html[data-season='halloween'] .jack {
+    animation: none !important;
+  }
+  html[data-season='halloween'] .jack-lantern,
+  .jack-flicker {
+    animation: none !important;
+  }
+  html[data-season='halloween'] .floaters,
+  html[data-season='halloween'] .crawler {
+    display: none;
+  }
+  html[data-season='halloween'] .peeking-ghost,
+  .corner-web-dangler,
+  html[data-season='halloween'] .spider,
+  .spider-thread,
+  .spider-body,
+  .spider-legs {
     animation: none !important;
   }
 }

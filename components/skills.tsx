@@ -3,6 +3,7 @@
 import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { useLang } from '@/hooks/use-lang'
 
+import { CornerWeb } from '@/components/corner-web'
 import { SectionHeading } from '@/components/section-heading'
 
 import { SKILLS } from '@/lib/data'
@@ -30,7 +31,8 @@ export function Skills() {
   const lang = useLang()
   const dictionary = getClientDictionary(lang)
   return (
-    <section className="flex flex-col gap-4">
+    <section className="relative flex flex-col gap-4">
+      <CornerWeb />
       <SectionHeading>{dictionary.skills}</SectionHeading>
       <div className="border-border border-t">
         <SkillRow

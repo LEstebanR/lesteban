@@ -4,6 +4,7 @@ import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 import { useLang } from '@/hooks/use-lang'
 
 import { ExperienceCard } from '@/components/cards/experience-card'
+import { CornerWeb } from '@/components/corner-web'
 import { SectionHeading } from '@/components/section-heading'
 import { SeeMoreButton } from '@/components/ui/see-more-button'
 
@@ -17,7 +18,8 @@ export function Experience() {
   const dictionary = getClientDictionary(lang)
 
   return (
-    <section className="flex flex-col gap-8">
+    <section className="relative flex flex-col gap-8">
+      <CornerWeb />
       <SectionHeading>{dictionary['experience']}</SectionHeading>
       <ol className={RAIL}>
         <ExperienceCard job={EXPERIENCE.aleluya} current />
