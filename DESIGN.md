@@ -112,8 +112,11 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `JackOLantern` (`components/jack-o-lantern.tsx`): a carved pumpkin crowns the hero's top-right corner (64px on phones, tucked above the status line). Five shaded lobes, a twisted stem, an angular face whose cut walls show the rind, and a candle flickering through the holes (`--pumpkin-*`, `--flame*` tokens). It rises once (2.8s) under the neural field.
 - Embers: `.aurora-exit::before` tiles three dot layers that rise 720px every 40s (seamless loop, transform only).
 - Candle: `.status-dot` and `.caret` flicker irregularly instead of blinking; the portrait frame glows warm from below in the same rhythm.
-- `Bats` (`components/bats.tsx`): a flock of five crosses the lantern every 18s, wings flapping, silhouettes with an ember rim.
+- `Bats` (`components/bats.tsx`): front-view bats (pointed ears, ember eyes, wings beating on a shoulder hinge) flutter across the hero every 12s on an erratic, bobbing line; one keeps orbiting the lantern. With `night`, a sparser flock crosses the viewport every 26s on every view.
+- Ghosts (`components/peeking-ghost.tsx`): one peeks out from behind the portrait every 9s; three drift across the viewport behind the content on every view (`--ghost-*` tokens; smaller and fainter on phones).
+- Cobwebs: the neural field is spun into a web from the hero's top-right corner, behind the lantern, in pale `--silk`. `CornerWeb` (`components/corner-web.tsx`) hangs a web with a dangling spider in the Experience and Skills sections and in the blog headers; HUD cards get corner silk; `CrawlingSpider` walks every section hairline and the post divider; `Spider` hangs in the right gutter (xl+) and lowers with the scroll.
+- `SeasonNight` (`components/season-night.tsx`, in the locale layout): ghosts, night bats and the gutter spider on every view.
 - Ground fog: `.aurora-exit::after` drifts soft banks along the bottom of the hero.
 - `.jack`: the header brand square and the footer heart become a pixel jack-o'-lantern, face cut out of the shell over a flickering candle.
 - `.season-only` / `.season-off`: the status line reads `Carving pumpkins & shipping products` (`hero-status-halloween`).
-- Reduced motion: embers and bats hidden; lantern, fog, candle and pumpkin static.
+- Reduced motion: embers, bats, floating ghosts and crawling spiders hidden; lantern, fog, candle, pumpkin, peeking ghost, web spiders static.

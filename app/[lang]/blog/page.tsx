@@ -3,6 +3,7 @@ import { getDictionary } from '@/app/[lang]/dictionaries'
 import type { Metadata } from 'next'
 
 import { BlogCard } from '@/components/cards/blog-card'
+import { CornerWeb } from '@/components/corner-web'
 
 import { getAllPosts } from '@/lib/blog'
 import { getCanonicalUrl } from '@/lib/utils'
@@ -61,7 +62,8 @@ export default async function BlogPage({ params }: PageParams) {
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] w-full flex-col gap-12 py-16">
-      <header className="flex flex-col gap-4">
+      <header className="relative flex flex-col gap-4">
+        <CornerWeb />
         <h1 className="font-heading text-[clamp(2.75rem,8vw,6rem)] leading-[0.9] font-semibold tracking-tight uppercase">
           {dictionary['blog']}
         </h1>

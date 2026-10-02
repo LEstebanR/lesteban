@@ -8,6 +8,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Tektur } from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
+import { SeasonNight } from '@/components/season-night'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
@@ -199,6 +200,7 @@ export default async function RootLayout({
             </div>
             <Footer />
             <ScrollToTop />
+            <SeasonNight />
           </BreadcrumbProvider>
         </ThemeProvider>
         <SpeedInsights />

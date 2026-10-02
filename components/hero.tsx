@@ -13,6 +13,7 @@ import { Bats } from '@/components/bats'
 import { DecodeMask } from '@/components/decode-mask'
 import { JackOLantern } from '@/components/jack-o-lantern'
 import { NeuralField } from '@/components/neural-field'
+import { PeekingGhost } from '@/components/peeking-ghost'
 import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -199,37 +200,40 @@ export function Hero({ lang }: HeroProps) {
           </div>
         </div>
 
-        <figure
-          data-scramble-host
-          className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
-          style={seq(150)}
-        >
-          <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
-            <DecodeMask />
-            <span aria-hidden="true" className="scan-beam z-[4]" />
-            <span aria-hidden="true" className="photo-scan" />
-            <Image
-              src="/profile_pic.jpeg"
-              alt=""
-              aria-hidden="true"
-              width={560}
-              height={560}
-              className="glitch-layer absolute inset-0 z-[1] size-full object-cover"
-            />
-            <Image
-              src="/profile_pic.jpeg"
-              alt="Luis Esteban"
-              width={560}
-              height={560}
-              className="size-full object-cover contrast-110 grayscale-[35%]"
-              priority
-            />
-          </div>
-          <figcaption className="text-muted-foreground mt-3 flex justify-between font-mono text-[11px]">
-            <span>Colombia</span>
-            <span>UTC−5</span>
-          </figcaption>
-        </figure>
+        <div className="relative mx-auto w-full max-w-[220px] md:mx-0 md:max-w-[280px]">
+          <PeekingGhost />
+          <figure
+            data-scramble-host
+            className="seq hud-frame border-border bg-card relative z-10 w-full border p-3"
+            style={seq(150)}
+          >
+            <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
+              <DecodeMask />
+              <span aria-hidden="true" className="scan-beam z-[4]" />
+              <span aria-hidden="true" className="photo-scan" />
+              <Image
+                src="/profile_pic.jpeg"
+                alt=""
+                aria-hidden="true"
+                width={560}
+                height={560}
+                className="glitch-layer absolute inset-0 z-[1] size-full object-cover"
+              />
+              <Image
+                src="/profile_pic.jpeg"
+                alt="Luis Esteban"
+                width={560}
+                height={560}
+                className="size-full object-cover contrast-110 grayscale-[35%]"
+                priority
+              />
+            </div>
+            <figcaption className="text-muted-foreground mt-3 flex justify-between font-mono text-[11px]">
+              <span>Colombia</span>
+              <span>UTC−5</span>
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   )
