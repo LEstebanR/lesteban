@@ -74,11 +74,11 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/LEstebanR/roadmapcol',
   },
   {
-    name: 'humedad-arena',
-    description: 'humedad-arena-description',
-    stack: ['React', 'Typescript', 'Tailwind'],
-    link: 'https://humedad-arena.vercel.app/',
-    repo: 'https://github.com/LEstebanR/humedad_arena',
+    name: 'usechangelog',
+    description: 'usechangelog-description',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Drizzle', 'Neon'],
+    link: 'https://www.usechangelog.com',
+    repo: 'https://github.com/LEstebanR/usechangelog',
   },
 ]
 
