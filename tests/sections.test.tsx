@@ -94,8 +94,8 @@ const MOCK_DICT: Record<string, string> = {
   'conexory-description': 'Real estate SaaS platform',
   lesfin: 'LESFin',
   'lesfin-description': 'Personal finance tracker',
-  'humedad-arena': 'Humedad Arena',
-  'humedad-arena-description': 'Sand moisture sensor',
+  usechangelog: 'UseChangelog',
+  'usechangelog-description': 'Public changelog and widget',
   code: 'Code',
   'live-demo': 'Live Demo',
   // Contact
@@ -245,7 +245,7 @@ describe('Projects', () => {
     expect(screen.getByText('Conexory')).toBeDefined()
     expect(screen.getByText('LESFin')).toBeDefined()
     expect(screen.getByText('Roadmapcol')).toBeDefined()
-    expect(screen.getByText('Humedad Arena')).toBeDefined()
+    expect(screen.getByText('UseChangelog')).toBeDefined()
   })
 
   test('renders stack badges for each project', () => {
