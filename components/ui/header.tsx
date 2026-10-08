@@ -109,10 +109,10 @@ export function Header() {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
         <div className="flex flex-1 items-center justify-between gap-6">
           <Link href={`/${currentLang}`} target="_self">
-            <h1 className="font-heading flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
+            <span className="font-heading flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
               <span aria-hidden="true" className="jack bg-primary size-2" />
               Luis Esteban
-            </h1>
+            </span>
           </Link>
           {isHome ? (
             <nav

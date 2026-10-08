@@ -4,17 +4,27 @@ test.describe('404 Not Found', () => {
   test('unknown route under /en shows not-found page', async ({ page }) => {
     const response = await page.goto('/en/this-page-does-not-exist-xyz')
     expect(response?.status()).toBe(404)
-  })
-
-  test('unknown blog post shows not-found page', async ({ page }) => {
-    await page.goto('/en/blog/nonexistent-post-xyz')
     await expect(page.locator('h1').filter({ hasText: '404' })).toBeVisible()
   })
 
-  test('root not-found shows not-found page', async ({ page }) => {
-    // Single-segment bare paths are captured by [lang] as an invalid locale,
-    // which renders the home page. Test that the app handles unknown paths gracefully.
+  test('unknown blog post returns 404', async ({ page }) => {
+    const response = await page.goto('/en/blog/nonexistent-post-xyz')
+    expect(response?.status()).toBe(404)
+    await expect(page.locator('h1').filter({ hasText: '404' })).toBeVisible()
+  })
+
+  test('unknown bare path returns 404', async ({ page }) => {
     const response = await page.goto('/this-route-does-not-exist-xyz')
-    expect([404, 200]).toContain(response?.status())
+    expect(response?.status()).toBe(404)
+  })
+
+  test('unsupported locale returns 404', async ({ page }) => {
+    const response = await page.goto('/fr')
+    expect(response?.status()).toBe(404)
+  })
+
+  test('manifest.webmanifest is not the homepage', async ({ page }) => {
+    const response = await page.goto('/manifest.webmanifest')
+    expect(response?.status()).toBe(404)
   })
 })

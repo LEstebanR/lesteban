@@ -12,7 +12,27 @@ import { getPublicAssetDataUri } from '@/lib/og'
 
 export const size = ogImageSize
 export const contentType = ogImageContentType
-export const alt = 'Blog post cover'
+
+export async function generateImageMetadata({
+  params,
+}: {
+  params:
+    | Promise<{ lang: string; name: string }>
+    | { lang: string; name: string }
+}) {
+  const { lang, name } = await params
+  const validLang = lang === 'es' ? 'es' : 'en'
+  const post = name ? await getPostByUrl(name, validLang) : null
+
+  return [
+    {
+      id: 'cover',
+      alt: post?.title ?? (validLang === 'es' ? 'Blog' : 'Blog post cover'),
+      size: ogImageSize,
+      contentType: ogImageContentType,
+    },
+  ]
+}
 
 export default async function Image({
   params,

@@ -17,7 +17,7 @@ import { ScrollToTop } from '@/components/ui/scroll-to-top'
 
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE } from '@/lib/constants'
 import { SEASON_SCRIPT } from '@/lib/season'
-import { getCanonicalUrl } from '@/lib/utils'
+import { getCanonicalUrl, getLanguageAlternates } from '@/lib/utils'
 
 const geist = Geist({
   variable: '--font-geist',
@@ -37,6 +37,16 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
   display: 'swap',
 })
+
+const locales = ['en', 'es'] as const
+
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }))
+}
+
+// Unknown segments such as /fr, /random-thing, and /manifest.webmanifest must
+// not render the English homepage.
+export const dynamicParams = false
 
 type LayoutParams = {
   params: Promise<{
@@ -98,11 +108,11 @@ export async function generateMetadata({
     publisher: 'Luis Esteban Ramirez',
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        en: alternateEn,
-        es: alternateEs,
-        'x-default': alternateEn,
-      },
+      languages: getLanguageAlternates(
+        validLang,
+        canonicalUrl,
+        validLang === 'en' ? alternateEs : alternateEn
+      ),
     },
     openGraph: {
       type: 'website',

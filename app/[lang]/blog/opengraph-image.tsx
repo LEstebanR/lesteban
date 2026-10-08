@@ -11,7 +11,28 @@ import {
 
 export const size = ogImageSize
 export const contentType = ogImageContentType
-export const alt = 'Luis Esteban — Blog'
+
+export async function generateImageMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }> | { lang: string }
+}) {
+  const { lang } = await params
+  const validLang = lang === 'es' ? 'es' : 'en'
+  const dictionary = await getDictionary(validLang)
+
+  return [
+    {
+      id: validLang,
+      alt:
+        validLang === 'es'
+          ? dictionary['blog-description']
+          : 'Luis Esteban — Blog',
+      size: ogImageSize,
+      contentType: ogImageContentType,
+    },
+  ]
+}
 
 export default async function Image({
   params,

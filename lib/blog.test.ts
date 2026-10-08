@@ -1,9 +1,13 @@
+import {
+  getAllPostUrls,
+  getAllPosts,
+  getPostByUrl,
+  latestPostDate,
+  toBlogPostingJsonLd,
+} from './blog'
+import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
 import fs from 'fs'
 import path from 'path'
-
-import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
-
-import { getAllPosts, getAllPostUrls, getPostByUrl } from './blog'
 
 describe('Blog Utilities', () => {
   describe('getAllPosts', () => {
@@ -186,7 +190,11 @@ Content
 
   describe('XSS sanitization', () => {
     const fixtureUrl = '_test-xss-fixture'
-    const fixturePath = path.join(process.cwd(), 'content/blog/en', `${fixtureUrl}.md`)
+    const fixturePath = path.join(
+      process.cwd(),
+      'content/blog/en',
+      `${fixtureUrl}.md`
+    )
 
     beforeEach(() => {
       fs.writeFileSync(
@@ -223,6 +231,78 @@ Hello <script>alert('xss')</script> world
     test('strips onerror event handlers from rendered HTML', async () => {
       const post = await getPostByUrl(fixtureUrl, 'en')
       expect(post?.content).not.toContain('onerror')
+    })
+  })
+
+  describe('latestPostDate', () => {
+    test('returns undefined when there are no usable dates', () => {
+      expect(latestPostDate([])).toBeUndefined()
+      expect(latestPostDate([{ date: 'not-a-date' }])).toBeUndefined()
+    })
+
+    test('uses the newest updatedDate or date and skips invalid values', () => {
+      const latest = latestPostDate([
+        { date: '2020-01-01' },
+        { date: 'not-a-date' },
+        { date: '2021-01-01', updatedDate: '2022-06-01' },
+        { date: '2024-01-01', updatedDate: '2019-01-01' },
+      ])
+      expect(latest?.toISOString()).toBe('2022-06-01T00:00:00.000Z')
+    })
+  })
+
+  describe('toBlogPostingJsonLd', () => {
+    test('makes the image absolute and omits empty keywords', async () => {
+      const post = await getPostByUrl('first-marathon', 'en')
+      expect(post).not.toBeNull()
+      const jsonLd = toBlogPostingJsonLd(post!, 'en')
+      expect(jsonLd.image).toBe(
+        'https://www.lesteban.dev/blog/marathon_image.jpg'
+      )
+      expect(jsonLd).not.toHaveProperty('keywords')
+      expect(jsonLd.url).toBe('https://www.lesteban.dev/en/blog/first-marathon')
+    })
+
+    test('keeps absolute images, keywords, updated dates, and a default author', () => {
+      const jsonLd = toBlogPostingJsonLd(
+        {
+          title: 'Hola',
+          description: 'Desc',
+          image: 'https://cdn.example/cover.jpg',
+          date: '2024-01-01',
+          updatedDate: '2024-02-01',
+          tags: ['running', 'notes'],
+          url: 'hola',
+        },
+        'es'
+      )
+      expect(jsonLd.image).toBe('https://cdn.example/cover.jpg')
+      expect(jsonLd.keywords).toBe('running, notes')
+      expect(jsonLd.dateModified).toBe('2024-02-01')
+      expect(jsonLd.author).toEqual({
+        '@type': 'Person',
+        name: 'Luis Esteban Ramirez',
+      })
+      expect(jsonLd.url).toBe('https://www.lesteban.dev/es/blog/hola')
+    })
+
+    test('omits image when the post has none and uses the given author', () => {
+      const jsonLd = toBlogPostingJsonLd(
+        {
+          title: 'No image',
+          description: 'Desc',
+          image: '',
+          date: '2024-01-01',
+          author: 'Ada',
+          tags: [],
+          url: 'no-image',
+        },
+        'en'
+      )
+      expect(jsonLd).not.toHaveProperty('image')
+      expect(jsonLd).not.toHaveProperty('keywords')
+      expect(jsonLd.dateModified).toBe('2024-01-01')
+      expect(jsonLd.author).toEqual({ '@type': 'Person', name: 'Ada' })
     })
   })
 

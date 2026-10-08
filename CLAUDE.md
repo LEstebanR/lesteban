@@ -67,7 +67,7 @@ mock.module('@/hooks/use-has-mounted', () => ({
 
 ### E2E conventions
 
-- The header renders `<h1>Luis Esteban</h1>` as the site logo. Use `page.locator('main h1')` to target content headings, never bare `locator('h1')`.
+- The header site name is a `<span>`, not a heading, so each page has one `<h1>`. Use `page.locator('main h1')` for the content heading. The root 404 page's only heading is the `404` `<h1>`.
 - `LanguageToggle` is a `<Button>`, not a link. Use `page.getByRole('button', { name: 'Switch to Spanish' })` when on `/en`, or `{ name: 'Cambiar a inglés' }` when on `/es` — the button's accessible name comes from its `aria-label`, not the visible text.
 - shadcn `Badge` does not emit a literal `badge` CSS class. Add `data-testid="date-badge"` (or equivalent) to Badge elements you need to target in tests.
 - Never use `waitUntil: 'commit'` when testing redirected URLs — Playwright resolves before the redirect completes. Omit it to get the final URL.
