@@ -6,7 +6,7 @@ import { BlogCard } from '@/components/cards/blog-card'
 import { CornerWeb } from '@/components/corner-web'
 
 import { getAllPosts } from '@/lib/blog'
-import { getCanonicalUrl } from '@/lib/utils'
+import { getCanonicalUrl, getLanguageAlternates } from '@/lib/utils'
 
 type PageParams = {
   params: Promise<{
@@ -32,11 +32,7 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        [lang]: canonicalUrl,
-        [alternateLang]: alternateUrl,
-        'x-default': canonicalUrl,
-      },
+      languages: getLanguageAlternates(lang, canonicalUrl, alternateUrl),
     },
     openGraph: {
       title,

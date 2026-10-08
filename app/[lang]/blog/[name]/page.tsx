@@ -11,9 +11,9 @@ import { SetBreadcrumb } from '@/components/set-breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 
-import { getAllPostUrls, getPostByUrl } from '@/lib/blog'
-import { BASE_URL, TWITTER_HANDLE } from '@/lib/constants'
-import { getCanonicalUrl } from '@/lib/utils'
+import { getAllPostUrls, getPostByUrl, toBlogPostingJsonLd } from '@/lib/blog'
+import { TWITTER_HANDLE } from '@/lib/constants'
+import { getCanonicalUrl, getLanguageAlternates } from '@/lib/utils'
 
 type PageParams = {
   params: Promise<{
@@ -21,6 +21,10 @@ type PageParams = {
     name: string
   }>
 }
+
+// Slugs that were not generated from content must miss this route entirely.
+// Calling notFound() from the matched page was prerendered as HTTP 200.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const enUrls = await getAllPostUrls('en')
@@ -39,9 +43,7 @@ export async function generateMetadata({
   const post = await getPostByUrl(name, lang)
 
   if (!post) {
-    return {
-      title: 'Post not found',
-    }
+    notFound()
   }
 
   const canonicalPath = `/${lang}/blog/${name}`
@@ -59,13 +61,7 @@ export async function generateMetadata({
     description: post.description,
     alternates: {
       canonical: canonicalUrl,
-      ...(alternateUrl && {
-        languages: {
-          [lang]: canonicalUrl,
-          [alternateLang]: alternateUrl,
-          'x-default': canonicalUrl,
-        },
-      }),
+      languages: getLanguageAlternates(lang, canonicalUrl, alternateUrl),
     },
     openGraph: {
       title: post.title,
@@ -96,27 +92,7 @@ export default async function BlogPostPage({ params }: PageParams) {
     notFound()
   }
 
-  // JSON-LD structured data for SEO
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.description,
-    image: post.image,
-    datePublished: post.date,
-    dateModified: post.updatedDate || post.date,
-    author: {
-      '@type': 'Person',
-      name: post.author || 'Luis Esteban Ramirez',
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Luis Esteban Ramirez',
-    },
-    keywords: post.tags?.join(', '),
-    inLanguage: lang,
-    url: `${BASE_URL}/${lang}/blog/${post.url}`,
-  }
+  const jsonLd = toBlogPostingJsonLd(post, lang)
 
   return (
     <>

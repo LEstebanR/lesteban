@@ -8,6 +8,9 @@ import rehypeStringify from 'rehype-stringify'
 import { remark } from 'remark'
 import remarkRehype from 'remark-rehype'
 
+import { BASE_URL } from '@/lib/constants'
+import { toAbsoluteUrl } from '@/lib/utils'
+
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 
 // Extend the default schema to allow className on elements used by rehype-highlight,
@@ -153,4 +156,62 @@ export async function getAllPostUrls(lang: 'en' | 'es'): Promise<string[]> {
   }
 
   return urls
+}
+
+/** Newest `updatedDate` or `date` among posts. Invalid dates are ignored. */
+export function latestPostDate(
+  posts: { date: string; updatedDate?: string }[]
+): Date | undefined {
+  let latest: number | undefined
+  for (const post of posts) {
+    const time = new Date(post.updatedDate || post.date).getTime()
+    if (Number.isNaN(time)) continue
+    if (latest === undefined || time > latest) latest = time
+  }
+  return latest === undefined ? undefined : new Date(latest)
+}
+
+/** BlogPosting JSON-LD. Image is absolute; empty keyword lists are omitted. */
+export function toBlogPostingJsonLd(
+  post: Pick<
+    BlogPost,
+    | 'title'
+    | 'description'
+    | 'image'
+    | 'date'
+    | 'updatedDate'
+    | 'author'
+    | 'tags'
+    | 'url'
+  >,
+  lang: 'en' | 'es'
+): Record<string, unknown> {
+  const jsonLd: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.updatedDate || post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author || 'Luis Esteban Ramirez',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Luis Esteban Ramirez',
+    },
+    inLanguage: lang,
+    url: `${BASE_URL}/${lang}/blog/${post.url}`,
+  }
+
+  if (post.image) {
+    jsonLd.image = toAbsoluteUrl(post.image)
+  }
+
+  if (post.tags && post.tags.length > 0) {
+    jsonLd.keywords = post.tags.join(', ')
+  }
+
+  return jsonLd
 }

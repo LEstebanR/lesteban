@@ -11,7 +11,13 @@ test.describe('Homepage', () => {
     await expect(page.locator('img[alt="Luis Esteban"]')).toBeVisible()
 
     // Navigation links present
-    await expect(page.getByRole('link', { name: /blog/i }).first()).toBeVisible()
+    await expect(
+      page.getByRole('link', { name: /blog/i }).first()
+    ).toBeVisible()
+    await expect(
+      page.locator('header').getByRole('link', { name: 'Luis Esteban' })
+    ).toBeVisible()
+    await expect(page.locator('h1')).toHaveCount(1)
   })
 
   test('loads correctly at /es with all key sections visible', async ({
@@ -24,7 +30,10 @@ test.describe('Homepage', () => {
     await expect(page.locator('img[alt="Luis Esteban"]')).toBeVisible()
 
     // Navigation links present
-    await expect(page.getByRole('link', { name: /blog/i }).first()).toBeVisible()
+    await expect(
+      page.getByRole('link', { name: /blog/i }).first()
+    ).toBeVisible()
+    await expect(page.locator('h1')).toHaveCount(1)
   })
 
   test('page has correct lang attribute for /en', async ({ page }) => {

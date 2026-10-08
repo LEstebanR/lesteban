@@ -5,6 +5,13 @@ test.describe('i18n redirect', () => {
     await page.goto('/')
     expect(page.url()).toMatch(/\/(en|es)(\/|$)/)
   })
+
+  test('bare /blog redirects to a locale-prefixed blog index', async ({
+    page,
+  }) => {
+    await page.goto('/blog')
+    expect(page.url()).toMatch(/\/(en|es)\/blog$/)
+  })
 })
 
 test.describe('Language switch', () => {

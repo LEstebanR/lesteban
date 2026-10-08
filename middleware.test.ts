@@ -1,7 +1,7 @@
+import { getLocale, isLocalizablePath, middleware } from './middleware'
 import { describe, expect, test } from 'bun:test'
-import { NextRequest } from 'next/server'
 
-import { getLocale, middleware } from './middleware'
+import { NextRequest } from 'next/server'
 
 describe('getLocale', () => {
   const headers = (value: string | null) => ({
@@ -29,6 +29,22 @@ describe('getLocale', () => {
   })
 })
 
+describe('isLocalizablePath', () => {
+  test('accepts the home page, blog index, and a single post slug', () => {
+    expect(isLocalizablePath('/')).toBe(true)
+    expect(isLocalizablePath('/blog')).toBe(true)
+    expect(isLocalizablePath('/blog/first-marathon')).toBe(true)
+  })
+
+  test('rejects unknown paths, extra segments, and unsupported locales', () => {
+    expect(isLocalizablePath('/about')).toBe(false)
+    expect(isLocalizablePath('/fr')).toBe(false)
+    expect(isLocalizablePath('/fr/blog')).toBe(false)
+    expect(isLocalizablePath('/blog/a/b')).toBe(false)
+    expect(isLocalizablePath('/manifest.webmanifest')).toBe(false)
+  })
+})
+
 describe('middleware', () => {
   function makeRequest(pathname: string, acceptLanguage?: string) {
     return new NextRequest(new URL(`http://localhost${pathname}`), {
@@ -36,17 +52,31 @@ describe('middleware', () => {
     })
   }
 
-  test('redirects /about to /en/about with status 301', () => {
-    const res = middleware(makeRequest('/about'))
-    expect(res).toBeDefined()
-    expect(res?.status).toBe(301)
-    expect(res?.headers.get('location')).toContain('/en/about')
-  })
-
   test('redirects / to /en with status 301', () => {
     const res = middleware(makeRequest('/'))
     expect(res).toBeDefined()
     expect(res?.status).toBe(301)
+    expect(res?.headers.get('location')).toContain('/en')
+  })
+
+  test('redirects /blog to /en/blog with status 301', () => {
+    const res = middleware(makeRequest('/blog'))
+    expect(res?.status).toBe(301)
+    expect(res?.headers.get('location')).toContain('/en/blog')
+  })
+
+  test('redirects /blog/:slug to the localized post', () => {
+    const res = middleware(makeRequest('/blog/first-marathon'))
+    expect(res?.status).toBe(301)
+    expect(res?.headers.get('location')).toContain('/en/blog/first-marathon')
+  })
+
+  test('does not redirect unknown paths', () => {
+    expect(middleware(makeRequest('/about'))).toBeUndefined()
+    expect(middleware(makeRequest('/fr'))).toBeUndefined()
+    expect(middleware(makeRequest('/random-thing'))).toBeUndefined()
+    expect(middleware(makeRequest('/manifest.webmanifest'))).toBeUndefined()
+    expect(middleware(makeRequest('/blog/a/b'))).toBeUndefined()
   })
 
   test('does not redirect /en/about', () => {
@@ -64,8 +94,14 @@ describe('middleware', () => {
     expect(res).toBeUndefined()
   })
 
-  test('redirects to /es/about when Accept-Language is es', () => {
-    const res = middleware(makeRequest('/about', 'es'))
-    expect(res?.headers.get('location')).toContain('/es/about')
+  test('redirects /blog to /es/blog when Accept-Language is es', () => {
+    const res = middleware(makeRequest('/blog', 'es'))
+    expect(res?.headers.get('location')).toContain('/es/blog')
+  })
+
+  test('redirects / to /es when Accept-Language is es', () => {
+    const res = middleware(makeRequest('/', 'es'))
+    expect(res?.status).toBe(301)
+    expect(res?.headers.get('location')).toContain('/es')
   })
 })
