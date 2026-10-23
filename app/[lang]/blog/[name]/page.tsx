@@ -4,8 +4,6 @@ import { notFound } from 'next/navigation'
 
 import { Calendar } from 'lucide-react'
 
-import { CornerWeb } from '@/components/corner-web'
-import { CrawlingSpider } from '@/components/crawling-spider'
 import { RelatedPosts } from '@/components/related-posts'
 import { SetBreadcrumb } from '@/components/set-breadcrumb'
 import { Badge } from '@/components/ui/badge'
@@ -103,8 +101,7 @@ export default async function BlogPostPage({ params }: PageParams) {
       />
       <SetBreadcrumb path={name} title={post.short_title} />
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-10 py-16">
-        <header className="relative flex flex-col gap-6">
-          <CornerWeb />
+        <header className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs">
             <Badge
               variant="outline"
@@ -133,9 +130,7 @@ export default async function BlogPostPage({ params }: PageParams) {
               {post.description}
             </p>
           )}
-          <div className="border-border hud-frame h-px border-t">
-            <CrawlingSpider delay={2} />
-          </div>
+          <div className="border-border hud-frame h-px border-t" />
         </header>
         <article
           className="blog-content"

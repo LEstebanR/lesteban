@@ -19,8 +19,7 @@ export function Footer() {
         <span>© {new Date().getFullYear()} Luis Esteban Ramírez</span>
         <span className="flex items-center gap-1.5">
           {dictionary['made-with' as keyof typeof dictionary]}
-          <Heart className="season-off fill-secondary text-secondary size-3" />
-          <span aria-hidden="true" className="season-only jack" />
+          <Heart className="fill-secondary text-secondary size-3" />
           {dictionary['by' as keyof typeof dictionary]}
           <Link
             href={`/${lang}`}
