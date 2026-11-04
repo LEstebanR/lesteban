@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 
 import { notFound } from 'next/navigation'
 
-import { Calendar } from 'lucide-react'
-
 import { RelatedPosts } from '@/components/related-posts'
 import { SetBreadcrumb } from '@/components/set-breadcrumb'
 import { Badge } from '@/components/ui/badge'
@@ -108,7 +106,6 @@ export default async function BlogPostPage({ params }: PageParams) {
               className="border-primary/50 text-primary gap-1.5 rounded-sm px-2 py-1 font-mono"
               data-testid="date-badge"
             >
-              <Calendar className="size-3" />
               {post.date}
             </Badge>
             {post.tags &&

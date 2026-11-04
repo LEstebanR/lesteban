@@ -9,7 +9,7 @@
 1. **One loud moment, a living console.** The hero name is scanned in once; after that the page stays alive quietly — ambient signals, pointer response and scroll-driven reveals, all in the language of instruments (see §6).
 2. **Instruments, not decoration.** Every structural device carries information: the timeline rail is chronological, the grid marks the hero's coordinate space, corner brackets (`.hud-frame`) mark interactive or focal surfaces.
 3. **Dark is native, light is daylight.** `defaultTheme="dark"`. Light mode is a cool daylight console, not an inverted afterthought.
-4. **Reading is sacred.** Long-form (`.blog-content`) drops the chrome: calm Geist body, 3xl measure, only a `/` marker on `h2`.
+4. **Reading is sacred.** Long-form (`.blog-content`) drops the chrome: calm IBM Plex Sans body, 3xl measure, only a `/` marker on `h2`.
 
 ## 2. Color (OKLCH tokens in `app/globals.css`)
 
@@ -28,11 +28,13 @@ Rules: cyan is a signal, not a fill — never more than ~5% of a screen. Violet 
 
 ## 3. Typography
 
-| Role           | Family                               | Usage                                                                                      |
-| -------------- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `font-heading` | **Tektur** (`--font-tektur`)         | Display name (uppercase, `clamp(3rem,11vw,8.5rem)`, leading 0.88), section and card titles |
-| `font-sans`    | **Geist** (`--font-geist`)           | Body, UI, long-form                                                                        |
-| `font-mono`    | **Geist Mono** (`--font-geist-mono`) | Data only: dates, stack tags, status lines, handles                                        |
+| Role           | Family                                 | Usage                                                                                      |
+| -------------- | -------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `font-heading` | **Tektur** (`--font-tektur`)           | Display name (uppercase, `clamp(3rem,11vw,8.5rem)`, leading 0.88), section and card titles |
+| `font-sans`    | **IBM Plex Sans** (`--font-plex-sans`) | Body, UI, long-form (400/500/600/700)                                                      |
+| `font-mono`    | **IBM Plex Mono** (`--font-plex-mono`) | Data only: dates, stack tags, status lines, handles (400/500)                              |
+
+Tektur is the only voice for titles; Plex stays neutral for running text. Avoid Inter/Geist/system-ui — they read as the unchosen default.
 
 Scale: 12 (mono data) · 14 · 16/18 (body) · 20/24 (card titles) · 30 (sections) · display clamp. Headings use `tracking-tight`.
 
@@ -47,7 +49,8 @@ Scale: 12 (mono data) · 14 · 16/18 (body) · 20/24 (card titles) · 30 (sectio
 
 ## 5. Shape & depth
 
-- Radius is small: `--radius: 0.25rem`. Chips and buttons use `rounded-sm`.
+- Corners are square: `--radius: 0px`. The `rounded-*` scale is proportional to `--radius` (`sm` ×0.5, `lg` ×1.5, `xl` ×2.5), so the whole theme stays square. Only true circles (`rounded-full`) round.
+- Neutrals (background, card, muted, border) are tinted toward the cyan signal hue (~215–245), never a cold grey-slate.
 - Depth comes from tone (`bg-card` over `bg-background`) and hairlines. No drop shadows except the cyan glow on the current timeline node and the reading progress bar.
 - `.hud-frame` corner ticks brighten on hover/focus-within.
 
@@ -66,9 +69,8 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 - `.aurora`: three pre-softened radial light masses (cyan, violet, cyan) orbit on 19–31s loops and breathe — transform/opacity only, no `filter` — and rise and fade as the hero scrolls away (`.aurora-exit`).
 - `NeuralField` (`components/neural-field.tsx`, maths in `lib/neural-field.ts`): a canvas network of drifting nodes behind the hero; links brighten and reach toward the pointer. Pauses off-screen, colour read from `--primary` (follows the theme).
 - `.console-grid` drifts one cell every 14s (an oversized `::before` moved by `transform`).
-- `.status-dot` and `.caret` (block cursor after the role) blink in steps.
+- `.caret` (block cursor after the role) blinks in steps. Status dots (hero availability, current role node) are static: a real state needs no pulse.
 - `.photo-scan`: a scan pass over the portrait every 7s.
-- Current role node emits a radar ping (`animate-ping`).
 
 **Interactive**
 
@@ -82,11 +84,14 @@ Motion behaves like instruments coming online — linear scans, stepped blinks, 
 
 **Scroll-driven (CSS `animation-timeline`, static where unsupported)**
 
-- `.reveal-line`: section hairline draws left → right in cyan; `.slash`: the `/` flickers on.
-- `.rail::before`: the experience rail fills with signal as it crosses the viewport.
-- `.boot`: project panels scan in top → bottom and flicker like a CRT powering on.
-- `.chip-seq`: skill chips light up one after another (`--i` index), then settle.
+Only motion that carries information is tied to scroll. Section headings, project panels and skill chips are static — no reveal-on-scroll.
+
+- `.rail::before`: the experience rail fills with signal as it crosses the viewport (progress through the career).
 - `ScrollTelemetry`: fixed right-edge readout (xl+) with a filling bar and a `00%`–`100%` counter driven by `@property --scroll` on the root scroll timeline.
+
+**Icons**
+
+Lucide is not used. The few icons the UI needs live in `components/ui/icon.tsx` (`<Icon name="…" />`): a 24px grid, 1.75 stroke, square caps and mitred joins. Only functional icons (menu, theme, disclosure chevrons, external arrow, mail); decorative icons are not added. Brand logos (GitHub, LinkedIn) stay as their own SVGs.
 
 `prefers-reduced-motion`: every animation above is disabled; beams, scans, sweep, rail fill, reticle, glitch and decode mosaic are hidden; text never scrambles; the aurora and neural field hold still.
 

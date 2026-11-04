@@ -11,17 +11,6 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import { useTheme } from 'next-themes'
 
-import {
-  BookOpen,
-  ChevronRight,
-  Home,
-  Languages,
-  Mail,
-  Menu,
-  Moon,
-  Sun,
-} from 'lucide-react'
-
 import { useBreadcrumb } from '@/components/breadcrumb-provider'
 import { ScrambleText } from '@/components/scramble-text'
 import {
@@ -40,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { Icon } from '@/components/ui/icon'
 // Removed custom Link; using NextLink for internal navigation
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
@@ -77,7 +67,11 @@ const MOBILE_LINKS: { icon: React.ReactNode; href: string; label: string }[] = [
     href: 'https://www.linkedin.com/in/lestebanr/',
     label: 'Linkedin',
   },
-  { icon: <Mail />, href: 'mailto:leramirezca@gmail.com', label: 'Email' },
+  {
+    icon: <Icon name="mail" />,
+    href: 'mailto:leramirezca@gmail.com',
+    label: 'Email',
+  },
 ]
 
 // HeaderLink type removed; no longer mapping links
@@ -128,7 +122,6 @@ export function Header() {
                 data-scramble-host
                 className="text-muted-foreground hover:text-primary flex items-center gap-1.5 font-mono text-xs transition-colors"
               >
-                <BookOpen className="size-3.5" />
                 <ScrambleText text="Blog" duration={350} />
               </NextLink>
             </nav>
@@ -179,7 +172,7 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger className="cursor-pointer" asChild>
                 <Button variant="outline" size="icon" aria-label="Menu">
-                  <Menu />
+                  <Icon name="menu" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-background mt-2 w-screen rounded-t-none">
@@ -193,7 +186,6 @@ export function Header() {
                             href={`/${currentLang}`}
                             className="flex items-center gap-2"
                           >
-                            <Home className="h-4 w-4" />
                             {currentLang === 'es' ? 'Inicio' : 'Home'}
                           </NextLink>
                         </DropdownMenuItem>
@@ -217,7 +209,7 @@ export function Header() {
                             >
                               {isLast ? (
                                 <span className="flex items-center gap-2">
-                                  <ChevronRight className="h-4 w-4" />
+                                  <Icon name="chevron-right" />
                                   {label}
                                 </span>
                               ) : (
@@ -225,7 +217,7 @@ export function Header() {
                                   href={href}
                                   className="flex items-center gap-2"
                                 >
-                                  <ChevronRight className="h-4 w-4" />
+                                  <Icon name="chevron-right" />
                                   {label}
                                 </NextLink>
                               )}
@@ -242,7 +234,6 @@ export function Header() {
                           href={`/${currentLang}/blog`}
                           className="flex items-center gap-2"
                         >
-                          <BookOpen className="h-4 w-4" />
                           Blog
                         </NextLink>
                       </DropdownMenuItem>
@@ -265,20 +256,18 @@ export function Header() {
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={() => setTheme('dark')}>
-                  <Moon />
+                  <Icon name="moon" />
                   Dark
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => setTheme('light')}>
-                  <Sun />
+                  <Icon name="sun" />
                   Light
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={() => setLang('en')}>
-                  <Languages />
                   English
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => setLang('es')}>
-                  <Languages />
                   Español
                 </DropdownMenuItem>
               </DropdownMenuContent>
