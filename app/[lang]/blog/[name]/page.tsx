@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: PageParams) {
 
   return (
     <>
-      <ScrollProgress className="bg-primary fixed top-16 right-0 left-0 z-50 h-0.5 shadow-[0_0_10px_var(--primary)]" />
+      <ScrollProgress className="bg-signal fixed top-16 right-0 left-0 z-50 h-0.5 shadow-[0_0_10px_var(--signal)]" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: PageParams) {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs">
             <Badge
               variant="outline"
-              className="border-primary/50 text-primary gap-1.5 rounded-sm px-2 py-1 font-mono"
+              className="border-signal/50 text-signal gap-1.5 rounded-sm px-2 py-1 font-mono"
               data-testid="date-badge"
             >
               {post.date}
@@ -111,10 +111,7 @@ export default async function BlogPostPage({ params }: PageParams) {
             {post.tags &&
               post.tags.length > 0 &&
               post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-muted-foreground before:content-['#']"
-                >
+                <span key={tag} className="text-ink-dim before:content-['#']">
                   {tag}
                 </span>
               ))}
@@ -123,11 +120,11 @@ export default async function BlogPostPage({ params }: PageParams) {
             {post.title}
           </h1>
           {post.description && (
-            <p className="text-muted-foreground text-xl leading-relaxed text-pretty">
+            <p className="text-ink-dim text-xl leading-relaxed text-pretty">
               {post.description}
             </p>
           )}
-          <div className="border-border hud-frame h-px border-t" />
+          <div className="border-rule hud-frame h-px border-t" />
         </header>
         <article
           className="blog-content"

@@ -193,7 +193,7 @@ export default async function RootLayout({
           <BreadcrumbProvider>
             <a
               href="#main-content"
-              className="focus:bg-background focus:text-foreground focus:ring-ring sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2"
+              className="focus:bg-canvas focus:text-ink focus:ring-halo sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2"
             >
               {dictionary['skip-to-content']}
             </a>

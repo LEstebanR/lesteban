@@ -43,7 +43,7 @@ export function NeuralField({ className }: { className?: string }) {
     const readColor = () => {
       // Read the resolved token (the build may emit it as lab()/oklch()/rgb())
       color =
-        getComputedStyle(canvas).getPropertyValue('--primary').trim() || color
+        getComputedStyle(canvas).getPropertyValue('--signal').trim() || color
       ctx.strokeStyle = color
       ctx.fillStyle = color
       ctx.lineWidth = 1

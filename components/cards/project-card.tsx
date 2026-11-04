@@ -27,7 +27,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <article
       data-scramble-host
-      className="group hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 transition-colors"
+      className="group hud-frame border-rule bg-panel/80 hover:bg-panel flex h-full flex-col gap-5 border p-6 transition-colors"
     >
       <span aria-hidden="true" className="sweep-line" />
       <h3 className="font-heading text-2xl font-semibold tracking-tight">
@@ -36,17 +36,17 @@ export function ProjectCard({ project }: { project: Project }) {
           duration={500}
         />
       </h3>
-      <p className="text-foreground/75 flex-1 leading-relaxed">
+      <p className="text-ink/75 flex-1 leading-relaxed">
         {dictionary[project.description as keyof typeof dictionary]}
       </p>
       <ul className="flex flex-wrap gap-x-4 gap-y-1">
         {project.stack.map((stack) => (
-          <li key={stack} className="text-muted-foreground font-mono text-xs">
+          <li key={stack} className="text-ink-dim font-mono text-xs">
             {stack}
           </li>
         ))}
       </ul>
-      <div className="border-border flex items-center justify-between border-t pt-4 text-sm">
+      <div className="border-rule flex items-center justify-between border-t pt-4 text-sm">
         <div>
           {project.repo && mounted && (
             <Link href={project.repo}>
@@ -70,7 +70,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.link && (
             <Link
               href={project.link}
-              className="text-primary"
+              className="text-signal"
               withIcon={true}
               icon={<Icon name="arrow-up-right" />}
             >

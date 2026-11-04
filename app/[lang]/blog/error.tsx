@@ -1,11 +1,11 @@
 'use client'
 
+import { useLang } from '@/hooks/use-lang'
+
 import { useEffect } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
-
-import { useLang } from '@/hooks/use-lang'
 
 export default function BlogError({
   error,
@@ -26,7 +26,7 @@ export default function BlogError({
       <h2 className="text-2xl font-bold">
         {lang === 'es' ? 'Algo salió mal!' : 'Something went wrong!'}
       </h2>
-      <p className="text-muted-foreground text-center">
+      <p className="text-ink-dim text-center">
         {lang === 'es'
           ? 'Ocurrió un error al cargar el blog.'
           : 'An error occurred while loading the blog.'}

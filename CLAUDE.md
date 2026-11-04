@@ -87,9 +87,9 @@ mock.module('@/hooks/use-has-mounted', () => ({
 
 All UI work must follow the design system documented in [`DESIGN.md`](./DESIGN.md). Key rules:
 
-- **Colors:** Use only the CSS tokens defined in `app/globals.css` (`--primary`, `--secondary`, `--accent`, `--destructive`, etc.). Do not hardcode hex values — map to Tailwind utilities (`text-primary`, `bg-secondary`, `border-border`, etc.). Full palette and roles are in `DESIGN.md §2`.
-- **Typography:** `font-sans` (Geist) for body, `font-heading` (Tektur) for headings, `font-mono` (Geist Mono) for data labels and code. Scale, weights, and tracking rules are in `DESIGN.md §3`.
-- **Spacing & radius:** Small radii only (`rounded-sm`/`rounded-md`, `--radius: 0.25rem`). Base spacing unit is 8px. Details in `DESIGN.md §4–5`.
+- **Colors:** Use only the CSS tokens defined in `app/globals.css` (`--signal`, `--flare`, `--ink-dim`, `--panel`, `--rule`, etc. — the site's own names, not shadcn's defaults). Do not hardcode hex values — map to Tailwind utilities (`text-signal`, `bg-panel`, `border-rule`, etc.). Rename default shadcn classes (`text-muted-foreground`, `bg-card`…) when adding components with the CLI. Full palette and roles are in `DESIGN.md §2`.
+- **Typography:** `font-sans` (IBM Plex Sans) for body, `font-heading` (Tektur) for headings, `font-mono` (IBM Plex Mono) for data labels and code. Scale, weights, and tracking rules are in `DESIGN.md §3`.
+- **Spacing & radius:** Square corners (`--corner: 0px`; the `rounded-*` scale is proportional to it). Base spacing unit is 8px. Details in `DESIGN.md §4–5`.
 - **Dark mode:** All new components must work in both light and dark mode. Tokens switch automatically via the `.dark` class — avoid hardcoding light-only or dark-only colors.
 - **Depth:** Prefer tonal contrast and border containment over shadows. See elevation levels in `DESIGN.md §6`.
 
@@ -125,7 +125,7 @@ Site-wide string constants live in `lib/constants.ts` — import from there inst
 
 ### Styling
 
-Tailwind CSS v4 with CSS custom properties defined in `app/globals.css` using the OKLCH color space. The design token names (`--primary`, `--secondary`, `--accent`, etc.) map directly to Tailwind utilities. Dark mode is toggled via the `.dark` class (next-themes).
+Tailwind CSS v4 with CSS custom properties defined in `app/globals.css` using the OKLCH color space. The design token names (`--signal`, `--flare`, `--tint`, etc.) map directly to Tailwind utilities. Dark mode is toggled via the `.dark` class (next-themes).
 
 ### Import Order
 

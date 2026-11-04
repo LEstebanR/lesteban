@@ -10,7 +10,7 @@ import { SeeMoreButton } from '@/components/ui/see-more-button'
 import { EXPERIENCE } from '@/lib/data'
 
 const RAIL =
-  'rail border-border relative flex flex-col gap-10 border-l pl-6 md:pl-8'
+  'rail border-rule relative flex flex-col gap-10 border-l pl-6 md:pl-8'
 
 export function Experience() {
   const lang = useLang()

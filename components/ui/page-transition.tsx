@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import { usePathname } from 'next/navigation'
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
@@ -19,18 +20,14 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
-          <p className="text-muted-foreground animate-pulse">Loading...</p>
+          <div className="border-signal h-12 w-12 animate-spin rounded-full border-4 border-t-transparent"></div>
+          <p className="text-ink-dim animate-pulse">Loading...</p>
         </div>
       </div>
     )
   }
 
-  return (
-    <div className="animate-fade-in-up">
-      {children}
-    </div>
-  )
+  return <div className="animate-fade-in-up">{children}</div>
 }

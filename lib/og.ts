@@ -61,8 +61,8 @@ export function getBrandMarkDataUri(): string {
 }
 
 // Hex equivalents of the Signal dark-mode tokens in app/globals.css
-// (--background, --card, --foreground, --muted-foreground, --primary,
-// --secondary, --border). Satori can't resolve CSS variables.
+// (--canvas, --panel, --ink, --ink-dim, --signal,
+// --flare, --rule). Satori can't resolve CSS variables.
 export const OG_COLORS = {
   background: '#070c16',
   card: '#0c141f',

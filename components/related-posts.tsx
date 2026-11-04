@@ -21,7 +21,7 @@ export async function RelatedPosts({ currentUrl, lang }: RelatedPostsProps) {
   if (related.length < 2) return null
 
   return (
-    <section className="border-border mt-8 flex flex-col gap-6 border-t pt-10">
+    <section className="border-rule mt-8 flex flex-col gap-6 border-t pt-10">
       <SectionHeading>{dictionary['related-posts']}</SectionHeading>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {related.map((post) => (

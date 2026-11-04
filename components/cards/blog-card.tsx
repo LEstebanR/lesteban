@@ -25,7 +25,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
     <NextLink
       href={`/${lang}/blog/${post.url}`}
       data-scramble-host
-      className="group hud-frame border-border bg-card focus-visible:ring-ring flex h-full flex-col border outline-none focus-visible:ring-2"
+      className="group hud-frame border-rule bg-panel focus-visible:ring-halo flex h-full flex-col border outline-none focus-visible:ring-2"
     >
       <span aria-hidden="true" className="sweep-line z-10" />
       <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -39,13 +39,11 @@ export function BlogCard({ post }: { post: BlogPost }) {
         />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <time className="text-muted-foreground font-mono text-xs">
-          {post.date}
-        </time>
-        <h3 className="font-heading group-hover:text-primary text-xl leading-snug font-semibold transition-colors">
+        <time className="text-ink-dim font-mono text-xs">{post.date}</time>
+        <h3 className="font-heading group-hover:text-signal text-xl leading-snug font-semibold transition-colors">
           <ScrambleText text={post.title} duration={600} />
         </h3>
-        <p className="text-foreground/70 line-clamp-2 text-sm leading-relaxed">
+        <p className="text-ink/70 line-clamp-2 text-sm leading-relaxed">
           {post.description}
         </p>
         {post.tags && post.tags.length > 0 && (
@@ -53,7 +51,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
             {post.tags.slice(0, 3).map((tag) => (
               <li
                 key={tag}
-                className="text-primary font-mono text-xs before:content-['#']"
+                className="text-signal font-mono text-xs before:content-['#']"
               >
                 {tag}
               </li>
