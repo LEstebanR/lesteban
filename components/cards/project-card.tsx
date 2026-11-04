@@ -8,9 +8,8 @@ import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
-import { ArrowUpRight } from 'lucide-react'
-
 import { ScrambleText } from '@/components/scramble-text'
+import { Icon } from '@/components/ui/icon'
 import { Link } from '@/components/ui/link'
 
 type Project = {
@@ -28,7 +27,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <article
       data-scramble-host
-      className="group boot hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 transition-colors"
+      className="group hud-frame border-border bg-card/80 hover:bg-card flex h-full flex-col gap-5 border p-6 transition-colors"
     >
       <span aria-hidden="true" className="sweep-line" />
       <h3 className="font-heading text-2xl font-semibold tracking-tight">
@@ -73,7 +72,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.link}
               className="text-primary"
               withIcon={true}
-              icon={<ArrowUpRight className="size-4" />}
+              icon={<Icon name="arrow-up-right" />}
             >
               {dictionary['live-demo']}
             </Link>

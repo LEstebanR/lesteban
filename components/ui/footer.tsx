@@ -5,9 +5,8 @@ import { useLang } from '@/hooks/use-lang'
 
 import Link from 'next/link'
 
-import { Heart } from 'lucide-react'
-
 import { ScrambleText } from '@/components/scramble-text'
+import { Icon } from '@/components/ui/icon'
 
 export function Footer() {
   const lang = useLang()
@@ -19,7 +18,7 @@ export function Footer() {
         <span>© {new Date().getFullYear()} Luis Esteban Ramírez</span>
         <span className="flex items-center gap-1.5">
           {dictionary['made-with' as keyof typeof dictionary]}
-          <Heart className="fill-secondary text-secondary size-3" />
+          <Icon name="heart" className="text-secondary size-3.5" />
           {dictionary['by' as keyof typeof dictionary]}
           <Link
             href={`/${lang}`}

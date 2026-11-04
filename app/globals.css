@@ -7,24 +7,24 @@
 
 /* ── Signal: light mode (daylight console) ─────────────────────────────── */
 :root {
-  --background: oklch(0.975 0.005 250);
-  --foreground: oklch(0.22 0.03 262);
-  --card: oklch(0.995 0.002 250);
-  --card-foreground: oklch(0.22 0.03 262);
-  --popover: oklch(0.995 0.002 250);
-  --popover-foreground: oklch(0.22 0.03 262);
+  --background: oklch(0.972 0.008 215);
+  --foreground: oklch(0.21 0.035 240);
+  --card: oklch(0.992 0.004 215);
+  --card-foreground: oklch(0.21 0.035 240);
+  --popover: oklch(0.992 0.004 215);
+  --popover-foreground: oklch(0.21 0.035 240);
   --primary: oklch(0.52 0.12 222);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.52 0.21 298);
   --secondary-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.94 0.008 250);
-  --muted-foreground: oklch(0.48 0.03 258);
+  --muted: oklch(0.935 0.014 218);
+  --muted-foreground: oklch(0.46 0.05 232);
   --accent: oklch(0.93 0.03 215);
   --accent-foreground: oklch(0.3 0.08 225);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.87 0.015 250);
-  --input: oklch(0.87 0.015 250);
+  --border: oklch(0.86 0.025 222);
+  --input: oklch(0.86 0.025 222);
   --ring: oklch(0.52 0.12 222 / 0.6);
   --grid-line: oklch(0.52 0.12 222 / 0.09);
   --glow: oklch(0.7 0.13 215 / 0.25);
@@ -38,7 +38,7 @@
   --chart-3: oklch(0.6 0.12 180);
   --chart-4: oklch(0.577 0.245 27.325);
   --chart-5: oklch(0.7 0.15 80);
-  --radius: 0.25rem;
+  --radius: 0px;
   --sidebar: var(--card);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
@@ -51,24 +51,24 @@
 
 /* ── Signal: dark mode (the native state) ──────────────────────────────── */
 .dark {
-  --background: oklch(0.155 0.022 258);
-  --foreground: oklch(0.93 0.012 235);
-  --card: oklch(0.19 0.026 258);
-  --card-foreground: oklch(0.93 0.012 235);
-  --popover: oklch(0.19 0.026 258);
-  --popover-foreground: oklch(0.93 0.012 235);
+  --background: oklch(0.155 0.025 245);
+  --foreground: oklch(0.93 0.018 210);
+  --card: oklch(0.19 0.03 243);
+  --card-foreground: oklch(0.93 0.018 210);
+  --popover: oklch(0.19 0.03 243);
+  --popover-foreground: oklch(0.93 0.018 210);
   --primary: oklch(0.86 0.12 200);
   --primary-foreground: oklch(0.17 0.03 258);
   --secondary: oklch(0.72 0.17 300);
   --secondary-foreground: oklch(0.17 0.03 258);
-  --muted: oklch(0.22 0.028 258);
-  --muted-foreground: oklch(0.7 0.03 245);
+  --muted: oklch(0.22 0.032 240);
+  --muted-foreground: oklch(0.72 0.045 215);
   --accent: oklch(0.27 0.05 225);
   --accent-foreground: oklch(0.9 0.08 200);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.31 0.035 258);
-  --input: oklch(0.31 0.035 258);
+  --border: oklch(0.31 0.04 238);
+  --input: oklch(0.31 0.04 238);
   --ring: oklch(0.86 0.12 200 / 0.6);
   --grid-line: oklch(0.86 0.12 200 / 0.07);
   --glow: oklch(0.86 0.12 200 / 0.18);
@@ -82,9 +82,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-heading: var(--font-tektur), var(--font-geist), sans-serif;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-heading: var(--font-tektur), var(--font-plex-sans), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -109,10 +109,11 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 2px);
+  /* Proportional scale: a square theme (--radius: 0) stays square everywhere */
+  --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
-  --radius-xl: calc(var(--radius) + 6px);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2.5);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -445,10 +446,6 @@ html {
   }
 }
 
-.status-dot {
-  animation: blink 1.6s steps(1) infinite;
-}
-
 /* ── Living console: ambient + interaction motion ─────────────────────── */
 
 /* Block caret after the role, like a prompt waiting for input */
@@ -531,22 +528,10 @@ html {
   animation: sweep 900ms cubic-bezier(0.5, 0, 0.2, 1);
 }
 
-/* Timeline rail that fills with signal as you scroll */
-/* Scroll-driven reveals: progressive enhancement, static where unsupported */
+/* Scroll-driven motion is reserved for what carries information: the
+   timeline rail fills to show progress through the career, and the aurora
+   fades as the hero leaves. Progressive enhancement, static where unsupported */
 @supports (animation-timeline: view()) {
-  .reveal-line {
-    transform-origin: left;
-    animation: draw-x linear both;
-    animation-timeline: view();
-    animation-range: entry 20% cover 40%;
-  }
-
-  .boot {
-    animation: boot linear both;
-    animation-timeline: view();
-    animation-range: entry 5% cover 30%;
-  }
-
   .rail::before {
     content: '';
     display: block;
@@ -563,33 +548,10 @@ html {
     animation-range: cover 10% cover 60%;
   }
 
-  .chip-seq {
-    animation: chip-on linear both;
-    animation-timeline: view();
-    animation-range: entry calc(30% + var(--i, 0) * 12%) cover
-      calc(35% + var(--i, 0) * 6%);
-  }
-
-  .slash {
-    display: inline-block;
-    animation: slash-on linear both;
-    animation-timeline: view();
-    animation-range: entry 30% cover 40%;
-  }
-
   .aurora-exit {
     animation: aurora-exit linear both;
     animation-timeline: view();
     animation-range: exit 0% exit 100%;
-  }
-}
-
-@keyframes draw-x {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }
 
@@ -599,45 +561,6 @@ html {
   }
   to {
     transform: scaleY(1);
-  }
-}
-
-@keyframes boot {
-  from {
-    clip-path: inset(-2px -2px 100% -2px);
-    opacity: 0.2;
-  }
-  55% {
-    opacity: 1;
-  }
-  62% {
-    opacity: 0.35;
-  }
-  68% {
-    opacity: 1;
-  }
-  74% {
-    opacity: 0.6;
-  }
-  to {
-    clip-path: inset(-2px -2px -2px -2px);
-    opacity: 1;
-  }
-}
-
-@keyframes chip-on {
-  0% {
-    opacity: 0.25;
-    border-color: var(--border);
-  }
-  60% {
-    opacity: 1;
-    color: var(--primary);
-    border-color: var(--primary);
-    box-shadow: 0 0 10px var(--glow);
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -821,21 +744,6 @@ html {
   animation: jitter 280ms steps(2) 2;
 }
 
-/* The section slash flickers on as its heading scrolls in */
-@keyframes slash-on {
-  0%,
-  30%,
-  50% {
-    opacity: 0.1;
-  }
-  40%,
-  60%,
-  100% {
-    opacity: 1;
-  }
-}
-
-
 @keyframes aurora-exit {
   to {
     opacity: 0;
@@ -877,10 +785,6 @@ html {
     display: none;
   }
   /* Everything else holds its final, static state */
-  .reveal-line,
-  .boot,
-  .chip-seq,
-  .slash,
   .telemetry,
   .telemetry-bar,
   .seq,

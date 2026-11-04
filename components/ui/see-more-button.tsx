@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 
-import { ChevronDown } from 'lucide-react'
-
 import { Button } from '@/components/ui/button'
+import { Icon } from '@/components/ui/icon'
 
 interface SeeMoreButtonProps {
   children: React.ReactNode
@@ -51,7 +50,8 @@ export function SeeMoreButton({
         className="hover:border-primary hover:text-primary w-fit rounded-sm font-mono text-xs"
       >
         {label}
-        <ChevronDown
+        <Icon
+          name="chevron-down"
           className={`size-3.5 transition-transform duration-300 ${seeMore ? 'rotate-180' : ''}`}
         />
       </Button>

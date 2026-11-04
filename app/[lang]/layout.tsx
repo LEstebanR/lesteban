@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import type { Metadata } from 'next'
 
-import { Geist, Geist_Mono, Tektur } from 'next/font/google'
+import { IBM_Plex_Mono, IBM_Plex_Sans, Tektur } from 'next/font/google'
 
 import { BreadcrumbProvider } from '@/components/breadcrumb-provider'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -16,9 +16,10 @@ import { ScrollToTop } from '@/components/ui/scroll-to-top'
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE } from '@/lib/constants'
 import { getCanonicalUrl, getLanguageAlternates } from '@/lib/utils'
 
-const geist = Geist({
-  variable: '--font-geist',
+const plexSans = IBM_Plex_Sans({
+  variable: '--font-plex-sans',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 
@@ -29,9 +30,10 @@ const tektur = Tektur({
   axes: ['wdth'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const plexMono = IBM_Plex_Mono({
+  variable: '--font-plex-mono',
   subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
 })
 
@@ -181,7 +183,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${geist.variable} ${tektur.variable} ${geistMono.variable} flex min-h-screen flex-col`}
+        className={`${plexSans.variable} ${tektur.variable} ${plexMono.variable} flex min-h-screen flex-col`}
       >
         <ThemeProvider
           attribute="class"

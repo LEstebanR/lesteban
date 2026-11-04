@@ -96,7 +96,7 @@ export function Hero({ lang }: HeroProps) {
       </div>
 
       <p className="seq text-muted-foreground flex items-center gap-2 font-mono text-xs">
-        <span className="bg-primary status-dot inline-block size-1.5 rounded-full" />
+        <span className="bg-primary inline-block size-1.5 rounded-full" />
         {dictionary['hero-status']}
       </p>
 
