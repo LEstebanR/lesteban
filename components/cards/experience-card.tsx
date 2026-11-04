@@ -32,11 +32,11 @@ export function ExperienceCard({
         className={cn(
           'absolute top-2 -left-[29px] size-2.5 border md:-left-[37px]',
           current
-            ? 'border-primary bg-primary shadow-[0_0_12px_var(--primary)]'
-            : 'border-border bg-background'
+            ? 'border-signal bg-signal shadow-[0_0_12px_var(--signal)]'
+            : 'border-rule bg-canvas'
         )}
       />
-      <p className="text-muted-foreground font-mono text-xs">
+      <p className="text-ink-dim font-mono text-xs">
         {dictionary[job.startDate as keyof typeof dictionary]} —{' '}
         {dictionary[job.endDate as keyof typeof dictionary]}
       </p>
@@ -47,15 +47,15 @@ export function ExperienceCard({
         <ScrambleText
           text={job.company}
           duration={450}
-          className="text-primary font-medium"
+          className="text-signal font-medium"
         />
       </div>
-      <p className="text-foreground/80 max-w-2xl leading-relaxed">
+      <p className="text-ink/80 max-w-2xl leading-relaxed">
         {dictionary[job.description as keyof typeof dictionary]}
       </p>
       <ul className="flex flex-wrap gap-x-4 gap-y-1">
         {job.stack.map((stack) => (
-          <li key={stack} className="text-muted-foreground font-mono text-xs">
+          <li key={stack} className="text-ink-dim font-mono text-xs">
             {stack}
           </li>
         ))}

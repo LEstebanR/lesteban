@@ -9,13 +9,13 @@ import { SKILLS } from '@/lib/data'
 
 function SkillRow({ skill, skills }: { skill: string; skills: string[] }) {
   return (
-    <div className="border-border grid gap-3 border-b py-5 md:grid-cols-[240px_1fr] md:items-center">
-      <h3 className="text-muted-foreground text-sm">{skill}</h3>
+    <div className="border-rule grid gap-3 border-b py-5 md:grid-cols-[240px_1fr] md:items-center">
+      <h3 className="text-ink-dim text-sm">{skill}</h3>
       <ul className="flex flex-wrap gap-2">
         {skills.map((item) => (
           <li
             key={item}
-            className="border-border bg-card hover:border-primary hover:text-primary rounded-sm border px-3 py-1.5 font-mono text-sm transition-colors"
+            className="border-rule bg-panel hover:border-signal hover:text-signal rounded-sm border px-3 py-1.5 font-mono text-sm transition-colors"
           >
             {item}
           </li>
@@ -31,7 +31,7 @@ export function Skills() {
   return (
     <section className="flex flex-col gap-4">
       <SectionHeading>{dictionary.skills}</SectionHeading>
-      <div className="border-border border-t">
+      <div className="border-rule border-t">
         <SkillRow
           skill={dictionary['frontend-development' as keyof typeof dictionary]}
           skills={SKILLS.frontend}

@@ -16,6 +16,9 @@ export function getLocale(headers: {
  */
 export function isLocalizablePath(pathname: string): boolean {
   if (pathname === '/') return true
+  // Static files under /blog (e.g. post cover images in public/blog/) are
+  // served as-is; post slugs never contain a file extension.
+  if (/\.[a-z0-9]+$/i.test(pathname)) return false
   const parts = pathname.split('/').filter(Boolean)
   if (parts[0] !== 'blog') return false
   return parts.length === 1 || parts.length === 2

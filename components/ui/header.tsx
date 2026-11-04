@@ -98,13 +98,13 @@ export function Header() {
   return (
     <header
       aria-label={currentLang === 'es' ? 'Encabezado del sitio' : 'Site header'}
-      className="bg-background/75 border-border fixed top-0 right-0 left-0 z-40 flex h-16 w-full items-center border-b backdrop-blur-md"
+      className="bg-canvas/75 border-rule fixed top-0 right-0 left-0 z-40 flex h-16 w-full items-center border-b backdrop-blur-md"
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
         <div className="flex flex-1 items-center justify-between gap-6">
           <Link href={`/${currentLang}`} target="_self">
             <span className="font-heading flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
-              <span aria-hidden="true" className="bg-primary size-2" />
+              <span aria-hidden="true" className="bg-signal size-2" />
               Luis Esteban
             </span>
           </Link>
@@ -120,7 +120,7 @@ export function Header() {
               <NextLink
                 href={`/${currentLang}/blog`}
                 data-scramble-host
-                className="text-muted-foreground hover:text-primary flex items-center gap-1.5 font-mono text-xs transition-colors"
+                className="text-ink-dim hover:text-signal flex items-center gap-1.5 font-mono text-xs transition-colors"
               >
                 <ScrambleText text="Blog" duration={350} />
               </NextLink>
@@ -175,7 +175,7 @@ export function Header() {
                   <Icon name="menu" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background mt-2 w-screen rounded-t-none">
+              <DropdownMenuContent className="bg-canvas mt-2 w-screen rounded-t-none">
                 <DropdownMenuGroup>
                   <>
                     {/* Breadcrumbs first (only when not on home) */}

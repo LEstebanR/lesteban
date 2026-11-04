@@ -13,6 +13,7 @@ Create a new React component for the lesteban portfolio following the project's 
 3. Create the component file following these rules:
 
 **Imports order** (enforced by Prettier — must match exactly):
+
 ```ts
 // 1. React (only if needed)
 // 2. Next.js (next/image, next/link, next/navigation)
@@ -23,11 +24,12 @@ Create a new React component for the lesteban portfolio following the project's 
 ```
 
 **Design system constraints** (see DESIGN.md for full reference):
+
 - Use CSS token utilities only — never hardcode hex values
-  - Text: `text-foreground`, `text-primary`, `text-secondary`, `text-muted-foreground`
-  - Background: `bg-background`, `bg-card`, `bg-muted`, `bg-primary`, `bg-secondary`
-  - Border: `border-border`, `border-primary`, `border-secondary`
-  - Destructive: `text-destructive`, `bg-destructive`
+  - Text: `text-ink`, `text-signal`, `text-flare`, `text-ink-dim`
+  - Background: `bg-canvas`, `bg-panel`, `bg-recess`, `bg-signal`, `bg-flare`
+  - Border: `border-rule`, `border-signal`, `border-flare`
+  - Alert: `text-alert`, `bg-alert`
 - Headings: add `font-heading` class (Space Grotesk); body uses `font-sans` by default (DM Sans)
 - Dark mode is automatic — tokens switch via `.dark` class; no manual `dark:` overrides needed for color tokens
 - Radius: use `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, or `rounded-full` — no arbitrary values
@@ -35,6 +37,7 @@ Create a new React component for the lesteban portfolio following the project's 
 - Animations: use existing classes (`animate-fade-in-up`, `animate-fade-in-scale`, `animate-float`) or `tw-animate-css` utilities before writing custom keyframes
 
 **shadcn/ui primitives** available in `components/ui/`:
+
 - Use them as the base for any new composed component (Card, Badge, Button, etc.)
 - Do not re-implement what shadcn already provides
 

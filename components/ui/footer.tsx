@@ -13,18 +13,18 @@ export function Footer() {
   const dictionary = getClientDictionary(lang)
 
   return (
-    <footer className="border-border w-full border-t">
-      <div className="text-muted-foreground mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 font-mono text-xs md:px-8">
+    <footer className="border-rule w-full border-t">
+      <div className="text-ink-dim mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 font-mono text-xs md:px-8">
         <span>© {new Date().getFullYear()} Luis Esteban Ramírez</span>
         <span className="flex items-center gap-1.5">
           {dictionary['made-with' as keyof typeof dictionary]}
-          <Icon name="heart" className="text-secondary size-3.5" />
+          <Icon name="heart" className="text-flare size-3.5" />
           {dictionary['by' as keyof typeof dictionary]}
           <Link
             href={`/${lang}`}
             target="_self"
             data-scramble-host
-            className="hover:text-primary text-foreground transition-colors"
+            className="hover:text-signal text-ink transition-colors"
           >
             <ScrambleText text="LEstebanR" duration={450} />
           </Link>

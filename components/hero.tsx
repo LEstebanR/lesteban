@@ -9,7 +9,6 @@ import Image from 'next/image'
 
 import { useTheme } from 'next-themes'
 
-import { DecodeMask } from '@/components/decode-mask'
 import { NeuralField } from '@/components/neural-field'
 import { ScrambleText } from '@/components/scramble-text'
 import { Link } from '@/components/ui/link'
@@ -90,19 +89,19 @@ export function Hero({ lang }: HeroProps) {
         <div className="reticle hud-frame">
           <span
             ref={coordsRef}
-            className="text-primary absolute top-full left-full mt-1 ml-1 font-mono text-[10px] whitespace-nowrap"
+            className="text-signal absolute top-full left-full mt-1 ml-1 font-mono text-[10px] whitespace-nowrap"
           />
         </div>
       </div>
 
-      <p className="seq text-muted-foreground flex items-center gap-2 font-mono text-xs">
-        <span className="bg-primary inline-block size-1.5 rounded-full" />
+      <p className="seq text-ink-dim flex items-center gap-2 font-mono text-xs">
+        <span className="bg-signal inline-block size-1.5 rounded-full" />
         {dictionary['hero-status']}
       </p>
 
       <h1 className="font-heading">
         <span
-          className="seq text-muted-foreground mb-3 block font-sans text-lg md:text-xl"
+          className="seq text-ink-dim mb-3 block font-sans text-lg md:text-xl"
           style={seq(100)}
         >
           {dictionary['hello']}
@@ -116,14 +115,14 @@ export function Hero({ lang }: HeroProps) {
       <div className="grid gap-10 md:grid-cols-[1fr_280px] md:items-end">
         <div className="flex max-w-xl flex-col gap-6">
           <p
-            className="seq text-primary font-heading text-xl font-medium md:text-2xl"
+            className="seq text-signal font-heading text-xl font-medium md:text-2xl"
             style={seq(1000)}
           >
             {dictionary['hero-role']}
             <span aria-hidden="true" className="caret" />
           </p>
           <p
-            className="seq text-foreground/80 text-lg leading-relaxed text-pretty"
+            className="seq text-ink/80 text-lg leading-relaxed text-pretty"
             style={seq(1150)}
           >
             {dictionary['hero-lede']}
@@ -133,7 +132,7 @@ export function Hero({ lang }: HeroProps) {
               <li
                 key={tech}
                 style={seq(1300 + index * 80)}
-                className="seq border-border text-muted-foreground hover:border-primary hover:text-primary rounded-sm border px-2.5 py-1 font-mono text-xs transition-colors"
+                className="seq border-rule text-ink-dim hover:border-signal hover:text-signal rounded-sm border px-2.5 py-1 font-mono text-xs transition-colors"
               >
                 {tech}
               </li>
@@ -194,11 +193,10 @@ export function Hero({ lang }: HeroProps) {
 
         <figure
           data-scramble-host
-          className="seq hud-frame border-border bg-card mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
+          className="seq hud-frame border-rule bg-panel mx-auto w-full max-w-[220px] border p-3 md:mx-0 md:max-w-[280px]"
           style={seq(150)}
         >
           <div className="scan-in scanlines glitch-host relative aspect-square overflow-hidden">
-            <DecodeMask />
             <span aria-hidden="true" className="scan-beam z-[4]" />
             <span aria-hidden="true" className="photo-scan" />
             <Image
@@ -218,7 +216,7 @@ export function Hero({ lang }: HeroProps) {
               priority
             />
           </div>
-          <figcaption className="text-muted-foreground mt-3 flex justify-between font-mono text-[11px]">
+          <figcaption className="text-ink-dim mt-3 flex justify-between font-mono text-[11px]">
             <span>Colombia</span>
             <span>UTC−5</span>
           </figcaption>

@@ -47,7 +47,7 @@ export function SeeMoreButton({
         variant="outline"
         onClick={() => setSeeMore(!seeMore)}
         aria-expanded={seeMore}
-        className="hover:border-primary hover:text-primary w-fit rounded-sm font-mono text-xs"
+        className="hover:border-signal hover:text-signal w-fit rounded-sm font-mono text-xs"
       >
         {label}
         <Icon

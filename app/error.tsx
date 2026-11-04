@@ -19,14 +19,10 @@ export default function Error({
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4">
       <h2 className="text-2xl font-bold">Something went wrong!</h2>
-      <p className="text-muted-foreground text-center">
+      <p className="text-ink-dim text-center">
         An error occurred while loading this page.
       </p>
-      <Button
-        onClick={() => reset()}
-        variant="default"
-        className="mt-4"
-      >
+      <Button onClick={() => reset()} variant="default" className="mt-4">
         Try again
       </Button>
     </div>

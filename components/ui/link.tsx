@@ -22,8 +22,8 @@ export function Link({
       href={href}
       target={target}
       className={cn(
-        'hover:text-primary hover:animate-underline-link decoration-2 underline-offset-4 transition-all duration-300 hover:underline',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm',
+        'hover:text-signal hover:animate-underline-link decoration-2 underline-offset-4 transition-all duration-300 hover:underline',
+        'focus-visible:ring-halo rounded-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         className
       )}
     >

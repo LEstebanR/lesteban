@@ -43,6 +43,11 @@ describe('isLocalizablePath', () => {
     expect(isLocalizablePath('/blog/a/b')).toBe(false)
     expect(isLocalizablePath('/manifest.webmanifest')).toBe(false)
   })
+
+  test('rejects static files under /blog so cover images are not redirected', () => {
+    expect(isLocalizablePath('/blog/marathon_image.jpg')).toBe(false)
+    expect(isLocalizablePath('/blog/cover.WEBP')).toBe(false)
+  })
 })
 
 describe('middleware', () => {

@@ -24,16 +24,16 @@ export function ContactCard({ link }: { link: ContactLink }) {
       href={link.href}
       target={link.href === '#' ? '_self' : '_blank'}
       data-scramble-host
-      className="group border-border focus-visible:ring-ring flex items-center gap-4 border-b py-5 outline-none focus-visible:ring-2"
+      className="group border-rule focus-visible:ring-halo flex items-center gap-4 border-b py-5 outline-none focus-visible:ring-2"
     >
       <Image src={link.icon} alt={link.label} width={22} height={22} />
-      <span className="text-muted-foreground w-24 shrink-0 text-sm">
+      <span className="text-ink-dim w-24 shrink-0 text-sm">
         {dictionary[link.label as keyof typeof dictionary]}
       </span>
       <ScrambleText
         text={link.user}
         duration={450}
-        className="group-hover:text-primary truncate font-mono text-sm transition-colors"
+        className="group-hover:text-signal truncate font-mono text-sm transition-colors"
       />
     </Link>
   )

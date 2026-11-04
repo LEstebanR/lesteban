@@ -21,7 +21,7 @@ export function Contact() {
   return (
     <section className="flex flex-col gap-4 pb-16">
       <SectionHeading>{dictionary['contact']}</SectionHeading>
-      <div className="border-border grid grid-cols-1 border-t md:grid-cols-2 md:gap-x-10">
+      <div className="border-rule grid grid-cols-1 border-t md:grid-cols-2 md:gap-x-10">
         {mounted
           ? resolveContactLinks(resolvedTheme === 'dark').map((link, index) => (
               <ContactCard key={index} link={link as ContactLink} />
@@ -29,7 +29,7 @@ export function Contact() {
           : Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className="border-border flex items-center gap-4 border-b py-5"
+                className="border-rule flex items-center gap-4 border-b py-5"
               >
                 <Skeleton className="size-6 shrink-0 rounded-full" />
                 <Skeleton className="h-4 w-40 rounded-sm" />

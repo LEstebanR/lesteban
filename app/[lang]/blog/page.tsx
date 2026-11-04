@@ -61,13 +61,13 @@ export default async function BlogPage({ params }: PageParams) {
         <h1 className="font-heading text-[clamp(2.75rem,8vw,6rem)] leading-[0.9] font-semibold tracking-tight uppercase">
           {dictionary['blog']}
         </h1>
-        <p className="text-muted-foreground max-w-xl text-lg">
+        <p className="text-ink-dim max-w-xl text-lg">
           {dictionary['blog-description']}
         </p>
       </header>
 
       {posts.length === 0 ? (
-        <div className="text-muted-foreground border-border flex h-64 items-center justify-center border border-dashed font-mono text-sm">
+        <div className="text-ink-dim border-rule flex h-64 items-center justify-center border border-dashed font-mono text-sm">
           <p>{dictionary['no-posts']}</p>
         </div>
       ) : (
