@@ -20,15 +20,16 @@ export function Experience() {
     <section className="flex flex-col gap-8">
       <SectionHeading>{dictionary['experience']}</SectionHeading>
       <ol className={RAIL}>
-        <ExperienceCard job={EXPERIENCE.aleluya} current />
-        <ExperienceCard job={EXPERIENCE.aleluya_freelance} />
+        <ExperienceCard job={EXPERIENCE.aleluya_product_engineer} current />
+        <ExperienceCard job={EXPERIENCE.aleluya} />
       </ol>
       <SeeMoreButton
         seeMoreCopy={dictionary['see-more']}
         seeLessCopy={dictionary['see-less']}
-        count={2}
+        count={3}
       >
         <ol className={RAIL}>
+          <ExperienceCard job={EXPERIENCE.aleluya_freelance} />
           <ExperienceCard job={EXPERIENCE.devpeoplz} />
           <ExperienceCard job={EXPERIENCE.nominapp} />
         </ol>

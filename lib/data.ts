@@ -17,12 +17,20 @@ export type Skills = {
 }
 
 export const EXPERIENCE: Record<string, ExperienceType> = {
+  aleluya_product_engineer: {
+    position: 'product-engineer',
+    company: 'Aleluya',
+    description: 'aleluya-product-engineer-description',
+    startDate: 'november-2026',
+    endDate: 'current',
+    stack: ['React', 'MUI', 'React-Query', 'Cypress'],
+  },
   aleluya: {
     position: 'frontend-developer',
     company: 'Aleluya',
     description: 'aleluya-description',
     startDate: 'january-2025',
-    endDate: 'current',
+    endDate: 'november-2026',
     stack: ['React', 'MUI', 'React-Query', 'Cypress'],
   },
   aleluya_freelance: {
