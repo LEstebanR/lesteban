@@ -67,6 +67,9 @@ const MOCK_DICT: Record<string, string> = {
   'see-less': 'See less',
   'frontend-developer': 'Frontend Developer',
   'frontend-developer-freelance': 'Frontend Developer Freelance',
+  'product-engineer': 'Product Engineer',
+  'aleluya-product-engineer-description': 'Product engineer at Aleluya',
+  'november-2026': 'November 2026',
   'fullstack-developer': 'Fullstack Developer',
   'aleluya-description': 'Worked at Aleluya on payroll features',
   'aleluya-freelance-description': 'Freelance at Aleluya',
@@ -185,7 +188,7 @@ describe('Experience', () => {
 
   test('renders the SeeMoreButton with item count', () => {
     render(<Experience />)
-    expect(screen.getByText('See 2 more')).toBeDefined()
+    expect(screen.getByText('See 3 more')).toBeDefined()
   })
 
   test('clicking SeeMoreButton toggles to see-less label', () => {
