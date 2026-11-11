@@ -8,8 +8,11 @@ import { useTheme } from 'next-themes'
 
 import { ContactCard, ContactLink } from '@/components/cards/contact-card'
 import { SectionHeading } from '@/components/section-heading'
+import { Button } from '@/components/ui/button'
+import { Icon } from '@/components/ui/icon'
 import { Skeleton } from '@/components/ui/skeleton'
 
+import { CONTACT_EMAIL } from '@/lib/constants'
 import { resolveContactLinks } from '@/lib/data'
 
 export function Contact() {
@@ -21,6 +24,17 @@ export function Contact() {
   return (
     <section className="flex flex-col gap-4 pb-16">
       <SectionHeading>{dictionary['contact']}</SectionHeading>
+      <div className="flex max-w-xl flex-col items-start gap-6 py-4">
+        <p className="text-ink/80 text-lg leading-relaxed text-pretty">
+          {dictionary['contact-lead']}
+        </p>
+        <Button asChild size="lg">
+          <a href={`mailto:${CONTACT_EMAIL}`}>
+            <Icon name="mail" />
+            {dictionary['contact-cta']}
+          </a>
+        </Button>
+      </div>
       <div className="border-rule grid grid-cols-1 border-t md:grid-cols-2 md:gap-x-10">
         {mounted
           ? resolveContactLinks(resolvedTheme === 'dark').map((link, index) => (

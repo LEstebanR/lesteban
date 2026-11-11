@@ -102,6 +102,8 @@ const MOCK_DICT: Record<string, string> = {
   'live-demo': 'Live Demo',
   // Contact
   contact: 'Contact',
+  'contact-lead': 'My inbox is open.',
+  'contact-cta': 'Write me an email',
   github: 'GitHub',
   linkedin: 'LinkedIn',
   email: 'Email',
@@ -263,6 +265,21 @@ describe('Contact', () => {
   test('when mounted renders the Contact heading', () => {
     render(<Contact />)
     expect(screen.getByText('Contact')).toBeDefined()
+  })
+
+  test('renders the lead and a mailto CTA', () => {
+    render(<Contact />)
+    expect(screen.getByText('My inbox is open.')).toBeDefined()
+    const cta = screen.getByRole('link', { name: 'Write me an email' })
+    expect(cta.getAttribute('href')).toBe('mailto:leramirezca@gmail.com')
+  })
+
+  test('when unmounted still renders the CTA', () => {
+    state.mounted = false
+    render(<Contact />)
+    expect(
+      screen.getByRole('link', { name: 'Write me an email' })
+    ).toBeDefined()
   })
 
   test('when mounted renders all 4 contact cards', () => {

@@ -1,6 +1,8 @@
 {
   "projects": "Projects",
   "contact": "Contact",
+  "contact-lead": "Have a product idea, a role to fill, or just want to talk shop? Send me a note and let's talk.",
+  "contact-cta": "Send an email",
   "experience": "Experience",
   "product-engineer": "Product Engineer",
   "frontend-developer": "Frontend Developer",
