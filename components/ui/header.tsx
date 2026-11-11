@@ -3,6 +3,7 @@
 import { Button } from './button'
 import { LanguageToggle } from './language-toggle'
 import { Link } from './link'
+import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
 
 import React from 'react'
 
@@ -85,6 +86,7 @@ export function Header() {
     segments[0] === 'en' || segments[0] === 'es'
       ? (segments[0] as 'en' | 'es')
       : 'en'
+  const dictionary = getClientDictionary(currentLang)
   const pathWithoutLang =
     segments[0] === 'en' || segments[0] === 'es' ? segments.slice(1) : segments
   const isHome = pathWithoutLang.length === 0
@@ -127,7 +129,7 @@ export function Header() {
             </nav>
           ) : (
             <div className="hidden w-1/2 items-center justify-end px-1 md:flex md:px-0">
-              <Breadcrumb>
+              <Breadcrumb aria-label={dictionary['breadcrumb']}>
                 <BreadcrumbList>
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
@@ -171,7 +173,11 @@ export function Header() {
           <div className="md:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger className="cursor-pointer" asChild>
-                <Button variant="outline" size="icon" aria-label="Menu">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  aria-label={dictionary['menu']}
+                >
                   <Icon name="menu" />
                 </Button>
               </DropdownMenuTrigger>
@@ -257,17 +263,17 @@ export function Header() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={() => setTheme('dark')}>
                   <Icon name="moon" />
-                  Dark
+                  {dictionary['theme-dark']}
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => setTheme('light')}>
                   <Icon name="sun" />
-                  Light
+                  {dictionary['theme-light']}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onSelect={() => setLang('en')}>
+                <DropdownMenuItem lang="en" onSelect={() => setLang('en')}>
                   English
                 </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setLang('es')}>
+                <DropdownMenuItem lang="es" onSelect={() => setLang('es')}>
                   Español
                 </DropdownMenuItem>
               </DropdownMenuContent>

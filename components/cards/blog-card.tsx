@@ -25,13 +25,13 @@ export function BlogCard({ post }: { post: BlogPost }) {
     <NextLink
       href={`/${lang}/blog/${post.url}`}
       data-scramble-host
-      className="group hud-frame border-rule bg-panel focus-visible:ring-halo flex h-full flex-col border outline-none focus-visible:ring-2"
+      className="group hud-frame border-rule bg-panel focus-visible:ring-halo focus-visible:ring-offset-canvas flex h-full flex-col border outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
     >
       <span aria-hidden="true" className="sweep-line z-10" />
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
           src={post.image}
-          alt={post.title}
+          alt=""
           fill
           className="object-cover grayscale-[40%] transition duration-500 group-hover:grayscale-0"
           style={{ objectPosition: post.imagePosition }}

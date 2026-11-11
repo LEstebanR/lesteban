@@ -196,6 +196,17 @@ describe('Experience', () => {
     fireEvent.click(screen.getByRole('button'))
     expect(screen.getByText('See less')).toBeDefined()
   })
+
+  test('collapsed items stay out of the tab order until revealed', () => {
+    render(<Experience />)
+    const button = screen.getByRole('button')
+    const region = document.getElementById(
+      button.getAttribute('aria-controls') as string
+    ) as HTMLElement
+    expect(region.hasAttribute('inert')).toBe(true)
+    fireEvent.click(button)
+    expect(region.hasAttribute('inert')).toBe(false)
+  })
 })
 
 // ─── Skills ───────────────────────────────────────────────────────────────────

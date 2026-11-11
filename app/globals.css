@@ -25,7 +25,7 @@
   --alert-ink: oklch(1 0 0);
   --rule: oklch(0.86 0.025 222);
   --field: oklch(0.86 0.025 222);
-  --halo: oklch(0.52 0.12 222 / 0.6);
+  --halo: oklch(0.52 0.12 222);
   --grid-line: oklch(0.52 0.12 222 / 0.09);
   --glow: oklch(0.7 0.13 215 / 0.25);
   --aurora-a: oklch(0.75 0.13 210 / 0.32);
@@ -56,7 +56,7 @@
   --alert-ink: oklch(0.98 0 0);
   --rule: oklch(0.31 0.04 238);
   --field: oklch(0.31 0.04 238);
-  --halo: oklch(0.86 0.12 200 / 0.6);
+  --halo: oklch(0.86 0.12 200);
   --grid-line: oklch(0.86 0.12 200 / 0.07);
   --glow: oklch(0.86 0.12 200 / 0.18);
   --aurora-a: oklch(0.7 0.13 205 / 0.3);
@@ -95,7 +95,13 @@
 
 @layer base {
   * {
-    @apply border-rule outline-halo/50;
+    @apply border-rule outline-halo;
+  }
+  /* Baseline focus indicator for anything without its own ring (nav,
+     breadcrumb and footer links). Components that draw a ring opt out
+     with outline-none. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-solid;
   }
   body {
     @apply bg-canvas text-ink overflow-x-clip font-sans antialiased;
