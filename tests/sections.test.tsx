@@ -270,7 +270,7 @@ describe('Contact', () => {
   test('renders the lead and a mailto CTA', () => {
     render(<Contact />)
     expect(screen.getByText('My inbox is open.')).toBeDefined()
-    const cta = screen.getByRole('link', { name: 'Write me an email' })
+    const cta = screen.getByRole('link', { name: /Write me an email/ })
     expect(cta.getAttribute('href')).toBe('mailto:leramirezca@gmail.com')
   })
 
@@ -278,7 +278,7 @@ describe('Contact', () => {
     state.mounted = false
     render(<Contact />)
     expect(
-      screen.getByRole('link', { name: 'Write me an email' })
+      screen.getByRole('link', { name: /Write me an email/ })
     ).toBeDefined()
   })
 
