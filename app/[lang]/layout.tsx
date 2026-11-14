@@ -174,7 +174,7 @@ export default async function RootLayout({
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="Luis Esteban — Blog"
+          title="Luis Esteban: Blog"
           href="/feed.xml"
         />
         <script

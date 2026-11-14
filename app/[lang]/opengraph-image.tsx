@@ -22,8 +22,8 @@ export async function generateImageMetadata({
   const dictionary = await getDictionary(validLang)
   const alt =
     validLang === 'es'
-      ? `Luis Esteban Ramírez — ${dictionary['hero-role']}`
-      : `Luis Esteban Ramirez — ${dictionary['hero-role']}`
+      ? `Luis Esteban Ramírez, ${dictionary['hero-role']}`
+      : `Luis Esteban Ramirez, ${dictionary['hero-role']}`
 
   return [
     {

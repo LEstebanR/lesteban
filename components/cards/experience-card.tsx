@@ -37,7 +37,7 @@ export function ExperienceCard({
         )}
       />
       <p className="text-ink-dim font-mono text-xs">
-        {dictionary[job.startDate as keyof typeof dictionary]} —{' '}
+        {dictionary[job.startDate as keyof typeof dictionary]} -{' '}
         {dictionary[job.endDate as keyof typeof dictionary]}
       </p>
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
