@@ -105,10 +105,9 @@ describe('BlogCard', () => {
     expect(link.getAttribute('href')).toBe('/en/blog/my-post')
   })
 
-  test('image has correct alt text', () => {
-    render(<BlogCard post={post} />)
-    const img = screen.getByAltText('My First Post')
-    expect(img).toBeDefined()
+  test('image is decorative so the title is not announced twice', () => {
+    const { container } = render(<BlogCard post={post} />)
+    expect(container.querySelector('img')?.getAttribute('alt')).toBe('')
   })
 
   test('renders tag badges when tags are present', () => {

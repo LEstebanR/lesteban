@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
@@ -25,6 +25,7 @@ export function SeeMoreButton({
   count,
 }: SeeMoreButtonProps) {
   const [seeMore, setSeeMore] = useState(false)
+  const regionId = useId()
 
   const label = seeMore
     ? seeLessCopy
@@ -34,7 +35,11 @@ export function SeeMoreButton({
 
   return (
     <>
+      {/* Collapsed content is only faded out, so `inert` keeps it out of the
+          tab order and the accessibility tree until it is revealed */}
       <div
+        id={regionId}
+        inert={!seeMore}
         className={`grid transition-all duration-500 ease-in-out ${
           seeMore ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
@@ -47,7 +52,8 @@ export function SeeMoreButton({
         variant="outline"
         onClick={() => setSeeMore(!seeMore)}
         aria-expanded={seeMore}
-        className="hover:border-signal hover:text-signal w-fit rounded-sm font-mono text-xs"
+        aria-controls={regionId}
+        className="hover:border-signal w-fit rounded-sm font-mono text-xs"
       >
         {label}
         <Icon

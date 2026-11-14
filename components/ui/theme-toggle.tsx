@@ -1,5 +1,8 @@
 'use client'
 
+import { getClientDictionary } from '@/app/[lang]/dictionaries/client'
+import { useLang } from '@/hooks/use-lang'
+
 import * as React from 'react'
 
 import { useTheme } from 'next-themes'
@@ -9,6 +12,7 @@ import { Icon } from '@/components/ui/icon'
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const dictionary = getClientDictionary(useLang())
 
   return (
     <Button
@@ -25,7 +29,7 @@ export function ThemeToggle() {
         name="sun"
         className="text-ink absolute size-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
       />
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{dictionary['toggle-theme']}</span>
     </Button>
   )
 }

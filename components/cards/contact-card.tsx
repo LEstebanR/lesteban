@@ -24,9 +24,10 @@ export function ContactCard({ link }: { link: ContactLink }) {
       href={link.href}
       target={link.href === '#' ? '_self' : '_blank'}
       data-scramble-host
-      className="group border-rule focus-visible:ring-halo flex items-center gap-4 border-b py-5 outline-none focus-visible:ring-2"
+      className="group border-rule focus-visible:ring-halo focus-visible:ring-offset-canvas flex items-center gap-4 border-b py-5 outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
     >
-      <Image src={link.icon} alt={link.label} width={22} height={22} />
+      {/* The visible label already names the link; the logo is decorative */}
+      <Image src={link.icon} alt="" width={22} height={22} />
       <span className="text-ink-dim w-24 shrink-0 text-sm">
         {dictionary[link.label as keyof typeof dictionary]}
       </span>

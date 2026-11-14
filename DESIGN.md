@@ -29,7 +29,7 @@ Token names are the site's own vocabulary, not shadcn's defaults. Each maps to a
 | `--alert` / `--alert-ink`     | `oklch(0.65 0.2 25)`               | `oklch(0.577 0.245 27.325)`           | Errors                                |
 | `--rule`                      | `oklch(0.31 0.04 238)`             | `oklch(0.86 0.025 222)`               | Hairlines                             |
 | `--field`                     | same as rule                       | same as rule                          | Input borders                         |
-| `--halo`                      | signal at 60%                      | signal at 60%                         | Focus rings                           |
+| `--halo`                      | signal (solid, ≥ 3:1 on canvas)    | signal (solid, ≥ 3:1 on canvas)       | Focus rings and outlines              |
 | `--grid-line`, `--glow`       | derived from signal                | derived from signal                   | Hero backdrop only                    |
 
 Components added with the shadcn CLI arrive with default token classes (`text-muted-foreground`, `bg-card`, `border-border`…): rename them to this vocabulary before committing.

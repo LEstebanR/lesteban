@@ -20,6 +20,8 @@ interface ScrambleTextProps {
 /**
  * Decodes `text` from random glyphs, left to right: once on mount and again
  * whenever the pointer enters the closest `[data-scramble-host]` (or itself).
+ * Assistive tech reads a stable sr-only copy; the animated glyphs are hidden
+ * from it so an accessible name never contains random characters.
  */
 export function ScrambleText({
   text,
@@ -40,8 +42,11 @@ export function ScrambleText({
   })
 
   return (
-    <span ref={ref} className={className}>
-      {text}
+    <span className={className}>
+      <span className="sr-only">{text}</span>
+      <span ref={ref} aria-hidden="true">
+        {text}
+      </span>
     </span>
   )
 }
