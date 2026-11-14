@@ -27,7 +27,7 @@ export async function generateImageMetadata({
       alt:
         validLang === 'es'
           ? dictionary['blog-description']
-          : 'Luis Esteban — Blog',
+          : 'Luis Esteban: Blog',
       size: ogImageSize,
       contentType: ogImageContentType,
     },
