@@ -1,6 +1,8 @@
 {
   "projects": "Proyectos",
   "contact": "Contacto",
+  "contact-lead": "¿Tienes una idea de producto, una vacante o simplemente quieres hablar de desarrollo? Escríbeme y lo conversamos.",
+  "contact-cta": "Enviar un correo",
   "experience": "Experiencia",
   "product-engineer": "Product Engineer",
   "frontend-developer": "Desarrollador Frontend",
